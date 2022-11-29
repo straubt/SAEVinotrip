@@ -18,5 +18,7 @@ Route::get("/nos-sejours", [IndexController::class, "destination"]);
 Route::get("/nos-sejours", [IndexController::class, "categorie_participant"]);
 Route::get("/nos-sejours", [IndexController::class, "sejour"]);
 Route::get("/", [IndexController::class, "index"]);
+Route::get("/register/add", [IndexController::class, "add"]);
+Route::post("/register/save", [IndexController::class, "save"]);
 Route::get("/sejour", [IndexController::class, 'unSejour']);
 Route::get("/route-des-vins", [IndexController::class, 'route_des_vins']);

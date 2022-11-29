@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Vinotrip</title> 
-    <link rel="stylesheet" href="css/register.css">
+	<link rel="stylesheet" href="css/register.css">
+
 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
     <link rel="stylesheet" href="css/styleGeneral.css"></head>
 <body>
@@ -23,10 +24,11 @@
     <!-- Body of Form starts -->
 
   	<div class="container">
-      <form method="post" autocomplete="on">
+      <form method="post" action="{{url('/register/save')}}" autocomplete="on">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
         <!--First name-->
     		<div class="box">
-          <label for="firstName" class="fl fontLabel"> ffv : </label>
+          <label for="firstName" class="fl fontLabel"> Nom : </label>
     			<div class="new iconBox">
             <i class="fa fa-user" aria-hidden="true"></i>
           </div>
@@ -51,17 +53,6 @@
     		</div>
     		<!--Second name-->
 
-
-    		<!---Phone No.------>
-    		<div class="box">
-          <label for="phone" class="fl fontLabel"> Numéro de téléphone : </label>
-    			<div class="fl iconBox"><i class="fa fa-phone-square" aria-hidden="true"></i></div>
-    			<div class="fr">
-    					<input type="text" required name="phoneNo" maxlength="10" placeholder="Numéro de téléphone" class="textBox">
-    			</div>
-    			<div class="clr"></div>
-    		</div>
-    		<!---Phone No.---->
 
 
     		<!---Email ID---->

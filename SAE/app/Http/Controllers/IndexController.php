@@ -12,6 +12,7 @@ use App\Models\Categorie_Participant;
 use App\Models\Theme;
 use App\Models\Route_des_vins;
 use App\Models\Avis;
+use App\Models\User;
 use App\Models\Sejour_To_Cat_Participant;
 
 
@@ -33,6 +34,15 @@ class IndexController extends Controller
 
     public function client(){
         return view("client", ["client" => Client::all()]);
+    }
+
+    public function add(){
+        return view("register");
+    }
+
+    
+    public function save(){
+        return view("register");
     }
 
     public function route_des_vins(){
