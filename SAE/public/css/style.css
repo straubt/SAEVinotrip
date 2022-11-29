@@ -1,0 +1,129 @@
+
+.bandeau{
+    background-color:teal;
+    width: 100%;
+    height: 250Px;
+    color: white;
+    position: absolute;
+    bottom: 0px;
+    z-index: 0;
+    z-index: 1;
+    visibility: hidden;
+}
+
+.buttonBandeau{
+    background-color: teal;
+    border-color: white;
+    color: white;
+    display: inline-block;
+    padding: 10px;
+    font-size: 20px;
+    margin-left: 20%;
+}
+
+.personalisation{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+#Cookies{
+  width: 200px;
+}
+
+#Description{
+    width: 350px;
+}
+
+#Accepter{
+    width: 50px;
+}
+
+#Reffuser{
+    width: 50px;
+}
+
+table.blueTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+  }
+  table.blueTable tbody td {
+    font-size: 13px;
+  }
+  table.blueTable tr:nth-child(even) {
+    background: #D0E4F5;
+  }
+  table.blueTable thead {
+    background: #1C6EA4;
+    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+    border-bottom: 2px solid #444444;
+  }
+  table.blueTable thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-left: 2px solid #D0E4F5;
+  }
+  table.blueTable thead th:first-child {
+    border-left: none;
+  }
+
+  .buttonFormTA{
+    margin-left: 20px;
+    background-color: white;
+  }
+
+  .buttonFormTR{
+    margin-left: 20px;
+    background-color: white;
+  }
+
+  .buttonForm{
+    margin-left: 25%;
+    background-color: white;
+  }
+  
+  .buttonResForm{
+    position: absolute;
+    background-color:#1C6EA4;
+    margin-left: 80%;
+    margin-top: 30px;
+  }
+
+  .buttonOkForm{
+    position: absolute;
+    background-color:green;
+    margin-left: 71%;
+    margin-top: 5px;
+  }
+
+.route_a{
+  color: black;
+  text-decoration: none;
+}
+
+#image_route_vins{
+  position: relative;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#text_route{
+  position: relative;
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+
+
