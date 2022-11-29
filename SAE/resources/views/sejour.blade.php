@@ -1,4 +1,10 @@
-<?php $id = $_SERVER['QUERY_STRING']-1; ?>
+<?php 
+$id = $_SERVER['QUERY_STRING']-1;
+$tripTitle = $sejour[$id]['titre_sejour'];
+$tripNbDay = $sejour[$id]['duree_sejour'];
+$tripDescription = $sejour[$id]['description_sejour'];
+$tripPicture = $sejour[$id]['photo_sejour'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,18 +12,18 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{$sejour[$id]['titre_sejour']}}</title>
+        <title>{{$tripTitle}}</title>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
         <link rel="stylesheet" href="css/sejour.css">
     </head>
     <body>
         <main>
             <div id="sejourHeader">
-                <img src="{{$sejour[$_SERVER['QUERY_STRING']-1]['photo_sejour']}}" alt="photo séjour">
+                <img src="{{$tripPicture}}" alt="photo séjour">
                 <div id="sejourHeaderText">
-                    <h1>{{$sejour[$id]['titre_sejour']}}</h1>
-                    <p>{{$sejour[$id]['duree_sejour']}} jour(s) | {{$sejour[$id]['duree_sejour']-1}} nuit(s)</p>
-                    <p class="justified">{{$sejour[$_SERVER['QUERY_STRING']-1]['description_sejour']}}</p>
+                    <h1>{{$tripTitle}}</h1>
+                    <p>{{$tripNbDay}} jour(s) | {{$tripNbDay-1}} nuit(s)</p>
+                    <p class="justified">{{$tripDescription}}</p>
                     <p>{{$theme[$sejour[$id]['id_theme']-1]['libelle_theme']}}</p>
                     <button>
                         <div>Offrir</div>
