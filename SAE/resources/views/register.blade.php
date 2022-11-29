@@ -54,7 +54,7 @@
 
     		<!---Phone No.------>
     		<div class="box">
-          <label for="phone" class="fl fontLabel"> Numéro de téléphone : </label>
+          <label for="phone" class="fl fontLabel"> Téléphone : </label>
     			<div class="fl iconBox"><i class="fa fa-phone-square" aria-hidden="true"></i></div>
     			<div class="fr">
     					<input type="text" required name="phoneNo" maxlength="10" placeholder="Numéro de téléphone" class="textBox">

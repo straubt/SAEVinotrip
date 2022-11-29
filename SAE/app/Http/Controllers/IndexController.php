@@ -39,6 +39,10 @@ class IndexController extends Controller
         return view("route_des_vins", ["route_des_vins" => Route_des_vins::all()]);
     }
 
+    public function register(){
+        return view("register");
+    }
+
 
     // public function destination(){
     //     return view("sejour", ["destination" => Destination::all()]);
