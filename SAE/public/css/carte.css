@@ -1,0 +1,151 @@
+body{
+  background: url(https://images2.alphacoders.com/727/727110.jpg) no-repeat center fixed;
+  background-size: cover;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-500%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(0.5);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+#carte{
+  width: 30%;
+  height: 60%;
+  margin-left: 5%;
+  z-index: 2 ;
+  display: flex;
+  animation: 1.5s ease-out 0s 1 zoom;
+  
+}
+.map{
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.localisation{
+  max-width: 2.5%;
+  height: auto;
+  z-index: 5;
+  position: absolute;
+  cursor: pointer;
+  animation: 3s ease-out 0s 1 zoom;
+  
+}
+
+.localisation:hover{
+  transform: translateY(10%);
+  transition: .5s;
+}
+
+#laRoute{
+  max-width: 50%;
+  justify-content: center;
+  position: relative;
+  left: 5%;
+  display: block;
+ 
+}
+
+#descriptionRoute{
+  position: relative;
+  background: #970555;
+  background: #970555; /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: .5s ease;
+  opacity:1;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 0px 0px 30px 30px;
+}
+
+#descriptionRoute:hover{
+  opacity: 1;
+}
+
+#imageRoute{
+  height: auto;
+  width: 100%;
+  position: relative;
+  display: block;
+  border-radius: 30px 30px 0px 0px ;
+}
+
+#title{
+  position: relative;
+  padding-top: 10%;
+  z-index: 1;
+  text-align: center;
+}
+
+#localisation_1{
+  margin-top: 9%;
+  left: 31%;
+}
+#localisation_2{
+  margin-top: 13%;
+  left: 25%;
+}
+#localisation_3{
+  margin-top: 20%;
+  left: 14%;
+}
+#localisation_4{
+  margin-top: 25%;
+  left: 27%;
+}
+#localisation_5{
+  margin-top: 9%;
+  left: 24%;
+}
+#localisation_6{
+  margin-top: 13%;
+  left: 15%;
+}
+#localisation_7{
+  margin-top: 25%;
+  left: 21%;
+}
+#localisation_8{
+  margin-top: 18%;
+  left: 27%;
+}
+#localisation_9{
+  margin-top: 17%;
+  left: 25%;
+}
+#localisation_10{
+  margin-top: 29%;
+  left: 31.5%;
+}
+#localisation_11{
+  margin-top: 23%;
+  left: 17%;
+}
+#localisation_12{
+  margin-top: 14%;
+  left: 27%;
+}
+#localisation_13{
+  margin-top: 19%;
+  left: 30%;
+}
+#localisation_14{
+  margin-top: 10%;
+  left: 20%;
+}

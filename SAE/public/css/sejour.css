@@ -1,0 +1,44 @@
+body{
+    margin: 0;
+    font-family: "Montserrat";
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+}
+
+/* RESPONSIVE DESIGN */
+#sejourHeader{
+    display: flex;
+}
+
+@media (orientation: landscape)
+{
+    #sejourHeader{
+        flex-direction: row;
+    }
+}
+
+@media (orientation: portrait)
+{
+    #sejourHeader{
+        flex-direction: column;
+    }
+}
+/* ---------------------------------- */
+
+.justified{
+    text-align: justify;
+}
+
+#sejourHeaderText{
+    padding: 10px;
+    background: #7E0000DE;
+    color: white;
+}
+
+#sejourHeaderText h1{
+    color: white;
+    text-decoration: none;
+}
