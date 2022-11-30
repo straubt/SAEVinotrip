@@ -1,0 +1,118 @@
+
+
+/* pour le logo et ... */
+header {
+    width: 100%;
+    height: 75px;
+    text-transform: uppercase;
+    background-color: whitesmoke;
+}
+
+#headerButton{
+
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top:20%;
+}
+
+
+#logoSlogan{
+    margin-top: 0%;
+}
+
+#registerButton{ 
+    margin-top: 20px;
+    width: 150px;
+    height: 35px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #970555;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+#registerButton:hover {
+    background-color: #970555;
+    box-shadow: 0px 45px 60px #03030366;
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+#registerButton:active {
+    transform: translateY(-1px);
+  }
+  #loginButton{
+    top: 10%;
+    right: 15%;
+    position: absolute;
+    width: 150px;
+    height: 25px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #970555;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease   0s;
+    cursor: pointer;
+    outline: none;
+}
+#loginButton:hover {
+    background-color: #970555;
+    box-shadow: 0px 45px 60px #03030366;
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+#loginButton:active {
+    transform: translateY(-1px);
+  }
+
+
+#route_des_vins{
+    margin-top: 20px;
+    width: 150px;
+    height: 35px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #970555;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease   0s;
+    cursor: pointer;
+    outline: none;
+}
+
+#route_des_vins:hover {
+    background-color: #970555;
+    box-shadow: 0px 45px 60px #03030366;
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+#route_des_vins:active {
+    transform: translateY(-1px);
+  }
+
+#logoPanier{
+    top: 10%;
+    right: 30%;
+    position: absolute  ;
+    width: 3%;
+    height: auto;
+}
+

@@ -14,7 +14,11 @@ $tripPicture = $sejour[$id]['photo_sejour'];
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{$tripTitle}}</title>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
-        <link rel="stylesheet" href="css/sejour.css">
+        <link rel="stylesheet" href="css/styleSejour.css">
+        <link rel="stylesheet" href="css/styleFiltre.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="icon" type="image/x-icon" href="images/images.jpg">
     </head>
     <body>
         <main>

@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sejour</title>
+    <link rel="stylesheet" href="css/styleGeneral.css">
+    <link rel="stylesheet" href="css/styleSejour.css">
     <link rel="stylesheet" href="css/select.css">
     <link rel="stylesheet" href="css/over_image.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
-    <link rel="stylesheet" href="css/styleGeneral.css">
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <header> 

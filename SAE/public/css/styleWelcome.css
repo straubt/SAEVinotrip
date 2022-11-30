@@ -1,4 +1,4 @@
-
+/* Bandeau de cookies */
 .bandeau{
     background-color:teal;
     width: 100%;
@@ -106,24 +106,19 @@ table.blueTable {
     margin-top: 5px;
   }
 
-.route_a{
-  color: black;
-  text-decoration: none;
+/* CAROUCEL */
+
+.owl-nav{
+  text-align: center;
+  scale: 1.5;
+}
+.owl-prev, .owl-next{
+  margin: 5px;
+  background-color: white;
+  transition: all 350ms ease;
 }
 
-#image_route_vins{
-  position: relative;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
+.owl-prev:hover, .owl-next:hover{
+  scale: 1.6;
+  background-color: rgba(100,100,100,0.5);
 }
-
-#text_route{
-  position: relative;
-  display: flex;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
-
-
