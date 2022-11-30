@@ -5,20 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css" >
+    <link rel="stylesheet" href="css/styleRoute.css" >
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
     <link rel="stylesheet" href="css/styleGeneral.css">    
     <link rel="stylesheet" href="css/over_image.css">
-    <link rel="stylesheet" href="css/carte.css">
+    <link rel="stylesheet" href="css/carteVin.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
-<header> 
-
-<a href="/"><img id="logoSlogan" src="images/logo + slogan vinotrip.PNG"></a>
-        <button id="route_des_vins" onclick="location.href='route-des-vins'">Route des vins</button>
-       @guest <button id="loginButton" onclick="location.href='login'">Se Connecter</button>
-        <button id="registerButton" onclick="location.href='register'">S'inscrire</button> @endguest
-        @auth <button id="registerButton" onclick="location.href='logout'">Se déconnecter</button> @endauth
-    </header>
+        <header class="top-nav">
+            <a href="/">Vinotrip</a>
+            <input id="menu-toggle" type="checkbox" />
+            <label class='menu-button-container' for="menu-toggle">
+                <div class='menu-button'></div>
+            </label>
+            <div class="menu">
+                <a href="/">Accueil</a>
+                <a href="/route-des-vins">Routes des vins</a>
+                <a href="/register">S'inscrire / se connecter</a>
+            <div>
+        </header>
 <h1 id="titrePage">ROUTE DES VINS</h1>
 
 <body> 

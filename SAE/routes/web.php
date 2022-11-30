@@ -25,3 +25,4 @@ Route::get('/logout', [IndexController::class, "logout"])->name('logout');
 Route::get('/', [IndexController::class, "index"]);
 Route::get('/sejour', [IndexController::class, 'unSejour']);
 Route::get('/route-des-vins', [IndexController::class, 'route_des_vins']);
+
