@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Index;
-use App\Models\User;
 use App\Models\Sejour;
 use App\Models\Destination;
 use App\Models\Categorie_Participant;
