@@ -26,6 +26,7 @@
             </label>
             <div class="menu">
                 <a href="/">Accueil</a>
+                <a href="/nos-sejours">Nos séjours</a>
                 <a href="/route-des-vins">Routes des vins</a>
                 <a href="/register">S'inscrire / se connecter</a>
             <div>
