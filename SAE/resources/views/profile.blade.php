@@ -35,21 +35,17 @@
     </div>
 </body>
 
-<footer>
-    <div class="txtFooter">
-        <a href="" title="page d'accueil">
-            Page d'Acceuil
-        </a>
-        <a href="" title="Mentions legales">
-            Mentions legales
-        </a>
-        <a href="" title="Politique de Confidentialité">
-            Politique de Confidentialité
-        </a>
+<footer class="bot-nav">        
+    <div class="lien">
+        <a href="/">Page d'accueil</a>
+        <a href="/">Mentions legales</a>
+        <a href="/">Politique de Confidentialité</a>
     </div>
-    <div id="txtPayementSecu">Payement securisé :
+    <br>
+    <div id="Payement">Payement securisé :
         <br><img id="payementSecu" src="images/Paiement-Securise.png" title="Paiement sécurisé">
     </div>
-<script src="js/profile.js"></script>
+    <br>
 </footer>
+<script src="js/profile.js"></script>
 </html>
