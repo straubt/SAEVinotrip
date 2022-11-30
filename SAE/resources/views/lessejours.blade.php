@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sejour</title>
     <link rel="stylesheet" href="css/styleGeneral.css">
-    <link rel="stylesheet" href="css/styleSejour.css">
-    <link rel="stylesheet" href="css/select.css">
+    <link rel="stylesheet" href="css/styleLesSejours.css">
     <link rel="stylesheet" href="css/over_image.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">

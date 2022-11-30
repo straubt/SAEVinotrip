@@ -25,8 +25,8 @@
 .overlay {
   position: inherit;
   bottom: 0;  
-  background: #970555;
-  background: #970555; /* Black see-through */
+  background: #7E0000DE;
+  background: #7E0000DE; /* Black see-through */
   color: #f1f1f1;
   width: 100%;
   transition: .5s ease;
