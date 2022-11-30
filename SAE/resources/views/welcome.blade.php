@@ -66,26 +66,24 @@
         <?php
     ?>
 
-    <script src="../js/mainPageAcceuil.js"></script>
+
 </body>
 
-<footer>
-    <div class="txtFooter">
-        <a href="" title="page d'accueil">
-            Page d'Acceuil
-        </a>
-        <a href="" title="Mentions legales">
-            Mentions legales
-        </a>
-        <a href="" title="Politique de Confidentialité">
-            Politique de Confidentialité
-        </a>
+<footer class="bot-nav">        
+    <div class="lien">
+        <a href="/">Page d'accueil</a>
+        <a href="/">Mentions legales</a>
+        <a href="/">Politique de Confidentialité</a>
     </div>
-    <div id="txtPayementSecu">Payement securisé :
+    <br>
+    <div id="Payement">Payement securisé :
         <br><img id="payementSecu" src="images/Paiement-Securise.png" title="Paiement sécurisé">
     </div>
-    <script src="js/jquery-3.6.1.slim.min.js"></script>
-    <script src="js/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/caroussel.js"></script>
+    <br>
 </footer>
+<script src="../js/mainPageAcceuil.js"></script>
+<script src="js/jquery-3.6.1.slim.min.js"></script>
+<script src="js/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/caroussel.js"></script>
+
 </html>
