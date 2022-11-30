@@ -32,7 +32,7 @@
                 @guest<a href="/register">S'inscrire</a>
                 <a href="/login">Se connecter</a>@endguest
                 @auth<a href="/profile">Mon profil</a>
-                <a href="" action='logout'>Deconnexion</a>@endauth
+                <a href="/logout">Deconnexion</a>@endauth
             <div>
         </header>
 
