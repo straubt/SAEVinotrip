@@ -15,12 +15,23 @@ $tripPicture = $sejour[$id]['photo_sejour'];
         <title>{{$tripTitle}}</title>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
         <link rel="stylesheet" href="css/styleSejour.css">
-        <link rel="stylesheet" href="css/styleFiltre.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="icon" type="image/x-icon" href="images/images.jpg">
     </head>
     <body>
+        <header class="top-nav">
+            <a href="/">Vinotrip</a>
+            <input id="menu-toggle" type="checkbox" />
+            <label class='menu-button-container' for="menu-toggle">
+                <div class='menu-button'></div>
+            </label>
+            <div class="menu">
+                <a href="/">Accueil</a>
+                <a href="/route-des-vins">Routes des vins</a>
+                <a href="/register">S'inscrire / se connecter</a>
+            <div>
+        </header>
         <main>
             <div id="sejourHeader">
                 <img src="{{$tripPicture}}" alt="photo séjour">
@@ -60,10 +71,4 @@ $tripPicture = $sejour[$id]['photo_sejour'];
             </div>
         </main>
     </body>
-</html>
-
-<script>
-  AOS.init();
-</script>
-</body>
 </html>

@@ -16,14 +16,19 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
-<header> 
-        <img id="logoSlogan" src="images/logo + slogan vinotrip.PNG">
-        <button id="route_des_vins" onclick="location.href='route-des-vins'">Route des vins</button>
-       @guest <button id="loginButton" onclick="location.href='login'">Se Connecter</button>
-        <button id="registerButton" onclick="location.href='register'">S'inscrire</button> @endguest
-        @auth <button id="registerButton" onclick="location.href='logout'">Se déconnecter</button> @endauth
-    </header><br><br><br><br>
 <body> 
+        <header class="top-nav">
+            <a href="/">Vinotrip</a>
+            <input id="menu-toggle" type="checkbox" />
+            <label class='menu-button-container' for="menu-toggle">
+                <div class='menu-button'></div>
+            </label>
+            <div class="menu">
+                <a href="/">Accueil</a>
+                <a href="/route-des-vins">Routes des vins</a>
+                <a href="/register">S'inscrire / se connecter</a>
+            <div>
+        </header>
     <script>
         var sejour = <?php echo json_encode($sejour);?>;
     </script>
@@ -90,7 +95,7 @@
         <option value="none">Aucun filtre</option>
         <option value="En_Couple">En couple</option>
         <option value="En_Famille">En famille</option>
-        <option value="Entre_   Amis">Entre Amis</option>
+        <option value="Entre_Amis">Entre Amis</option>
     </select>
     <select name="Theme" id="selector">
         <option value={{$selecttheme}}>{{$textTheme}}</option>
