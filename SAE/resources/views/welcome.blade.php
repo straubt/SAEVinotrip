@@ -9,14 +9,12 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
     <link rel="stylesheet" href="css/styleGeneral.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/welcome.css">
     <link rel="stylesheet" href="css/caroussel.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-    <script>
-        var data = <?php echo json_encode($sejour);?>
-    </script>
+<body>s
     <header> 
 
     <a href="/"><img id="logoPanier" src="images/panier.png"></a>
@@ -58,7 +56,38 @@
         <?php
     ?>
 
-    <script src="../js/mainPageAcceuil.js"></script>
+
+
+    <div class="banner">
+        <video autoplay="" muted="" loop="">
+            <source id="vid" src="/video/raisins.mp4" class ="grape" type="">
+        </video>
+    <div id="raisins"></div>
+
+    <script type="text/javascript">
+        let raisins = document.querySelector('#raisins');
+        var scale = 100;
+        let grandir =true;
+        let max =21;
+        
+        raisins.style.backgroundSize = 20+"vh";
+        window.onwheel = function(e){
+            scale += e.deltaY;
+            if(scale>1200 && scale<13000){
+                if(max >= 400 || grandir == false){
+                    grandir =false
+                    if(max<=20)
+                        return;
+                    raisins.style.backgroundSize =  max+"vh";
+                    max -=10;}              
+                else if (grandir == true){
+                    raisins.style.backgroundSize =  max+"vh";
+                    max=max+10;}
+                } 
+            console.log(scale);
+            console.log(raisins.style.backgroundSize);
+        }
+    </script>
 </body>
 
 <footer>
@@ -80,4 +109,5 @@
     <script src="js/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/caroussel.js"></script>
 </footer>
+<script src="/js/mainPageAcceuil.js"></script>
 </html>
