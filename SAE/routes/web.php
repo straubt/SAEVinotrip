@@ -22,3 +22,11 @@ Route::get("/register/add", [IndexController::class, "add"]);
 Route::post("/register/save", [IndexController::class, "save"]);
 Route::get("/sejour", [IndexController::class, 'unSejour']);
 Route::get("/route-des-vins", [IndexController::class, 'route_des_vins']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
