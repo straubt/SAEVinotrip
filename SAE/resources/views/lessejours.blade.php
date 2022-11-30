@@ -88,7 +88,7 @@
         <option value="none">Aucun filtre</option>
         <option value="En_Couple">En couple</option>
         <option value="En_Famille">En famille</option>
-        <option value="Entre_   Amis">Entre Amis</option>
+        <option value="Entre_Amis">Entre Amis</option>
     </select>
     <select name="Theme" id="selector">
         <option value={{$selecttheme}}>{{$textTheme}}</option>

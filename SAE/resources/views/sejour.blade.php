@@ -14,9 +14,19 @@ $tripPicture = $sejour[$id]['photo_sejour'];
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{$tripTitle}}</title>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
+        <link rel="stylesheet" href="css/styleGeneral.css"></head>
         <link rel="stylesheet" href="css/sejour.css">
     </head>
     <body>
+    <header> 
+        <div id="headerButton">
+            <button id="route_des_vins" onclick="location.href='route-des-vins'">Route des vins</button>
+            <a href="/" title="Vinotrip">
+                <img id="logoSlogan" src="images/logo + slogan vinotrip.PNG">
+            </a>
+            <button id="registerButton" onclick="location.href='register'">S'inscrire</button>
+        </div>
+</header>
         <main>
             <div id="sejourHeader">
                 <img src="{{$tripPicture}}" alt="photo séjour">

@@ -73,7 +73,7 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'search_path' => 'sae',
+            'search_path' => 'bobi',
             'sslmode' => 'prefer',
         ],
 
