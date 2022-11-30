@@ -14,26 +14,29 @@
 </head>
 <body>
 
-
-<header> 
-        <div id="headerButton">
-            <button id="route_des_vins" onclick="location.href='route-des-vins'">Route des vins</button>
-            <a href="/" title="Vinotrip">
-                <img id="logoSlogan" src="images/logo + slogan vinotrip.PNG">
-            </a>
-            <button id="registerButton" onclick="location.href='register'">S'inscrire</button>
-        </div>
-</header>
+		<header class="top-nav">
+            <a href="/">Vinotrip</a>
+            <input id="menu-toggle" type="checkbox" />
+            <label class='menu-button-container' for="menu-toggle">
+                <div class='menu-button'></div>
+            </label>
+            <div class="menu">
+                <a href="/">Accueil</a>
+                <a href="/route-des-vins">Routes des vins</a>
+                <a href="/register">S'inscrire / se connecter</a>
+            <div>
+        </header>
     <!-- Body of Form starts -->
 
   	<div class="container">
-      <form method="post" autocomplete="on">
-        <!--First name-->
-    		<div class="box">
-          <label for="firstName" class="fl fontLabel"> ffv : </label>
+    	<form method="post" action="{{url('/register/save')}}" autocomplete="on">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+        	<!--First name-->
+    			<div class="box">
+          		<label for="firstName" class="fl fontLabel"> Nom : </label>
     			<div class="new iconBox">
-            <i class="fa fa-user" aria-hidden="true"></i>
-          </div>
+           		 <i class="fa fa-user" aria-hidden="true"></i>
+          		</div>
     			<div class="fr">
     					<input type="text" name="firstName" placeholder="Nom"
               class="textBox" autofocus="on" required>
@@ -55,17 +58,6 @@
     		</div>
     		<!--Second name-->
 
-
-    		<!---Phone No.------>
-    		<div class="box">
-          <label for="phone" class="fl fontLabel"> Téléphone : </label>
-    			<div class="fl iconBox"><i class="fa fa-phone-square" aria-hidden="true"></i></div>
-    			<div class="fr">
-    					<input type="text" required name="phoneNo" maxlength="10" placeholder="Numéro de téléphone" class="textBox">
-    			</div>
-    			<div class="clr"></div>
-    		</div>
-    		<!---Phone No.---->
 
 
     		<!---Email ID---->
@@ -107,13 +99,13 @@
     		<!--Terms and Conditions------>
 
 
-
     		<!---Submit Button------>
     		<div class="box" style="background: #2d3e3f">
     				<input type="Submit" name="Submit" class="submit" value="S'inscrire">
     		</div>
     		<!---Submit Button----->
-      </form>
-  </div>
-  </body>
+				</input>
+     		 </form>
+ 		 </div>
+ 	 </body>
 </html>
