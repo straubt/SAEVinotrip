@@ -14,7 +14,11 @@ $tripPicture = $sejour[$id]['photo_sejour'];
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{$tripTitle}}</title>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
-        <link rel="stylesheet" href="css/sejour.css">
+        <link rel="stylesheet" href="css/styleSejour.css">
+        <link rel="stylesheet" href="css/styleFiltre.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="icon" type="image/x-icon" href="images/images.jpg">
         <style type="text/css">
             .top-nav {
   display: flex;
@@ -141,13 +145,6 @@ $tripPicture = $sejour[$id]['photo_sejour'];
         </style>
     </head>
     <body>
-        <!--
-    <header> 
-        <div id="headerButton">
-            <button id="route_des_vins" onclick="location.href='route-des-vins'">Route des vins</button>
-            <button id="registerButton" onclick="location.href='register'">S'inscrire</button>
-        </div>
-</header>-->
         <header class="top-nav">
             <a href="/">Vinotrip</a>
             <input id="menu-toggle" type="checkbox" />

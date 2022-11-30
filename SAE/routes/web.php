@@ -17,6 +17,7 @@ use App\Http\Controllers\IndexController;
 Route::get("/nos-sejours", [IndexController::class, "destination"]);
 Route::get("/nos-sejours", [IndexController::class, "categorie_participant"]);
 Route::get("/nos-sejours", [IndexController::class, "sejour"]);
+Route::get("/register", [IndexController::class, "register"]);
 Route::get("/", [IndexController::class, "index"]);
 Route::get("/register/add", [IndexController::class, "add"]);
 Route::post("/register/save", [IndexController::class, "save"]);
