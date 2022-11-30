@@ -340,8 +340,8 @@ class ComposerStaticInitb0e71f982a97e8c5a4ce58b87097a8d0
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -508,6 +508,7 @@ class ComposerStaticInitb0e71f982a97e8c5a4ce58b87097a8d0
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndexController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -518,6 +519,13 @@ class ComposerStaticInitb0e71f982a97e8c5a4ce58b87097a8d0
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Avis' => __DIR__ . '/../..' . '/app/Models/Avis.php',
+        'App\\Models\\Categorie_Participant' => __DIR__ . '/../..' . '/app/Models/Categorie_Participant.php',
+        'App\\Models\\Destination' => __DIR__ . '/../..' . '/app/Models/Destination.php',
+        'App\\Models\\Route_des_vins' => __DIR__ . '/../..' . '/app/Models/Route_des_vins.php',
+        'App\\Models\\Sejour' => __DIR__ . '/../..' . '/app/Models/Sejour.php',
+        'App\\Models\\Sejour_To_Cat_Participant' => __DIR__ . '/../..' . '/app/Models/Sejour_To_Cat_Participant.php',
+        'App\\Models\\Theme' => __DIR__ . '/../..' . '/app/Models/Theme.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
