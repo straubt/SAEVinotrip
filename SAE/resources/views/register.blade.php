@@ -14,16 +14,18 @@
 </head>
 <body>
 
-
-<header> 
-        <div id="headerButton">
-            <button id="route_des_vins" onclick="location.href='route-des-vins'">Route des vins</button>
-            <a href="/" title="Vinotrip">
-                <img id="logoSlogan" src="images/logo + slogan vinotrip.PNG">
-            </a>
-            <button id="registerButton" onclick="location.href='register'">S'inscrire</button>
-        </div>
-</header>
+		<header class="top-nav">
+            <a href="/">Vinotrip</a>
+            <input id="menu-toggle" type="checkbox" />
+            <label class='menu-button-container' for="menu-toggle">
+                <div class='menu-button'></div>
+            </label>
+            <div class="menu">
+                <a href="/">Accueil</a>
+                <a href="/route-des-vins">Routes des vins</a>
+                <a href="/register">S'inscrire / se connecter</a>
+            <div>
+        </header>
     <!-- Body of Form starts -->
 
   	<div class="container">

@@ -15,7 +15,6 @@ $tripPicture = $sejour[$id]['photo_sejour'];
         <title>{{$tripTitle}}</title>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
         <link rel="stylesheet" href="css/styleSejour.css">
-        <link rel="stylesheet" href="css/styleFiltre.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="icon" type="image/x-icon" href="images/images.jpg">
@@ -29,10 +28,8 @@ $tripPicture = $sejour[$id]['photo_sejour'];
             </label>
             <div class="menu">
                 <a href="/">Accueil</a>
-                <a>Routes des vins</a>
-                <a>Three</a>
-                <a>Four</a>
-                <a>S'inscrire / se connecter</a>
+                <a href="/route-des-vins">Routes des vins</a>
+                <a href="/register">S'inscrire / se connecter</a>
             <div>
         </header>
         <main>
