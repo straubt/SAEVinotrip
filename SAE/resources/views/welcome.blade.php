@@ -15,7 +15,8 @@
 </head>
 <body>
     <script>
-        var data = <?php echo json_encode($sejour);?>
+        var data = <?php echo json_encode($sejour);?>;
+        var client = <?php echo json_encode($client);?>;
     </script>
     <header> 
 

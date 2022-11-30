@@ -24,7 +24,7 @@
 
   	<div class="container">
 	  <?php echo Hash::make("coucou");?>
-	  <form method="post" action="{{ route("registerPost") }}">
+	  <form method="post" action="{{ route("connectionPost") }}">
 		@csrf
 		<input type="text" name="mail_client"/>
 		<input type="password" name="mdp_client"/>
