@@ -1,0 +1,36 @@
+
+/* pour le lien du retour a la page d'acceuil */
+.txtFooter{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+/* pour le footer */
+footer {
+    display: flex;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color:rgb(7,3,41);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    justify-content: space-between;
+}
+
+
+#payementSecu {
+    position: relative;
+    width: 220px;
+    height: 40px;
+}
+
+#txtPayementSecu{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    float: right;
+    padding-bottom: 30px;
+}
