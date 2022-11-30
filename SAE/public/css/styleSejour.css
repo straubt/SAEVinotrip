@@ -29,6 +29,11 @@ main{
     display: flex;
 }
 
+#sejourHeader img{
+    object-fit: cover;
+    object-position: contain;
+}
+
 @media (orientation: landscape)
 {
     #sejourHeader{
