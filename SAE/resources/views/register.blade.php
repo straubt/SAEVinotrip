@@ -24,14 +24,14 @@
     <!-- Body of Form starts -->
 
   	<div class="container">
-      <form method="post" action="{{url('/register/save')}}" autocomplete="on">
-		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <!--First name-->
-    		<div class="box">
-          <label for="firstName" class="fl fontLabel"> Nom : </label>
+    	<form method="post" action="{{url('/register/save')}}" autocomplete="on">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+        	<!--First name-->
+    			<div class="box">
+          		<label for="firstName" class="fl fontLabel"> Nom : </label>
     			<div class="new iconBox">
-            <i class="fa fa-user" aria-hidden="true"></i>
-          </div>
+           		 <i class="fa fa-user" aria-hidden="true"></i>
+          		</div>
     			<div class="fr">
     					<input type="text" name="firstName" placeholder="Nom"
               class="textBox" autofocus="on" required>
@@ -94,13 +94,13 @@
     		<!--Terms and Conditions------>
 
 
-
     		<!---Submit Button------>
     		<div class="box" style="background: #2d3e3f">
     				<input type="Submit" name="Submit" class="submit" value="S'inscrire">
     		</div>
     		<!---Submit Button----->
-      </form>
-  </div>
-  </body>
+				</input>
+     		 </form>
+ 		 </div>
+ 	 </body>
 </html>

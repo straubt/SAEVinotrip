@@ -8,9 +8,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{$sejour[$id]['titre_sejour']}}</title>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
+        <link rel="stylesheet" href="css/styleGeneral.css"></head>
         <link rel="stylesheet" href="css/sejour.css">
     </head>
     <body>
+    <header> 
+        <div id="headerButton">
+            <button id="route_des_vins" onclick="location.href='route-des-vins'">Route des vins</button>
+            <a href="/" title="Vinotrip">
+                <img id="logoSlogan" src="images/logo + slogan vinotrip.PNG">
+            </a>
+            <button id="registerButton" onclick="location.href='register'">S'inscrire</button>
+        </div>
+</header>
         <main>
             <div id="sejourHeader">
                 <img src="{{$sejour[$_SERVER['QUERY_STRING']-1]['photo_sejour']}}" alt="photo séjour">
