@@ -29,7 +29,7 @@
                 <a href="/">Accueil</a>
                 <a href="/nos-sejours">Nos séjours</a>
                 <a href="/route-des-vins">Routes des vins</a>
-                <a href="/register">S'inscrire / se connecter</a>
+                @auth<a href="/register">S'inscrire / se connecter</a>@endauth
             <div>
         </header>
 
