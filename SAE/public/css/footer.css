@@ -34,3 +34,14 @@ footer {
     float: right;
     padding-bottom: 30px;
 }
+
+ul
+{
+  list-style-type: none;
+}
+
+/*pour les liens du footer */
+
+a {
+    color: white;
+}

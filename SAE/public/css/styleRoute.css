@@ -1,0 +1,20 @@
+
+.route_a{
+    color: black;
+    text-decoration: none;
+  }
+  
+  #image_route_vins{
+    position: relative;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #text_route{
+    position: relative;
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
