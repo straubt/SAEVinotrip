@@ -10,8 +10,9 @@ function create(tag, parent, text=null, classs=null, id=null) {
     return element
   }
 
-  console.log(client);
-let div = document.querySelector("div");
+// console.log(client);
+let div = document.querySelector(".temp");
+// console.log(div);
 create("p", div, client.id_client, null, null);
 create("p", div, client.titre_client, null, null);
 create("p", div, client.prenom_client, null, null);
