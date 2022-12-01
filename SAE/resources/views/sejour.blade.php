@@ -20,7 +20,7 @@ $tripPicture = $sejour[$id]['photo_sejour'];
         <link rel="icon" type="image/x-icon" href="images/images.jpg">
     </head>
     <body>
-        <header class="top-nav">
+    <header class="top-nav">
             <a href="/">Vinotrip</a>
             <input id="menu-toggle" type="checkbox" />
             <label class='menu-button-container' for="menu-toggle">
@@ -28,8 +28,12 @@ $tripPicture = $sejour[$id]['photo_sejour'];
             </label>
             <div class="menu">
                 <a href="/">Accueil</a>
+                <a href="/nos-sejours">Nos séjours</a>
                 <a href="/route-des-vins">Routes des vins</a>
-                <a href="/register">S'inscrire / se connecter</a>
+                @guest<a href="/register">S'inscrire</a>
+                <a href="/login">Se connecter</a>@endguest
+                @auth<a href="/profile">Mon profil</a>
+                <a href="/logout">Deconnexion</a>@endauth
             <div>
         </header>
         <main>
