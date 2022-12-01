@@ -1,4 +1,10 @@
-<?php $id = $_SERVER['QUERY_STRING']-1; ?>
+<?php 
+$id = $_SERVER['QUERY_STRING']-1;
+$tripTitle = $sejour[$id]['titre_sejour'];
+$tripNbDay = $sejour[$id]['duree_sejour'];
+$tripDescription = $sejour[$id]['description_sejour'];
+$tripPicture = $sejour[$id]['photo_sejour'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,28 +12,37 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{$sejour[$id]['titre_sejour']}}</title>
+        <title>{{$tripTitle}}</title>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
-        <link rel="stylesheet" href="css/styleGeneral.css"></head>
-        <link rel="stylesheet" href="css/sejour.css">
+        <link rel="stylesheet" href="css/styleSejour.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="icon" type="image/x-icon" href="images/images.jpg">
     </head>
     <body>
-    <header> 
-        <div id="headerButton">
-            <button id="route_des_vins" onclick="location.href='route-des-vins'">Route des vins</button>
-            <a href="/" title="Vinotrip">
-                <img id="logoSlogan" src="images/logo + slogan vinotrip.PNG">
-            </a>
-            <button id="registerButton" onclick="location.href='register'">S'inscrire</button>
-        </div>
-</header>
+    <header class="top-nav">
+            <a href="/">Vinotrip</a>
+            <input id="menu-toggle" type="checkbox" />
+            <label class='menu-button-container' for="menu-toggle">
+                <div class='menu-button'></div>
+            </label>
+            <div class="menu">
+                <a href="/">Accueil</a>
+                <a href="/nos-sejours">Nos séjours</a>
+                <a href="/route-des-vins">Routes des vins</a>
+                @guest<a href="/register">S'inscrire</a>
+                <a href="/login">Se connecter</a>@endguest
+                @auth<a href="/profile">Mon profil</a>
+                <a href="/logout">Deconnexion</a>@endauth
+            <div>
+        </header>
         <main>
             <div id="sejourHeader">
-                <img src="{{$sejour[$_SERVER['QUERY_STRING']-1]['photo_sejour']}}" alt="photo séjour">
+                <img src="{{$tripPicture}}" alt="photo séjour">
                 <div id="sejourHeaderText">
-                    <h1>{{$sejour[$id]['titre_sejour']}}</h1>
-                    <p>{{$sejour[$id]['duree_sejour']}} jour(s) | {{$sejour[$id]['duree_sejour']-1}} nuit(s)</p>
-                    <p class="justified">{{$sejour[$_SERVER['QUERY_STRING']-1]['description_sejour']}}</p>
+                    <h1>{{$tripTitle}}</h1>
+                    <p>{{$tripNbDay}} jour(s) | {{$tripNbDay-1}} nuit(s)</p>
+                    <p class="justified">{{$tripDescription}}</p>
                     <p>{{$theme[$sejour[$id]['id_theme']-1]['libelle_theme']}}</p>
                     <button>
                         <div>Offrir</div>
@@ -60,10 +75,4 @@
             </div>
         </main>
     </body>
-</html>
-
-<script>
-  AOS.init();
-</script>
-</body>
 </html>

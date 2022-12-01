@@ -40,4 +40,6 @@ data.forEach(unSejour => {
   image.src = unSejour.photo_sejour;
 });
 
+console.log(client);
+
 

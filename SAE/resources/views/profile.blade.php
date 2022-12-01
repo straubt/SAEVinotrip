@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/styleRoute.css" >
+    <title>Profil Client</title>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
-    <link rel="stylesheet" href="css/styleGeneral.css">    
-    <link rel="stylesheet" href="css/over_image.css">
-    <link rel="stylesheet" href="css/carteVin.css">
+    <link rel="stylesheet" href="css/styleGeneral.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
-<header class="top-nav">
-            <a href="/">Vinotrip</a>
+<body>
+    <script>
+        var client = <?php echo json_encode($client);?>;
+    </script>
+    <header class="top-nav">
+        <a href="/">Vinotrip</a>
             <input id="menu-toggle" type="checkbox" />
             <label class='menu-button-container' for="menu-toggle">
                 <div class='menu-button'></div>
@@ -29,24 +30,22 @@
                 @auth<a href="/profile">Mon profil</a>
                 <a href="/logout">Deconnexion</a>@endauth
             <div>
-        </header>
-<h1 id="titrePage">ROUTE DES VINS</h1>
-
-<body> 
-
-    <div class="map">
-        <img id="carte" src="images/carte.png">   
-        <div id="laRoute">
-        <h1 id="title"></h1>
-        <a href=""><img src="" alt="" onclick="" id="imageRoute"></a>
-        <p id="descriptionRoute"></p>
+    </header>
+    <div class="temp">
     </div>
-    </div>
-    
 </body>
-<script>
-var routes = <?php echo json_encode($route_des_vins);?>;
-</script>
-<script src="js/SpawnRoute.js">></script>
 
+<footer class="bot-nav">        
+    <div class="lien">
+        <a href="/">Page d'accueil</a>
+        <a href="/">Mentions legales</a>
+        <a href="/">Politique de Confidentialité</a>
+    </div>
+    <br>
+    <div id="Payement">Payement securisé :
+        <br><img id="payementSecu" src="images/Paiement-Securise.png" title="Paiement sécurisé">
+    </div>
+    <br>
+</footer>
+<script src="js/profile.js"></script>
 </html>
