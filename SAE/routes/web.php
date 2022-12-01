@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IndexController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,44 +14,23 @@ use App\Http\Controllers\IndexController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-<<<<<<< HEAD
 Route::get("/nos-sejours", [IndexController::class, "destination"]);
 Route::get("/nos-sejours", [IndexController::class, "categorie_participant"]);
 Route::get("/nos-sejours", [IndexController::class, "sejour"]);
 Route::get("/", [IndexController::class, "index"]);
-Route::get("/register/add", [IndexController::class, "add"]);
-Route::post("/register/save", [IndexController::class, "save"]);
 Route::get("/sejour", [IndexController::class, 'unSejour']);
 Route::get("/route-des-vins", [IndexController::class, 'route_des_vins']);
 
-Auth::routes();
+// ->middleware(['auth', 'verified'])->name('index');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Auth::routes();
+Route::get('/dashboard', function(){
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
-//tous les sejours
-Route::get('/nos-sejours', [IndexController::class, "destination"]);
-Route::get('/nos-sejours', [IndexController::class, "categorie_participant"]);
-Route::get('/nos-sejours', [IndexController::class, "sejour"]);
-//register post get
-Route::get('/register', [IndexController::class, "register"])->name('register');
-Route::post('/register', [IndexController::class, "addClient"])->name('registerPost');
-//login post get
-Route::get('/login', [IndexController::class, "connection"])->name('connection');
-Route::post('/login', [IndexController::class, "authenticate"])->name('connectionPost');
-//logout
-Route::get('/logout', [IndexController::class, "logout"])->name('logout');
-//Mon profil
-Route::get('/profile', [IndexController::class, "profile"])->name('profile');
-//homepage
-Route::get('/', [IndexController::class, "index"]);
-//Voir un sejour
-Route::get('/sejour', [IndexController::class, 'unSejour']);
-//Route des vins
-Route::get('/route-des-vins', [IndexController::class, 'route_des_vins']);
-
->>>>>>> main
+require __DIR__.'/auth.php';
