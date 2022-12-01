@@ -11,6 +11,7 @@ use App\Models\Categorie_Participant;
 use App\Models\Theme;
 use App\Models\Route_des_vins;
 use App\Models\Avis;
+use App\Models\Client;
 use App\Models\Sejour_To_Cat_Participant;
 
 
@@ -38,8 +39,28 @@ class IndexController extends Controller
         return view("register");
     }
 
-    public function addClient(){ //save a new client (on register page) NOT DONE YET
-        return view("register");
+    public function addClient(Request $request){ //save a new client (on register page) NOT DONE YET
+        $clients = Client::all();
+        $request->id_client = count($clients)+1;
+        $request->mdp = password_hash($request->mdp, PASSWORD_DEFAULT);
+        $this->validate($request, [
+            'titre' => 'required',
+            'prenom' => 'bail|required|max:50',
+            'nom' => 'bail|required|max:50',
+            'mail_client' => 'bail|required|unique:client',
+            'date_naissance' => 'required',
+            'mdp' => 'bail|required|max:500'
+        ]);
+        $client = new \App\Models\Client;
+        $client->id_client = $request->id_client;
+        $client->titre_client = $request->titre;
+        $client->prenom_client = $request->prenom;
+        $client->nom_client = $request->nom;
+        $client->mail_client = $request->mail_client;
+        $client->date_naiss_client = $request->date_naissance;
+        $client->mdp_client = $request->mdp;
+        $client->save();
+        return view("connection");
     }
 
     public function connection(){ //return login page
