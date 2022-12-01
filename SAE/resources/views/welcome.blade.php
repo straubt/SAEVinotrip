@@ -16,7 +16,8 @@
 </head>
 <body>
     <script>
-        var data = <?php echo json_encode($sejour);?>
+        var data = <?php echo json_encode($sejour);?>;
+        var client = <?php echo json_encode($client);?>;
     </script>
         <header class="top-nav">
             <a href="/">Vinotrip</a>
@@ -26,8 +27,12 @@
             </label>
             <div class="menu">
                 <a href="/">Accueil</a>
+                <a href="/nos-sejours">Nos séjours</a>
                 <a href="/route-des-vins">Routes des vins</a>
-                <a href="/register">S'inscrire / se connecter</a>
+                @guest<a href="/register">S'inscrire</a>
+                <a href="/login">Se connecter</a>@endguest
+                @auth<a href="/profile">Mon profil</a>
+                <a href="/logout">Deconnexion</a>@endauth
             <div>
         </header>
 
