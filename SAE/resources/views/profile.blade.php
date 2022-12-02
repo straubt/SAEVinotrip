@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/styleGeneral.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/styleProfil.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <body>
@@ -31,8 +32,15 @@
                 <a href="/logout">Deconnexion</a>@endauth
             <div>
     </header>
-    <div class="temp">
+    <div class="parent">
+        <div class="image">
+        </div>
+        <div class="infos">
+        </div>
+        <button id="modification">Modifier informations </button>
     </div>
+
+    
 </body>
 
 <footer class="bot-nav">        
