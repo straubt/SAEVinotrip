@@ -113,14 +113,16 @@
 </form>
 
 
+
 <?php
 
 //filtres : 
 if(isset($_SERVER['QUERY_STRING'])){
+    $compteur = 0;
     if ($_GET['Domaine']=="none" && $_GET['Participant']=="none" && $_GET['Theme'] =="none")
     { ?>
         @foreach ($sejour as $unSejour)
-        <div class="parent"><div class = "container" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
+        <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
         @endforeach <?php 
     }
     if ($_GET['Domaine']!="none" && $_GET['Participant']=="none" && $_GET['Theme'] =="none")
@@ -130,8 +132,8 @@ if(isset($_SERVER['QUERY_STRING'])){
         @foreach ($destination as $uneDestination)
         <?php if($uneDestination['libelle_destination'] == strtoupper($_GET['Domaine']) && $uneDestination['id_destination'] == $unSejour['id_destination']) { 
         ?>
-        <div class="parent"><div class = "container" data-aos="fade-up"><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
-        <?php  } ?>
+        <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
+        <?php   $compteur++;} ?>
         @endforeach
         @endforeach  
         <?php 
@@ -140,12 +142,17 @@ if(isset($_SERVER['QUERY_STRING'])){
     {
         ?>
         @foreach ($sejour as $unSejour)
+        @foreach ($sejour_to_cat_participant as $uneCatToPart)
         @foreach ($categorie_participant as $uneCategorie)
-        <?php if($uneCategorie['lib_categorie_participant'] == strtoupper($_GET['Participant']) && $uneCategorie['id_categorie_participant'] == $unSejour['id_categorie_participant']) { 
+        <?php if($uneCategorie['lib_categorie_participant'] == strtoupper($_GET['Participant']))
+        { 
+            if($uneCatToPart['id_categorie_participant'] == $uneCategorie['id_categorie_participant'] && $uneCatToPart['id_sejour'] == $unSejour['id_sejour']) 
+            { 
         ?>
-        <div class="parent"><div class = "container" data-aos="fade-up"><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
-        <?php  } ?>
+        <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a><input type="checkbox"></input></div></div>
+        <?php   $compteur++;}} ?>
         @endforeach
+        @endforeach  
         @endforeach  
         <?php
     }
@@ -156,8 +163,8 @@ if(isset($_SERVER['QUERY_STRING'])){
         @foreach ($theme as $unTheme)
         <?php if($unTheme['libelle_theme'] == strtoupper($_GET['Theme']) && $unTheme['id_theme'] == $unSejour['id_theme']) { 
         ?>
-        <div class="parent"><div class = "container" data-aos="fade-up"><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
-        <?php  } ?>
+        <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
+        <?php  $compteur++;}?>
         @endforeach
         @endforeach  
         <?php
@@ -167,15 +174,21 @@ if(isset($_SERVER['QUERY_STRING'])){
         ?>
         @foreach ($sejour as $unSejour)
         @foreach ($destination as $uneDestination)
+        @foreach ($sejour_to_cat_participant as $uneCatToPart)
         @foreach ($categorie_participant as $uneCategorie)
-        <?php if($uneDestination['libelle_destination'] == strtoupper($_GET['Domaine']) && $uneDestination['id_destination'] == $unSejour['id_destination']) { 
-            if($uneCategorie['lib_categorie_participant'] == strtoupper($_GET['Participant']) && $uneCategorie['id_categorie_participant'] == $unSejour['id_categorie_participant']) { 
+        <?php if($uneDestination['libelle_destination'] == strtoupper($_GET['Domaine']) && $uneDestination['id_destination'] == $unSejour['id_destination']) 
+        { 
+            if($uneCategorie['lib_categorie_participant'] == strtoupper($_GET['Participant']))
+            {
+                if($uneCatToPart['id_categorie_participant'] == $uneCategorie['id_categorie_participant'] && $uneCatToPart['id_sejour'] == $unSejour['id_sejour']) 
+                {
         ?>
-        <div class="parent"><div class = "container" data-aos="fade-up"><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
-        <?php  } }?>
+        <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
+        <?php  $compteur++;} }}?>
         @endforeach
         @endforeach  
         @endforeach
+        @endforeach  
         <?php
     }    
     if ($_GET['Domaine']!="none" && $_GET['Participant']=="none" && $_GET['Theme'] !="none")
@@ -187,8 +200,8 @@ if(isset($_SERVER['QUERY_STRING'])){
         <?php if($uneDestination['libelle_destination'] == strtoupper($_GET['Domaine']) && $uneDestination['id_destination'] == $unSejour['id_destination']) { 
             if($unTheme['libelle_theme'] == strtoupper($_GET['Theme']) && $unTheme['id_theme'] == $unSejour['id_theme']) { 
             ?>
-        <div class="parent"><div class = "container" data-aos="fade-up"><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
-        <?php  } }?>
+        <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
+        <?php   $compteur++;} }?>
         @endforeach
         @endforeach  
         @endforeach
@@ -199,14 +212,20 @@ if(isset($_SERVER['QUERY_STRING'])){
         ?>
         @foreach ($sejour as $unSejour)
         @foreach ($theme as $unTheme)
+        @foreach ($sejour_to_cat_participant as $uneCatToPart)
         @foreach ($categorie_participant as $uneCategorie)
-        <?php if($uneCategorie['lib_categorie_participant'] == strtoupper($_GET['Participant']) && $uneCategorie['id_categorie_participant'] == $unSejour['id_categorie_participant']) { 
+        <?php 
+        if($uneCategorie['lib_categorie_participant'] == strtoupper($_GET['Participant']))
+        {
+            if($uneCatToPart['id_categorie_participant'] == $uneCategorie['id_categorie_participant'] && $uneCatToPart['id_sejour'] == $unSejour['id_sejour']) 
+            {
             if($unTheme['libelle_theme'] == strtoupper($_GET['Theme']) && $unTheme['id_theme'] == $unSejour['id_theme']) { 
             ?>
-        <div class="parent"><div class = "container" data-aos="fade-up"><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
-        <?php  } }?>
+        <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
+        <?php  $compteur++; } }}?>
         @endforeach
         @endforeach  
+        @endforeach
         @endforeach
         <?php
     }      
@@ -215,14 +234,20 @@ if(isset($_SERVER['QUERY_STRING'])){
         ?>
         @foreach ($sejour as $unSejour)
         @foreach ($theme as $unTheme)
+        @foreach ($sejour_to_cat_participant as $uneCatToPart)
         @foreach ($categorie_participant as $uneCategorie)
-        <?php if($uneCategorie['lib_categorie_participant'] == strtoupper($_GET['Participant']) && $uneCategorie['id_categorie_participant'] == $unSejour['id_categorie_participant']) { 
+        <?php 
+        if($uneCategorie['lib_categorie_participant'] == strtoupper($_GET['Participant']))
+        {
+             if($uneCatToPart['id_categorie_participant'] == $uneCategorie['id_categorie_participant'] && $uneCatToPart['id_sejour'] == $unSejour['id_sejour']) 
+             { 
             if($unTheme['libelle_theme'] == strtoupper($_GET['Theme']) && $unTheme['id_theme'] == $unSejour['id_theme']) { 
             ?>
-        <div class="parent"><div class = "container" data-aos="fade-up"><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
-        <?php  } }?>
+        <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
+        <?php   $compteur++;}} }?>
         @endforeach
         @endforeach  
+        @endforeach
         @endforeach
         <?php
     } 
@@ -232,15 +257,22 @@ if(isset($_SERVER['QUERY_STRING'])){
         @foreach ($sejour as $unSejour)
         @foreach ($destination as $uneDestination)
         @foreach ($theme as $unTheme)
+        @foreach ($sejour_to_cat_participant as $uneCatToPart)
         @foreach ($categorie_participant as $uneCategorie)
-        <?php if($uneDestination['libelle_destination'] == strtoupper($_GET['Domaine']) && $uneDestination['id_destination'] == $unSejour['id_destination']) { 
-            if($uneCategorie['lib_categorie_participant'] == strtoupper($_GET['Participant']) && $uneCategorie['id_categorie_participant'] == $unSejour['id_categorie_participant']) { 
-            if($unTheme['libelle_theme'] == strtoupper($_GET['Theme']) && $unTheme['id_theme'] == $unSejour['id_theme']) { 
+        <?php if($uneDestination['libelle_destination'] == strtoupper($_GET['Domaine']) && $uneDestination['id_destination'] == $unSejour['id_destination']) 
+        { 
+        if($uneCategorie['lib_categorie_participant'] == strtoupper($_GET['Participant']))
+        {
+        if($uneCatToPart['id_categorie_participant'] == $uneCategorie['id_categorie_participant'] && $uneCatToPart['id_sejour'] == $unSejour['id_sejour']) 
+        {            
+        if($unTheme['libelle_theme'] == strtoupper($_GET['Theme']) && $unTheme['id_theme'] == $unSejour['id_theme']) 
+        { 
             ?>
-        <div class="parent"><div data-aos="fade-up" class = "container" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
-        <?php  }} }?>
+        <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
+        <?php   $compteur++;}}}}?>
         @endforeach
         @endforeach  
+        @endforeach
         @endforeach
         @endforeach
         <?php
@@ -248,20 +280,35 @@ if(isset($_SERVER['QUERY_STRING'])){
         $selectdomaine = $_GET['Domaine'];
         $selectparticipant = $_GET['Participant'];
         $selecttheme = $_GET['Theme'];
+    if($compteur == 0){
+        echo "Désolé aucun séjour n'a été trouvé... ";
+    }
 }
 else
 {
     ?>
     @foreach ($sejour as $unSejour)
-    <div  class="parent"><div data-aos="fade-up" class = "container" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt=""  class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
+    <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
     @endforeach 
     <?php
-
 }
 
 
-?>
 
+?>
+<script type="text/javascript">
+var cb = document.querySelectorAll("[type=checkbox]"); // récupère tous les checkbox
+
+var i = 0, // initialise i a 0
+	  l = cb.length; // stocke le nombre de checkboxes
+
+for (i; i<l; i++) // pour toutes les checkbox faire:
+	cb[i].addEventListener("change", function (){ // ajouter un evenement  au changement de statut
+        console.log(document.querySelectorAll(":checked"))
+		if (document.querySelectorAll(":checked").length > 5) //si le nombre de checkbox check supp a 5 ? faire
+			this.checked = false; //cb uncheck
+	}, false); // faux ?
+</script>
     
 <script>
   AOS.init();
