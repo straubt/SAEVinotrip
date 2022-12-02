@@ -1,9 +1,20 @@
-<?php 
+<?php
+use Illuminate\Support\Facades\DB;  // utile pour effectuer des requêtes SQL
+
 $id = $_SERVER['QUERY_STRING']-1;
+
+$avis = DB::table('avis')
+            ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
+            ->join('client', 'client.id_client', '=', 'avis.id_client')
+            ->where('avis.id_sejour', $id + 1)
+            ->select('nom_client', 'prenom_client', 'note_avis', 'libelle_avis', 'texte_avis')
+            ->get();
+
 $tripTitle = $sejour[$id]['titre_sejour'];
 $tripNbDay = $sejour[$id]['duree_sejour'];
 $tripDescription = $sejour[$id]['description_sejour'];
 $tripPicture = $sejour[$id]['photo_sejour'];
+$themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
 ?>
 
 <!DOCTYPE html>
@@ -33,42 +44,51 @@ $tripPicture = $sejour[$id]['photo_sejour'];
             <div>
         </header>
         <main>
-            <div id="sejourHeader">
+            <section id="sejourHeader">
                 <img src="{{$tripPicture}}" alt="photo séjour">
                 <div id="sejourHeaderText">
                     <h1>{{$tripTitle}}</h1>
                     <p>{{$tripNbDay}} jour(s) | {{$tripNbDay-1}} nuit(s)</p>
                     <p class="justified">{{$tripDescription}}</p>
-                    <p>{{$theme[$sejour[$id]['id_theme']-1]['libelle_theme']}}</p>
+                    <p>{{$themeLibelle}}</p>
                     <button>
                         <div>Offrir</div>
-                        <img src="/images/icons/shoppingCart.svg"></img>
+                        <img src="/images/icons/offer.svg"></img>
                     </button>
                     <button>
                         <div>Ajouter au<br> panier</div>
-                        <img src="/images/icons/offer.svg"></img>
+                        <img src="/images/icons/shoppingCart.svg"></img>
                     </button>
                 </div>
-            </div>
+            </section>
 
-            <div id="sejourProgramme">
-                <?php 
-                $idexist = "";
-                $commentaire = "";
-                if(isset($avis[$sejour[$id]['id_sejour']-1]['note_avis']))
+            <section id="sejourProgramme">
+            </section>
+
+            <section id="sejourAvis">
+                <h2>Les avis</h2>
+                <?php
+                foreach($avis as $a)
                 {
-                    $idexist = $avis[$sejour[$id]['id_sejour']-1]['note_avis']/5;
-                    $commentaire = $avis[$sejour[$id]['id_sejour']-1]['libelle_avis'];
-                }
-                else
-                {
-                    $idexist = "Aucun avis n'a été publié pour l'instant";
-                    $commentaire = "Aucun commentaire n'a été publié pour l'instant";
+                    $htmlAvis = "
+                        <div class=\"avis\">
+                            <div class=\"avisHeader\">
+                                <div class=\"avisHeaderLine1\">
+                                    $a->note_avis  $a->libelle_avis
+                                </div>
+                                <div class=\"avisHeaderLine1\">
+                                    $a->nom_client $a->prenom_client Date
+                                </div>
+                            </div>
+                            <p class=\"avisText\">
+                                $a->texte_avis
+                            </p>
+                        </div>
+                            ";
+                    echo($htmlAvis);
                 }
                 ?>
-                <p>Avis = {{$idexist}}</p>
-                <p>Commentaire = {{$commentaire}}</p>
-            </div>
+            </section>
         </main>
     </body>
 </html>

@@ -62,3 +62,7 @@ main{
     color: white;
     text-decoration: none;
 }
+
+.avis:not(:last-child){
+    border-bottom: solid black 1px;
+}
