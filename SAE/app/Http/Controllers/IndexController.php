@@ -49,7 +49,7 @@ class IndexController extends Controller
             'prenom' => 'bail|required|max:50',
             'nom' => 'bail|required|max:50',
             'mail_client' => 'bail|required|unique:client',
-            'date_naissance' => 'bail|required|on_or_after:$ageCutoff',
+            'date_naissance' => 'bail|required|before_or_equal:$ageCutoff',
             'mdp' => 'bail|required|max:500'
         ]);
         $client = new \App\Models\Client; //on créer un nouveau client vierge
