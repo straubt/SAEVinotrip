@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <body>
@@ -39,9 +41,11 @@
 
     <div class="owl-carousel">
     </div>
+
+
     <div class="banner">
         <video autoplay="" muted="" loop="">
-            <source id="vid" src="video/raisins.mp4" class ="grape" type="">
+            <source id="vid" src="../video/raisins.mp4" class ="grape" type="">
         </video>
         <p class="descriptionSite" data-aos="fade-up"> Bienvenue dans vinotrip ! Votre site spécialisée dans l'oenotourisme. Nous vous proposons les meilleurs séjours adpatés à vos envies</p>
 
@@ -57,7 +61,6 @@
         window.onwheel = function(e){
             scale += e.deltaY;
             if(scale>1200 && scale<13000){
-                
                 if(max >= 400 || grandir == false){
                     grandir =false
                     if(max<=20)
@@ -71,8 +74,12 @@
             console.log(scale);
             console.log(raisins.style.backgroundSize);
         }
-    </script>
 
+        
+    </script>
+   <script>
+  AOS.init();
+</script>
         <section class="bandeau"> 
             <br>
             <p class="mentionl"> Nous utilisons des cookies et d'autres technologies qui sont indispensables pour vous fournir les 
