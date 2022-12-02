@@ -20,13 +20,6 @@ $tripPicture = $sejour[$id]['photo_sejour'];
         <link rel="icon" type="image/x-icon" href="images/images.jpg">
     </head>
     <body>
-    <script>
-        var sejours = <?php echo json_encode($sejours);?>;
-        var destination = <?php echo json_encode($destination);?>;
-        var categorie_participant = <?php echo json_encode($categorie_participant);?>;
-        var theme = <?php echo json_encode($theme);?>;
-        var sejour_to_cat_participant = <?php echo json_encode($sejour_to_cat_participant);?>;
-    </script>
     <header class="top-nav">
             <a href="/">Vinotrip</a>
             <input id="menu-toggle" type="checkbox" />

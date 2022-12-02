@@ -16,6 +16,18 @@
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <body> 
+    <script>
+        var sejour = <?php echo json_encode($sejour);?>;
+        var destination = <?php echo json_encode($destination);?>;
+        var categorie_participant = <?php echo json_encode($categorie_participant);?>;
+        var theme = <?php echo json_encode($theme);?>;
+        var sejour_to_cat_participant = <?php echo json_encode($sejour_to_cat_participant);?>;
+        <?php if(isset($_SERVER['QUERY_STRING'])){ ?>
+        var domaine = <?php echo json_encode($_GET["Domaine"]);?>;
+        var participant = <?php echo json_encode($_GET["Participant"]);?>;
+        var theme = <?php echo json_encode($_GET["Theme"]);?>;
+        <?php } ?>
+    </script>
 <header class="top-nav">
             <a href="/">Vinotrip</a>
             <input id="menu-toggle" type="checkbox" />
@@ -32,9 +44,6 @@
                 <a href="/logout">Deconnexion</a>@endauth
             <div>
         </header>
-    <script>
-        var sejour = <?php echo json_encode($sejour);?>;
-    </script>
     <script src="js/select.js"></script>
     <?php 
     $selectdomaine = "";
@@ -44,28 +53,28 @@
     $textParticipant = "";
     $textTheme = "";
     if(!isset($_SERVER['QUERY_STRING'])){
-        $selectdomaine="none";
-        $selectparticipant="none";
-        $selecttheme="none";
+        $selectdomaine="NONE";
+        $selectparticipant="NONE";
+        $selecttheme="NONE";
     }
     if(isset($_SERVER['QUERY_STRING'])){
         $selectdomaine = $_GET['Domaine'];
         $selectparticipant = $_GET['Participant'];
         $selecttheme = $_GET['Theme'];
     }
-    if($selectdomaine=="none"){
+    if($selectdomaine=="NONE"){
         $textDomaine=str_replace ('_', ' ', "--Quelle_Destination_?--");;
     }
     else{
         $textDomaine = str_replace ('_', ' ', $selectdomaine); 
     }
-    if($selectparticipant=="none"){
+    if($selectparticipant=="NONE"){
         $textParticipant=str_replace ('_', ' ', "--Pour_Qui_?--");;
     }
     else{
         $textParticipant = str_replace ('_', ' ', $selectparticipant); 
     }
-    if($selecttheme=="none"){
+    if($selecttheme=="NONE"){
         $textTheme=str_replace ('_', ' ', "--Envie_Particulière_?--");;
     }   
     else{
@@ -76,7 +85,7 @@
     <label for="selector" id="marge"></label>
     <select name="Domaine" id="selector">
         <option value={{$selectdomaine}}>{{$textDomaine}}</option>
-        <option value="none">Aucun filtre</option>
+        <option value="NONE">Aucun filtre</option>
         <option value="Bourgogne">Bourgogne</option>
         <option value="Valee_du_Rhone">Valée du rhône</option>
         <option value="Bordeaux">Bordeaux</option>
@@ -95,14 +104,14 @@
     </select>
     <select name="Participant" id="selector">
         <option value={{$selectparticipant}}>{{$textParticipant}}</option>
-        <option value="none">Aucun filtre</option>
+        <option value="NONE">Aucun filtre</option>
         <option value="En_Couple">En couple</option>
         <option value="En_Famille">En famille</option>
         <option value="Entre_Amis">Entre Amis</option>
     </select>
     <select name="Theme" id="selector">
         <option value={{$selecttheme}}>{{$textTheme}}</option>
-        <option value="none">Aucun filtre</option>
+        <option value="NONE">Aucun filtre</option>
         <option value="Bien-Être">Bien etre</option>
         <option value="Culture">Culture</option>
         <option value="Gastronomie">Gastronomie</option>
@@ -113,19 +122,13 @@
 </form>
 
 
-
 <?php
 
 //filtres : 
 if(isset($_SERVER['QUERY_STRING'])){
     $compteur = 0;
-    if ($_GET['Domaine']=="none" && $_GET['Participant']=="none" && $_GET['Theme'] =="none")
-    { ?>
-        @foreach ($sejour as $unSejour)
-        <div class="parent"><div class = "container" data-aos="fade-up" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
-        @endforeach <?php 
-    }
-    if ($_GET['Domaine']!="none" && $_GET['Participant']=="none" && $_GET['Theme'] =="none")
+
+    if ($_GET['Domaine']!="NONE" && $_GET['Participant']=="NONE" && $_GET['Theme'] =="NONE")
     {
         ?>
         @foreach ($sejour as $unSejour)
@@ -138,7 +141,7 @@ if(isset($_SERVER['QUERY_STRING'])){
         @endforeach  
         <?php 
     }
-    if ($_GET['Domaine']=="none" && $_GET['Participant']!="none" && $_GET['Theme'] =="none")
+    if ($_GET['Domaine']=="NONE" && $_GET['Participant']!="NONE" && $_GET['Theme'] =="NONE")
     {
         ?>
         @foreach ($sejour as $unSejour)
@@ -156,7 +159,7 @@ if(isset($_SERVER['QUERY_STRING'])){
         @endforeach  
         <?php
     }
-    if ($_GET['Domaine']=="none" && $_GET['Participant']=="none" && $_GET['Theme'] !="none")
+    if ($_GET['Domaine']=="NONE" && $_GET['Participant']=="NONE" && $_GET['Theme'] !="NONE")
     {
         ?>
         @foreach ($sejour as $unSejour)
@@ -169,7 +172,7 @@ if(isset($_SERVER['QUERY_STRING'])){
         @endforeach  
         <?php
     } 
-    if ($_GET['Domaine']!="none" && $_GET['Participant']!="none" && $_GET['Theme'] =="none")
+    if ($_GET['Domaine']!="NONE" && $_GET['Participant']!="NONE" && $_GET['Theme'] =="NONE")
     {
         ?>
         @foreach ($sejour as $unSejour)
@@ -191,7 +194,7 @@ if(isset($_SERVER['QUERY_STRING'])){
         @endforeach  
         <?php
     }    
-    if ($_GET['Domaine']!="none" && $_GET['Participant']=="none" && $_GET['Theme'] !="none")
+    if ($_GET['Domaine']!="NONE" && $_GET['Participant']=="NONE" && $_GET['Theme'] !="NONE")
     {
         ?>
         @foreach ($sejour as $unSejour)
@@ -207,7 +210,7 @@ if(isset($_SERVER['QUERY_STRING'])){
         @endforeach
         <?php
     }  
-    if ($_GET['Domaine']=="none" && $_GET['Participant']!="none" && $_GET['Theme'] !="none")
+    if ($_GET['Domaine']=="NONE" && $_GET['Participant']!="NONE" && $_GET['Theme'] !="NONE")
     {
         ?>
         @foreach ($sejour as $unSejour)
@@ -229,7 +232,7 @@ if(isset($_SERVER['QUERY_STRING'])){
         @endforeach
         <?php
     }      
-    if ($_GET['Domaine']=="none" && $_GET['Participant']!="none" && $_GET['Theme'] !="none")
+    if ($_GET['Domaine']=="NONE" && $_GET['Participant']!="NONE" && $_GET['Theme'] !="NONE")
     {
         ?>
         @foreach ($sejour as $unSejour)
@@ -251,7 +254,7 @@ if(isset($_SERVER['QUERY_STRING'])){
         @endforeach
         <?php
     } 
-    if ($_GET['Domaine']!="none" && $_GET['Participant']!="none" && $_GET['Theme'] !="none")
+    if ($_GET['Domaine']!="NONE" && $_GET['Participant']!="NONE" && $_GET['Theme'] !="NONE")
     {
         ?>
         @foreach ($sejour as $unSejour)
@@ -313,6 +316,7 @@ for (i; i<l; i++) // pour toutes les checkbox faire:
 <script>
   AOS.init();
 </script>
+<script src="js/lesSejours.js" type="text/javascript"></script>
 </body>
 </html>
 
