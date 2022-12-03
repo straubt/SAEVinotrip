@@ -63,6 +63,78 @@ main{
     text-decoration: none;
 }
 
+#sejourAvis{
+    margin: 1em;
+    color: #7E0000DE;
+}
+
+#avisHeader *{
+    display: inline-block;
+}
+
+#avisHeader button{
+    float: right;
+}
+
+#formLeaveReview{
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+    padding: 0.5em 0 0.5em 0;
+    margin-top: 0.5em;
+}
+
+#formLeaveReview textarea{
+    resize: none;
+}
+
+.avis{
+    padding: 0.5em 0 0.5em 0;
+}
+
 .avis:not(:last-child){
-    border-bottom: solid black 1px;
+    border-bottom: solid 1px;
+}
+
+.avisHeader{
+    padding-bottom: 0.25em;
+}
+
+.avisHeader h3{
+    display: inline-block;
+}
+
+.ratingContainer{
+    display: inline-block;
+    padding-right: 0.5em;
+}
+
+.ratingDot {
+    height: 1em;
+    width: 1em;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.ratingDotChecked {
+    background-color: #7E0000DE;
+}
+
+.avisSignature{
+    text-align: end;
+    font-style: italic;
+}
+
+#btnAvisHiding, #btnStickyAvisHiding{
+    border-radius: 10px;
+    padding: 0.25em;
+    background-color: #7E0000DE;
+    color: white;
+    border: solid 1px;
+}
+
+#btnStickyAvisHiding{
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
 }
