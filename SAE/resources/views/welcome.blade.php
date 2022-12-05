@@ -13,8 +13,13 @@
     <link rel="stylesheet" href="css/caroussel.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 </head>
-<body>s
+<body>
+    <script>
+        var data = <?php echo json_encode($sejour);?>; 
+    </script>
     <header> 
 
     <a href="/"><img id="logoPanier" src="images/panier.png"></a>
@@ -60,7 +65,7 @@
 
     <div class="banner">
         <video autoplay="" muted="" loop="">
-            <source id="vid" src="/video/raisins.mp4" class ="grape" type="">
+            <source id="vid" src="video/raisins.mp4" class ="grape" type="">
         </video>
     <div id="raisins"></div>
 
@@ -69,11 +74,10 @@
         var scale = 100;
         let grandir =true;
         let max =21;
-        
         raisins.style.backgroundSize = 20+"vh";
         window.onwheel = function(e){
             scale += e.deltaY;
-            if(scale>1200 && scale<13000){
+            if(scale>1200 && scale<13000){  
                 if(max >= 400 || grandir == false){
                     grandir =false
                     if(max<=20)
@@ -88,6 +92,10 @@
             console.log(raisins.style.backgroundSize);
         }
     </script>
+
+    <script>
+  AOS.init();
+</script>
 </body>
 
 <footer>
