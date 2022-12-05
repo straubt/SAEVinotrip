@@ -20,7 +20,6 @@ $tripPicture = $sejour[$id]['photo_sejour'];
         <link rel="icon" type="image/x-icon" href="images/images.jpg">
     </head>
     <body>
-
     <header class="top-nav">
             <a href="/">Vinotrip</a>
             <input id="menu-toggle" type="checkbox" />
