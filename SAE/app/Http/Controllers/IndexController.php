@@ -10,6 +10,7 @@ use App\Models\Destination;
 use App\Models\Categorie_Participant;
 use App\Models\Theme;
 use App\Models\Route_des_vins;
+use App\Models\Panier;
 use App\Models\Avis;
 use App\Models\Client;
 use App\Models\Sejour_To_Cat_Participant;
@@ -33,6 +34,9 @@ class IndexController extends Controller
 
     public function route_des_vins(){ //return route des vins view
         return view("route_des_vins", ["route_des_vins" => Route_des_vins::all()]);
+    }
+    public function panier(){ //return panier view
+        return view("panier", ["panier" => Panier::all()]);
     }
 
     public function register(){ //return register page
