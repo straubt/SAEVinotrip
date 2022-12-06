@@ -36,6 +36,7 @@ $tripPicture = $sejour[$id]['photo_sejour'];
                 <a href="/logout">Deconnexion</a>@endauth
             <div>
         </header>
+
         <main>
             <div id="sejourHeader">
                 <img src="{{$tripPicture}}" alt="photo séjour">

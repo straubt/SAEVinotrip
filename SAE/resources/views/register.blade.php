@@ -89,7 +89,7 @@
 						</i>
 					</div>
 					<div class="fr">
-						<input type="date" required name="date_naissance" placeholder="Date naissance" class="textBox">
+						<input type="date" required name="date_naissance" placeholder="Date de naissance" class="textBox">
 					</div>
 					<div class="clr">
 					</div>
@@ -113,10 +113,11 @@
 
 					<!---Gender----->
 				<div class="box radio">
-					<label for="gender" class="fl fontLabel"> Genre: 
+					<label for="gender" class="fl fontLabel" id="genre"> Genre: 
 					</label>
 					<input type="radio" name="titre" value="M" required> Homme &nbsp; &nbsp; &nbsp; &nbsp;
-					<input type="radio" name="titre" value="Mme" required> Femme
+					<input type="radio" name="titre" value="Mme" required> Femme &nbsp; &nbsp; &nbsp; &nbsp;
+					<input type="radio" name="titre" value="Mlle" required> Mademoiselle
 				</div>
 					<!---Gender--->
 
@@ -134,8 +135,20 @@
 				</div>
 				<!---Submit Button----->
 				</input>
-				{{ $errors }}
+				@if ($errors->any())
+    				<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+    				</div>
+				@endif
 			</form>
 		</div>
+		<script>
+			let form = document.querySelector("form");
+			console.log(form);
+		</script>
 	</body>
 </html>

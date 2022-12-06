@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="css/styleGeneral.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/styleProfil.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <body>
     <script>
         var client = <?php echo json_encode($client);?>;
+        var csrf = <?php echo json_encode(csrf_token());?>;
     </script>
     <header class="top-nav">
         <a href="/">Vinotrip</a>
@@ -31,8 +33,16 @@
                 <a href="/logout">Deconnexion</a>@endauth
             <div>
     </header>
-    <div class="temp">
+    <div class="parent">
+        <div class="image">
+        </div>
+        <div class="infos">
+        @csrf
+        </div>
+        <button id="modification">Modifier informations </button></a>
     </div>
+
+    <script src="js/profile.js"></script>
 </body>
 
 <footer class="bot-nav">        
@@ -47,5 +57,4 @@
     </div>
     <br>
 </footer>
-<script src="js/profile.js"></script>
 </html>

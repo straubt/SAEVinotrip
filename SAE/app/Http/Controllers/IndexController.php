@@ -40,27 +40,28 @@ class IndexController extends Controller
     }
 
     public function addClient(Request $request){ //save a new client (on register page) NOT DONE YET
-        $clients = Client::all();
-        $request->id_client = count($clients)+1;
-        $request->mdp = password_hash($request->mdp, PASSWORD_DEFAULT);
-        $this->validate($request, [
-            'titre' => 'required',
+        $clients = Client::all(); // on récurpére la variables qui contient tous les clients
+        $request->id_client = count($clients)+1; // on donne le dernier id + 1 de ce dernier tableau de client
+        $request->mdp = password_hash($request->mdp, PASSWORD_DEFAULT); // on hash le password avec une fonction de hashage
+        $ageCutoff = now()->subYears(18)->toDateString(); 
+        $this->validate($request, [ //on vérifie les champs du formulaire
+            'titre' => 'bail|required',
             'prenom' => 'bail|required|max:50',
             'nom' => 'bail|required|max:50',
             'mail_client' => 'bail|required|unique:client',
-            'date_naissance' => 'required',
+            'date_naissance' => 'bail|required|before_or_equal:$ageCutoff',
             'mdp' => 'bail|required|max:500'
         ]);
-        $client = new \App\Models\Client;
-        $client->id_client = $request->id_client;
-        $client->titre_client = $request->titre;
-        $client->prenom_client = $request->prenom;
-        $client->nom_client = $request->nom;
-        $client->mail_client = $request->mail_client;
-        $client->date_naiss_client = $request->date_naissance;
-        $client->mdp_client = $request->mdp;
-        $client->save();
-        return view("connection");
+        $client = new \App\Models\Client; //on créer un nouveau client vierge
+        $client->id_client = $request->id_client; //on ajoute les champs et on affecte les valeurs
+        $client->titre_client = $request->titre; //--------------------------------------------
+        $client->prenom_client = $request->prenom; //--------------------------------------------
+        $client->nom_client = $request->nom; //--------------------------------------------
+        $client->mail_client = $request->mail_client; //--------------------------------------------
+        $client->date_naiss_client = $request->date_naissance; //--------------------------------------------
+        $client->mdp_client = $request->mdp; //--------------------------------------------
+        $client->save(); // on enregistre le client dans la base.
+        return view("connection"); // on retourne la page de connection !
     }
 
     public function connection(){ //return login page
@@ -95,7 +96,11 @@ class IndexController extends Controller
         return view("connection");
     }
 
-    public function profile(){ //function logout when clicked redirecting homepage as guest
+    public function profile(){ //return profile page
+        return view("profile", ["client" => Auth::user()]);
+    }
+
+    public function updateProfile(){ // commit profile changes and redirect into profile get page
         return view("profile", ["client" => Auth::user()]);
     }
 
