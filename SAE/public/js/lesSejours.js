@@ -11,10 +11,10 @@ function create(tag, parent, text = null, classs = null, id = null) {
   return element
 }
 
-if (domaine != ""){
-domaine = domaine.toUpperCase();
-participant = participant.toUpperCase();
-theme = theme.toUpperCase();
+if (domaine != "") {
+  domaine = domaine.toUpperCase();
+  participant = participant.toUpperCase();
+  theme = theme.toUpperCase();
 }
 var body = document.querySelector("body");
 let compteur = 0;
@@ -28,6 +28,11 @@ if (domaine == "NONE" && participant == "NONE" && theme == "NONE") {
     photo.src = unSejour.photo_sejour;
     let div1 = create("div", container, null, "overlay", null);
     let div2 = create("div", div1, null, "texte", null);
+    let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+    checkbox.type = "checkbox";
+    let label = create("label", checkbox, null, null, null);
+    label.for = "check"
+    label.text = "Filtrer";
     div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers.";
     compteur++;
   });
@@ -45,9 +50,13 @@ if (domaine != "NONE" && participant == "NONE" && theme == "NONE") {
         photo.src = unSejour.photo_sejour;
         let div1 = create("div", container, null, "overlay", null);
         let div2 = create("div", div1, null, "texte", null);
+        let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+        checkbox.type = "checkbox";
+        let label = create("label", checkbox, null, null, null);
+        label.for = "check"
+        label.text = "Filtrer";
         div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers.";
         compteur++;
-        // a.data-aos = "fade-up";
       }
     });
   });
@@ -66,6 +75,11 @@ if (domaine == "NONE" && participant != "NONE" && theme == "NONE") {
             photo.src = unSejour.photo_sejour;
             let div1 = create("div", container, null, "overlay", null);
             let div2 = create("div", div1, null, "texte", null);
+            let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+            checkbox.type = "checkbox";
+            let label = create("label", checkbox, null, null, null);
+            label.for = "check"
+            label.text = "Filtrer";
             div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers.";
             compteur++;
           }
@@ -86,6 +100,11 @@ if (domaine == "NONE" && participant == "NONE" && theme != "NONE") {
         photo.src = unSejour.photo_sejour;
         let div1 = create("div", container, null, "overlay", null);
         let div2 = create("div", div1, null, "texte", null);
+        let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+        checkbox.type = "checkbox";
+        let label = create("label", checkbox, null, null, null);
+        label.for = "check"
+        label.text = "Filtrer";
         div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers.";
         compteur++;
       }
@@ -115,6 +134,11 @@ if (domaine != "NONE" && participant != "NONE" && theme == "NONE") {
             photo.src = unSejour.photo_sejour;
             let div1 = create("div", container, null, "overlay", null);
             let div2 = create("div", div1, null, "texte", null);
+            let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+            checkbox.type = "checkbox";
+            let label = create("label", checkbox, null, null, null);
+            label.for = "check"
+            label.text = "Filtrer";
             div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers.";
             compteur++;
           }
@@ -143,6 +167,11 @@ if (domaine != "NONE" && participant == "NONE" && theme != "NONE") {
         photo.src = unSejour.photo_sejour;
         let div1 = create("div", container, null, "overlay", null);
         let div2 = create("div", div1, null, "texte", null);
+        let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+        checkbox.type = "checkbox";
+        let label = create("label", checkbox, null, null, null);
+        label.for = "check"
+        label.text = "Filtrer";
         div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers.";
         compteur++;
       }
@@ -173,6 +202,11 @@ if (domaine == "NONE" && participant != "NONE" && theme != "NONE") {
         photo.src = unSejour.photo_sejour;
         let div1 = create("div", container, null, "overlay", null);
         let div2 = create("div", div1, null, "texte", null);
+        let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+        checkbox.type = "checkbox";
+        let label = create("label", checkbox, null, null, null);
+        label.for = "check"
+        label.text = "Filtrer";
         div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers.";
         compteur++;
       }
@@ -211,6 +245,11 @@ if (domaine != "NONE" && participant != "NONE" && theme != "NONE") {
         photo.src = unSejour.photo_sejour;
         let div1 = create("div", container, null, "overlay", null);
         let div2 = create("div", div1, null, "texte", null);
+        let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+        checkbox.type = "checkbox";
+        let label = create("label", checkbox, null, null, null);
+        label.for = "check"
+        label.text = "Filtrer";
         div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers.";
         compteur++;
       }
@@ -218,9 +257,8 @@ if (domaine != "NONE" && participant != "NONE" && theme != "NONE") {
   });
 }
 
-if(domaine==null) {
+if (domaine == null) {
   sejour.forEach(unSejour => {
-    console.log("Passe");
     let parent = create("div", body, null, "parent", null);
     let container = create("div", parent, null, "container", null);
     let lien = create("a", container, null, "reveal", null);
@@ -229,12 +267,17 @@ if(domaine==null) {
     photo.src = unSejour.photo_sejour;
     let div1 = create("div", container, null, "overlay", null);
     let div2 = create("div", div1, null, "texte", null);
+    let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+    checkbox.type = "checkbox";
+    let label = create("label", checkbox, null, null, null);
+    label.for = "check"
+    label.text = "Filtrer";
     div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers.";
     compteur++;
   })
 }
 
-else if(domaine == ""){
+else if (domaine == "") {
   sejour.forEach(unSejour => {
     let parent = create("div", body, null, "parent", null);
     let container = create("div", parent, null, "container", null);
@@ -244,9 +287,15 @@ else if(domaine == ""){
     photo.src = unSejour.photo_sejour;
     let div1 = create("div", container, null, "overlay", null);
     let div2 = create("div", div1, null, "texte", null);
+    let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+    checkbox.type = "checkbox";
+    let label = create("label", checkbox, null, null, null);
+    label.for = "check"
+    label.text = "Filtrer";
     div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers.";
     compteur++;
-  });
+  }
+  )
 }
 
 
@@ -254,5 +303,23 @@ if (compteur == 0) {
   let aucun = create("p", body, null, null, null);
   aucun.innerHTML = "Désolé aucun séjour n'a été trouvé..."
 }
+
+
+
+var cb = document.querySelectorAll("[type=checkbox]"); // récupère tous les checkbox
+var i = 0, // initialise i a 0
+  l = cb.length; // stocke le nombre de checkboxes
+
+for (i; i < l; i++) // pour toutes les checkbox faire:
+  cb[i].addEventListener("change", function () {
+
+    // ajouter un evenement  au changement de statut
+    if (document.querySelectorAll(":checked").length > 5) //si le nombre de checkbox check supp a 5 ? faire
+      this.checked = false; //cb uncheck
+    if (this.checked == true) {
+      console.log(this.id);
+    } 
+  }, false); // faux ?
+
 
 
