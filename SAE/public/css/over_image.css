@@ -43,7 +43,7 @@
   opacity: 1;
 }
 
-/* #reveal{
+.reveal{
   opacity: 0;
   transform: translateY(-30px);
 }
@@ -52,5 +52,5 @@
   opacity: 1;
   transform: translateY(0);
   transition: 1s;
-} */
+}
 

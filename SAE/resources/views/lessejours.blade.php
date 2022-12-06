@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="css/styleLesSejours.css">
     <link rel="stylesheet" href="css/over_image.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
@@ -26,6 +24,10 @@
         var domaine = <?php echo json_encode($_GET["Domaine"]);?>;
         var participant = <?php echo json_encode($_GET["Participant"]);?>;
         var theme = <?php echo json_encode($_GET["Theme"]);?>;
+        <?php } 
+        else {?> domaine = "";
+            participant = "";
+            theme = "";
         <?php } ?>
     </script>
 <header class="top-nav">
@@ -123,24 +125,7 @@
 
 <?php
 
-//filtres : 
-if(isset($_SERVER['QUERY_STRING'])){
-    $compteur = 0;       
-        $selectdomaine = $_GET['Domaine'];
-        $selectparticipant = $_GET['Participant'];
-        $selecttheme = $_GET['Theme'];
-    if($compteur == 0){
-        echo "Désolé aucun séjour n'a été trouvé... ";
-    }
-}
-else
-{
-    ?>
-    @foreach ($sejour as $unSejour)
-    <div class="parent"><div class = "container" ><a href="/sejour?{{$unSejour['id_sejour']}}"><img src="{{$unSejour['photo_sejour']}}" alt="" class="image"><div class = "overlay"><div class = "texte">{{$unSejour['titre_sejour']}}<br>{{$unSejour['prix_min_individuel_sejour']}}€ Par Pers.</div></div></a></div></div>
-    @endforeach 
-    <?php
-}
+
 
 
 
@@ -159,9 +144,6 @@ for (i; i<l; i++) // pour toutes les checkbox faire:
 	}, false); // faux ?
 </script>
     
-<script>
-  AOS.init();
-</script>
 <script src="js/lesSejours.js" type="text/javascript"></script>
 <script src="js/transition.js" type="text/javascript"></script>
 </body>
