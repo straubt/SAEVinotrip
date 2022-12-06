@@ -119,17 +119,12 @@
         <option value="Gastronomie">Gastronomie</option>
         <option value="Sport">Sport</option>
     </select>
-    
     <input type="submit" value="confirmer" id="buttonConfirmer">
 </form>
 
-<?php
+<button type="submit" value="comparer" id="buttonFiltre">Comparer</button>
 
 
-
-
-
-?>  
 <script src="js/lesSejours.js" type="text/javascript"></script>
 <script src="js/transition.js" type="text/javascript"></script>
 </body>

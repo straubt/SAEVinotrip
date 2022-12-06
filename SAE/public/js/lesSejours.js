@@ -11,6 +11,10 @@ function create(tag, parent, text = null, classs = null, id = null) {
   return element
 }
 
+let buttonCompare = document.querySelector("#buttonFiltre");
+
+
+
 if (domaine != "") {
   domaine = domaine.toUpperCase();
   participant = participant.toUpperCase();
@@ -304,6 +308,7 @@ if (compteur == 0) {
   aucun.innerHTML = "Désolé aucun séjour n'a été trouvé..."
 }
 
+var tabId = [];
 
 
 var cb = document.querySelectorAll("[type=checkbox]"); // récupère tous les checkbox
@@ -317,8 +322,14 @@ for (i; i < l; i++) // pour toutes les checkbox faire:
     if (document.querySelectorAll(":checked").length > 5) //si le nombre de checkbox check supp a 5 ? faire
       this.checked = false; //cb uncheck
     if (this.checked == true) {
-      console.log(this.id);
+      tabId.push(this.id);
     } 
+    else{
+      console.log("je passe");
+      tabId.splice(tabId.indexOf(this.id), tabId.indexOf(this.id)+1)
+    }
+    console.log(tabId);
+
   }, false); // faux ?
 
 

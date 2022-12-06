@@ -2,7 +2,7 @@
 #selector {
     /* display: block; */
      position: relative;
-     width: 320px;
+     width: 220px;
      height: 55px;
      margin-top: 20px;
      margin-bottom: 20px;
@@ -47,7 +47,7 @@
    
    #buttonConfirmer{
        position: relative;
-       width: 300px;
+       width: 200px;
         height: 50px;
          padding: 1.3em 3em;
          font-size: 12px;
@@ -74,3 +74,32 @@
        transform: translateY(-1px);
      } 
 
+#buttonFiltre{
+  position: fixed;
+  bottom: 0%;
+  width: 200px;
+   height: 50px;
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #7E0000DE;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+#buttonFiltre:hover {
+  background-color: #7E0000DE;
+  box-shadow: 0px 45px 60px #03030366;
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+#buttonFiltre:active {
+  transform: translateY(-1px);
+} 
