@@ -146,5 +146,9 @@
 				@endif
 			</form>
 		</div>
+		<script>
+			let form = document.querySelector("form");
+			console.log(form);
+		</script>
 	</body>
 </html>
