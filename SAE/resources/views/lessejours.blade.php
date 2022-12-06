@@ -129,21 +129,7 @@
 
 
 
-?>
-<script type="text/javascript">
-var cb = document.querySelectorAll("[type=checkbox]"); // récupère tous les checkbox
-
-var i = 0, // initialise i a 0
-	  l = cb.length; // stocke le nombre de checkboxes
-
-for (i; i<l; i++) // pour toutes les checkbox faire:
-	cb[i].addEventListener("change", function (){ // ajouter un evenement  au changement de statut
-        console.log(document.querySelectorAll(":checked"))
-		if (document.querySelectorAll(":checked").length > 5) //si le nombre de checkbox check supp a 5 ? faire
-			this.checked = false; //cb uncheck
-	}, false); // faux ?
-</script>
-    
+?>  
 <script src="js/lesSejours.js" type="text/javascript"></script>
 <script src="js/transition.js" type="text/javascript"></script>
 </body>
