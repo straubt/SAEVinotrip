@@ -19,25 +19,27 @@
         var data = <?php echo json_encode($sejour);?>;
         var client = <?php echo json_encode($client);?>;
     </script>
-        <header class="top-nav">
-            <a href="/">Vinotrip</a>
-            <input id="menu-toggle" type="checkbox" />
-            <label class='menu-button-container' for="menu-toggle">
-                <div class='menu-button'></div>
-            </label>
-            <div class="menu">
-                <a href="/">Accueil</a>
-                <a href="/nos-sejours">Nos séjours</a>
-                <a href="/route-des-vins">Routes des vins</a>
-                <a href="/register">S'inscrire / se connecter</a>
-            <div>
-        </header>
+    <header class="top-nav">
+        <a href="/">Vinotrip</a>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+            <div class='menu-button'></div>
+        </label>
+        <div class="menu">
+            <a href="/">Accueil</a>
+            <a href="/nos-sejours">Nos séjours</a>
+            <a href="/route-des-vins">Routes des vins</a>
+            @guest<a href="/register">S'inscrire</a>
+            <a href="/login">Se connecter</a>@endguest
+            @auth<a href="/profile">Mon profil</a>
+            <a href="/logout">Deconnexion</a>@endauth
+            <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img></a>
+        <div>
+    </header>
 
 
     <div class="owl-carousel">
     </div>
-        
-
         <section class="bandeau"> 
             <br>
             <p class="mentionl"> Nous utilisons des cookies et d'autres technologies qui sont indispensables pour vous fournir les 
@@ -62,27 +64,52 @@
         </section> 
         <?php
     ?>
+    <div class="banner">
+        <video autoplay="" muted="" loop="">
+            <source id="vid" src="video/raisins.mp4" class ="grape" type="">
+        </video>
+    <div id="raisins"></div>
 
-    <script src="../js/mainPageAcceuil.js"></script>
+    <script type="text/javascript">
+        let raisins = document.querySelector('#raisins');
+        var scale = 100;
+        let grandir =true;
+        let max =21;
+        raisins.style.backgroundSize = 20+"vh";
+        window.onwheel = function(e){
+            scale += e.deltaY;
+            if(scale>1200 && scale<13000){  
+                if(max >= 400 || grandir == false){
+                    grandir =false
+                    if(max<=20)
+                        return;
+                    raisins.style.backgroundSize =  max+"vh";
+                    max -=10;}              
+                else if (grandir == true){
+                    raisins.style.backgroundSize =  max+"vh";
+                    max=max+10;}
+                } 
+            console.log(scale);
+            console.log(raisins.style.backgroundSize);
+        }
+    </script>
 </body>
 
-<footer>
-    <div class="txtFooter">
-        <a href="" title="page d'accueil">
-            Page d'Acceuil
-        </a>
-        <a href="" title="Mentions legales">
-            Mentions legales
-        </a>
-        <a href="" title="Politique de Confidentialité">
-            Politique de Confidentialité
-        </a>
+<footer class="bot-nav">        
+    <div class="lien">
+        <a href="/">Page d'accueil</a>
+        <a href="/">Mentions legales</a>
+        <a href="/">Politique de Confidentialité</a>
     </div>
-    <div id="txtPayementSecu">Payement securisé :
+    <br>
+    <div id="Payement">Payement securisé :
         <br><img id="payementSecu" src="images/Paiement-Securise.png" title="Paiement sécurisé">
     </div>
-    <script src="js/jquery-3.6.1.slim.min.js"></script>
-    <script src="js/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/caroussel.js"></script>
+    <br>
 </footer>
+<script src="../js/mainPageAcceuil.js"></script>
+<script src="js/jquery-3.6.1.slim.min.js"></script>
+<script src="js/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/caroussel.js"></script>
+
 </html>
