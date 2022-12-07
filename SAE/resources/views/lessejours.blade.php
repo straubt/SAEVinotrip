@@ -44,6 +44,7 @@
                 <a href="/login">Se connecter</a>@endguest
                 @auth<a href="/profile">Mon profil</a>
                 <a href="/logout">Deconnexion</a>@endauth
+                <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img></a>
             <div>
         </header>
     <script src="js/select.js"></script>

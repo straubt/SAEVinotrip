@@ -57,25 +57,26 @@ $tripPicture = $sejour[$id]['photo_sejour'];
                     </form>
                 </div>
             </div>
+        </div>
 
-            <div id="sejourProgramme">
-                <?php 
-                $idexist = "";
-                $commentaire = "";
-                if(isset($avis[$sejour[$id]['id_sejour']-1]['note_avis']))
-                {
-                    $idexist = $avis[$sejour[$id]['id_sejour']-1]['note_avis']/5;
-                    $commentaire = $avis[$sejour[$id]['id_sejour']-1]['libelle_avis'];
-                }
-                else
-                {
-                    $idexist = "Aucun avis n'a été publié pour l'instant";
-                    $commentaire = "Aucun commentaire n'a été publié pour l'instant";
-                }
-                ?>
-                <p>Avis = {{$idexist}}</p>
-                <p>Commentaire = {{$commentaire}}</p>
-            </div>
-        </main>
+        <div id="sejourProgramme">
+            <?php 
+            $idexist = "";
+            $commentaire = "";
+            if(isset($avis[$sejour[$id]['id_sejour']-1]['note_avis']))
+            {
+                $idexist = $avis[$sejour[$id]['id_sejour']-1]['note_avis']/5;
+                $commentaire = $avis[$sejour[$id]['id_sejour']-1]['libelle_avis'];
+            }
+            else
+            {
+                $idexist = "Aucun avis n'a été publié pour l'instant";
+                $commentaire = "Aucun commentaire n'a été publié pour l'instant";
+            }
+            ?>
+            <p>Avis = {{$idexist}}</p>
+            <p>Commentaire = {{$commentaire}}</p>
+        </div>
+    </main>
     </body>
 </html>

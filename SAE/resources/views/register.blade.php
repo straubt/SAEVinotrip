@@ -13,22 +13,23 @@
 	<link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <body>
-<header class="top-nav">
-            <a href="/">Vinotrip</a>
-            <input id="menu-toggle" type="checkbox" />
-            <label class='menu-button-container' for="menu-toggle">
-                <div class='menu-button'></div>
-            </label>
-            <div class="menu">
-                <a href="/">Accueil</a>
-                <a href="/nos-sejours">Nos séjours</a>
-                <a href="/route-des-vins">Routes des vins</a>
-                @guest<a href="/register">S'inscrire</a>
-                <a href="/login">Se connecter</a>@endguest
-                @auth<a href="/profile">Mon profil</a>
-                <a href="/logout">Deconnexion</a>@endauth
-            <div>
-        </header>
+	<header class="top-nav">
+		<a href="/">Vinotrip</a>
+		<input id="menu-toggle" type="checkbox" />
+		<label class='menu-button-container' for="menu-toggle">
+			<div class='menu-button'></div>
+		</label>
+		<div class="menu">
+			<a href="/">Accueil</a>
+			<a href="/nos-sejours">Nos séjours</a>
+			<a href="/route-des-vins">Routes des vins</a>
+			@guest<a href="/register">S'inscrire</a>
+			<a href="/login">Se connecter</a>@endguest
+			@auth<a href="/profile">Mon profil</a>
+			<a href="/logout">Deconnexion</a>@endauth
+			<a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img></a>
+		<div>
+	</header>
     <!-- Body of Form starts -->
 		<div class="container">
 			<form method="post" autocomplete="on" action="{{ route("registerPost") }}">
