@@ -7,7 +7,7 @@
     -o-transition: all .2s;
     transition: all .2s;
 }
-  
+
 html {
     height: 100%;
 }
@@ -16,6 +16,7 @@ html {
 body{
     margin: 0;
     font-family: "Montserrat";
+    color: #7E0000DE;
 }
 
 main{
@@ -23,8 +24,7 @@ main{
     flex-direction: column;
 }
 
-/* RESPONSIVE DESIGN */
-#sejourHeader{
+.flexResponsive{
     display: flex;
 }
 
@@ -32,21 +32,6 @@ main{
     object-fit: cover;
     object-position: contain;
 }
-
-@media (orientation: landscape)
-{
-    #sejourHeader{
-        flex-direction: row;
-    }
-}
-
-@media (orientation: portrait)
-{
-    #sejourHeader{
-        flex-direction: column;
-    }
-}
-/* ---------------------------------- */
 
 .justified{
     text-align: justify;
@@ -63,9 +48,20 @@ main{
     text-decoration: none;
 }
 
+#sejourProgramme{
+    margin: 1em;
+}
+
+#sejourProgramme h2{
+    padding-bottom: 0.25em;
+}
+
+.etape{
+    padding: 0.5em 0 0.5em 0;
+}
+
 #sejourAvis{
     margin: 1em;
-    color: #7E0000DE;
 }
 
 #avisHeader *{
@@ -85,6 +81,21 @@ main{
 
 #formLeaveReview textarea{
     resize: none;
+    width: 100%;
+}
+
+#formLeaveReviewControlContainer{
+    margin-top: 0.25em;
+}
+
+#formLeaveReviewControlContainer input, button{
+    background-color: #7E0000DE;
+    color: white;
+    padding: 0.5em;
+}
+
+#avisData *{
+    flex: 1;
 }
 
 .avis{
@@ -125,16 +136,41 @@ main{
     font-style: italic;
 }
 
-#btnAvisHiding, #btnStickyAvisHiding{
-    border-radius: 10px;
-    padding: 0.25em;
-    background-color: #7E0000DE;
-    color: white;
-    border: solid 1px;
-}
-
 #btnStickyAvisHiding{
     position: fixed;
     bottom: 1em;
     right: 1em;
 }
+
+/* RESPONSIVE DESIGN */
+
+@media (orientation: landscape)
+{
+    .flexResponsive{
+        flex-direction: row;
+    }
+
+    #noteContainer, #libelleContainer{
+        width: 50%;
+    }
+    
+    #noteContainer input, #libelleContainer input{
+        width: 100%;
+    }
+}
+
+@media (orientation: portrait)
+{
+    .flexResponsive{
+        flex-direction: column;
+    }
+
+    #formLeaveReviewControlContainer{
+        display: flex;
+    }
+
+    #formLeaveReviewControlContainer *{
+        flex: 1;
+    }
+}
+/* ---------------------------------- */
