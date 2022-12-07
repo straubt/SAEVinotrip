@@ -49,10 +49,12 @@ $tripPicture = $sejour[$id]['photo_sejour'];
                         <div>Offrir</div>
                         <img src="/images/icons/shoppingCart.svg"></img>
                     </button>
-                    <button>
+                    <form action="#" method="post">
+                    <button type="submit">
                         <div>Ajouter au<br> panier</div>
                         <img src="/images/icons/offer.svg"></img>
                     </button>
+                    </form>
                 </div>
             </div>
 
