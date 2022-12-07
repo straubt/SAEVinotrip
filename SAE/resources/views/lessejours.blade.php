@@ -122,7 +122,9 @@
     <input type="submit" value="confirmer" id="buttonConfirmer">
 </form>
 
+<div id="divFiltre">
 <button type="submit" value="comparer" id="buttonFiltre">Comparer</button>
+</div>
 
 
 <script src="js/lesSejours.js" type="text/javascript"></script>

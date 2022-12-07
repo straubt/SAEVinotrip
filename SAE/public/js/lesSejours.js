@@ -11,6 +11,7 @@ function create(tag, parent, text = null, classs = null, id = null) {
   return element
 }
 
+let divFiltre = document.querySelector("#divFiltre");
 let buttonCompare = document.querySelector("#buttonFiltre");
 
 
@@ -323,14 +324,54 @@ for (i; i < l; i++) // pour toutes les checkbox faire:
       this.checked = false; //cb uncheck
     if (this.checked == true) {
       tabId.push(this.id);
-    } 
-    else{
+    }
+    else {
       console.log("je passe");
-      tabId.splice(tabId.indexOf(this.id), tabId.indexOf(this.id)+1)
+      tabId.splice(tabId.indexOf(this.id), tabId.indexOf(this.id) + 1)
     }
     console.log(tabId);
 
   }, false); // faux ?
+
+buttonCompare.addEventListener("click", function () {
+  if (tabId.length == 2) {
+    let buttonRetour = create("button",divFiltre,null,"buttonRetour",null);
+    buttonRetour.addEventListener("click",function(){
+      document.location.reload(true);
+    });
+    compteur = 2;
+    let parents = document.querySelectorAll(".parent");
+    for (let pas = 0; pas < parents.length; pas++) {
+      parents[pas].remove();
+    };
+    sejour.forEach(unSejour => {
+      if(unSejour.id_sejour == tabId[0] || unSejour.id_sejour == tabId[1]){
+      let parent = create("div", body, null, "parent", null);
+    let container = create("div", parent, null, "container", null);
+    let lien = create("a", container, null, null, null);
+    lien.href = "/sejour?" + unSejour.id_sejour;
+    let photo = create("img", lien, null, "image", null);
+    photo.src = unSejour.photo_sejour;
+    let div1 = create("div", container, null, "overlay", null);
+    let div2 = create("div", div1, null, "texte", null);
+    let checkbox = create("input", div1, null, null, unSejour.id_sejour);
+    checkbox.type = "checkbox";
+    let label = create("label", checkbox, null, null, null);
+    label.for = "check"
+    label.text = "Filtrer";
+    let nuits = unSejour.duree_sejour-1;
+    div2.innerHTML = unSejour.titre_sejour + "<br>" + unSejour.prix_min_individuel_sejour + "€ Par Pers." + "<br>" + unSejour.description_sejour + "<br>" + unSejour.duree_sejour + " jours | " + nuits + " nuits" ;
+      }
+    });
+    
+  }
+});
+
+
+    // else {
+    //   let info = create("a",divFiltre,null,null,null);
+    //   info.innerHTML = "oui";
+    // };
 
 
 
