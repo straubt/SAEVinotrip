@@ -28,6 +28,7 @@ Route::post('/login', [IndexController::class, "authenticate"])->name('connectio
 Route::get('/logout', [IndexController::class, "logout"])->name('logout');
 //Mon profil
 Route::get('/profile', [IndexController::class, "profile"])->name('profile');
+Route::post('/profile', [IndexController::class, "updateProfile"])->name('updateProfile');
 //homepage
 Route::get('/', [IndexController::class, "index"]);
 //Voir un sejour

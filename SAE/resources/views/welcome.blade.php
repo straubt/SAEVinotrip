@@ -40,40 +40,6 @@
 
     <div class="owl-carousel">
     </div>
-    <div class="banner">
-        <video autoplay="" muted="" loop="">
-            <source id="vid" src="video/raisins.mp4" class ="grape" type="">
-        </video>
-        <p class="descriptionSite" data-aos="fade-up"> Bienvenue dans vinotrip ! Votre site spécialisée dans l'oenotourisme. Nous vous proposons les meilleurs séjours adpatés à vos envies</p>
-
-    <div id="raisins"></div>
-
-    <script type="text/javascript">
-        let raisins = document.querySelector('#raisins');
-        let descr = document.querySelector('.descriptionSite');
-        var scale = 100;
-        let grandir =true;
-        let max =21;
-        raisins.style.backgroundSize = 20+"vh";
-        window.onwheel = function(e){
-            scale += e.deltaY;
-            if(scale>1200 && scale<13000){
-                
-                if(max >= 400 || grandir == false){
-                    grandir =false
-                    if(max<=20)
-                        return;
-                    raisins.style.backgroundSize =  max+"vh";
-                    max -=10;}              
-                else if (grandir == true){
-                    raisins.style.backgroundSize =  max+"vh";
-                    max=max+10;}
-                } 
-            console.log(scale);
-            console.log(raisins.style.backgroundSize);
-        }
-    </script>
-
         <section class="bandeau"> 
             <br>
             <p class="mentionl"> Nous utilisons des cookies et d'autres technologies qui sont indispensables pour vous fournir les 
@@ -98,8 +64,35 @@
         </section> 
         <?php
     ?>
+    <div class="banner">
+        <video autoplay="" muted="" loop="">
+            <source id="vid" src="video/raisins.mp4" class ="grape" type="">
+        </video>
+    <div id="raisins"></div>
 
-
+    <script type="text/javascript">
+        let raisins = document.querySelector('#raisins');
+        var scale = 100;
+        let grandir =true;
+        let max =21;
+        raisins.style.backgroundSize = 20+"vh";
+        window.onwheel = function(e){
+            scale += e.deltaY;
+            if(scale>1200 && scale<13000){  
+                if(max >= 400 || grandir == false){
+                    grandir =false
+                    if(max<=20)
+                        return;
+                    raisins.style.backgroundSize =  max+"vh";
+                    max -=10;}              
+                else if (grandir == true){
+                    raisins.style.backgroundSize =  max+"vh";
+                    max=max+10;}
+                } 
+            console.log(scale);
+            console.log(raisins.style.backgroundSize);
+        }
+    </script>
 </body>
 
 <footer class="bot-nav">        

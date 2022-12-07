@@ -163,3 +163,37 @@ table.blueTable {
     text-align: center;
     color: white;
 }
+
+.banner
+{
+    top: 150vh;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+.banner video
+{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner #raisins
+{
+    width: 100vw;
+    height: 100vh;
+    background: #fff url(../images/raisin.svg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100px;
+    mix-blend-mode: screen;
+}
+
+.grape
+{
+    width: 1000%;
+    height: 1000%;
+}

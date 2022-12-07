@@ -100,7 +100,11 @@ class IndexController extends Controller
         return view("connection");
     }
 
-    public function profile(){ //function logout when clicked redirecting homepage as guest
+    public function profile(){ //return profile page
+        return view("profile", ["client" => Auth::user()]);
+    }
+
+    public function updateProfile(){ // commit profile changes and redirect into profile get page
         return view("profile", ["client" => Auth::user()]);
     }
 

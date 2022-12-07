@@ -15,6 +15,7 @@
 <body>
     <script>
         var client = <?php echo json_encode($client);?>;
+        var csrf = <?php echo json_encode(csrf_token());?>;
     </script>
     <header class="top-nav">
         <a href="/">Vinotrip</a>
@@ -43,12 +44,14 @@
                 <a id="mailFixe">Email :</a>
                 <a id="dateFixe">Date de naissance :</a>
             </div>
-            <div class="infos"></div>
+            <div class="infos">
+               @csrf
+            </div>
         </div>
-        <button id="modification">Modifier informations </button>
+        <button id="modification">Modifier informations </button></a>
     </div>
 
-    
+    <script src="js/profile.js"></script>
 </body>
 
 <footer class="bot-nav">        
@@ -63,5 +66,4 @@
     </div>
     <br>
 </footer>
-<script src="js/profile.js"></script>
 </html>
