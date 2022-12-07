@@ -1,3 +1,5 @@
+<?php use Gloudemans\Shoppingcart\Facades\Cart; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +26,29 @@
             <a href="/login">Se connecter</a>@endguest
             @auth<a href="/profile">Mon profil</a>
             <a href="/logout">Deconnexion</a>@endauth
-            <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img></a>
+            <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img>{{count(Cart::content())}}</a>
         <div>
     </header>
 
+    @foreach (Cart::content() as $sejour)
+       
+        <p>{{$sejour->model->prix_min_individuel_sejour}} €</p>
+        <img src="{{$sejour->model->photo_sejour}}">
+        <form action="{{route('cart.destroy', $sejour->rowId)}}" method="post">
+        @csrf 
+        @method('DELETE')
+        <button type="submit">remove</button>
+        </form>
+    @endforeach
 
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+    @endif
+    @if (Cart::content()->isEmpty())
+        <p>Votre panier est vide</p>
+    @endif
 
 </body>
 <footer class="bot-nav">        
@@ -37,6 +57,7 @@
         <a href="/">Mentions legales</a>
         <a href="/">Politique de Confidentialité</a>
     </div>
+    
     <br>
     <div id="Payement">Payement securisé :
         <br><img id="payementSecu" src="images/Paiement-Securise.png" title="Paiement sécurisé">

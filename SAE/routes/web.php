@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +33,14 @@ Route::post('/profile', [IndexController::class, "updateProfile"])->name('update
 //homepage
 Route::get('/', [IndexController::class, "index"]);
 //Voir un sejour
-Route::get('/sejour', [IndexController::class, 'unSejour']);
+Route::get('/sejour', [IndexController::class, 'unSejour'])->name('sejour');
 //Route des vins
 Route::get('/route-des-vins', [IndexController::class, 'route_des_vins']);
 //panier routes
-Route::post('/panier/ajouter', 'CartController@store')->name('cart.store');
+Route::post('/panier/ajouter', 'App\Http\Controllers\CartController@store')->name('cart.store');
 //Panier
-Route::get('/panier', [IndexController::class, 'panier']);
-
+Route::get('/panier', [IndexController::class, 'panier'])->name('panier');
+//VidePanier
+Route::get('/videpanier', [IndexController::class, 'videpanier'])->name('videpanier');
+//VidePanier
+Route::delete('/panier/{rowId}', 'App\Http\Controllers\CartController@destroy')->name('cart.destroy');

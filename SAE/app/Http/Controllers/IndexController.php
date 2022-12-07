@@ -14,6 +14,7 @@ use App\Models\Panier;
 use App\Models\Avis;
 use App\Models\Client;
 use App\Models\Sejour_To_Cat_Participant;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 
 
@@ -106,6 +107,11 @@ class IndexController extends Controller
 
     public function updateProfile(){ // commit profile changes and redirect into profile get page
         return view("profile", ["client" => Auth::user()]);
+    }
+
+    public function videPanier(){
+        Cart::destroy();
+        return view("panier");
     }
 
 

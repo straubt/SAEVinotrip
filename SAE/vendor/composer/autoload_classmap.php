@@ -24,6 +24,7 @@ return array(
     'App\\Models\\Categorie_Participant' => $baseDir . '/app/Models/Categorie_Participant.php',
     'App\\Models\\Client' => $baseDir . '/app/Models/Client.php',
     'App\\Models\\Destination' => $baseDir . '/app/Models/Destination.php',
+    'App\\Models\\Panier' => $baseDir . '/app/Models/Panier.php',
     'App\\Models\\Route_des_vins' => $baseDir . '/app/Models/Route_des_vins.php',
     'App\\Models\\Sejour' => $baseDir . '/app/Models/Sejour.php',
     'App\\Models\\Sejour_To_Cat_Participant' => $baseDir . '/app/Models/Sejour_To_Cat_Participant.php',

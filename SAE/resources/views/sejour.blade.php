@@ -1,7 +1,9 @@
 <?php 
 $id = $_SERVER['QUERY_STRING']-1;
+$idRequest = $_SERVER['QUERY_STRING'];
 $tripTitle = $sejour[$id]['titre_sejour'];
 $tripNbDay = $sejour[$id]['duree_sejour'];
+$tripPrice = $sejour[$id]['prix_min_individuel_sejour']."0";
 $tripDescription = $sejour[$id]['description_sejour'];
 $tripPicture = $sejour[$id]['photo_sejour'];
 ?>
@@ -21,22 +23,27 @@ $tripPicture = $sejour[$id]['photo_sejour'];
     </head>
     <body>
     <header class="top-nav">
-            <a href="/">Vinotrip</a>
-            <input id="menu-toggle" type="checkbox" />
-            <label class='menu-button-container' for="menu-toggle">
-                <div class='menu-button'></div>
-            </label>
-            <div class="menu">
-                <a href="/">Accueil</a>
-                <a href="/nos-sejours">Nos séjours</a>
-                <a href="/route-des-vins">Routes des vins</a>
-                @guest<a href="/register">S'inscrire</a>
-                <a href="/login">Se connecter</a>@endguest
-                @auth<a href="/profile">Mon profil</a>
-                <a href="/logout">Deconnexion</a>@endauth
-            <div>
-        </header>
-
+        <a href="/">Vinotrip</a>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+            <div class='menu-button'></div>
+        </label>
+        <div class="menu">
+            <a href="/">Accueil</a>
+            <a href="/nos-sejours">Nos séjours</a>
+            <a href="/route-des-vins">Routes des vins</a>
+            @guest<a href="/register">S'inscrire</a>
+            <a href="/login">Se connecter</a>@endguest
+            @auth<a href="/profile">Mon profil</a>
+            <a href="/logout">Deconnexion</a>@endauth
+            <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img>{{count(Cart::content())}}</a>
+        <div>
+    </header>
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
+        @endif
         <main>
             <div id="sejourHeader">
                 <img src="{{$tripPicture}}" alt="photo séjour">
@@ -49,7 +56,11 @@ $tripPicture = $sejour[$id]['photo_sejour'];
                         <div>Offrir</div>
                         <img src="/images/icons/shoppingCart.svg"></img>
                     </button>
-                    <form action="#" method="post">
+                    <form action="{{ route('cart.store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$idRequest}}">
+                        <input type="hidden" name="title" value="{{$tripTitle}}">
+                        <input type="hidden" name="price" value="{{$tripPrice}}">
                     <button type="submit">
                         <div>Ajouter au<br> panier</div>
                         <img src="/images/icons/offer.svg"></img>

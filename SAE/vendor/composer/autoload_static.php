@@ -538,6 +538,7 @@ class ComposerStaticInitb0e71f982a97e8c5a4ce58b87097a8d0
         'App\\Models\\Categorie_Participant' => __DIR__ . '/../..' . '/app/Models/Categorie_Participant.php',
         'App\\Models\\Client' => __DIR__ . '/../..' . '/app/Models/Client.php',
         'App\\Models\\Destination' => __DIR__ . '/../..' . '/app/Models/Destination.php',
+        'App\\Models\\Panier' => __DIR__ . '/../..' . '/app/Models/Panier.php',
         'App\\Models\\Route_des_vins' => __DIR__ . '/../..' . '/app/Models/Route_des_vins.php',
         'App\\Models\\Sejour' => __DIR__ . '/../..' . '/app/Models/Sejour.php',
         'App\\Models\\Sejour_To_Cat_Participant' => __DIR__ . '/../..' . '/app/Models/Sejour_To_Cat_Participant.php',
