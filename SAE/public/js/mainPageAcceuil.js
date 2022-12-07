@@ -1,3 +1,4 @@
+
 /*
 function hiddenSection(){
     let sections = document.querySelectorAll("section");

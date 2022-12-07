@@ -21,59 +21,58 @@ $tripPicture = $sejour[$id]['photo_sejour'];
     </head>
     <body>
     <header class="top-nav">
-            <a href="/">Vinotrip</a>
-            <input id="menu-toggle" type="checkbox" />
-            <label class='menu-button-container' for="menu-toggle">
-                <div class='menu-button'></div>
-            </label>
-            <div class="menu">
-                <a href="/">Accueil</a>
-                <a href="/nos-sejours">Nos séjours</a>
-                <a href="/route-des-vins">Routes des vins</a>
-                @guest<a href="/register">S'inscrire</a>
-                <a href="/login">Se connecter</a>@endguest
-                @auth<a href="/profile">Mon profil</a>
-                <a href="/logout">Deconnexion</a>@endauth
-            <div>
-        </header>
-
-        <main>
-            <div id="sejourHeader">
-                <img src="{{$tripPicture}}" alt="photo séjour">
-                <div id="sejourHeaderText">
-                    <h1>{{$tripTitle}}</h1>
-                    <p>{{$tripNbDay}} jour(s) | {{$tripNbDay-1}} nuit(s)</p>
-                    <p class="justified">{{$tripDescription}}</p>
-                    <p>{{$theme[$sejour[$id]['id_theme']-1]['libelle_theme']}}</p>
-                    <button>
-                        <div>Offrir</div>
-                        <img src="/images/icons/shoppingCart.svg"></img>
-                    </button>
-                    <button>
-                        <div>Ajouter au<br> panier</div>
-                        <img src="/images/icons/offer.svg"></img>
-                    </button>
-                </div>
+        <a href="/">Vinotrip</a>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+            <div class='menu-button'></div>
+        </label>
+        <div class="menu">
+            <a href="/">Accueil</a>
+            <a href="/nos-sejours">Nos séjours</a>
+            <a href="/route-des-vins">Routes des vins</a>
+            @guest<a href="/register">S'inscrire</a>
+            <a href="/login">Se connecter</a>@endguest
+            @auth<a href="/profile">Mon profil</a>
+            <a href="/logout">Deconnexion</a>@endauth
+        <div>
+    </header>
+    <main>
+        <div id="sejourHeader">
+            <img src="{{$tripPicture}}" alt="photo séjour">
+            <div id="sejourHeaderText">
+                <h1>{{$tripTitle}}</h1>
+                <p>{{$tripNbDay}} jour(s) | {{$tripNbDay-1}} nuit(s)</p>
+                <p class="justified">{{$tripDescription}}</p>
+                <p>{{$theme[$sejour[$id]['id_theme']-1]['libelle_theme']}}</p>
+                <button>
+                    <div>Offrir</div>
+                    <img src="/images/icons/shoppingCart.svg"></img>
+                </button>
+                <button>
+                    <div>Ajouter au<br> panier</div>
+                    <img src="/images/icons/offer.svg"></img>
+                </button>
             </div>
+        </div>
 
-            <div id="sejourProgramme">
-                <?php 
-                $idexist = "";
-                $commentaire = "";
-                if(isset($avis[$sejour[$id]['id_sejour']-1]['note_avis']))
-                {
-                    $idexist = $avis[$sejour[$id]['id_sejour']-1]['note_avis']/5;
-                    $commentaire = $avis[$sejour[$id]['id_sejour']-1]['libelle_avis'];
-                }
-                else
-                {
-                    $idexist = "Aucun avis n'a été publié pour l'instant";
-                    $commentaire = "Aucun commentaire n'a été publié pour l'instant";
-                }
-                ?>
-                <p>Avis = {{$idexist}}</p>
-                <p>Commentaire = {{$commentaire}}</p>
-            </div>
-        </main>
+        <div id="sejourProgramme">
+            <?php 
+            $idexist = "";
+            $commentaire = "";
+            if(isset($avis[$sejour[$id]['id_sejour']-1]['note_avis']))
+            {
+                $idexist = $avis[$sejour[$id]['id_sejour']-1]['note_avis']/5;
+                $commentaire = $avis[$sejour[$id]['id_sejour']-1]['libelle_avis'];
+            }
+            else
+            {
+                $idexist = "Aucun avis n'a été publié pour l'instant";
+                $commentaire = "Aucun commentaire n'a été publié pour l'instant";
+            }
+            ?>
+            <p>Avis = {{$idexist}}</p>
+            <p>Commentaire = {{$commentaire}}</p>
+        </div>
+    </main>
     </body>
 </html>
