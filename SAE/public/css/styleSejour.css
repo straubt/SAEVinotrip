@@ -136,10 +136,8 @@ main{
     font-style: italic;
 }
 
-#btnStickyAvisHiding{
-    position: fixed;
-    bottom: 1em;
-    right: 1em;
+#btnAvisHiding{
+    float: right;
 }
 
 /* RESPONSIVE DESIGN */

@@ -118,7 +118,6 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
 
                 <div id="avisHeader">
                     <h2>Les avis</h2>
-
                     @auth<button id="openReviewForm" onclick="unhideFormLeaveReview()">Laissez le vôtre !</button>@endauth
                     @guest<button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button>@endguest
                 </div>
@@ -186,7 +185,6 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                 if ($i > 5)
                     echo("<button id=\"btnAvisHiding\" onclick=\"unHideAvis()\">Voir plus d'avis</button>");
                 ?>
-                <button id="btnStickyAvisHiding" onclick="hideAvis()" hidden>Voir moins d'avis</button>
             </section>
         </main>
     </body>

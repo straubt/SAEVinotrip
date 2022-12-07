@@ -23,20 +23,21 @@ function unHideAvis()
 {
     let avisList = document.getElementsByClassName("avis");
     let btnAvisHiding = document.getElementById("btnAvisHiding");
-    let btnStickyAvisHiding = document.getElementById("btnStickyAvisHiding");
 
     for (let avisDiv of avisList)
         avisDiv.hidden = false;
 
-    btnAvisHiding.onclick = hideAvis;
     btnAvisHiding.innerText = "Voir moins d'avis";
-    btnStickyAvisHiding.hidden = false;
+    btnAvisHiding.onclick = hideAvis;
+    btnAvisHiding.style.position = "fixed";
+    btnAvisHiding.style.float = "none";
+    btnAvisHiding.style.bottom = "1em";
+    btnAvisHiding.style.right = "1em";
 }
 
 function hideAvis(){
     let avisList = document.getElementsByClassName("avis");
     let btnAvisHiding = document.getElementById("btnAvisHiding");
-    let btnStickyAvisHiding = document.getElementById("btnStickyAvisHiding");
     let $i = 0;
 
     for (let avisDiv of avisList){
@@ -44,9 +45,12 @@ function hideAvis(){
         if ($i > 5)
             avisDiv.hidden = true;
     }
-    btnAvisHiding.onclick = unHideAvis;
     btnAvisHiding.innerText = "Voir plus d'avis";
-    btnStickyAvisHiding.hidden = true;
+    btnAvisHiding.onclick = unHideAvis;
+    btnAvisHiding.style.position = "relative";
+    btnAvisHiding.style.float = "right";
+    btnAvisHiding.style.bottom = "0";
+    btnAvisHiding.style.right = "0";
 }
 
 window.onload = resize;
