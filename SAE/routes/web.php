@@ -38,8 +38,6 @@ Route::get('/route-des-vins', [IndexController::class, 'route_des_vins']);
 <<<<<<< HEAD
 //panier routes
 Route::post('/panier/ajouter', 'CartController@store')->name('cart.store');
-=======
 //Panier
 Route::get('/panier', [IndexController::class, 'panier']);
 
->>>>>>> main
