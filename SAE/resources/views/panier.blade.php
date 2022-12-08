@@ -9,6 +9,10 @@
     <title>panier</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/styleGeneral.css">
+    <link rel="stylesheet" href="css/stylePanier.css">
+    <link rel="stylesheet" href="css/over_image.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <body>
@@ -30,15 +34,26 @@
         <div>
     </header>
 
+    @if (Cart::content()->isNotEmpty())
     @foreach (Cart::content() as $sejour)
-       
-        <p>{{$sejour->model->prix_min_individuel_sejour}} €</p>
-        <img src="{{$sejour->model->photo_sejour}}">
+        <div class="parent">
+        <div class="container">
+        <img src="{{$sejour->model->photo_sejour}}" class="image">
+        <div class="overlay">
+        <div class="texte">
+        {{$sejour->model->titre_sejour}} <br>
+        {{$sejour->model->prix_min_individuel_sejour}} €
         <form action="{{route('cart.destroy', $sejour->rowId)}}" method="post">
         @csrf 
         @method('DELETE')
-        <button type="submit">remove</button>
+        <button type="submit">
+        <img src="img/trash.png" alt="">
+        </button>
         </form>
+        </div>
+        </div>
+        </div>
+        </div>
     @endforeach
 
 
@@ -46,12 +61,12 @@
         <div class="alert alert-success">
             {{session('success')}}
     @endif
-    @if (Cart::content()->isEmpty())
-        <p>Votre panier est vide</p>
+    @else
+    <p>Votre panier est vide</p>
     @endif
 
 </body>
-<footer class="bot-nav">        
+<!-- <footer class="bot-nav">        
     <div class="lien">
         <a href="/">Page d'accueil</a>
         <a href="/">Mentions legales</a>
@@ -63,5 +78,5 @@
         <br><img id="payementSecu" src="images/Paiement-Securise.png" title="Paiement sécurisé">
     </div>
     <br>
-</footer>
+</footer> -->
 </html>
