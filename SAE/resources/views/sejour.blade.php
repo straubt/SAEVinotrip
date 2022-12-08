@@ -18,29 +18,28 @@ function buildRatingDots($note){
         else
             $html.= "<span class=\"ratingDot\"></span>";
     }
-
     return $html;
 }
 
-$id = $_SERVER['QUERY_STRING']-1;
+// $id = $_SERVER['QUERY_STRING']-1;
 
-$avis = DB::table('avis')
-            ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
-            ->join('client', 'client.id_client', '=', 'avis.id_client')
-            ->where('avis.id_sejour', $id + 1)
-            ->select('nom_client', 'prenom_client', 'note_avis', 'libelle_avis', 'texte_avis', 'date_avis')
-            ->get();
+// $avis = DB::table('avis')
+//             ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
+//             ->join('client', 'client.id_client', '=', 'avis.id_client')
+//             ->where('avis.id_sejour', $id + 1)
+//             ->select('nom_client', 'prenom_client', 'note_avis', 'libelle_avis', 'texte_avis', 'date_avis')
+//             ->get();
 
-$avisData = DB::table('avis')
-            ->where('avis.id_sejour', $id + 1)
-            ->select(DB::raw('ROUND(AVG(CAST(note_avis as numeric)), 2) AS "average_note"'), DB::raw('COUNT(*) AS "count_avis"'))
-            ->get();
+// $avisData = DB::table('avis')
+//             ->where('avis.id_sejour', $id + 1)
+//             ->select(DB::raw('ROUND(AVG(CAST(note_avis as numeric)), 2) AS "average_note"'), DB::raw('COUNT(*) AS "count_avis"'))
+//             ->get();
 
-$etapes = DB::table('etape')
-            ->join('sejour', 'sejour.id_sejour', '=', 'etape.id_sejour')
-            ->where('etape.id_sejour', $id + 1)
-            ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
-            ->get();
+// $etapes = DB::table('etape')
+//             ->join('sejour', 'sejour.id_sejour', '=', 'etape.id_sejour')
+//             ->where('etape.id_sejour', $id + 1)
+//             ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
+//             ->get();
 
 $tripTitle = $sejour[$id]['titre_sejour'];
 $tripNbDay = $sejour[$id]['duree_sejour'];
@@ -122,31 +121,33 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                     @guest<button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button>@endguest
                 </div>
 
-                <form id="formLeaveReview" action="" method="get" hidden>
-
+                <form id="formLeaveReview" action="sejour" method="post" hidden>
+                    @csrf
                     <h3>Mon avis</h3>
 
                     <div class="flexResponsive">
                         <div class="flexResponsive" id="noteContainer">
-                            <label for="note">Note</label>
-                            <input type="range" min="1" max="5" list="tickmarks" name="note" id="formAvisSejourNote" required>
+                            <label for="noteAvis">Note</label>
+                            <input type="range" min="1" max="5" list="tickmarks" name="noteAvis" id="formAvisSejourNote" required>
                             <datalist id="tickmarks"><option value="1" label="1"></option><option value="2" label="2"></option><option value="3" label="3"></option><option value="4" label="4"></option><option value="5" label="5"></option></datalist>
                         </div>
                         <div class="flexResponsive" id="libelleContainer">
-                            <label for="libelle">Titre</label>
-                            <input type="text" name="libelle" id="formAvisSejourLibelle" required>
+                            <label for="libelleAvis">Titre</label>
+                            <input type="text" name="libelleAvis" id="formAvisSejourLibelle" required>
                         </div>
                     </div>
 
                     <div>
-                        <label for="texte">Commentaire :</label><br>
-                        <textarea name="texte" id="formLeaveReviewTextArea" required></textarea>
+                        <label for="texteAvis">Commentaire :</label><br>
+                        <textarea name="texteAvis" id="formLeaveReviewTextArea" required></textarea>
                     </div>
 
                     <div id="formLeaveReviewControlContainer">
-                        <input type="submit" value="Envoyer !">
+                        <input type="submit" value="Envoyer !" onclick="AJAXSubmit(document.getElementById('formLeaveReview'))">;
                         <button type="button" id="closeReviewForm" onclick="hideFormLeaveReview()">Fermer</button>
                     </div>
+
+                    <input type="hidden" id="idSejour" name="idSejour" value="<?=$id+1?>"/>
 
                 </form>
 
