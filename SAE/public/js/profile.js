@@ -73,6 +73,7 @@ buttonModif.addEventListener('click', function(){
     let labelPrenom = create("label", newPrenom, "nouveau Prenom : ", "champsModif", "txtPrenom");
       let inputPrenom = create("input", newPrenom, null, "champsModif", "newPrenom");
       inputPrenom.placeholder = client.prenom_client;
+      inputPrenom.value = client.prenom_client;
       inputPrenom.name = "prenom";
       console.log(inputPrenom);
 
@@ -80,7 +81,8 @@ buttonModif.addEventListener('click', function(){
   let newNom = create("div", form, null, "champsModif", null);
     let labelNom = create("label", newNom, "nouveau Nom : ", "champsModif", "txtNom");
       let inputNom = create("input", newNom, null, "champsModif", "newNom");
-      inputNom.placeholder = client.nom_client
+      inputNom.placeholder = client.nom_client;
+      inputNom.value = client.nom_client;
       inputNom.name = "nom";
 
    //mail
@@ -89,6 +91,7 @@ buttonModif.addEventListener('click', function(){
     let inputMail = create("input", newMail, null, "champsModif", "newMail");
     inputMail.type = "email";
     inputMail.placeholder = client.mail_client;
+    inputMail.value = client.mail_client;
     inputMail.name = "mail_client";
 
     //naissance
@@ -97,6 +100,7 @@ buttonModif.addEventListener('click', function(){
       let inputDateNaiss = create("input", newDate, null, "champsModif", "newDate");
       inputDateNaiss.type = 'text';
       inputDateNaiss.placeholder = client.date_naiss_client;
+      inputDateNaiss.value = client.date_naiss_client;
       inputDateNaiss.name = "date_naissance";
 
     //MDP
