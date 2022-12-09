@@ -1,3 +1,6 @@
+
+/* différents parents*/
+
 .parent{
     display: flex;
     flex-direction: row;
@@ -6,12 +9,22 @@
     margin-top: 2%;
     margin-bottom: 2%;
 }
-.image{
+
+.parentModif{
     display: flex;
     flex-direction: column;
     justify-content:center ;
-    align-items:center;
+    align-items:center; 
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: brown;
 }
+
+.champsModif{
+    display: flex;
+    flex-direction: row;
+}
+
 .infos{
     display: block;
     display: flex;
@@ -21,33 +34,31 @@
     padding-right: 20px;
     border-right: 5px solid #7E0000DE;
 }
-.info {
-}
 
 .infoFixe{
     display: block;
     display: flex;
     flex-direction: column;
-    margin-left: 15px;
+    padding-left: 15px;
     align-items: flex-end;
+    border-left: 5px solid #7E0000DE;
 }
 
-
-#id{
-    color: white;
+.image{
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items:center;
 }
 
+/* ____________________image sexe */
 #image{
-    width: 150px;
-    height: 150px;
-    border-right: 5px solid #7E0000DE;
+    width: 130px;
+    height: 130px;
     display: block;
 }
 
-#sexe{
-    color:white;
-}
-
+/* ____________________prenom */
 #prenom{
     font-weight: bold;
     text-transform: uppercase;
@@ -55,6 +66,21 @@
     text-align:center;
 }
 
+#prenomFixe{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 18px;
+    text-align:center;
+}
+
+#newPrenom{
+background-color: aqua;
+}
+
+#txtPrenom{
+    background-color: teal;
+}
+/* ____________________nom */
 #nom{
     font-weight: bold;
     text-transform: uppercase;
@@ -63,6 +89,22 @@
     text-align:center;
 }
 
+#nomFixe{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-top: 10px;
+    text-align:center;
+}
+
+#newNom{
+    background-color: aquamarine;
+}
+
+#txtNom{
+    background-color: tomato;
+}
+/* ____________________mail */
 #mail{
     color: blue;
     text-decoration: underline;
@@ -72,36 +114,24 @@
     text-align:center;
 }
 
+#mailFixe{
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 10px;
+    text-align:center;
+}
+
+#newMail{
+    background-color: red;
+}
+
+#txtMail{
+    background-color: grey;
+}
+/* ____________________date */
 #date{
     font-weight: bold;
     font-size: 16px;
-    margin-top: 10px;
-    text-align:center;
-}
-
-
-#prenomFixe{
-    font-weight: bold;
-    text-decoration: underline;
-    text-transform: uppercase;
-    font-size: 18px;
-    text-align:center;
-}
-
-#nomFixe{
-    font-weight: bold;
-    text-decoration: underline;
-    text-transform: uppercase;
-    font-size: 18px;
-    margin-top: 10px;
-    text-align:center;
-}
-
-#mailFixe{
-    color: blue;
-    text-decoration: underline;
-    font-weight: bold;
-    font-size: 12px;
     margin-top: 10px;
     text-align:center;
 }
@@ -111,10 +141,25 @@
     font-size: 16px;
     margin-top: 10px;
     text-align:center;
-    text-decoration: underline;
 }
 
+#newDate{
+    background-color: bisque;
+}
 
+#txtDate{
+    background-color: gold;
+}
+/* ____________________MDP */
+#newMdp{
+    background-color: yellowgreen;
+}
+
+#txtMdp{
+    background-color: blue;
+}
+
+/* bouton pour modifier les infos */
 #modification{
     margin-left: 2%;
     font-family: Roboto, sans-serif;
@@ -123,8 +168,6 @@
     color: #ffffff;
     background-color: #d60707dd;
     padding: 10px 30px;
-    border: solid #000000 3px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 50px;
     transition : 419ms;
     transform: translateY(0);
@@ -141,7 +184,44 @@
     transform : translateY(-15px);
     background-color: #d60707dd;
     color: #ffffff;
-    border: solid 3px #000000;
+}
+/* bouton formulaire pour modification*/
+.buton{
+    margin-left: 2%;
+    font-family: Roboto, sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    color: #ffffff;
+    background-color: #d60707dd;
+    padding: 10px 30px;
+    border-radius: 50px;
+    transition : 419ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction:row-reverse;
+    align-items: center;
+    cursor: pointer;
+    text-transform: lowercase;
+}
+
+.buton:hover{    
+    transition : 419ms;
+    padding: 10px 45px;
+    transform : translateY(-15px);
+    background-color: #d60707dd;
+    color: #ffffff;
+}
+
+#butonValider{
+    position: absolute;
+    top : 11%;
+    margin-left: 40%;
+}
+
+#butonAnuler{
+    position: absolute;
+    top : 18%;
+    margin-left: 40%;
 }
 
 

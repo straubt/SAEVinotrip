@@ -36,17 +36,14 @@
     </header>
     <div class="parent">
         <div class="image"></div>
-        <div class="info">
-            <div class="infoFixe">
-                <br>
-                <a id="prenomFixe">Prénom :</a>
-                <a id="nomFixe">Nom :</a>
-                <a id="mailFixe">Email :</a>
-                <a id="dateFixe">Date de naissance :</a>
-            </div>
-            <div class="infos">
-               @csrf
-            </div>
+        <div class="infoFixe">
+            <a id="prenomFixe">Prénom :</a>
+            <a id="nomFixe">Nom :</a>
+            <a id="mailFixe">Email :</a>
+            <a id="dateFixe">Date de naissance :</a>
+        </div>
+        <div class="infos">
+            @csrf
         </div>
         <button id="modification">Modifier informations </button></a>
     </div>
