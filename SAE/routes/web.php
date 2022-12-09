@@ -33,7 +33,8 @@ Route::post('/profile', [IndexController::class, "updateProfile"])->name('update
 //homepage
 Route::get('/', [IndexController::class, "index"]);
 //Voir un sejour
-Route::get('/sejour', [IndexController::class, 'unSejour'])->name('sejour');
+Route::get('/sejour', [IndexController::class, 'unSejour']);
+Route::post('/sejour', [IndexController::class, 'postAvis'])->name('postAvis');
 //Route des vins
 Route::get('/route-des-vins', [IndexController::class, 'route_des_vins']);
 //panier routes

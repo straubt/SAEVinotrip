@@ -18,19 +18,30 @@ function buildRatingDots($note){
         else
             $html.= "<span class=\"ratingDot\"></span>";
     }
-
     return $html;
 }
 
 $id = $_SERVER['QUERY_STRING']-1;
 $idRequest = $_SERVER['QUERY_STRING'];
+// $id = $_SERVER['QUERY_STRING']-1;
 
-$avis = DB::table('avis')
-            ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
-            ->join('client', 'client.id_client', '=', 'avis.id_client')
-            ->where('avis.id_sejour', $id + 1)
-            ->select('nom_client', 'prenom_client', 'note_avis', 'libelle_avis', 'texte_avis', 'date_avis')
-            ->get();
+// $avis = DB::table('avis')
+//             ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
+//             ->join('client', 'client.id_client', '=', 'avis.id_client')
+//             ->where('avis.id_sejour', $id + 1)
+//             ->select('nom_client', 'prenom_client', 'note_avis', 'libelle_avis', 'texte_avis', 'date_avis')
+//             ->get();
+
+// $avisData = DB::table('avis')
+//             ->where('avis.id_sejour', $id + 1)
+//             ->select(DB::raw('ROUND(AVG(CAST(note_avis as numeric)), 2) AS "average_note"'), DB::raw('COUNT(*) AS "count_avis"'))
+//             ->get();
+
+// $etapes = DB::table('etape')
+//             ->join('sejour', 'sejour.id_sejour', '=', 'etape.id_sejour')
+//             ->where('etape.id_sejour', $id + 1)
+//             ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
+//             ->get();
 
 $tripTitle = $sejour[$id]['titre_sejour'];
 $tripNbDay = $sejour[$id]['duree_sejour'];
@@ -78,7 +89,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
         </div>
         @endif
         <main>
-            <section id="sejourHeader">
+            <section id="sejourHeader" class="flexResponsive">
                 <img src="{{$tripPicture}}" alt="photo séjour">
                 <div id="sejourHeaderText">
                     <h1>{{$tripTitle}}</h1>
@@ -103,38 +114,71 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
             </section>
 
             <section id="sejourProgramme">
+                <h2>Le programme de votre séjour</h2>
+            <?php
+                foreach($etapes as $etape)
+                {
+                    echo("
+                        <h3>Jour $etape->num_jour_etape : $etape->titre_etape</h3>
+                        <div class=\"etape flexResponsive\">
+                            <img src=\"$etape->photo_etape\" alt=\"photo de l'étape\">
+                            <div>
+                                <p class=\"justified\">$etape->description_etape</p>
+                                <p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
+                                <p><a href=\"$etape->url_etape\">L'étape en détail</a></p>
+                            </div>
+                        </div>");
+                }
+            ?>
             </section>
-
+            
             <section id="sejourAvis">
+
                 <div id="avisHeader">
                     <h2>Les avis</h2>
-                    <button id="openReviewForm" onclick="openOrCloseFormLeaveReview()">Laissez le vôtre !</button>
+                    @auth<button id="openReviewForm" onclick="unhideFormLeaveReview()">Laissez le vôtre !</button>@endauth
+                    @guest<button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button>@endguest
                 </div>
-                <form id="formLeaveReview" action="" method="get" hidden>
+
+                <form id="formLeaveReview" action="sejour" method="post" hidden>
+                    @csrf
                     <h3>Mon avis</h3>
-                    <div>
-                        <label for="note">Note :</label>
-                        <input type="range" min="1" max="5" list="tickmarks" name="note" id="formAvisSejourNote" required>
-                        <datalist id="tickmarks">
-                            <option value="1" label="1"></option>
-                            <option value="2" label="2"></option>
-                            <option value="3" label="3"></option>
-                            <option value="4" label="4"></option>
-                            <option value="5" label="5"></option>
-                        </datalist>
+
+                    <div class="flexResponsive">
+                        <div class="flexResponsive" id="noteContainer">
+                            <label for="noteAvis">Note</label>
+                            <input type="range" min="1" max="5" list="tickmarks" name="noteAvis" id="formAvisSejourNote" required>
+                            <datalist id="tickmarks"><option value="1" label="1"></option><option value="2" label="2"></option><option value="3" label="3"></option><option value="4" label="4"></option><option value="5" label="5"></option></datalist>
+                        </div>
+                        <div class="flexResponsive" id="libelleContainer">
+                            <label for="libelleAvis">Titre</label>
+                            <input type="text" name="libelleAvis" id="formAvisSejourLibelle" required>
+                        </div>
                     </div>
+
                     <div>
-                        <label for="libelle">Titre :</label>
-                        <input type="text" name="libelle" id="formAvisSejourLibelle" required>
+                        <label for="texteAvis">Commentaire :</label><br>
+                        <textarea name="texteAvis" id="formLeaveReviewTextArea" required></textarea>
                     </div>
-                    <div>
-                        <label for="texte">Commentaire :</label><br>
-                        <textarea name="texte" id="formAvisSejourTexte" required></textarea>
+
+                    <div id="formLeaveReviewControlContainer">
+                        <input type="submit" value="Envoyer !" onclick="AJAXSubmit(document.getElementById('formLeaveReview'))">;
+                        <button type="button" id="closeReviewForm" onclick="hideFormLeaveReview()">Fermer</button>
                     </div>
-                    <div>
-                        <input type="submit" value="Envoyer !">
-                    </div>
+
+                    <input type="hidden" id="idSejour" name="idSejour" value="<?=$id+1?>"/>
+
                 </form>
+
+                <div id="avisData" class="flexResponsive">
+                    <div>
+                        Note moyenne : <?php echo($avisData[0]->average_note);?>
+                    </div>
+                    <div>
+                        Nombre d'avis : <?php echo($avisData[0]->count_avis);?>
+                    </div>
+                </div>
+
                 <?php
                 $i = 0;
                 $hidden = "";
@@ -161,7 +205,6 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                 if ($i > 5)
                     echo("<button id=\"btnAvisHiding\" onclick=\"unHideAvis()\">Voir plus d'avis</button>");
                 ?>
-                <button id="btnStickyAvisHiding" onclick="hideAvis()" hidden>Voir moins d'avis</button>
             </section>
         </main>
     </body>
