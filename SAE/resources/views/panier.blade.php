@@ -34,6 +34,8 @@
         <div>
     </header>
 
+    <h1>Votre panier</h1>
+
     @if (Cart::content()->isNotEmpty())
     @foreach (Cart::content() as $sejour)
         <div class="parent">
