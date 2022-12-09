@@ -35,6 +35,7 @@
     </header>
 
     <h1>Votre panier</h1>
+    <a href="/videpanier"><button class="btn1">Tout supprimer</button></a>
 
     @if (Cart::content()->isNotEmpty())
     @foreach (Cart::content() as $sejour)
