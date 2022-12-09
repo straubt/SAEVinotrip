@@ -48,7 +48,7 @@ create("p", divInfo, client.date_naiss_client, null, null).id="date";
 
 let buttonModif = document.querySelector("#modification");
 
-buttonModif.addEventListener('click', function(client){
+buttonModif.addEventListener('click', function(){
   //suppression des anciens p et remplacement par un formulaire
   let allP = document.querySelectorAll("p");
   let infos = document.querySelector(".infos");
@@ -63,7 +63,6 @@ buttonModif.addEventListener('click', function(client){
   input.type = "hidden";
   input.name = "_token";
   input.value = csrf;
-  console.log(form);
   //creation des labels
   let labelPrenom = create("label", form, "Prenom :", null, null);
   let labelNom = create("label", form, "Nom :", null, null);
@@ -71,26 +70,31 @@ buttonModif.addEventListener('click', function(client){
   let labelDateNaiss = create("label", form, "Date de naissance :", null, null);
   let labelPassword = create("label", form, "Mot de passe :", null, null);
   //creation des inputs et leurs types //prenom
-  let inputPrenom = create("input", form, null, null, null).type = "text";
+  let inputPrenom = create("input", form, null, null, null);
   inputPrenom.placeholder = client.prenom_client;
   inputPrenom.name = "prenom";
+  console.log(inputPrenom);
   //nom
-  let inputNom = create("input", form, null, null, null).type = "text";
+  let inputNom = create("input", form, null, null, null);
   inputNom.placeholder = client.nom_client
   inputNom.name = "nom";
   //mail
-  let inputMail = create("input", form, null, null, null).type = "email";
+  let inputMail = create("input", form, null, null, null);
+  inputMail.type = "email";
   inputMail.placeholder = client.mail_client;
   inputMail.name = "mail_client";
   //email
-  let inputDateNaiss = create("input", form, null, null, null).type = "date";
+  let inputDateNaiss = create("input", form, null, null, null);
+  inputDateNaiss.type = 'text';
   inputDateNaiss.placeholder = client.date_naiss_client;
   inputDateNaiss.name = "date_naissance";
   //MDP
-  let inputMDP = create("input", form, null, null, null).type = "Password";
+  let inputMDP = create("input", form, null, null, null);
+  inputMDP.type = "password";
   inputMDP.name = "mdp";
   //création d'un nouveau boutton
-  let buttonValider = create("button", form, null, null, null).type = "submit";
+  let buttonValider = create("button", form, null, null, null);
+  buttonValider.type = "submit";
   //buttonModif suppression
   buttonModif.remove();
 })

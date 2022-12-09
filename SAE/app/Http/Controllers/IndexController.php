@@ -48,13 +48,14 @@ class IndexController extends Controller
         $clients = Client::all(); // on récurpére la variables qui contient tous les clients
         $request->id_client = count($clients)+1; // on donne le dernier id + 1 de ce dernier tableau de client
         $request->mdp = password_hash($request->mdp, PASSWORD_DEFAULT); // on hash le password avec une fonction de hashage
-        $ageCutoff = now()->subYears(18)->toDateString(); 
+        $ageCutoff = now()->subYears(18)->toDateString();
+        //return ['ageCutoff' => $ageCutoff]; pour retourner une variable dans la vue
         $this->validate($request, [ //on vérifie les champs du formulaire
             'titre' => 'bail|required',
             'prenom' => 'bail|required|max:50',
             'nom' => 'bail|required|max:50',
             'mail_client' => 'bail|required|unique:client',
-            'date_naissance' => 'bail|required|before_or_equal:$ageCutoff',
+            'date_naissance' => 'bail|required|before_or_equal:'.$ageCutoff, //concatenation
             'mdp' => 'bail|required|max:500'
         ]);
         $client = new \App\Models\Client; //on créer un nouveau client vierge
