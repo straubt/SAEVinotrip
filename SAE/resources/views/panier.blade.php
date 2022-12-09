@@ -47,7 +47,7 @@
         @csrf 
         @method('DELETE')
         <button type="submit">
-        <img src="img/trash.png" alt="">
+        Remove
         </button>
         </form>
         </div>
