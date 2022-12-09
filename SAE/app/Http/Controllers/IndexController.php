@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Index;
@@ -77,14 +78,13 @@ class IndexController extends Controller
             'mdp_client' => ['required'],
         ]);
 
-        unset($credentials["mdp_client"]); //transfor mdp_client into password for auth laravel
+        unset($credentials["mdp_client"]); //transform mdp_client into password for auth laravel
         $credentials["password"] = $request->mdp_client;
 
 
         if (Auth::attempt($credentials)) { //server verification identity
             $request->session()->regenerate();
             return redirect()->intended('/');
-
         }
 
         return back()->withErrors([ //sending errors (bad email or password)
@@ -101,8 +101,28 @@ class IndexController extends Controller
         return view("profile", ["client" => Auth::user()]);
     }
 
-    public function updateProfile(){ // commit profile changes and redirect into profile get page
-        return view("profile", ["client" => Auth::user()]);
+    public function updateProfile(Request $request){ // commit profile changes and redirect into profile get page
+        $user = Auth::user();
+        $request->mdp = password_hash($request->mdp, PASSWORD_DEFAULT);
+        $ageCutoff = now()->subYears(18)->toDateString();
+        $this->validate($request, [ //on vérifie les champs du formulaire
+            //'titre' => 'bail|required', a rajouter plus tard
+            'prenom' => 'bail|required|max:50',
+            'nom' => 'bail|required|max:50',
+            'mail_client' => 'bail|required|unique:client',
+            'date_naissance' => 'bail|required|before_or_equal:'.$ageCutoff, //concatenation
+            'mdp' => 'bail|required|max:500'
+        ]);
+        DB::table('client')->where('id_client', $user["id_client"])
+            ->update(['nom_client' -> $request->nom,
+                        'prenom_client' -> $request->prenom,
+                        'mail_client' -> $request->mail_client,
+                        'date_naiss_client' -> $request->date_naissance,
+                        'mdp_client' -> $request->mdp]);
+        
+
+        // dd(Client::find($client["id_client"]));
+        return redirect()->to("profile");
     }
 
 

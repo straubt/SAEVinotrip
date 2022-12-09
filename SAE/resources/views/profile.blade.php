@@ -37,11 +37,9 @@
         <div class="image">
         </div>
         <div class="infos">
-        @csrf
         </div>
         <button id="modification">Modifier informations </button></a>
     </div>
-
     <script src="js/profile.js"></script>
 </body>
 
