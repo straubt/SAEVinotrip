@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <body>
@@ -19,26 +21,66 @@
         var data = <?php echo json_encode($sejour);?>;
         var client = <?php echo json_encode($client);?>;
     </script>
-        <header class="top-nav">
-            <a href="/">Vinotrip</a>
-            <input id="menu-toggle" type="checkbox" />
-            <label class='menu-button-container' for="menu-toggle">
-                <div class='menu-button'></div>
-            </label>
-            <div class="menu">
-                <a href="/">Accueil</a>
-                <a href="/nos-sejours">Nos séjours</a>
-                <a href="/route-des-vins">Routes des vins</a>
-                @guest<a href="/register">S'inscrire</a>
-                <a href="/login">Se connecter</a>@endguest
-                @auth<a href="/profile">Mon profil</a>
-                <a href="/logout">Deconnexion</a>@endauth
-            <div>
-        </header>
+            <header class="top-nav">
+        <a href="/">Vinotrip</a>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+            <div class='menu-button'></div>
+        </label>
+        <div class="menu">
+            <a href="/">Accueil</a>
+            <a href="/nos-sejours">Nos séjours</a>
+            <a href="/route-des-vins">Routes des vins</a>
+            @guest<a href="/register">S'inscrire</a>
+            <a href="/login">Se connecter</a>@endguest
+            @auth<a href="/profile">Mon profil</a>
+            <a href="/logout">Deconnexion</a>@endauth
+            <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img>{{count(Cart::content())}}</a>
+        <div>
+    </header>
 
 
     <div class="owl-carousel">
     </div>
+
+
+    <div class="banner">
+        <video autoplay="" muted="" loop="">
+            <source id="vid" src=".. /video/raisins.mp4" class ="grape" type="">
+        </video>
+        <p class="descriptionSite" data-aos="fade-up"> Bienvenue dans vinotrip ! Votre site spécialisée dans l'oenotourisme. Nous vous proposons les meilleurs séjours adpatés à vos envies</p>
+
+    <div id="raisins"></div>
+
+    <script type="text/javascript">
+        let raisins = document.querySelector('#raisins');
+        let descr = document.querySelector('.descriptionSite');
+        var scale = 100;
+        let grandir =true;
+        let max =21;
+        raisins.style.backgroundSize = 20+"vh";
+        window.onwheel = function(e){
+            scale += e.deltaY;
+            if(scale>1200 && scale<13000){
+                if(max >= 400 || grandir == false){
+                    grandir =false
+                    if(max<=20)
+                        return;
+                    raisins.style.backgroundSize =  max+"vh";
+                    max -=10;}              
+                else if (grandir == true){
+                    raisins.style.backgroundSize =  max+"vh";
+                    max=max+10;}
+                } 
+            console.log(scale);
+            console.log(raisins.style.backgroundSize);
+        }
+
+        
+    </script>
+   <script>
+  AOS.init();
+</script>
         <section class="bandeau"> 
             <br>
             <p class="mentionl"> Nous utilisons des cookies et d'autres technologies qui sont indispensables pour vous fournir les 
@@ -63,35 +105,8 @@
         </section> 
         <?php
     ?>
-    <div class="banner">
-        <video autoplay="" muted="" loop="">
-            <source id="vid" src="video/raisins.mp4" class ="grape" type="">
-        </video>
-    <div id="raisins"></div>
 
-    <script type="text/javascript">
-        let raisins = document.querySelector('#raisins');
-        var scale = 100;
-        let grandir =true;
-        let max =21;
-        raisins.style.backgroundSize = 20+"vh";
-        window.onwheel = function(e){
-            scale += e.deltaY;
-            if(scale>1200 && scale<13000){  
-                if(max >= 400 || grandir == false){
-                    grandir =false
-                    if(max<=20)
-                        return;
-                    raisins.style.backgroundSize =  max+"vh";
-                    max -=10;}              
-                else if (grandir == true){
-                    raisins.style.backgroundSize =  max+"vh";
-                    max=max+10;}
-                } 
-            console.log(scale);
-            console.log(raisins.style.backgroundSize);
-        }
-    </script>
+
 </body>
 
 <footer class="bot-nav">        
