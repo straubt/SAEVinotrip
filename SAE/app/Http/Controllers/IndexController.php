@@ -13,6 +13,7 @@ use App\Models\Route_des_vins;
 use App\Models\Panier;
 use App\Models\Avis;
 use App\Models\Client;
+use App\Models\Cb;
 use App\Models\Sejour_To_Cat_Participant;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -150,4 +151,11 @@ class IndexController extends Controller
     // public function destination(){
     //     return view("sejour", ["destination" => Destination::all()]);
     // }
+   
+
+
+
+
+
+
 }

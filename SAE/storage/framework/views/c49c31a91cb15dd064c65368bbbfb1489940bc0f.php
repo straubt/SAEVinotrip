@@ -36,19 +36,16 @@
     </header>
     <div class="parent">
         <div class="image"></div>
-        <div class="info">
-            <div class="infoFixe">
-                <br>
-                <a id="prenomFixe">Prénom :</a>
-                <a id="nomFixe">Nom :</a>
-                <a id="mailFixe">Email :</a>
-                <a id="dateFixe">Date de naissance :</a>
-            </div>
-            <div class="infos">
-               <?php echo csrf_field(); ?>
-            </div>
+        <div class="infoFixe">
+            <a id="prenomFixe">Prénom :</a>
+            <a id="nomFixe">Nom :</a>
+            <a id="mailFixe">Email :</a>
+            <a id="dateFixe">Date de naissance :</a>
         </div>
-        <button id="modification">Modifier informations </button></a>
+        <div class="infos">
+            <?php echo csrf_field(); ?>
+        </div>
+        <a><button id="modification">Modifier informations </button></a>
     </div>
 
     <script src="js/profile.js"></script>

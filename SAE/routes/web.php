@@ -45,3 +45,11 @@ Route::get('/panier', [IndexController::class, 'panier'])->name('panier');
 Route::get('/videpanier', [IndexController::class, 'videpanier'])->name('videpanier');
 //VidePanier
 Route::delete('/panier/{rowId}', 'App\Http\Controllers\CartController@destroy')->name('cart.destroy');
+//recup_cb_id
+Route::get('/paiement', 'App\Http\Controllers\PaiementController@recup_cb');
+// Ajouter une route pour appeler la méthode store du contrôleur CB
+Route::post('/cb/store', 'App\Http\Controllers\PaiementController@store');
+
+Route::get('/offrir-sejour/{id}', 'App\Http\Controllers\OffrirSejourController@create')->name('offrir-sejour.create');
+
+Route::post('/offrir-sejours', 'App\Http\Controllers\OffrirSejourController@store')->name('offrir-sejour.store');

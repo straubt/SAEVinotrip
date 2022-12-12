@@ -97,7 +97,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                     <p><?php echo e($tripNbDay); ?> jour(s) | <?php echo e($tripNbDay-1); ?> nuit(s)</p>
                     <p class="justified"><?php echo e($tripDescription); ?></p>
                     <p><?php echo e($themeLibelle); ?></p>
-                    <button>
+                    <button onClick="window.location.href='/offrir-sejour/<?php echo e($idRequest); ?>'">
                         <div>Offrir</div>
                         <img src="/images/icons/offer.svg"></img>
                     </button>

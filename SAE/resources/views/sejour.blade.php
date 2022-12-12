@@ -96,7 +96,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                     <p>{{$tripNbDay}} jour(s) | {{$tripNbDay-1}} nuit(s)</p>
                     <p class="justified">{{$tripDescription}}</p>
                     <p>{{$themeLibelle}}</p>
-                    <button>
+                    <button onClick="window.location.href='/offrir-sejour/{{$idRequest}}'">
                         <div>Offrir</div>
                         <img src="/images/icons/offer.svg"></img>
                     </button>
