@@ -27,7 +27,7 @@ class User extends Authenticatable
         'titre_client',
         'mdp_client',
         'date_naiss_client',
-        'remember_token',
+        'remember_token'
     ];
 
      /* The attributes that should be hidden for serialization.
@@ -36,7 +36,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'mdp_client',
-        'remember_token',
+        'remember_token'
     ];
 
     public function getAuthPassword() {
