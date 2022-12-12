@@ -63,13 +63,19 @@ buttonModif.addEventListener('click', function(){
   let form = create("form", infos, null, "parentModif", null );
   form.method = "post";
   form.action = 'profile';
+  let formInfo = create("form", form, null, "parentModifInfo", null );
+  form.method = "post";
+  form.action = 'profile';
+  let formButton = create("form", form, null, "parentModifButton", null );
+  form.method = "post";
+  form.action = 'profile';
   let input = create("input", form, null,null,null);//nessesaire pour le fonctionement du formulaire
   input.type = "hidden";
   input.name = "_token";
   input.value = csrf;
 
     //prenom
-  let newPrenom = create("div", form, null, "champsModif", null);
+  let newPrenom = create("div", formInfo, null, "champsModif", null);
     let labelPrenom = create("label", newPrenom, "nouveau Prenom : ", "champsModif", "txtPrenom");
       let inputPrenom = create("input", newPrenom, null, "champsModif", "newPrenom");
       inputPrenom.placeholder = client.prenom_client;
@@ -77,14 +83,14 @@ buttonModif.addEventListener('click', function(){
       console.log(inputPrenom);
 
     //nom
-  let newNom = create("div", form, null, "champsModif", null);
+  let newNom = create("div", formInfo, null, "champsModif", null);
     let labelNom = create("label", newNom, "nouveau Nom : ", "champsModif", "txtNom");
       let inputNom = create("input", newNom, null, "champsModif", "newNom");
       inputNom.placeholder = client.nom_client
       inputNom.name = "nom";
 
    //mail
-  let newMail = create("div", form, null, "champsModif", null);
+  let newMail = create("div", formInfo, null, "champsModif", null);
     let labelMail = create("label", newMail, "nouveau Mail : ", "champsModif", "txtMail");
     let inputMail = create("input", newMail, null, "champsModif", "newMail");
     inputMail.type = "email";
@@ -92,7 +98,7 @@ buttonModif.addEventListener('click', function(){
     inputMail.name = "mail_client";
 
     //naissance
-  let newDate = create("div", form, null, "champsModif", null);
+  let newDate = create("div", formInfo, null, "champsModif", null);
     let labelDateNaiss = create("label", newDate, "nouvelle date de naissance : ", "champsModif", "txtDate");
       let inputDateNaiss = create("input", newDate, null, "champsModif", "newDate");
       inputDateNaiss.type = 'text';
@@ -100,19 +106,20 @@ buttonModif.addEventListener('click', function(){
       inputDateNaiss.name = "date_naissance";
 
     //MDP
-  let newMdp = create("div", form, null, "champsModif", null);
+  let newMdp = create("div", formInfo, null, "champsModif", null);
     let labelPassword = create("label", newMdp, "nouveau mot de passe : ", "champsModif", "txtMdp");
       let inputMDP = create("input", newMdp, null, "champsModif", "newMdp");
       inputMDP.type = "password";
       inputMDP.name = "mdp";
 
   //création d'un nouveau boutton valider
-  let buttonValider = create("button", form, "confirmer modification", "buton", "butonValider");
+  let buttonValider = create("button", formButton, "confirmer modification", "buton", "butonValider");
   buttonValider.type = "submit";
   //buttonModif suppression
   buttonModif.remove();
 
-  let buttonAnuler = create("button", form, "annuler modification", "buton", "butonAnuler");
+  let buttonAnuler = create("button", formButton, "annuler modification", "buton", "butonAnuler");
   buttonValider.action = "profile";
   buttonModif.remove();
+
 })

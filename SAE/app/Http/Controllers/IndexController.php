@@ -39,6 +39,14 @@ class IndexController extends Controller
         return view("panier", ["panier" => Panier::all()]);
     }
 
+    public function mentionsLegales(){ //return Mentions Legales view
+        return view("mentionsLegales");
+    }
+
+    public function politiqueDeConfidentialite(){ //return politique de confidentialité view
+        return view("politiqueDeConfidentialite");
+    }
+
     public function register(){ //return register page
         return view("register");
     }

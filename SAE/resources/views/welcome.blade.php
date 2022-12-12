@@ -98,8 +98,8 @@
 <footer class="bot-nav">        
     <div class="lien">
         <a href="/">Page d'accueil</a>
-        <a href="/">Mentions legales</a>
-        <a href="/">Politique de Confidentialité</a>
+        <a href="/mentionsLegales">Mentions legales</a>
+        <a href="/politiqueDeConfidentialite">Politique de Confidentialité</a>
     </div>
     <br>
     <div id="Payement">Payement securisé :

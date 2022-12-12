@@ -37,4 +37,8 @@ Route::get('/sejour', [IndexController::class, 'unSejour']);
 Route::get('/route-des-vins', [IndexController::class, 'route_des_vins']);
 //Panier
 Route::get('/panier', [IndexController::class, 'panier']);
+//Politique de confidentialité
+Route::get('/politiqueDeConfidentialite', [IndexController::class, 'politiqueDeConfidentialite']);
+//mentions legales
+Route::get('/mentionsLegales', [IndexController::class, 'mentionsLegales']);
 

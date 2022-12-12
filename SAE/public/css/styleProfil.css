@@ -1,5 +1,5 @@
 
-/* différents parents*/
+/* ____________________________________différents parents_____________________________________*/
 
 .parent{
     display: flex;
@@ -12,12 +12,28 @@
 
 .parentModif{
     display: flex;
+    flex-direction: row;
+}
+.parentModifInfo{
+    display: flex;
     flex-direction: column;
-    justify-content:center ;
-    align-items:center; 
+    align-items:flex-end; 
     margin-top: 2%;
     margin-bottom: 2%;
-    background-color: brown;
+    padding-right: 15px;
+    border-right: 5px solid #7E0000DE;
+}
+
+.parentModifButton{
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items:flex-start; 
+}
+
+.alignement{
+    display: flex;
+    flex-direction: row;
 }
 
 .champsModif{
@@ -74,11 +90,11 @@
 }
 
 #newPrenom{
-background-color: aqua;
+    font-weight: 400;
 }
 
 #txtPrenom{
-    background-color: teal;
+    margin-right: 10px;
 }
 /* ____________________nom */
 #nom{
@@ -98,11 +114,11 @@ background-color: aqua;
 }
 
 #newNom{
-    background-color: aquamarine;
+    font-weight: 400;
 }
 
 #txtNom{
-    background-color: tomato;
+    margin-right: 10px;
 }
 /* ____________________mail */
 #mail{
@@ -122,11 +138,11 @@ background-color: aqua;
 }
 
 #newMail{
-    background-color: red;
+    font-weight: 400;
 }
 
 #txtMail{
-    background-color: grey;
+    margin-right: 10px;
 }
 /* ____________________date */
 #date{
@@ -144,20 +160,21 @@ background-color: aqua;
 }
 
 #newDate{
-    background-color: bisque;
+    font-weight: 400;
 }
 
 #txtDate{
-    background-color: gold;
+    margin-right: 10px;
 }
 /* ____________________MDP */
 #newMdp{
-    background-color: yellowgreen;
+    font-weight: 400;
 }
 
 #txtMdp{
-    background-color: blue;
+    margin-right: 10px;
 }
+
 
 /* bouton pour modifier les infos */
 #modification{
@@ -185,15 +202,15 @@ background-color: aqua;
     background-color: #d60707dd;
     color: #ffffff;
 }
+
 /* bouton formulaire pour modification*/
 .buton{
-    margin-left: 2%;
+    margin-left: 15px;
     font-family: Roboto, sans-serif;
     font-weight: 900;
     font-size: 12px;
     color: #ffffff;
     background-color: #d60707dd;
-    padding: 10px 30px;
     border-radius: 50px;
     transition : 419ms;
     transform: translateY(0);
@@ -213,34 +230,60 @@ background-color: aqua;
 }
 
 #butonValider{
-    position: absolute;
-    top : 11%;
-    margin-left: 40%;
+    padding: 10px 25px;
+    margin-bottom: 20px;
 }
 
 #butonAnuler{
-    position: absolute;
-    top : 18%;
-    margin-left: 40%;
+    padding: 10px 31px;
 }
+
+
+
+
 
 
 /*pour version TEL*/
 @media (orientation: portrait) {
+    
+    /* différents parents*/
+
     .parent{
         display: flex;
         flex-direction: column;
         justify-content:center ;
         align-items:center; 
         margin-top: 2%;
-        margin-bottom: 20%;
+        margin-bottom: 10%;
     }
-    .image{
+
+    .parentModif{
+        display: flex;
+        flex-direction: column;
+    }
+    .parentModifInfo{
+        display: flex;
+        flex-direction: column;
+        align-items:flex-end; 
+        margin-top: 2%;
+        margin-bottom: 2%;
+        padding-right: 15px;
+        border-right: none;
+    }
+
+    .parentModifButton{
         display: flex;
         flex-direction: column;
         justify-content:center ;
-        align-items:center;
+        align-items:flex-start; 
     }
+
+
+    .champsModif{
+        display: flex;
+        flex-direction: row;
+    }
+
     .infos{
         display: block;
         display: flex;
@@ -248,37 +291,61 @@ background-color: aqua;
         margin-left: 25px;
         align-items: flex-start;
         padding-right: 20px;
+        border-right: none;
     }
-    
+
+    .alignement{
+        display: flex;
+        flex-direction: row;
+    }
+
     .infoFixe{
         display: block;
         display: flex;
         flex-direction: column;
-        margin-left: 15px;
+        padding-left: 15px;
         align-items: flex-end;
+        border-left: none;
     }
-    
-    #id{
-        color: white;
+
+    .image{
+        display: flex;
+        flex-direction: column;
+        justify-content:center ;
+        align-items:center;
+        margin-bottom: 30px;
     }
-    
+
+    /* ____________________image sexe */
     #image{
-        width: 150px;
-        height: 150px;
+        width: 130px;
+        height: 130px;
         display: block;
     }
-    
-    #sexe{
-        color:white;
-    }
-    
+
+    /* ____________________prenom */
     #prenom{
         font-weight: bold;
         text-transform: uppercase;
         font-size: 18px;
         text-align:center;
     }
-    
+
+    #prenomFixe{
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 18px;
+        text-align:center;
+    }
+
+    #newPrenom{
+        font-weight: 400;
+    }
+
+    #txtPrenom{
+        margin-right: 10px;
+    }
+    /* ____________________nom */
     #nom{
         font-weight: bold;
         text-transform: uppercase;
@@ -286,7 +353,23 @@ background-color: aqua;
         margin-top: 10px;
         text-align:center;
     }
-    
+
+    #nomFixe{
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 18px;
+        margin-top: 10px;
+        text-align:center;
+    }
+
+    #newNom{
+        font-weight: 400;
+    }
+
+    #txtNom{
+        margin-right: 10px;
+    }
+    /* ____________________mail */
     #mail{
         color: blue;
         text-decoration: underline;
@@ -295,43 +378,102 @@ background-color: aqua;
         margin-top: 10px;
         text-align:center;
     }
-    
+
+    #mailFixe{
+        font-weight: bold;
+        font-size: 12px;
+        margin-top: 10px;
+        text-align:center;
+    }
+
+    #newMail{
+        font-weight: 400;
+    }
+
+    #txtMail{
+        margin-right: 10px;
+    }
+    /* ____________________date */
     #date{
         font-weight: bold;
         font-size: 16px;
         margin-top: 10px;
         text-align:center;
     }
-    
+
+    #dateFixe{
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 10px;
+        text-align:center;
+    }
+
+    #newDate{
+        font-weight: 400;
+    }
+
+    #txtDate{
+        margin-right: 10px;
+    }
+    /* ____________________MDP */
+    #newMdp{
+        font-weight: 400;
+    }
+
+    #txtMdp{
+        margin-right: 10px;
+    }
+
+
+    /* bouton pour modifier les infos */
     #modification{
-        position: absolute;
-        margin-top: 500px;
         margin-left: 2%;
+        margin-top: 30px;
         font-family: Roboto, sans-serif;
         font-weight: 900;
         font-size: 12px;
         color: #ffffff;
         background-color: #d60707dd;
         padding: 10px 30px;
-        border: solid #000000 3px;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         border-radius: 50px;
         transition : 419ms;
         transform: translateY(0);
         display: flex;
+        flex-direction:row-reverse;
         align-items: center;
         cursor: pointer;
         text-transform: lowercase;
     }
-    
-    #modification:hover{
-    
-        transition : 419ms;
-        padding: 10px 45px;
-        transform : translateY(-15px);
-        background-color: #d60707dd;
+
+    /* bouton formulaire pour modification*/
+    .buton{
+        margin-left: 15px;
+        font-family: Roboto, sans-serif;
+        font-weight: 900;
+        font-size: 12px;
         color: #ffffff;
-        border: solid 3px #000000;
+        background-color: #d60707dd;
+        border-radius: 50px;
+        transition : 419ms;
+        transform: translateY(0);
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        cursor: pointer;
+        text-transform: lowercase;
     }
-    
+
+    #butonValider{
+        margin-top: 35px;
+        padding: 10px 25px;
+        margin-bottom: 20px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #butonAnuler{
+        padding: 10px 31px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 }
