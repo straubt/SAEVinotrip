@@ -1,3 +1,6 @@
+<?php use App\Models\Client_Possede_Adresse;
+use App\Models\Adresse;
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,6 +50,29 @@
         </div>
         <a><button id="modification">Modifier informations </button></a>
     </div>
+    <h3>Vos adresses :</h3>
+    <?php $__currentLoopData = $client_possede_adresse; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $adressePossede): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php if($adressePossede::where('id_client', $client->id_client)->exists()): ?>
+    <div class="adresses">
+    <?php $adresse = Adresse::find($adressePossede->id_adresse);?>
+    <h3>Numéro de rue :</h3>
+    <p><?php echo e($adresse->num_rue_adresse); ?></p>
+
+    <h3>Libellé de la rue :</h3>
+    <p><?php echo e($adresse->libelle_rue_adresse); ?></p>
+
+    <h3>Code postal :</h3>
+    <p><?php echo e($adresse->code_postal_adresse); ?></p>
+
+    <h3>Libellé de la commune :</h3>
+    <p><?php echo e($adresse->libelle_commune); ?></p>
+
+    <h3>Numéro de téléphone :</h3>
+    <p><?php echo e($adresse->num_tel_adresse); ?></p>
+    </div>
+
+    <?php endif; ?>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
     <script src="js/profile.js"></script>
 </body>

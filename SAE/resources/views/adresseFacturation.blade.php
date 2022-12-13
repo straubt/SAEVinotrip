@@ -1,3 +1,6 @@
+<?php use App\Models\Client_Possede_Adresse;
+use App\Models\Adresse;
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,5 +27,29 @@
 
             <input type="submit" value="Valider">
     </form>
+    <h3>Vos adresses :</h3>
+    @foreach($client_possede_adresse as $adressePossede)
+    @if($adressePossede::where('id_client', $client->id_client)->exists())
+    <div class="adresses">
+    <?php $adresse = Adresse::find($adressePossede->id_adresse);?>
+    <h3>Numéro de rue :</h3>
+    <p>{{$adresse->num_rue_adresse}}</p>
+
+    <h3>Libellé de la rue :</h3>
+    <p>{{$adresse->libelle_rue_adresse}}</p>
+
+    <h3>Code postal :</h3>
+    <p>{{$adresse->code_postal_adresse}}</p>
+
+    <h3>Libellé de la commune :</h3>
+    <p>{{$adresse->libelle_commune}}</p>
+
+    <h3>Numéro de téléphone :</h3>
+    <p>{{$adresse->num_tel_adresse}}</p>
+    <input type="submit" value="Utiliser cette adresse"></input>
+    </div>
+
+    @endif
+    @endforeach
 </body>
 </html>

@@ -108,7 +108,7 @@
 							</i>
 						</div>
 						<div class="fr">
-							<input type="Password" required name="mdp" placeholder="Mot de passe" class="textBox" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\d\s:])([^\s])">
+							<input type="Password" required name="mdp" placeholder="Mot de passe" class="textBox" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[$@#!%*?&])[A-Za-z\d$@#!%*?&]{8,}$">
 						</div>
 						<div class="clr">
 						</div>

@@ -113,10 +113,9 @@ buttonModif.addEventListener('click', function(){
   let newMdp = create("div", form, null, "champsModif", null);
     let labelPassword = create("label", newMdp, "nouveau mot de passe : ", "champsModif", "txtMdp");
       let inputMDP = create("input", newMdp, null, "champsModif", "newMdp");
-      inputMDP.type = "password";
-      inputMDP.name = "mdp";
-      inputMDP.minlength = "8";
-      inputMDP.pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\d\s:])([^\s])";
+      inputMDP.type = "Password";
+      inputMDP.name = "mdp";  
+      inputMDP.pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/"; //MAIS PUTAIN DE MERDE
     
 
   //création d'un nouveau boutton valider
@@ -128,4 +127,5 @@ buttonModif.addEventListener('click', function(){
   let buttonAnuler = create("button", form, "annuler modification", "buton", "butonAnuler");
   buttonValider.action = "profile";
   buttonModif.remove();
+
 })

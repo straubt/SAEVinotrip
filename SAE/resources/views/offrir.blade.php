@@ -1,3 +1,7 @@
+<?php 
+$PORT_SERVEUR_IMG = '8232';
+$tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejour->photo_sejour;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +13,7 @@
 <h1>Offrir un séjour</h1>
 
 <div class="sejour">
-  <img src="{{ $sejour->photo_sejour }}" alt="{{ $sejour->titre_sejour }}">
+  <img src="{{ $tripPicture }}" alt="{{ $sejour->titre_sejour }}">
   <h2>{{ $sejour->titre_sejour }}</h2>
   <p>Prix : {{ $sejour->prix_min_individuel_sejour }} € par personne</p>
 </div>

@@ -165,7 +165,7 @@ class IndexController extends Controller
     }
 
     public function adresseFacturation(){
-        return view("adresseFacturation");
+        return view("adresseFacturation",["client" => Auth::user()],["client_possede_adresse" => Client_Possede_Adresse::all()]);
     }
 
 

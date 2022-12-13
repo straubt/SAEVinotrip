@@ -1,4 +1,6 @@
-<?php use Gloudemans\Shoppingcart\Facades\Cart; ?>
+<?php use Gloudemans\Shoppingcart\Facades\Cart; 
+$PORT_SERVEUR_IMG = '8232';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,8 +48,9 @@
 
     <div class="cart-items">
       <?php $__currentLoopData = Cart::content(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+      <?php $tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $item->model->photo_sejour; ?>
         <div class="cart-item">
-          <img src="<?php echo e($item->model->photo_sejour); ?>" alt="<?php echo e($item->model->titre_sejour); ?>">
+          <img src="<?php echo e($tripPicture); ?>" alt="<?php echo e($item->model->titre_sejour); ?>">
           <div class="cart-item-details">
             <h4><?php echo e($item->model->titre_sejour); ?></h4>
             <p><?php echo e($item->model->prix_min_individuel_sejour); ?> €</p>
@@ -76,7 +79,7 @@
             </div>
 
             <div class="cart-actions">
-            <a href="/paiement"><button>Valider mon panier</button></a>
+            <a href="/adresseFacturation"><button>Valider mon panier</button></a>
             </div>
             </div>
     <?php else: ?>
