@@ -1,4 +1,10 @@
 /* filtre */  
+body{
+  background: url(https://images6.alphacoders.com/550/550721.jpg) no-repeat center fixed;
+  background-size: cover;
+
+}
+
 #selector {
     /* display: block; */
      position: relative;

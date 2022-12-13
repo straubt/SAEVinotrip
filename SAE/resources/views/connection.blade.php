@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connection Vinotrip</title> 
     <link rel="stylesheet" href="css/styleRegister.css">
+	<link rel="stylesheet" href="css/styleGeneral.css">
 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
 	<link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -35,7 +36,7 @@
     <!-- Body of Form starts -->
 		
   	<div class="container">
-		<h1>Se connecter</h1>
+	  <h1>Se connecter</h1>
       <form method="post" action="{{ route("connectionPost") }}" autocomplete="on">
 	  @csrf
     		<!---Email ID---->

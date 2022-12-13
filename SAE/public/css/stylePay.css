@@ -1,53 +1,67 @@
 body {
-    font-family: sans-serif;
-    padding: 2em;
-  }
+  font-family: sans-serif;
+  padding: 30px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.credit-card-form {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.new-credit-card-form {
+  margin-top: 100px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="submit"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+input[type="checkbox"] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   
-  h1 {
-    text-align: center;
-    margin-bottom: 1em;
-    color: #333;
-  }
-  
-  form {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-bottom: 0.5em;
-  }
-  
-  input {
-    padding: 0.5em;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    font-size: 16px;
-  }
-  
-  input[type="submit"] {
-    background: #0099e5;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 1em;
-  }
-  label {
-    display: block;
-    margin-bottom: 0.5em;
-  }
-  
-  input[type="checkbox"] {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ccc;
-    vertical-align: middle;
-    margin-right: 0.5em;
-  }
-  
+}
+
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+#suppr {
+  background-color: #f44336;
+}
+
+#suppr:hover {
+  background-color: #e60000;
+}
+
+#logobanque{
+  width: 5%;
+  height: auto;
+}

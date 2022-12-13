@@ -53,3 +53,8 @@ Route::post('/cb/store', 'App\Http\Controllers\PaiementController@store');
 Route::get('/offrir-sejour/{id}', 'App\Http\Controllers\OffrirSejourController@create')->name('offrir-sejour.create');
 
 Route::post('/offrir-sejours', 'App\Http\Controllers\OffrirSejourController@store')->name('offrir-sejour.store');
+
+Route::get('/adresseFacturation', [IndexController::class, "adresseFacturation"]);
+
+Route::post('/delete-card', 'App\Http\Controllers\CreditCardController@delete')->name('delete-card');
+

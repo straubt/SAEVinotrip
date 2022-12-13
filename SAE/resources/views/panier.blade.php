@@ -76,7 +76,7 @@
             </div>
 
             <div class="cart-actions">
-            <a href="/paiement"><button>Checkout</button></a>
+            <a href="/paiement"><button>Valider mon panier</button></a>
             </div>
             </div>
     @else

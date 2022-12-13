@@ -163,6 +163,10 @@ class IndexController extends Controller
         return view("panier");
     }
 
+    public function adresseFacturation(){
+        return view("adresseFacturation");
+    }
+
 
     public function postAvis(){
         // j'ai bidouillé la table mais il faut RAJOUTER IDENTITY SUR TOUS LES ID

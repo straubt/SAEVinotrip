@@ -115,6 +115,9 @@ buttonModif.addEventListener('click', function(){
       let inputMDP = create("input", newMdp, null, "champsModif", "newMdp");
       inputMDP.type = "password";
       inputMDP.name = "mdp";
+      inputMDP.minlength = "8";
+      inputMDP.pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\d\s:])([^\s])";
+    
 
   //création d'un nouveau boutton valider
   let buttonValider = create("button", form, "confirmer modification", "buton", "butonValider");

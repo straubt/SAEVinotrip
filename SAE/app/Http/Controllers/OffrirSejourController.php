@@ -35,8 +35,7 @@ class OffrirSejourController extends Controller
       // Récupérer l'adresse e-mail du destinataire
       $destinataire = $request->input('email');
   
-      // Envoyer l'e-mail en utilisant l'objet Mailable
-      Mail::mailer('mailgun')->to($destinataire)->send($mail);
+      return redirect('/adresseFacturation');
   }
   
   

@@ -17,12 +17,12 @@ class PaiementController extends Controller
         if (auth()->check()) {
             // Récupérer l'ID du client depuis les données d'authentification et d'autorisation
             $id_client = auth()->user()->id_client;
-    
+
             // Récupérer les données du client à partir de la classe Client en utilisant l'ID du client
             $client = Client::findOrFail($id_client);
-    
+
             // Récupérer les données de la carte de crédit en utilisant la relation de base de données entre la classe CB et la classe Client
-            $cb = $client->cb;
+            $cb = Cb::where('id_client', $id_client)->get();
     
             // Renvoyer la vue paiement.blade.php en passant les données de la carte de crédit et du client en tant que variables
             return view('paiement', ['cb' => $cb, 'client' => $client]);
@@ -44,8 +44,15 @@ class PaiementController extends Controller
         $numero_carte_cb = $request->input('numero_carte_cb');
         $id_cb = $request->input('id_cb');
         if($id_cb == null){
-            $id_cb = Cb::count()+1;
+            $id_cb = Cb::count() + 1;
         }
+        do {
+            // Vérifier si l'ID généré existe déjà dans la table
+            if (Cb::where('id_cb', $id_cb)->exists()) {
+                // Si l'ID existe déjà, générer un nouvel ID
+                $id_cb = $id_cb+1;
+            }
+        } while (Cb::where('id_cb', $id_cb)->exists());
         $id_client = $request->input('id_client');
         $date_expiration_cb = $request->input('date_expiration_cb');
         $crypto_visuel_cb = $request->input('crypto_visuel_cb');
