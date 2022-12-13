@@ -58,3 +58,6 @@ Route::get('/adresseFacturation', [IndexController::class, "adresseFacturation"]
 
 Route::post('/delete-card', 'App\Http\Controllers\CreditCardController@delete')->name('delete-card');
 
+Route::post('/traitement-adresse', 'App\Http\Controllers\AdresseController@traitement')->name('traitement-adresse');
+
+

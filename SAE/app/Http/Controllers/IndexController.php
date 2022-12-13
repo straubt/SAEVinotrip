@@ -15,6 +15,7 @@ use App\Models\Avis;
 use App\Models\Client;
 use App\Models\Cb;
 use App\Models\Sejour_To_Cat_Participant;
+use App\Models\Client_Possede_Adresse;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 
@@ -123,7 +124,7 @@ class IndexController extends Controller
     }
 
     public function profile(){ //return profile page
-        return view("profile", ["client" => Auth::user()]);
+        return view("profile", ["client" => Auth::user()],["client_possede_adresse" => Client_Possede_Adresse::all()]);
     }
 
     public function updateProfile(Request $request){ // commit profile changes and redirect into profile get page

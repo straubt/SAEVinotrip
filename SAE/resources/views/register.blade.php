@@ -35,7 +35,7 @@
 		<div class="container">
 		<h1>S'inscrire</h1>
 
-			<form method="post" autocomplete="on" action="{{ route("registerPost") }}">
+			<form method="post" autocomplete="on" action="{{ route('registerPost') }}">
 				@csrf
 				<!--First name-->
 				<div class="box">
