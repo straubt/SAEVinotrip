@@ -37,7 +37,8 @@ console.log(data[0]);
 data.forEach(unSejour => {
   let div = create("div", carousel, null, null, null);
   let image = create("img", div, null, null, null);
-  image.src = unSejour.photo_sejour;
+  $PORT_SERVEUR_IMG = '8232'
+  image.src = 'http://51.83.36.122:' + $PORT_SERVEUR_IMG + '/sejours/' + unSejour.photo_sejour;
 });
 
 console.log(client);

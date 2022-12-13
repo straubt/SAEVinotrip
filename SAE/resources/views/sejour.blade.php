@@ -41,10 +41,12 @@ function buildRatingDots($note){
 //             ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
 //             ->get();
 
+$PORT_SERVEUR_IMG = '8232';
+
 $tripTitle = $sejour[$id]['titre_sejour'];
 $tripNbDay = $sejour[$id]['duree_sejour'];
 $tripDescription = $sejour[$id]['description_sejour'];
-$tripPicture = $sejour[$id]['photo_sejour'];
+$tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejour[$id]['photo_sejour'];
 $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
 ?>
 
@@ -100,9 +102,9 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                 foreach($etapes as $etape)
                 {
                     echo("
-                        <h3>Jour $etape->num_jour_etape : $etape->titre_etape</h3>
+                        <h3>$etape->titre_etape</h3>
                         <div class=\"etape flexResponsive\">
-                            <img src=\"$etape->photo_etape\" alt=\"photo de l'étape\">
+                            <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
                             <div>
                                 <p class=\"justified\">$etape->description_etape</p>
                                 <p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
