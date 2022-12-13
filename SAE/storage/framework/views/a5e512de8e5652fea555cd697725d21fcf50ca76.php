@@ -35,7 +35,7 @@
 		<div class="container">
 		<h1>S'inscrire</h1>
 
-			<form method="post" autocomplete="on" action="<?php echo e(route("registerPost")); ?>">
+			<form method="post" autocomplete="on" action="<?php echo e(route('registerPost')); ?>">
 				<?php echo csrf_field(); ?>
 				<!--First name-->
 				<div class="box">
