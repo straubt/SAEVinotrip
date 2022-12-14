@@ -1,4 +1,4 @@
-<?php use Illuminate\Support\Facades\Crypt; ?>
+<?php ?>
 
 <!DOCTYPE html>
 <html>

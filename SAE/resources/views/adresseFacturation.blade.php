@@ -46,6 +46,9 @@ use App\Models\Adresse;
 
     <h3>Numéro de téléphone :</h3>
     <p>{{$adresse->num_tel_adresse}}</p>
+    <form action="{{ route('utiliser-adresse') }}" method="POST">
+        @csrf
+    <input type="hidden" name="id_adresse" value="{{$adresse->id_adresse}}" ><br><br>
     <input type="submit" value="Utiliser cette adresse"></input>
     </div>
 

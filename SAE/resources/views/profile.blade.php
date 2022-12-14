@@ -16,6 +16,11 @@ use App\Models\Adresse;
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <body>
+@if (session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
+        @endif
     <script>
         var client = <?php echo json_encode($client);?>;
         var csrf = <?php echo json_encode(csrf_token());?>;
@@ -52,27 +57,33 @@ use App\Models\Adresse;
     </div>
     <h3>Vos adresses :</h3>
     @foreach($client_possede_adresse as $adressePossede)
-    @if($adressePossede::where('id_client', $client->id_client)->exists())
-    <div class="adresses">
-    <?php $adresse = Adresse::find($adressePossede->id_adresse);?>
-    <h3>Numéro de rue :</h3>
-    <p>{{$adresse->num_rue_adresse}}</p>
+        @if($adressePossede::where('id_client', $client->id_client)->exists())
+            <div class="adresses">
+            <?php $adresse = Adresse::find($adressePossede->id_adresse);?>
+            <h3>Numéro de rue :</h3>
+            <p>{{$adresse->num_rue_adresse}}</p>
 
-    <h3>Libellé de la rue :</h3>
-    <p>{{$adresse->libelle_rue_adresse}}</p>
+            <h3>Libellé de la rue :</h3>
+            <p>{{$adresse->libelle_rue_adresse}}</p>
 
-    <h3>Code postal :</h3>
-    <p>{{$adresse->code_postal_adresse}}</p>
+            <h3>Code postal :</h3>
+            <p>{{$adresse->code_postal_adresse}}</p>
 
-    <h3>Libellé de la commune :</h3>
-    <p>{{$adresse->libelle_commune}}</p>
+            <h3>Libellé de la commune :</h3>
+            <p>{{$adresse->libelle_commune}}</p>
 
-    <h3>Numéro de téléphone :</h3>
-    <p>{{$adresse->num_tel_adresse}}</p>
-    </div>
+            <h3>Numéro de téléphone :</h3>
+            <p>{{$adresse->num_tel_adresse}}</p>
 
-    @endif
+            <form method="POST" action="{{ url('/modifierAdresse') }}">
+                @csrf
+                <input type="hidden" name="id_adresse" value="{{$adresse->id_adresse}}" hidden>
+                <button type="submit" class="btn btn-primary">Modifier mon adresse</button>
+            </form>
+            </div>
+        @endif
     @endforeach
+
 
     <script src="js/profile.js"></script>
 </body>

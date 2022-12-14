@@ -110,7 +110,6 @@ class IndexController extends Controller
         if (Auth::attempt($credentials)) { //server verification identity
             $request->session()->regenerate();
             return redirect()->intended('/');
-
         }
 
         return back()->withErrors([ //sending errors (bad email or password)
