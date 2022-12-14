@@ -52,6 +52,8 @@ Route::get('/offrir-sejour/{id}', 'App\Http\Controllers\OffrirSejourController@c
 
 Route::post('/offrir-sejours', 'App\Http\Controllers\OffrirSejourController@store')->name('offrir-sejour.store');
 
+Route::get('/adresseFacturation', [IndexController::class, "adresseFacturation"]);
+
 Route::post('/delete-card', 'App\Http\Controllers\CreditCardController@delete')->name('delete-card');
 
 Route::post('/traitement-adresse', 'App\Http\Controllers\AdresseController@traitement')->name('traitement-adresse');
@@ -61,5 +63,4 @@ Route::post('/utiliser-adresse', 'App\Http\Controllers\AdresseController@utilise
 Route::post('/modify-address', 'App\Http\Controllers\AdresseController@modifyAddress')->name('modify-address');
 
 Route::post('/modifierAdresse', 'App\Http\Controllers\AdresseController@modifier')->name('modifier-adresse');
-
 

@@ -54,34 +54,33 @@ use App\Models\Adresse;
             @csrf
         </div>
         <a><button id="modification">Modifier informations </button></a>
-    </div>
+    </div> 
+    <?php $touteslespossessions = Client_Possede_Adresse::where('id_client', $client->id_client)->get(); ?>
     <h3>Vos adresses :</h3>
-    @foreach($client_possede_adresse as $adressePossede)
-        @if($adressePossede::where('id_client', $client->id_client)->exists())
-            <div class="adresses">
-            <?php $adresse = Adresse::find($adressePossede->id_adresse);?>
-            <h3>Numéro de rue :</h3>
-            <p>{{$adresse->num_rue_adresse}}</p>
+    @foreach($touteslespossessions as $client_possede_adresse)
+    <?php $adresse = Adresse::find($client_possede_adresse->id_adresse); ?>
+        <div class="adresses">
+        <h3>Numéro de rue :</h3>
+        <p>{{$adresse->num_rue_adresse}}</p>
 
-            <h3>Libellé de la rue :</h3>
-            <p>{{$adresse->libelle_rue_adresse}}</p>
+        <h3>Libellé de la rue :</h3>
+        <p>{{$adresse->libelle_rue_adresse}}</p>
 
-            <h3>Code postal :</h3>
-            <p>{{$adresse->code_postal_adresse}}</p>
+        <h3>Code postal :</h3>
+        <p>{{$adresse->code_postal_adresse}}</p>
 
-            <h3>Libellé de la commune :</h3>
-            <p>{{$adresse->libelle_commune}}</p>
+        <h3>Libellé de la commune :</h3>
+        <p>{{$adresse->libelle_commune}}</p>
 
-            <h3>Numéro de téléphone :</h3>
-            <p>{{$adresse->num_tel_adresse}}</p>
+        <h3>Numéro de téléphone :</h3>
+        <p>{{$adresse->num_tel_adresse}}</p>
 
-            <form method="POST" action="{{ url('/modifierAdresse') }}">
-                @csrf
-                <input type="hidden" name="id_adresse" value="{{$adresse->id_adresse}}" hidden>
-                <button type="submit" class="btn btn-primary">Modifier mon adresse</button>
-            </form>
-            </div>
-        @endif
+        <form method="POST" action="{{ url('/modifierAdresse') }}">
+            @csrf
+            <input type="hidden" name="id_adresse" value="{{$adresse->id_adresse}}" hidden>
+            <button type="submit" class="btn btn-primary">Modifier mon adresse</button>
+        </form>
+        </div>
     @endforeach
 
 
