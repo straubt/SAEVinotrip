@@ -82,14 +82,13 @@ class PaiementController extends Controller
         ]);
          // Enregistrer les données de la carte de crédit dans la base de données
          $cb->save();
-
-            // Retourner une réponse pour confirmer que les données ont été enregistrées avec succès
-            return response()->json('Donnees de la carte de credit enregistrees avec succes', 201);
-        } else {
-            // Si l'utilisateur n'a pas choisi d'enregistrer ses données, retourner une réponse pour confirmer que les données n'ont pas été enregistrées
-            return response()->json('Donnees de la carte de credit non enregistrees', 200);        }
+        }   
+         return redirect('/') ->with('success',"Merci pour votre achat !");
     }
 
-    
+    public function payerAvecCarte(Request $request)
+    {
+        return redirect('/') ->with('success',"Merci pour votre achat !");
+    }
 
 }

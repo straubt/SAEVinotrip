@@ -14,7 +14,7 @@
     <div>
     <p class="credit-card-text">Carte bancaire se terminant par : {{$fin_numero}} <p>
     <img src="images/banque.png" alt="" srcset="" id="logobanque">
-    <form action="" method="POST" class="credit-card-form">
+    <form action="{{ route('my-card') }}" method="POST" class="credit-card-form">
     @csrf
     <input type="hidden" id="numero_carte_cb" name="numero_carte_cb" value="{{ $carte->numero_carte_cb }}">
     <input type="hidden" id="id_cb" name="id_cb" value="{{ $carte->id_cb }}"><br>
@@ -55,7 +55,8 @@
         <input type="text" id="nom_banque_cb" name="nom_banque_cb" value="" required><br>
         <label for="enregistrer">Enregistrer les données de la carte de crédit ?</label><br>
         <input type="checkbox" id="enregistrer" name="enregistrer" value="1"><br><br>
-        <input type="submit" value="Payer">
+        <input type="submit" value="Payer" id="payer">
+        <label for="payer"></label>
     </form>
     </div>
 </body>

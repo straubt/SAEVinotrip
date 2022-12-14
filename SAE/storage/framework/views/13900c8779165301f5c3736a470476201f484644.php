@@ -42,8 +42,8 @@ $PORT_SERVEUR_IMG = '8232';
     <?php if(Cart::content()->isNotEmpty()): ?>
   <div class="cart">
     <div class="cart-header">
-      <h3>Your Cart</h3>
-      <p><?php echo e(Cart::count()); ?> items</p>
+      <h3>Votre Panier</h3>
+      <p><?php echo e(count(Cart::content())); ?> séjour(s)</p>
     </div>
 
     <div class="cart-items">
@@ -57,17 +57,30 @@ $PORT_SERVEUR_IMG = '8232';
 
             <!-- Ajouter un sélecteur pour choisir le nombre de personnes -->
             <select class="cart-item-quantity" data-price="<?php echo e($item->model->prix_min_individuel_sejour); ?>">
-              <option value="1">1 person</option>
-              <option value="2">2 people</option>
-              <option value="3">3 people</option>
-              <option value="4">4 people</option>
+              <option value="1">1 Adulte</option>
+              <option value="2">2 Adultes</option>
+              <option value="3">3 Adultes</option>
+              <option value="4">4 Adultes</option>
+            </select>
+            <select class="cart-item-quantity" data-price="<?php echo e($item->model->prix_min_individuel_sejour); ?>">
+              <option value="0">0 Enfant</option>
+              <option value="0.5">1 Enfant</option>
+              <option value="1">2 Enfants</option>
+              <option value="1.5">3 Enfants</option>
+              <option value="2">4 Enfants</option>
+            </select>
+            <select class="cart-item-quantity" data-price="<?php echo e($item->model->prix_min_individuel_sejour); ?>">
+              <option value="0">1 nuit</option>
+              <option value="1">2 nuits</option>
+              <option value="2">3 nuits</option>
+              <option value="3">4 nuits</option>
             </select>
             </div>
             <p class="cart-item-remove">
             <form action="<?php echo e(route('cart.destroy', $item->rowId)); ?>" method="post">
             <?php echo csrf_field(); ?>
             <?php echo method_field('DELETE'); ?>
-            <button type="submit">Remove</button>
+            <button type="submit">Supprimer</button>
             </form>
             </p>
             </div>
@@ -76,14 +89,15 @@ $PORT_SERVEUR_IMG = '8232';
             <!-- Ajouter un élément pour afficher le prix total mis à jour en temps réel -->
             <div class="cart-total">
             <p>Total: <span id="cart-total-price"><?php echo e(Cart::total()); ?></span> €</p>
-            </div>
+            </div>  
 
             <div class="cart-actions">
             <a href="/adresseFacturation"><button>Valider mon panier</button></a>
+            </form>
             </div>
             </div>
     <?php else: ?>
-    <p>Your cart is empty.</p>
+    <p>Votre panier est vide.</p>
     <?php endif; ?>
     <!-- Ajouter du code JavaScript pour mettre à jour le prix total en temps réel en fonction du nombre de personnes sélectionné -->
     <script>
@@ -116,6 +130,8 @@ $PORT_SERVEUR_IMG = '8232';
     // Mettre à jour le prix total lorsque la page est chargée pour la première fois
     updateTotalPrice();
     </script>
+
+    
 
 
 </body>
