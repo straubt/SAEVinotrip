@@ -26,7 +26,10 @@ $idRequest = $_SERVER['QUERY_STRING'];
 
 $PORT_SERVEUR_IMG = '8232';
 
+$PORT_SERVEUR_IMG = '8232';
+
 $tripTitle = $sejour[$id]['titre_sejour'];
+$tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
 $tripNbDay = $sejour[$id]['duree_sejour'];
 $tripPrice = $sejour[$id]['prix_min_individuel_sejour']."0";
 $tripDescription = $sejour[$id]['description_sejour'];
@@ -77,6 +80,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                 <img src="<?php echo e($tripPicture); ?>" alt="photo séjour">
                 <div id="sejourHeaderText">
                     <h1><?php echo e($tripTitle); ?></h1>
+                    <p><?php echo e($tripPrice); ?>€ minimum par psersonne (peut varier en fonction des options choisies)</p>
                     <p><?php echo e($tripNbDay); ?> jour(s) | <?php echo e($tripNbDay-1); ?> nuit(s)</p>
                     <p class="justified"><?php echo e($tripDescription); ?></p>
                     <p><?php echo e($themeLibelle); ?></p>
@@ -98,20 +102,31 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
             </section>
 
             <section id="sejourProgramme">
-                <h2>Le programme de votre séjour</h2>
+                <h2>Votre séjour en bref</h2>
             <?php
                 foreach($etapes as $etape)
                 {
                     echo("
-                        <h3>Jour $etape->num_jour_etape : $etape->titre_etape</h3>
+                        <h3>$etape->titre_etape</h3>
                         <div class=\"etape flexResponsive\">
-                        <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
-                        <div>
+                            <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
+                            <div>
                                 <p class=\"justified\">$etape->description_etape</p>
-                                <p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
-                                <p><a href=\"$etape->url_etape\">L'étape en détail</a></p>
                             </div>
                         </div>");
+                        //<p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
+                        //<p><a href=\"$etape->url_etape\">L'étape en détail</a></p>"
+                }
+                echo("<h2>Le programme détaillé</h2>");
+                $i = 0;
+                foreach($elements_etapes as $e)
+                {
+                    if ($e->num_jour_etape != $i)
+                    {
+                        $i = $e->num_jour_etape;
+                        echo("<h3>Jour $i</h3>");
+                    }
+                    echo("<h4>$e->nom_partenaire</h4><h5>$e->heure_rdv</h5><p>$e->desc_elmt_etape</p>");
                 }
             ?>
             </section>

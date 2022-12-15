@@ -83,6 +83,7 @@ $PORT_SERVEUR_IMG = '8232';
             <button type="submit">Supprimer</button>
             </form>
             </p>
+            <button onClick="window.location.href='/offrir-sejour/<?php echo e($item->model->id_sejour); ?>'">Offrir</button>
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
