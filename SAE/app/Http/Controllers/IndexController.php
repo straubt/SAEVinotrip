@@ -47,7 +47,17 @@ class IndexController extends Controller
             ->where('etape.id_sejour', $id + 1)
             ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
             ->get();
-        return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, "sejour" => Sejour::all(), "theme" => Theme::all()]);
+
+
+        $elements_etapes = DB::table('contient_element_etape')
+            ->join('etape', 'etape.id_etape', '=', 'contient_element_etape.id_etape')
+            ->join('element_etape', 'element_etape.id_element_etape', '=', 'contient_element_etape.id_element_etape')
+            ->join('partenaire', 'partenaire.id_partenaire', '=', 'element_etape.id_partenaire')
+            ->where('etape.id_sejour', $id + 1)
+            ->select('num_jour_etape', 'nom_partenaire', 'heure_rdv', 'desc_elmt_etape')
+            ->get();
+        
+        return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, "sejour" => Sejour::all(), "theme" => Theme::all()]);
 
     }
 
