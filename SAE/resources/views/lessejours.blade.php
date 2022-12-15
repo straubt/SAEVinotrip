@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
+
 <body> 
     <script>
         var sejour = <?php echo json_encode($sejour);?>;
@@ -30,23 +31,23 @@
             theme = "";
         <?php } ?>
     </script>
-<header class="top-nav">
-            <a href="/">Vinotrip</a>
-            <input id="menu-toggle" type="checkbox" />
-            <label class='menu-button-container' for="menu-toggle">
-                <div class='menu-button'></div>
-            </label>
-            <div class="menu">
-                <a href="/">Accueil</a>
-                <a href="/nos-sejours">Nos séjours</a>
-                <a href="/route-des-vins">Routes des vins</a>
-                @guest<a href="/register">S'inscrire</a>
-                <a href="/login">Se connecter</a>@endguest
-                @auth<a href="/profile">Mon profil</a>
-                <a href="/logout">Deconnexion</a>@endauth
-                <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img></a>
-            <div>
-        </header>
+    <header class="top-nav">
+        <a href="/">Vinotrip</a>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+            <div class='menu-button'></div>
+        </label>
+        <div class="menu">
+            <a href="/">Accueil</a>
+            <a href="/nos-sejours">Nos séjours</a>
+            <a href="/route-des-vins">Routes des vins</a>
+            @guest<a href="/register">S'inscrire</a>
+            <a href="/login">Se connecter</a>@endguest
+            @auth<a href="/profile">Mon profil</a>
+            <a href="/logout">Deconnexion</a>@endauth
+            <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img>{{count(Cart::content())}}</a>
+        <div>
+    </header>
     <script src="js/select.js"></script>
     <?php 
     $selectdomaine = "";
@@ -120,17 +121,14 @@
         <option value="Gastronomie">Gastronomie</option>
         <option value="Sport">Sport</option>
     </select>
-    
     <input type="submit" value="confirmer" id="buttonConfirmer">
 </form>
 
-<?php
+<div id="divFiltre">
+<button type="submit" value="comparer" id="buttonFiltre">Comparer</button>
+</div>
 
 
-
-
-
-?>  
 <script src="js/lesSejours.js" type="text/javascript"></script>
 <script src="js/transition.js" type="text/javascript"></script>
 </body>

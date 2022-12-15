@@ -1,0 +1,67 @@
+body {
+  font-family: sans-serif;
+  padding: 30px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.credit-card-form {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.new-credit-card-form {
+  margin-top: 100px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="submit"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+input[type="checkbox"] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  
+}
+
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+#suppr {
+  background-color: #f44336;
+}
+
+#suppr:hover {
+  background-color: #e60000;
+}
+
+#logobanque{
+  width: 5%;
+  height: auto;
+}

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
-    <header class="top-nav">
+<header class="top-nav">
         <a href="/">Vinotrip</a>
         <input id="menu-toggle" type="checkbox" />
         <label class='menu-button-container' for="menu-toggle">
@@ -28,7 +28,7 @@
             <a href="/login">Se connecter</a>@endguest
             @auth<a href="/profile">Mon profil</a>
             <a href="/logout">Deconnexion</a>@endauth
-            <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img></a>
+            <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img>{{count(Cart::content())}}</a>
         <div>
     </header>
 <h1 id="titrePage">ROUTE DES VINS</h1>

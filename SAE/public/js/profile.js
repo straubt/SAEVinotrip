@@ -58,7 +58,6 @@ buttonModif.addEventListener('click', function(){
     p.remove();
   });
 
-
   //creation du formulaire et ses methodes et actions
   let form = create("form", infos, null, "parentModif", null );
   form.method = "post";
@@ -74,13 +73,24 @@ buttonModif.addEventListener('click', function(){
   input.name = "_token";
   input.value = csrf;
 
+  let inputID = create("input",form,null,null,null)
+  inputID.value = client.id_client;
+  inputID.type = "hidden";
+  inputID.name="id_client";
+  console.log(client.id_client);
+
+  let typeClient = create("input",form,null,null,null)
+  typeClient.value = client.type;
+  typeClient.type = "hidden";
+  typeClient.name="type";
+  console.log(typeClient);
+
     //prenom
   let newPrenom = create("div", formInfo, null, "champsModif", null);
     let labelPrenom = create("label", newPrenom, "nouveau Prenom : ", "champsModif", "txtPrenom");
       let inputPrenom = create("input", newPrenom, null, "champsModif", "newPrenom");
       inputPrenom.placeholder = client.prenom_client;
       inputPrenom.name = "prenom";
-      console.log(inputPrenom);
 
     //nom
   let newNom = create("div", formInfo, null, "champsModif", null);
@@ -109,8 +119,10 @@ buttonModif.addEventListener('click', function(){
   let newMdp = create("div", formInfo, null, "champsModif", null);
     let labelPassword = create("label", newMdp, "nouveau mot de passe : ", "champsModif", "txtMdp");
       let inputMDP = create("input", newMdp, null, "champsModif", "newMdp");
-      inputMDP.type = "password";
-      inputMDP.name = "mdp";
+      inputMDP.type = "Password";
+      inputMDP.name = "mdp";  
+      inputMDP.pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/"; //MAIS PUTAIN DE MERDE  
+    
 
   //création d'un nouveau boutton valider
   let buttonValider = create("button", formButton, "confirmer modification", "buton", "butonValider");

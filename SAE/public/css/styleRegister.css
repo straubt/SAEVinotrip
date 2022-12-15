@@ -10,7 +10,7 @@ body{
 .container{
 	background: #2d3e3f;
 	width: 350px;
-	height: 400px;
+	height: 450px;
 	padding-bottom: 20px;
 	position: absolute;
 	top:50%;
@@ -94,6 +94,7 @@ body{
   	cursor: pointer;
 }
 
+<<<<<<< HEAD
 .titre{
 	color:white;
 	text-align: center;
@@ -104,6 +105,12 @@ body{
 	color: white; 
 	font-size: 12px;
 	text-decoration: none;
+=======
+p{
+	color: white;
+	padding: 5px;
+	font-size: 12px;
+>>>>>>> main
 }
 
 .autreConection{

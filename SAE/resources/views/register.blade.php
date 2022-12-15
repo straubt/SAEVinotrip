@@ -13,26 +13,29 @@
 	<link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <body>
-	<header class="top-nav">
-		<a href="/">Vinotrip</a>
-		<input id="menu-toggle" type="checkbox" />
-		<label class='menu-button-container' for="menu-toggle">
-			<div class='menu-button'></div>
-		</label>
-		<div class="menu">
-			<a href="/">Accueil</a>
-			<a href="/nos-sejours">Nos séjours</a>
-			<a href="/route-des-vins">Routes des vins</a>
-			@guest<a href="/register">S'inscrire</a>
-			<a href="/login">Se connecter</a>@endguest
-			@auth<a href="/profile">Mon profil</a>
-			<a href="/logout">Deconnexion</a>@endauth
-			<a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img></a>
-		<div>
-	</header>
+<header class="top-nav">
+        <a href="/">Vinotrip</a>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+            <div class='menu-button'></div>
+        </label>
+        <div class="menu">
+            <a href="/">Accueil</a>
+            <a href="/nos-sejours">Nos séjours</a>
+            <a href="/route-des-vins">Routes des vins</a>
+            @guest<a href="/register">S'inscrire</a>
+            <a href="/login">Se connecter</a>@endguest
+            @auth<a href="/profile">Mon profil</a>
+            <a href="/logout">Deconnexion</a>@endauth
+            <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img>{{count(Cart::content())}}</a>
+        <div>
+    </header>
+
     <!-- Body of Form starts -->
 		<div class="container">
-			<form method="post" autocomplete="on" action="{{ route("registerPost") }}">
+		<h1>S'inscrire</h1>
+
+			<form method="post" autocomplete="on" action="{{ route('registerPost') }}">
 				@csrf
 				<!--First name-->
 				<div class="box">
@@ -98,19 +101,20 @@
 
 
 					<!---Password------>
-				<div class="box">
-					<label for="password" class="fl fontLabel"> Mot de passe : 
-					</label>
-					<div class="fl iconBox"><i class="fa fa-key" aria-hidden="true">
-						</i>
+					<div class="box">
+						<label for="password" class="fl fontLabel"> *Mot de passe : 
+						</label>
+						<div class="fl iconBox"><i class="fa fa-key" aria-hidden="true">
+							</i>
+						</div>
+						<div class="fr">
+							<input type="Password" required name="mdp" placeholder="Mot de passe" class="textBox" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[$@#!%*?&])[A-Za-z\d$@#!%*?&]{8,}$">
+						</div>
+						<div class="clr">
+						</div>
 					</div>
-					<div class="fr">
-						<input type="Password" required name="mdp" placeholder="Mot de passe" class="textBox">
-					</div>
-					<div class="clr">
-					</div>
-				</div>
 					<!---Password---->
+					<p>*Votre mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial</p>
 
 					<!---Gender----->
 				<div class="box radio">
