@@ -35,47 +35,39 @@
     <!-- Body of Form starts -->
 		
   	<div class="container">
-		<h1 class="titre">Se connecter</h1>
+		<h1 class="titre">Changer de mots de passe</h1>
       <form method="post" action="{{ route("connectionPost") }}" autocomplete="on">
 	  @csrf
 
-    		<!---Email ID---->
+    		<!---ID User---->
     		<div class="box">
-          <label for="email" class="fl fontLabel"> Email : </label>
-    			<div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-    			<div class="fr">
-    					<input type="email" required name="mail_client" placeholder="Email" class="textBox">
-    			</div>
-    			<div class="clr"></div>
-    		</div>
+          		<label for="id" class="fl fontLabel"> ID utilisateur : </label>
+				<div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+					<div class="fr">
+						<input type="id" required name="id_user" placeholder="Id" class="textBox">
+					</div>
+				<div class="clr"></div>
+			</div>
 
-    		<!---Password------>
+			<!---Mail User---->
     		<div class="box">
-          	<label for="password" class="fl fontLabel"> Mot de passe : </label>
-    			<div class="fl iconBox"><i class="fa fa-key" aria-hidden="true"></i></div>
-    			<div class="fr">
-    					<input type="Password" required name="mdp_client" placeholder="Mot de passe" class="textBox">
-    			</div>
-    			<div class="clr"></div>
-    		</div>
-
-
-    		<!---MDP oublier---->
-			<br>
-			<a class="lien" href="/userAide">Mot de passe oublié ?</a>
+          		<label for="mail" class="fl fontLabel"> Mail utilisateur : </label>
+				<div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+					<div class="fr">
+						<input type="mail" required name="mail_user" placeholder="Mail" class="textBox">
+					</div>
+				<div class="clr"></div>
+			</div>
 
     		<!---Submit Button------>
     		<div class="box" style="background: #2d3e3f">
     				<input type="Submit" name="Submit" class="submit" value="connexion">
     		</div>
 
-    		<!---connection admin----->
 			<!---autre connection----->
 			<div class="autreConection">
-			<a class="selected"> User </a>
-				<a class="lien" href="/connectionAdmin"> Admin </a>
-				<a class="lien" href="/connectionChef"> Chef </a>
-				<a class="lien" href="/"> Accueil </a>
+				<a class="lien" href="/login"> User</a>
+				<a class="lien" href="/"> Page d'accueil</a>
     		</div>
       </form>
 	  

@@ -41,4 +41,14 @@ Route::get('/panier', [IndexController::class, 'panier']);
 Route::get('/politiqueDeConfidentialite', [IndexController::class, 'politiqueDeConfidentialite']);
 //mentions legales
 Route::get('/mentionsLegales', [IndexController::class, 'mentionsLegales']);
+//autres connection (admin et chef)
+Route::get('/connectionAdmin', [IndexController::class, 'connectionAdmin']);
+Route::get('/connectionChef', [IndexController::class, 'connectionChef']);
 
+//aide connection (admin / chef et user)
+Route::get('/adminAide', [IndexController::class, 'adminAide']);
+Route::get('/userAide', [IndexController::class, 'userAide']);
+
+//aide connection (admin / chef et user)
+Route::get('/welcomeAdmin', [IndexController::class, 'welcomeAdmin']);
+Route::get('/welcomeChef', [IndexController::class, 'welcomeChef']);

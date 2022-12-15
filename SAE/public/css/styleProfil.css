@@ -1,6 +1,6 @@
 
 /* ____________________________________différents parents_____________________________________*/
-
+/* ______________________Parent general des infos */
 .parent{
     display: flex;
     flex-direction: row;
@@ -9,7 +9,7 @@
     margin-top: 2%;
     margin-bottom: 2%;
 }
-
+/* ____________________________________parents modification profil */
 .parentModif{
     display: flex;
     flex-direction: row;
@@ -30,17 +30,17 @@
     justify-content:center ;
     align-items:flex-start; 
 }
-
+/* ____________________________________parent pour profil aligner (version tel) */
 .alignement{
     display: flex;
     flex-direction: row;
 }
-
+/* ____________________________________zone de modification des champs du profil */
 .champsModif{
     display: flex;
     flex-direction: row;
 }
-
+/* ____________________________________parents profil */
 .infos{
     display: block;
     display: flex;
@@ -59,7 +59,7 @@
     align-items: flex-end;
     border-left: 5px solid #7E0000DE;
 }
-
+/* ____________________________________position de l'image */
 .image{
     display: flex;
     flex-direction: column;
@@ -67,14 +67,14 @@
     align-items:center;
 }
 
-/* ____________________image sexe */
+/* ____________________format image sexe */
 #image{
     width: 130px;
     height: 130px;
     display: block;
 }
 
-/* ____________________prenom */
+/* ___________________prenom _____________*/
 #prenom{
     font-weight: bold;
     text-transform: uppercase;
@@ -88,7 +88,7 @@
     font-size: 18px;
     text-align:center;
 }
-
+/* ________________ modification prenom */
 #newPrenom{
     font-weight: 400;
 }
@@ -96,7 +96,7 @@
 #txtPrenom{
     margin-right: 10px;
 }
-/* ____________________nom */
+/* ____________________nom ____________________*/
 #nom{
     font-weight: bold;
     text-transform: uppercase;
@@ -112,7 +112,7 @@
     margin-top: 10px;
     text-align:center;
 }
-
+/* ________________ modification nom */
 #newNom{
     font-weight: 400;
 }
@@ -120,7 +120,7 @@
 #txtNom{
     margin-right: 10px;
 }
-/* ____________________mail */
+/* ____________________mail _______________________*/
 #mail{
     color: blue;
     text-decoration: underline;
@@ -136,7 +136,7 @@
     margin-top: 10px;
     text-align:center;
 }
-
+/* ________________ modification mail */
 #newMail{
     font-weight: 400;
 }
@@ -144,7 +144,7 @@
 #txtMail{
     margin-right: 10px;
 }
-/* ____________________date */
+/* ____________________date __________________*/
 #date{
     font-weight: bold;
     font-size: 16px;
@@ -158,7 +158,7 @@
     margin-top: 10px;
     text-align:center;
 }
-
+/* ________________ modification date */
 #newDate{
     font-weight: 400;
 }
@@ -166,7 +166,7 @@
 #txtDate{
     margin-right: 10px;
 }
-/* ____________________MDP */
+/* ________________ modification mot de passe */
 #newMdp{
     font-weight: 400;
 }
@@ -176,7 +176,7 @@
 }
 
 
-/* bouton pour modifier les infos */
+/* ____________________________________bouton pour modifier infos profil_____________________________________*/
 #modification{
     margin-left: 2%;
     font-family: Roboto, sans-serif;
@@ -203,7 +203,7 @@
     color: #ffffff;
 }
 
-/* bouton formulaire pour modification*/
+/* ____________________________________boutons du formulaire de modification_____________________________________*/
 .buton{
     margin-left: 15px;
     font-family: Roboto, sans-serif;
@@ -228,7 +228,7 @@
     background-color: #d60707dd;
     color: #ffffff;
 }
-
+/* ________________ boutons valider / anuler modification profil */
 #butonValider{
     padding: 10px 25px;
     margin-bottom: 20px;
@@ -246,8 +246,8 @@
 /*pour version TEL*/
 @media (orientation: portrait) {
     
-    /* différents parents*/
-
+    /* ____________________________________différents parents_____________________________________*/
+    /* ______________________Parent general des infos */
     .parent{
         display: flex;
         flex-direction: column;
@@ -256,7 +256,7 @@
         margin-top: 2%;
         margin-bottom: 10%;
     }
-
+    /* ____________________________________parents modification profil */
     .parentModif{
         display: flex;
         flex-direction: column;
@@ -277,13 +277,17 @@
         justify-content:center ;
         align-items:flex-start; 
     }
-
-
+    /* ____________________________________parent pour profil aligner (version tel) */
+    .alignement{
+        display: flex;
+        flex-direction: row;
+    }
+    /* ____________________________________zone de modification des champs du profil */
     .champsModif{
         display: flex;
         flex-direction: row;
     }
-
+/* ____________________________________parents profil */
     .infos{
         display: block;
         display: flex;
@@ -294,11 +298,6 @@
         border-right: none;
     }
 
-    .alignement{
-        display: flex;
-        flex-direction: row;
-    }
-
     .infoFixe{
         display: block;
         display: flex;
@@ -307,7 +306,7 @@
         align-items: flex-end;
         border-left: none;
     }
-
+    /* ____________________________________position de l'image */
     .image{
         display: flex;
         flex-direction: column;
@@ -316,14 +315,14 @@
         margin-bottom: 30px;
     }
 
-    /* ____________________image sexe */
+    /* ____________________format image sexe */
     #image{
         width: 130px;
         height: 130px;
         display: block;
     }
 
-    /* ____________________prenom */
+    /* ___________________prenom _____________*/
     #prenom{
         font-weight: bold;
         text-transform: uppercase;
@@ -337,7 +336,7 @@
         font-size: 18px;
         text-align:center;
     }
-
+    /* ________________ modification prenom */
     #newPrenom{
         font-weight: 400;
     }
@@ -345,7 +344,7 @@
     #txtPrenom{
         margin-right: 10px;
     }
-    /* ____________________nom */
+    /* ____________________nom ____________________*/
     #nom{
         font-weight: bold;
         text-transform: uppercase;
@@ -361,7 +360,7 @@
         margin-top: 10px;
         text-align:center;
     }
-
+    /* ________________ modification nom */
     #newNom{
         font-weight: 400;
     }
@@ -369,7 +368,7 @@
     #txtNom{
         margin-right: 10px;
     }
-    /* ____________________mail */
+    /* ____________________mail _______________________*/
     #mail{
         color: blue;
         text-decoration: underline;
@@ -385,7 +384,7 @@
         margin-top: 10px;
         text-align:center;
     }
-
+    /* ________________ modification mail */
     #newMail{
         font-weight: 400;
     }
@@ -393,7 +392,7 @@
     #txtMail{
         margin-right: 10px;
     }
-    /* ____________________date */
+    /* ____________________date __________________*/
     #date{
         font-weight: bold;
         font-size: 16px;
@@ -407,7 +406,7 @@
         margin-top: 10px;
         text-align:center;
     }
-
+    /* ________________ modification date */
     #newDate{
         font-weight: 400;
     }
@@ -415,7 +414,7 @@
     #txtDate{
         margin-right: 10px;
     }
-    /* ____________________MDP */
+    /* ________________ modification mot de passe */
     #newMdp{
         font-weight: 400;
     }
@@ -425,7 +424,7 @@
     }
 
 
-    /* bouton pour modifier les infos */
+    /* ____________________________________bouton pour modifier infos profil_____________________________________*/
     #modification{
         margin-left: 2%;
         margin-top: 30px;
@@ -445,7 +444,7 @@
         text-transform: lowercase;
     }
 
-    /* bouton formulaire pour modification*/
+    /* ____________________________________boutons du formulaire de modification_____________________________________*/
     .buton{
         margin-left: 15px;
         font-family: Roboto, sans-serif;
@@ -462,7 +461,7 @@
         cursor: pointer;
         text-transform: lowercase;
     }
-
+    /* ________________ boutons valider / anuler modification profil */
     #butonValider{
         margin-top: 35px;
         padding: 10px 25px;

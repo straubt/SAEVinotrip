@@ -23,8 +23,8 @@ body{
 
 .fl{
 	float: left;
-  width: 110px;
-  line-height: 35px;
+  	width: 110px;
+  	line-height: 35px;
 }
 
 #genre{
@@ -67,7 +67,7 @@ body{
 	width: 40px;
 	line-height: 38px;
 	text-align: center;
-  background: #970555;
+  background: #7E0000DE;
 }
 
 .radio{
@@ -89,11 +89,40 @@ body{
 	color: white;
 	width: 110px;
 	height: 35px;
-	background: #970555;
+	background: #7E0000DE;
 	text-transform: uppercase;
-  cursor: pointer;
+  	cursor: pointer;
 }
 
+.titre{
+	color:white;
+	text-align: center;
+	font-size:x-large
+}
 
+.MDPOublier{
+	color: white; 
+	font-size: 12px;
+	text-decoration: none;
+}
 
+.autreConection{
+	color: white;
+	margin-top: 50%;
+	font-size: 14px;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.lien{
+	color: white;
+}
+.selected{
+	color: #c00505;
+}
+.temp{
+	position: absolute;
+	color: white;
+}
 

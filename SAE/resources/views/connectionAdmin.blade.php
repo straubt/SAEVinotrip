@@ -35,16 +35,16 @@
     <!-- Body of Form starts -->
 		
   	<div class="container">
-		<h1 class="titre">Se connecter</h1>
+		<h1 class="titre">Se connecter en Admin</h1>
       <form method="post" action="{{ route("connectionPost") }}" autocomplete="on">
 	  @csrf
 
-    		<!---Email ID---->
+    		<!---ID Admin---->
     		<div class="box">
-          <label for="email" class="fl fontLabel"> Email : </label>
+          <label for="id" class="fl fontLabel"> ID : </label>
     			<div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
     			<div class="fr">
-    					<input type="email" required name="mail_client" placeholder="Email" class="textBox">
+    					<input type="id" required name="id_admin" placeholder="Id" class="textBox">
     			</div>
     			<div class="clr"></div>
     		</div>
@@ -54,26 +54,29 @@
           	<label for="password" class="fl fontLabel"> Mot de passe : </label>
     			<div class="fl iconBox"><i class="fa fa-key" aria-hidden="true"></i></div>
     			<div class="fr">
-    					<input type="Password" required name="mdp_client" placeholder="Mot de passe" class="textBox">
+    					<input type="Password" required name="mdp_admin" placeholder="Mot de passe" class="textBox">
     			</div>
     			<div class="clr"></div>
     		</div>
 
-
-    		<!---MDP oublier---->
+			<!---Aide Admin---->
 			<br>
-			<a class="lien" href="/userAide">Mot de passe oublié ?</a>
+			<a class="lien" href="/adminAide">Besoin d'aide</a>
 
     		<!---Submit Button------>
     		<div class="box" style="background: #2d3e3f">
     				<input type="Submit" name="Submit" class="submit" value="connexion">
     		</div>
 
-    		<!---connection admin----->
+
+			<!---connection temporaire valide---->
+			<br>
+			<a class="temp" href="/welcomeAdmin">connection temporaire</a>
+
 			<!---autre connection----->
 			<div class="autreConection">
-			<a class="selected"> User </a>
-				<a class="lien" href="/connectionAdmin"> Admin </a>
+				<a class="lien" href="/login"> User </a>
+				<a class="selected"> Admin </a>
 				<a class="lien" href="/connectionChef"> Chef </a>
 				<a class="lien" href="/"> Accueil </a>
     		</div>
