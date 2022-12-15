@@ -38,7 +38,12 @@
             <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img><?php echo e(count(Cart::content())); ?></a>
         <div>
     </header>
+    <?php if(session('success')): ?>
+        <div class="alert alert-success">
+            <?php echo e(session('success')); ?>
 
+        </div>
+        <?php endif; ?>
 
     <div class="owl-carousel">
     </div>

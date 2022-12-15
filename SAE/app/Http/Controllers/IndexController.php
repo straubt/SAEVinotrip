@@ -13,7 +13,9 @@ use App\Models\Route_des_vins;
 use App\Models\Panier;
 use App\Models\Avis;
 use App\Models\Client;
+use App\Models\Cb;
 use App\Models\Sejour_To_Cat_Participant;
+use App\Models\Client_Possede_Adresse;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 
@@ -48,7 +50,17 @@ class IndexController extends Controller
             ->where('etape.id_sejour', $id + 1)
             ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
             ->get();
-        return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, "sejour" => Sejour::all(), "theme" => Theme::all()]);
+
+
+        $elements_etapes = DB::table('contient_element_etape')
+            ->join('etape', 'etape.id_etape', '=', 'contient_element_etape.id_etape')
+            ->join('element_etape', 'element_etape.id_element_etape', '=', 'contient_element_etape.id_element_etape')
+            ->join('partenaire', 'partenaire.id_partenaire', '=', 'element_etape.id_partenaire')
+            ->where('etape.id_sejour', $id + 1)
+            ->select('num_jour_etape', 'nom_partenaire', 'heure_rdv', 'desc_elmt_etape')
+            ->get();
+        
+        return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, "sejour" => Sejour::all(), "theme" => Theme::all()]);
 
     }
 
@@ -121,10 +133,11 @@ class IndexController extends Controller
     }
 
     public function profile(){ //return profile page
-        return view("profile", ["client" => Auth::user()]);
+        return view("profile", ["client" => Auth::user()],["client_possede_adresse" => Client_Possede_Adresse::all()]);
     }
 
     public function updateProfile(Request $request){ // commit profile changes and redirect into profile get page
+<<<<<<< HEAD
         $user = Auth::user();
         $request->mdp = password_hash($request->mdp, PASSWORD_DEFAULT);
         $ageCutoff = now()->subYears(18)->toDateString();
@@ -146,11 +159,46 @@ class IndexController extends Controller
 
         // dd(Client::find($client["id_client"]));
         return redirect()->to("profile");
+=======
+        $id_client = $request->input('id_client');
+        $client = Client::find($id_client); // Récupère le client avec l'id spécifié dans la requête
+        if (!$client) {
+        // Si le client n'existe pas, renvoie une erreur
+        return response()->json(['message' => 'Client not found'], 404);
+        }
+        // Met à jour les champs du client avec les valeurs spécifiées dans la requête
+        if($request->titre_client != null){
+            $client->titre_client = $request->titre_client;
+        }
+        if($request->prenom != null){
+            $client->prenom_client = $request->prenom;
+        }
+        if($request->nom != null){
+            $client->nom_client = $request->nom;
+        }
+        if($request->mail_client != null){
+            $client->mail_client = $request->mail_client;
+        }
+        if($request->date_naissance != null){
+        $client->date_naiss_client = $request->date_naissance;
+        }
+        if($request->mdp != null){
+        $client->mdp_client = password_hash($request->mdp, PASSWORD_DEFAULT); // Hash le mot de passe avant de le mettre à jour
+        }
+
+        $client->save(); // Enregistre les modifications du client
+
+        return view("profile", ["client" => Auth::user()]);
+>>>>>>> main
     }
 
     public function videPanier(){
         Cart::destroy();
         return view("panier");
+    }
+
+    public function adresseFacturation(){
+        return view("adresseFacturation",["client" => Auth::user()],["client_possede_adresse" => Client_Possede_Adresse::all()]);
     }
 
 
@@ -169,4 +217,11 @@ class IndexController extends Controller
     // public function destination(){
     //     return view("sejour", ["destination" => Destination::all()]);
     // }
+   
+
+
+
+
+
+
 }

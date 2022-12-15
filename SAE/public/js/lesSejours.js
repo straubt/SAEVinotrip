@@ -1,3 +1,9 @@
+PORT_SERVEUR_IMG = '8232'
+sejour.forEach(unSejour => {
+  unSejour.photo_sejour = 'http://51.83.36.122:' + PORT_SERVEUR_IMG + '/sejours/' + unSejour.photo_sejour
+});
+
+console.log(sejour)
 
 function create(tag, parent, text = null, classs = null, id = null) {
   let element = document.createElement(tag)
@@ -13,8 +19,6 @@ function create(tag, parent, text = null, classs = null, id = null) {
 
 let divFiltre = document.querySelector("#divFiltre");
 let buttonCompare = document.querySelector("#buttonFiltre");
-
-
 
 if (domaine != "") {
   domaine = domaine.toUpperCase();

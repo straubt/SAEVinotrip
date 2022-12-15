@@ -73,13 +73,6 @@
     text-align:center;
 }
 
-#newPrenom{
-background-color: aqua;
-}
-
-#txtPrenom{
-    background-color: teal;
-}
 /* ____________________nom */
 #nom{
     font-weight: bold;
@@ -97,17 +90,9 @@ background-color: aqua;
     text-align:center;
 }
 
-#newNom{
-    background-color: aquamarine;
-}
 
-#txtNom{
-    background-color: tomato;
-}
 /* ____________________mail */
 #mail{
-    color: blue;
-    text-decoration: underline;
     font-weight: bold;
     font-size: 12px;
     margin-top: 10px;
@@ -121,13 +106,6 @@ background-color: aqua;
     text-align:center;
 }
 
-#newMail{
-    background-color: red;
-}
-
-#txtMail{
-    background-color: grey;
-}
 /* ____________________date */
 #date{
     font-weight: bold;
@@ -143,21 +121,7 @@ background-color: aqua;
     text-align:center;
 }
 
-#newDate{
-    background-color: bisque;
-}
 
-#txtDate{
-    background-color: gold;
-}
-/* ____________________MDP */
-#newMdp{
-    background-color: yellowgreen;
-}
-
-#txtMdp{
-    background-color: blue;
-}
 
 /* bouton pour modifier les infos */
 #modification{
@@ -223,6 +187,16 @@ background-color: aqua;
     top : 18%;
     margin-left: 40%;
 }
+.adresses {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #efefef;
+  }
+  
+  
 
 
 /*pour version TEL*/

@@ -45,3 +45,26 @@ Route::get('/panier', [IndexController::class, 'panier'])->name('panier');
 Route::get('/videpanier', [IndexController::class, 'videpanier'])->name('videpanier');
 //VidePanier
 Route::delete('/panier/{rowId}', 'App\Http\Controllers\CartController@destroy')->name('cart.destroy');
+//recup_cb_id
+Route::get('/paiement', 'App\Http\Controllers\PaiementController@recup_cb');
+// Ajouter une route pour appeler la méthode store du contrôleur CB
+Route::get('/offrir-sejour/{id}', 'App\Http\Controllers\OffrirSejourController@create')->name('offrir-sejour.create');
+
+Route::post('/offrir-sejours', 'App\Http\Controllers\OffrirSejourController@store')->name('offrir-sejour.store');
+
+Route::get('/adresseFacturation', [IndexController::class, "adresseFacturation"]);
+
+Route::post('/cb/store', 'App\Http\Controllers\PaiementController@store')->name('add-card');
+
+Route::post('/cb/actual', 'App\Http\Controllers\PaiementController@payerAvecCarte')->name('my-card');
+
+Route::post('/delete-card', 'App\Http\Controllers\CreditCardController@delete')->name('delete-card');
+
+Route::post('/traitement-adresse', 'App\Http\Controllers\AdresseController@traitement')->name('traitement-adresse');
+
+Route::post('/utiliser-adresse', 'App\Http\Controllers\AdresseController@utiliser')->name('utiliser-adresse');
+
+Route::post('/modify-address', 'App\Http\Controllers\AdresseController@modifyAddress')->name('modify-address');
+
+Route::post('/modifierAdresse', 'App\Http\Controllers\AdresseController@modifier')->name('modifier-adresse');
+

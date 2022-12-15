@@ -23,31 +23,17 @@ function buildRatingDots($note){
 
 $id = $_SERVER['QUERY_STRING']-1;
 $idRequest = $_SERVER['QUERY_STRING'];
-// $id = $_SERVER['QUERY_STRING']-1;
 
-// $avis = DB::table('avis')
-//             ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
-//             ->join('client', 'client.id_client', '=', 'avis.id_client')
-//             ->where('avis.id_sejour', $id + 1)
-//             ->select('nom_client', 'prenom_client', 'note_avis', 'libelle_avis', 'texte_avis', 'date_avis')
-//             ->get();
+$PORT_SERVEUR_IMG = '8232';
 
-// $avisData = DB::table('avis')
-//             ->where('avis.id_sejour', $id + 1)
-//             ->select(DB::raw('ROUND(AVG(CAST(note_avis as numeric)), 2) AS "average_note"'), DB::raw('COUNT(*) AS "count_avis"'))
-//             ->get();
-
-// $etapes = DB::table('etape')
-//             ->join('sejour', 'sejour.id_sejour', '=', 'etape.id_sejour')
-//             ->where('etape.id_sejour', $id + 1)
-//             ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
-//             ->get();
+$PORT_SERVEUR_IMG = '8232';
 
 $tripTitle = $sejour[$id]['titre_sejour'];
+$tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
 $tripNbDay = $sejour[$id]['duree_sejour'];
 $tripPrice = $sejour[$id]['prix_min_individuel_sejour']."0";
 $tripDescription = $sejour[$id]['description_sejour'];
-$tripPicture = $sejour[$id]['photo_sejour'];
+$tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejour[$id]['photo_sejour'];
 $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
 ?>
 
@@ -93,10 +79,11 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                 <img src="{{$tripPicture}}" alt="photo séjour">
                 <div id="sejourHeaderText">
                     <h1>{{$tripTitle}}</h1>
+                    <p>{{$tripPrice}}€ minimum par psersonne (peut varier en fonction des options choisies)</p>
                     <p>{{$tripNbDay}} jour(s) | {{$tripNbDay-1}} nuit(s)</p>
                     <p class="justified">{{$tripDescription}}</p>
                     <p>{{$themeLibelle}}</p>
-                    <button>
+                    <button onClick="window.location.href='/offrir-sejour/{{$idRequest}}'">
                         <div>Offrir</div>
                         <img src="/images/icons/offer.svg"></img>
                     </button>
@@ -114,20 +101,31 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
             </section>
 
             <section id="sejourProgramme">
-                <h2>Le programme de votre séjour</h2>
+                <h2>Votre séjour en bref</h2>
             <?php
                 foreach($etapes as $etape)
                 {
                     echo("
-                        <h3>Jour $etape->num_jour_etape : $etape->titre_etape</h3>
+                        <h3>$etape->titre_etape</h3>
                         <div class=\"etape flexResponsive\">
-                            <img src=\"$etape->photo_etape\" alt=\"photo de l'étape\">
+                            <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
                             <div>
                                 <p class=\"justified\">$etape->description_etape</p>
-                                <p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
-                                <p><a href=\"$etape->url_etape\">L'étape en détail</a></p>
                             </div>
                         </div>");
+                        //<p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
+                        //<p><a href=\"$etape->url_etape\">L'étape en détail</a></p>"
+                }
+                echo("<h2>Le programme détaillé</h2>");
+                $i = 0;
+                foreach($elements_etapes as $e)
+                {
+                    if ($e->num_jour_etape != $i)
+                    {
+                        $i = $e->num_jour_etape;
+                        echo("<h3>Jour $i</h3>");
+                    }
+                    echo("<h4>$e->nom_partenaire</h4><h5>$e->heure_rdv</h5><p>$e->desc_elmt_etape</p>");
                 }
             ?>
             </section>
