@@ -88,7 +88,6 @@
     font-size: 18px;
     text-align:center;
 }
-<<<<<<< HEAD
 /* ________________ modification prenom */
 #newPrenom{
     font-weight: 400;
@@ -98,10 +97,6 @@
     margin-right: 10px;
 }
 /* ____________________nom ____________________*/
-=======
-
-/* ____________________nom */
->>>>>>> main
 #nom{
     font-weight: bold;
     text-transform: uppercase;
@@ -117,7 +112,6 @@
     margin-top: 10px;
     text-align:center;
 }
-<<<<<<< HEAD
 /* ________________ modification nom */
 #newNom{
     font-weight: 400;
@@ -127,11 +121,6 @@
     margin-right: 10px;
 }
 /* ____________________mail _______________________*/
-=======
-
-
-/* ____________________mail */
->>>>>>> main
 #mail{
     font-weight: bold;
     font-size: 12px;
@@ -145,7 +134,6 @@
     margin-top: 10px;
     text-align:center;
 }
-<<<<<<< HEAD
 /* ________________ modification mail */
 #newMail{
     font-weight: 400;
@@ -155,10 +143,6 @@
     margin-right: 10px;
 }
 /* ____________________date __________________*/
-=======
-
-/* ____________________date */
->>>>>>> main
 #date{
     font-weight: bold;
     font-size: 16px;
@@ -172,7 +156,6 @@
     margin-top: 10px;
     text-align:center;
 }
-<<<<<<< HEAD
 /* ________________ modification date */
 #newDate{
     font-weight: 400;
@@ -189,10 +172,6 @@
 #txtMdp{
     margin-right: 10px;
 }
-=======
-
-
->>>>>>> main
 
 
 /* ____________________________________bouton pour modifier infos profil_____________________________________*/

@@ -94,7 +94,6 @@ body{
   	cursor: pointer;
 }
 
-<<<<<<< HEAD
 .titre{
 	color:white;
 	text-align: center;
@@ -105,12 +104,12 @@ body{
 	color: white; 
 	font-size: 12px;
 	text-decoration: none;
-=======
+}
+
 p{
 	color: white;
 	padding: 5px;
 	font-size: 12px;
->>>>>>> main
 }
 
 .autreConection{
