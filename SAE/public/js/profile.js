@@ -128,6 +128,7 @@ buttonModif.addEventListener('click', function(){
   //buttonModif suppression
   buttonModif.remove();
 
+//création d'un nouveau boutton Anuler
   let buttonAnuler = create("button", form, "annuler modification", "buton", "butonAnuler");
   buttonValider.action = "profile";
   buttonModif.remove();
