@@ -57,6 +57,8 @@ Route::get('/mentionsLegales', [IndexController::class, 'mentionsLegales']);
 //autres connection (admin et chef)
 Route::get('/connectionAdmin', [IndexController::class, 'connectionAdmin']);
 Route::get('/connectionChef', [IndexController::class, 'connectionChef']);
+Route::post('/loginChef', [IndexController::class, "authenticateChef"])->name('connectionChefPost');
+Route::post('/loginAdmin', [IndexController::class, "authenticateAdmin"])->name('connectionAdminPost');
 
 Route::post('/offrir-sejours', 'App\Http\Controllers\OffrirSejourController@store')->name('offrir-sejour.store');
 
