@@ -115,7 +115,7 @@ buttonModif.addEventListener('click', function(){
       let inputMDP = create("input", newMdp, null, "champsModif", "newMdp");
       inputMDP.type = "Password";
       inputMDP.name = "mdp";  
-      inputMDP.pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/"; //MAIS PUTAIN DE MERDE  
+      // inputMDP.pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/"; //MAIS PUTAIN DE MERDE  
     
 
   //création d'un nouveau boutton valider

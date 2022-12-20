@@ -7,6 +7,11 @@
     <title>Paiement sécurisé</title>
 </head>
 <body>
+@if (session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
+        @endif
     <h1>Paiement sécurisé</h1>
     @foreach ($cb as $carte)
     <?php
@@ -48,7 +53,7 @@
         <!-- Récupérer la valeur de id_client depuis les données d'authentification et d'autorisation -->
         <input type="hidden" id="id_client" name="id_client" value="{{ auth()->user()->id_client }}" required><br>
         <label for="date_expiration_cb">Date d'expiration de la carte de crédit :</label><br>
-        <input type="date" id="date_expiration_cb" name="date_expiration_cb" value="" required><br>
+        <input type="text" id="date_expiration_cb" name="date_expiration_cb" value="" required><br>
         <label for="crypto_visuel_cb">Cryptogramme visuel de la carte de crédit :</label><br>
         <input type="text" id="crypto_visuel_cb" name="crypto_visuel_cb" value="" required><br>
         <label for="nom_banque_cb">Nom de la banque :</label><br>
