@@ -26,12 +26,10 @@ $idRequest = $_SERVER['QUERY_STRING'];
 
 $PORT_SERVEUR_IMG = '8232';
 
-$PORT_SERVEUR_IMG = '8232';
-
 $tripTitle = $sejour[$id]['titre_sejour'];
 $tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
 $tripNbDay = $sejour[$id]['duree_sejour'];
-$tripPrice = $sejour[$id]['prix_min_individuel_sejour']."0";
+$tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
 $tripDescription = $sejour[$id]['description_sejour'];
 $tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejour[$id]['photo_sejour'];
 $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
@@ -79,7 +77,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                 <img src="{{$tripPicture}}" alt="photo séjour">
                 <div id="sejourHeaderText">
                     <h1>{{$tripTitle}}</h1>
-                    <p>{{$tripPrice}}€ minimum par psersonne (peut varier en fonction des options choisies)</p>
+                    <p>{{$tripPrice}}€ minimum par personne (peut varier en fonction des options choisies)</p>
                     <p>{{$tripNbDay}} jour(s) | {{$tripNbDay-1}} nuit(s)</p>
                     <p class="justified">{{$tripDescription}}</p>
                     <p>{{$themeLibelle}}</p>

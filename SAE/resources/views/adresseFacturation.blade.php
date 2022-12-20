@@ -29,11 +29,14 @@ use App\Models\Adresse;
  
             <input type="submit" value="Valider">
     </form>
+    <?php $touteslespossessions = Client_Possede_Adresse::where('id_client', $client->id_client)->get(); ?>
     <h3>Vos adresses :</h3>
-    @foreach($client_possede_adresse as $adressePossede)
-    @if($adressePossede::where('id_client', $client->id_client)->exists())
+    @foreach($touteslespossessions as $client_possede_adresse)
     <div class="adresses">
-    <?php $adresse = Adresse::find($adressePossede->id_adresse);?>
+    <?php $adresse = Adresse::find($client_possede_adresse->id_adresse); ?>
+
+    <h3>Vos adresses :</h3>
+
     <h3>Numéro de rue :</h3>
     <p>{{$adresse->num_rue_adresse}}</p>
 
@@ -54,7 +57,6 @@ use App\Models\Adresse;
     <input type="submit" value="Utiliser cette adresse"></input>
     </div>
 
-    @endif
     @endforeach
 </body>
 <script src="js/geo.js"></script>

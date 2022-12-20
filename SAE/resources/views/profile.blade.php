@@ -44,14 +44,16 @@ use App\Models\Adresse;
     </header>
     <div class="parent">
         <div class="image"></div>
-        <div class="infoFixe">
-            <a id="prenomFixe">Prénom :</a>
-            <a id="nomFixe">Nom :</a>
-            <a id="mailFixe">Email :</a>
-            <a id="dateFixe">Date de naissance :</a>
-        </div>
-        <div class="infos">
-            @csrf
+        <div class=alignement>
+            <div class="infoFixe">
+                <a id="prenomFixe">Prénom :</a>
+                <a id="nomFixe">Nom :</a>
+                <a id="mailFixe">Email :</a>
+                <a id="dateFixe">Date de naissance :</a>
+            </div>
+            <div class="infos">
+                @csrf
+            </div>
         </div>
         <a><button id="modification">Modifier informations </button></a>
     </div> 
@@ -90,8 +92,8 @@ use App\Models\Adresse;
 <footer class="bot-nav">        
     <div class="lien">
         <a href="/">Page d'accueil</a>
-        <a href="/">Mentions legales</a>
-        <a href="/">Politique de Confidentialité</a>
+        <a href="/mentionsLegales">Mentions legales</a>
+        <a href="/politiqueDeConfidentialite">Politique de Confidentialité</a>
     </div>
     <br>
     <div id="Payement">Payement securisé :

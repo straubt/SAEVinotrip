@@ -71,6 +71,14 @@ class IndexController extends Controller
         return view("panier", ["panier" => Panier::all()]);
     }
 
+    public function mentionsLegales(){ //return Mentions Legales view
+        return view("mentionsLegales");
+    }
+
+    public function politiqueDeConfidentialite(){ //return politique de confidentialité view
+        return view("politiqueDeConfidentialite");
+    }
+
     public function register(){ //return register page
         return view("register");
     }
@@ -168,6 +176,22 @@ class IndexController extends Controller
         return view("profile", ["client" => Auth::user()]);
     }
 
+    public function connectionAdmin(){ // page connection pour compte admin
+        return view("connectionAdmin");
+    }
+
+    public function connectionChef(){// page connection pour compte Chef
+        return view("connectionChef");
+    }
+
+    public function adminAide(){// page connection pour aide admin / chef
+        return view("adminAide");
+    }
+
+    public function useraide(){// page connection pour aide user
+        return view("userAide");
+    }
+    
     public function videPanier(){
         Cart::destroy();
         return view("panier");
@@ -177,6 +201,13 @@ class IndexController extends Controller
         return view("adresseFacturation",["client" => Auth::user()],["client_possede_adresse" => Client_Possede_Adresse::all()]);
     }
 
+    public function welcomeAdmin(){// page welcome compte admin
+        return view("welcomeAdmin");
+    }
+
+    public function welcomeChef(){// page welcome compte Chef
+        return view("welcomeChef");
+    }
 
     public function postAvis(){
         // j'ai bidouillé la table mais il faut RAJOUTER IDENTITY SUR TOUS LES ID

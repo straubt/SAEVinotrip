@@ -50,6 +50,14 @@ Route::get('/paiement', 'App\Http\Controllers\PaiementController@recup_cb');
 // Ajouter une route pour appeler la méthode store du contrôleur CB
 Route::get('/offrir-sejour/{id}', 'App\Http\Controllers\OffrirSejourController@create')->name('offrir-sejour.create');
 
+//Politique de confidentialité
+Route::get('/politiqueDeConfidentialite', [IndexController::class, 'politiqueDeConfidentialite']);
+//mentions legales
+Route::get('/mentionsLegales', [IndexController::class, 'mentionsLegales']);
+//autres connection (admin et chef)
+Route::get('/connectionAdmin', [IndexController::class, 'connectionAdmin']);
+Route::get('/connectionChef', [IndexController::class, 'connectionChef']);
+
 Route::post('/offrir-sejours', 'App\Http\Controllers\OffrirSejourController@store')->name('offrir-sejour.store');
 
 Route::get('/adresseFacturation', [IndexController::class, "adresseFacturation"]);
@@ -68,3 +76,10 @@ Route::post('/modify-address', 'App\Http\Controllers\AdresseController@modifyAdd
 
 Route::post('/modifierAdresse', 'App\Http\Controllers\AdresseController@modifier')->name('modifier-adresse');
 
+//aide connection (admin / chef et user)
+Route::get('/adminAide', [IndexController::class, 'adminAide']);
+Route::get('/userAide', [IndexController::class, 'userAide']);
+
+//aide connection (admin / chef et user)
+Route::get('/welcomeAdmin', [IndexController::class, 'welcomeAdmin']);
+Route::get('/welcomeChef', [IndexController::class, 'welcomeChef']);
