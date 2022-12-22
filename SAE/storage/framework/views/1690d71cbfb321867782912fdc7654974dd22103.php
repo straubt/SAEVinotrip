@@ -117,15 +117,15 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                 }
                 echo("<h2>Le programme détaillé</h2>");
                 $i = 0;
-                foreach($elements_etapes as $e)
-                {
-                    if ($e->num_jour_etape != $i)
-                    {
-                        $i = $e->num_jour_etape;
-                        echo("<h3>Jour $i</h3>");
-                    }
-                    echo("<h4>$e->nom_partenaire</h4><h5>$e->heure_rdv</h5><p>$e->desc_elmt_etape</p>");
-                }
+                // foreach($elements_etapes as $e)
+                // {
+                //     if ($e->num_jour_etape != $i)
+                //     {
+                //         $i = $e->num_jour_etape;
+                //         echo("<h3>Jour $i</h3>");
+                //     }
+                //     echo("<h4>$e->nom_partenaire</h4><h5>$e->heure_rdv</h5><p>$e->desc_elmt_etape</p>");
+                // }
             ?>
             </section>
             

@@ -59,8 +59,9 @@ class AdresseController extends Controller
     $cb = Cb::where('id_client', $id_client)->get();
 
     // Renvoyer la vue paiement.blade.php en passant les données de la carte de crédit et du client en tant que variables
+    $price = $request->price;
 
-    return view('/paiement', ["id_adresse" => $id_adresse,"client" => $client,"cb" => $cb]);
+    return view('/paiement', ["price"=>$price, "id_adresse" => $id_adresse,"client" => $client,"cb" => $cb]);
     }
 }
 
@@ -77,9 +78,10 @@ public function utiliser(Request $request)
 
     // Récupérer les données de la carte de crédit en utilisant la relation de base de données entre la classe CB et la classe Client
     $cb = Cb::where('id_client', $id_client)->get();
+    $price = $request->price;
 
     // Renvoyer la vue paiement.blade.php en passant les données de la carte de crédit et du client en tant que variables
-    return view('/paiement', ["id_adresse" => $id_adresse,"client" => $client,"cb" => $cb]);
+    return view('/paiement', ["price"=>$price, "id_adresse" => $id_adresse,"client" => $client,"cb" => $cb]);
     }
 }
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\CartController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
@@ -75,6 +76,8 @@ Route::post('/utiliser-adresse', 'App\Http\Controllers\AdresseController@utilise
 Route::post('/modify-address', 'App\Http\Controllers\AdresseController@modifyAddress')->name('modify-address');
 
 Route::post('/modifierAdresse', 'App\Http\Controllers\AdresseController@modifier')->name('modifier-adresse');
+
+Route::post('/update-cart', 'App\Http\Controllers\CartController@update')->name('update-cart');
 
 //aide connection (admin / chef et user)
 Route::get('/adminAide', [IndexController::class, 'adminAide']);

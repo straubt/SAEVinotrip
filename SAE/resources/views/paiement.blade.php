@@ -5,6 +5,7 @@
 <head>
     <link rel="stylesheet" href="css/stylePay.css">
     <title>Paiement sécurisé</title>
+    <h2>Total : {{$price}} €</h2>
 </head>
 <body>
 @if (session('success'))
@@ -40,8 +41,8 @@
     <input type="submit" value="Supprimer" id="suppr">
     </form>
     </div>
-
     @endforeach
+
     <div class="new-credit-card-form">
     <h2>Nouvelle carte de crédit :</h2>
     <form action="/cb/store" method="POST" >
@@ -60,7 +61,7 @@
         <input type="text" id="nom_banque_cb" name="nom_banque_cb" value="" required><br>
         <label for="enregistrer">Enregistrer les données de la carte de crédit ?</label><br>
         <input type="checkbox" id="enregistrer" name="enregistrer" value="1"><br><br>
-        <input type="submit" value="Payer" id="payer">
+        <input type="submit" value="Payer {{$price}} €" id="payer">
         <label for="payer"></label>
     </form>
     </div>

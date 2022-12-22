@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Sejour;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Client_Possede_Adresse;
 
 class CartController extends Controller
 {
@@ -82,10 +84,14 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+     // Fonction pour mettre à jour l'élément du panier
+     public function update(Request $request)
+     {
+        $price = $request->price;   
+        $tabCommande = $request->tabCommande;
+        
+         return view('/adresseFacturation')->with(["tabCommande" => $tabCommande, "price" => $price,"client" => Auth::user(),"client_possede_adresse" => Client_Possede_Adresse::all()])->with(["price"=>$price]);
+     }
 
     /**
      * Remove the specified resource from storage.
