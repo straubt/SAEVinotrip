@@ -57,10 +57,29 @@ class IndexController extends Controller
             ->join('element_etape', 'element_etape.id_element_etape', '=', 'contient_element_etape.id_element_etape')
             ->join('partenaire', 'partenaire.id_partenaire', '=', 'element_etape.id_partenaire')
             ->where('etape.id_sejour', $id + 1)
-            ->select('num_jour_etape', 'nom_partenaire', 'heure_rdv', 'desc_elmt_etape')
+            ->select('num_jour_etape', 'partenaire.id_partenaire', 'nom_partenaire', 'heure_rdv', 'is_restaurant', 'is_cave', 'is_hotel')
             ->get();
         
         return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, "sejour" => Sejour::all(), "theme" => Theme::all()]);
+
+    }
+
+    // page partenaire avec nom, adresse, e-mail, numéro de téléphone
+    public function partenaire()
+    {
+        $id_partenaire = $_GET["id_partenaire"];
+
+        $partenaire = DB::table('partenaire')
+        ->join(         'adresse',          'adresse.id_adresse',           '=',    'partenaire.id_adresse')
+        ->leftJoin(     'restaurant',       'restaurant.id_partenaire',     '=',    'partenaire.id_partenaire')
+        ->leftJoin(     'cave',             'cave.id_partenaire',           '=',    'partenaire.id_partenaire')
+        ->leftJoin(     'hotel',            'hotel.id_partenaire',          '=',    'partenaire.id_partenaire')
+        ->leftJoin(     'autre_societe',    'autre_societe.id_partenaire',  '=',    'partenaire.id_partenaire')
+        ->where(        'partenaire.id_partenaire', $id_partenaire)
+        ->select('nom_partenaire', 'mail_partenaire', 'tel_partenaire', 'num_rue_adresse', 'libelle_rue_adresse', 'code_postal_adresse', 'libelle_commune', 'nb_etoile_restaurant', 'type_cuisine', 'specialite_restaurant', 'type_degustation', 'nb_etoile_hotel', 'nb_chambre_hotel', 'type_activite', 'lieu_activite')
+        ->get()[0];
+        
+        return view("partenaire", ["partenaire" => $partenaire]);
 
     }
 

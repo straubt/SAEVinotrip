@@ -19,6 +19,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 Route::get('/nos-sejours', [IndexController::class, "destination"]);
 Route::get('/nos-sejours', [IndexController::class, "categorie_participant"]);
 Route::get('/nos-sejours', [IndexController::class, "sejour"]);
+// un partenaire
+Route::get('/partenaire', [IndexController::class, "partenaire"]);
 //register post get
 Route::get('/register', [IndexController::class, "register"])->name('register');
 Route::post('/register', [IndexController::class, "addClient"])->name('registerPost');

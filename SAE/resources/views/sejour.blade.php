@@ -99,31 +99,35 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
             </section>
 
             <section id="sejourProgramme">
-                <h2>Votre séjour en bref</h2>
+                <h2>Le Programme</h2>
             <?php
                 foreach($etapes as $etape)
                 {
+                    $desc_etape = "";
+                    foreach($elements_etapes as $e)
+                    {
+                        if ($e->num_jour_etape == $etape->num_jour_etape)
+                        {
+                            $desc_etape .= "<h4>$e->heure_rdv</h4>";
+                            if ($e->is_restaurant)
+                                $desc_etape .= "<h5>REPAS</h5><p>Dégustez un délicieux repas cuisiné par notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
+                            else if ($e->is_cave)
+                                $desc_etape .= "<h5>CAVE/DOMAINE</h5><p>Découvrez les merveilleux vins de notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
+                            else if ($e->is_hotel)
+                                $desc_etape .= "<h5>HEBERGEMENT</h5><p>Laissez vous emporter dans les bras de Morphée chez notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
+                        }
+                    }
                     echo("
                         <h3>$etape->titre_etape</h3>
                         <div class=\"etape flexResponsive\">
                             <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
                             <div>
-                                <p class=\"justified\">$etape->description_etape</p>
+                                $desc_etape
                             </div>
                         </div>");
+                        //<p class=\"justified\">$etape->description_etape</p>
                         //<p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
                         //<p><a href=\"$etape->url_etape\">L'étape en détail</a></p>"
-                }
-                echo("<h2>Le programme détaillé</h2>");
-                $i = 0;
-                foreach($elements_etapes as $e)
-                {
-                    if ($e->num_jour_etape != $i)
-                    {
-                        $i = $e->num_jour_etape;
-                        echo("<h3>Jour $i</h3>");
-                    }
-                    echo("<h4>$e->nom_partenaire</h4><h5>$e->heure_rdv</h5><p>$e->desc_elmt_etape</p>");
                 }
             ?>
             </section>
@@ -184,15 +188,15 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                         $hidden = "hidden"; 
                     $i++;
                     $htmlAvis = "
-                        <div class=\"avis\" $hidden>
-                            <div class=\"avisHeader\">
-                                <div class=\"ratingContainer\">".
+                        <div class='avis' $hidden>
+                            <div class='avisHeader'>
+                                <div class='ratingContainer'>".
                                     buildRatingDots($a->note_avis)
                                 ."</div>
                                 <h3>$a->libelle_avis</h3> 
                             </div>
-                            <p class=\"avisText justified\">$a->texte_avis</p>
-                            <p class=\"avisSignature\">$a->nom_client $a->prenom_client $a->date_avis</p>
+                            <p class='avisText justified'>$a->texte_avis</p>
+                            <p class='avisSignature'>$a->nom_client $a->prenom_client $a->date_avis</p>
                         </div>
                             ";
                     echo($htmlAvis);
