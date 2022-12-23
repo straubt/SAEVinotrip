@@ -108,13 +108,12 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                     {
                         if ($e->num_jour_etape == $etape->num_jour_etape)
                         {
-                            $desc_etape .= "<h4>$e->heure_rdv</h4>";
                             if ($e->is_restaurant)
-                                $desc_etape .= "<h5>REPAS</h5><p>Dégustez un délicieux repas cuisiné par notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
+                                $desc_etape .= "<h4>REPAS</h4><h5>$e->heure_rdv</h5><p>Dégustez un délicieux repas cuisiné par notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
                             else if ($e->is_cave)
-                                $desc_etape .= "<h5>CAVE/DOMAINE</h5><p>Découvrez les merveilleux vins de notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
+                                $desc_etape .= "<h4>CAVE/DOMAINE</h4><h5>$e->heure_rdv</h5><p>Découvrez les merveilleux vins de notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
                             else if ($e->is_hotel)
-                                $desc_etape .= "<h5>HEBERGEMENT</h5><p>Laissez vous emporter dans les bras de Morphée chez notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
+                                $desc_etape .= "<h4>HEBERGEMENT</h4><h5>$e->heure_rdv</h5><p>Laissez vous emporter dans les bras de Morphée chez notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
                         }
                     }
                     echo("
