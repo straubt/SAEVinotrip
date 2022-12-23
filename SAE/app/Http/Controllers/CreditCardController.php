@@ -28,7 +28,7 @@ class CreditCardController extends Controller
               ->delete();
 
     // Redirect the user back to the credit card list
-    return back()->with('success', 'Votre carte a été supprimé');
+    return redirect('/paiement')->with('success', 'Votre carte a été supprimé');
 }
 
 }

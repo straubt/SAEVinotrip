@@ -71,7 +71,7 @@
 
 			<!---connection temporaire---->
 			<br>
-			<a class="temp" href="/welcomeChef">connection temporaire</a>
+			<a class="temp" href="/welcomeChef">connexion temporaire</a>
 
 
 			<!---autre connection----->

@@ -26,12 +26,10 @@ $idRequest = $_SERVER['QUERY_STRING'];
 
 $PORT_SERVEUR_IMG = '8232';
 
-$PORT_SERVEUR_IMG = '8232';
-
 $tripTitle = $sejour[$id]['titre_sejour'];
 $tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
 $tripNbDay = $sejour[$id]['duree_sejour'];
-$tripPrice = $sejour[$id]['prix_min_individuel_sejour']."0";
+$tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
 $tripDescription = $sejour[$id]['description_sejour'];
 $tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejour[$id]['photo_sejour'];
 $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
@@ -80,7 +78,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                 <img src="<?php echo e($tripPicture); ?>" alt="photo séjour">
                 <div id="sejourHeaderText">
                     <h1><?php echo e($tripTitle); ?></h1>
-                    <p><?php echo e($tripPrice); ?>€ minimum par psersonne (peut varier en fonction des options choisies)</p>
+                    <p><?php echo e($tripPrice); ?>€ minimum par personne (peut varier en fonction des options choisies)</p>
                     <p><?php echo e($tripNbDay); ?> jour(s) | <?php echo e($tripNbDay-1); ?> nuit(s)</p>
                     <p class="justified"><?php echo e($tripDescription); ?></p>
                     <p><?php echo e($themeLibelle); ?></p>

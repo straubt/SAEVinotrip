@@ -50,7 +50,7 @@
 
     <div class="banner">
         <video autoplay="" muted="" loop="">
-            <source id="vid" src=".. /video/raisins.mp4" class ="grape" type="">
+            <source id="vid" src="../video/raisins.mp4" class ="grape" type="">
         </video>
         <p class="descriptionSite" data-aos="fade-up"> Bienvenue dans vinotrip ! Votre site spécialisée dans l'oenotourisme. Nous vous proposons les meilleurs séjours adpatés à vos envies</p>
 
