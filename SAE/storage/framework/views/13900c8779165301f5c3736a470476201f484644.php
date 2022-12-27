@@ -51,6 +51,11 @@ $PORT_SERVEUR_IMG = '8232';
 
     <h1>Votre panier</h1>
     <a href="/videpanier"><button class="btn1">Tout supprimer</button></a>
+    <div>
+  <h3>J'ai un code</h3>
+  <input type="text" id="codeInput">
+  <button type="button" onclick="validateCode()">Valider</button>
+  </div>
 
     <?php if(Cart::content()->isNotEmpty()): ?>
   <div class="cart">
@@ -67,7 +72,8 @@ $PORT_SERVEUR_IMG = '8232';
           <div class="cart-item-details">
             <h4><?php echo e($item->model->titre_sejour); ?></h4>
             <p><?php echo e($item->model->prix_min_individuel_sejour); ?> €</p>
-
+            <p>Du <?php echo e($item->options->dateArrive); ?></p>
+            <p>au <?php echo e($item->options->dateDepart); ?></p>
             <!-- Ajouter un sélecteur pour choisir le nombre de personnes -->
             <select class="cart-item-quantity" id="adults" data-item-id="<?php echo e($item->model->id_sejour); ?>" data-price="<?php echo e($item->model->prix_min_individuel_sejour); ?>">
               <option value="1">1 Adulte</option>
@@ -194,6 +200,19 @@ submitButton.addEventListener('click', (event) => {
   
   // Mettre à jour le prix total lorsque la page est chargée pour la première fois
   updateTotalPrice();
+
+  function validateCode() {
+  // Récupérer la valeur saisie dans le champ de saisie
+  var code = document.getElementById('codeInput').value;
+
+  // Vérifier si le code est correct
+  if (code == '123456') {
+    alert('Code correct !');
+  } else {
+    alert('Code incorrect !');
+  }
+}
+
 </script>
 
     

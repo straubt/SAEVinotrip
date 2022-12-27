@@ -88,7 +88,7 @@ class PaiementController extends Controller
 
     public function payerAvecCarte(Request $request)
     {
-        return redirect('/') ->with('success',"Merci pour votre achat !");
+        return redirect('/') ->with('success',"Merci pour votre achat ! Un code vous a été envoyé !");
     }
 
 }

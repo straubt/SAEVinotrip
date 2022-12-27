@@ -86,11 +86,15 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                         <div>Offrir</div>
                         <img src="/images/icons/offer.svg"></img>
                     </button>
-                    <form action="<?php echo e(route('cart.store')); ?>" method="post">
+                    <form action="<?php echo e(route('cart.store')); ?>" method="post" onsubmit="return validateDates()">
                         <?php echo csrf_field(); ?>
                         <input type="hidden" name="id" value="<?php echo e($idRequest); ?>">
                         <input type="hidden" name="title" value="<?php echo e($tripTitle); ?>">
                         <input type="hidden" name="price" value="<?php echo e($tripPrice); ?>">
+                        <label for="startDate">Date d'arrivée :</label><br>
+                        <input type="date" id="startDate" name="startDate" required><br>
+                        <label for="endDate">Date de départ :</label><br>
+                        <input type="date" id="endDate" name="endDate" required><br>
                     <button type="submit">
                         <div>Ajouter au<br> panier</div>
                         <img src="/images/icons/shoppingCart.svg"></img>
@@ -102,19 +106,19 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
             <section id="sejourProgramme">
                 <h2>Votre séjour en bref</h2>
             <?php
-                foreach($etapes as $etape)
-                {
-                    echo("
-                        <h3>$etape->titre_etape</h3>
-                        <div class=\"etape flexResponsive\">
-                            <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
-                            <div>
-                                <p class=\"justified\">$etape->description_etape</p>
-                            </div>
-                        </div>");
-                        //<p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
-                        //<p><a href=\"$etape->url_etape\">L'étape en détail</a></p>"
-                }
+                // foreach($etapes as $etape)
+                // {
+                //     echo("
+                //         <h3>$etape->titre_etape</h3>
+                //         <div class=\"etape flexResponsive\">
+                //             <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
+                //             <div>
+                //                 <p class=\"justified\">$etape->description_etape</p>
+                //             </div>
+                //         </div>");
+                //         //<p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
+                //         //<p><a href=\"$etape->url_etape\">L'étape en détail</a></p>"
+                // }
                 echo("<h2>Le programme détaillé</h2>");
                 $i = 0;
                 // foreach($elements_etapes as $e)
@@ -205,4 +209,42 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
             </section>
         </main>
     </body>
+    <script>
+function validateDates() {
+  // Récupérer les valeurs des champs de saisie de date
+  var startDate = document.getElementById('startDate').value;
+  var endDate = document.getElementById('endDate').value;
+
+  // Convertir les valeurs en objets Date
+  var startDateObject = new Date(startDate);
+  var endDateObject = new Date(endDate);
+
+  // Récupérer la date actuelle
+  var currentDate = new Date();
+
+  // Vérifier que la date de départ est supérieure à la date actuelle
+  if (startDateObject < currentDate) {
+    alert("La date de départ doit être supérieure à la date actuelle !");
+    return false;
+  }
+
+  // Vérifier que la date d'arrivée est supérieure à la date actuelle
+  if (endDateObject < currentDate) {
+    alert("La date d'arrivée doit être supérieure à la date actuelle !");
+    return false;
+  }
+
+  // Vérifier que la date de départ est inférieure à la date d'arrivée
+  if (startDateObject > endDateObject) {
+    alert("La date de départ doit être inférieure à la date d'arrivée !");
+    return false;
+  }
+
+  // Si les dates sont valides, soumettre le formulaire
+  return true;
+}
+
+
+
+    </script>
 </html><?php /**PATH /home/poulje/SAEVinotrip/SAE/resources/views/sejour.blade.php ENDPATH**/ ?>

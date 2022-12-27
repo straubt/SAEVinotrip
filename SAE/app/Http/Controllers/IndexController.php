@@ -45,11 +45,11 @@ class IndexController extends Controller
             ->select(DB::raw('ROUND(AVG(CAST(note_avis as numeric)), 2) AS "average_note"'), DB::raw('COUNT(*) AS "count_avis"'))
             ->get();
 
-        $etapes = DB::table('etape')
-            ->join('sejour', 'sejour.id_sejour', '=', 'etape.id_sejour')
-            ->where('etape.id_sejour', $id + 1)
-            ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
-            ->get();
+        // $etapes = DB::table('etape')
+        //     ->join('sejour', 'sejour.id_sejour', '=', 'etape.id_sejour')
+        //     ->where('etape.id_sejour', $id + 1)
+        //     ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
+        //     ->get();
 
 
         // $elements_etapes = DB::table('contient_element_etape')
@@ -60,8 +60,8 @@ class IndexController extends Controller
         //     ->select('num_jour_etape', 'nom_partenaire', 'heure_rdv', 'desc_elmt_etape')
         //     ->get();
         
-        // , 'elements_etapes' => $elements_etapes
-        return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, "sejour" => Sejour::all(), "theme" => Theme::all()]);
+        // , 'elements_etapes' => $elements_etapes   , "etapes" => $etapes
+        return view("sejour", ["id" => $id, 'avisData' => $avisData, 'avis' => $avis, "sejour" => Sejour::all(), "theme" => Theme::all()]);
 
     }
 

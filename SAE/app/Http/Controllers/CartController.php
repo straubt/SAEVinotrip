@@ -39,9 +39,12 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $sejour = Sejour::find($request->primaryKey);
-
-        Cart::add($request->id,$request->title,1,$request->price)
-            ->associate('App\Models\Sejour');
+        $dateArrive = $request->startDate;
+        $dateDepart = $request->endDate;
+        Cart::add($request->id, $request->title, 1, $request->price, [
+            'dateArrive' => $dateArrive,
+            'dateDepart' => $dateDepart
+        ])->associate('App\Models\Sejour');
 
         $duplicata = Cart::search(function ($cartItem, $rowId) use ($request){
             return $cartItem->id === $request->primaryKey;
