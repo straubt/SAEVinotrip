@@ -139,7 +139,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                     @guest<button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button>@endguest
                 </div>
 
-                <form id="formLeaveReview" action="sejour" method="post" hidden>
+                <form id="formLeaveReview" action="postAvis" method="post" hidden>
                     @csrf
                     <h3>Mon avis</h3>
 

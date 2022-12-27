@@ -48,7 +48,7 @@ class IndexController extends Controller
         $etapes = DB::table('etape')
             ->join('sejour', 'sejour.id_sejour', '=', 'etape.id_sejour')
             ->where('etape.id_sejour', $id + 1)
-            ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
+            ->select('titre_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
             ->get();
 
 
@@ -229,16 +229,31 @@ class IndexController extends Controller
     }
 
     public function postAvis(){
-        // j'ai bidouillé la table mais il faut RAJOUTER IDENTITY SUR TOUS LES ID
-        // alter table avis alter id_avis add generated always as identity;
-        $idsejour = $_POST["idSejour"];
-        $userId = Auth::id();
-        $date_avis = date("Y-m-d");
-        $note_avis = $_POST["noteAvis"];
-        $libelle_avis = $_POST["libelleAvis"];;
-        $texte_avis = $_POST["texteAvis"];
-        DB::insert("INSERT INTO avis(id_sejour, id_client, date_avis, note_avis, libelle_avis, texte_avis) VALUES ($idsejour, $userId, '$date_avis', $note_avis, '$libelle_avis', '$texte_avis');");
-        return redirect()->to("/sejour?".$idsejour);
+
+        $avis = new Avis;
+        $avis->id_sejour = $_POST["idSejour"];
+        $avis->id_client = Auth::id();
+        $avis->date_avis = date("Y-m-d");
+        $avis->note_avis = $_POST["noteAvis"];
+        $avis->libelle_avis = $_POST["libelleAvis"];
+        $avis->texte_avis = $_POST["texteAvis"];
+        var_dump("appel");
+        $avis->save();
+        /*
+        //$libelle_avis = str_replace("'", "''", $libelle_avis);
+        //$texte_avis = str_replace("'", "''", $texte_avis);
+        DB::table('avis')->insertGetId([
+            'id_sejour' => $idsejour,
+            'id_client' => $userId,
+            'date_avis' => "$date_avis",
+            'note_avis' => $note_avis,
+            'libelle_avis' => "$libelle_avis",
+            'texte_avis' => "$texte_avis"
+        ]);*/
+
+        //DB::insert("INSERT INTO avis(id_sejour, id_client, date_avis, note_avis, libelle_avis, texte_avis) VALUES ($idsejour, $userId, '$date_avis', $note_avis, '$libelle_avis', '$texte_avis');");
+        //return redirect()->to("/sejour?".$idsejour);
+        return redirect()->route('unSejour', [$_POST["idSejour"]]);
     }
     // public function destination(){
     //     return view("sejour", ["destination" => Destination::all()]);

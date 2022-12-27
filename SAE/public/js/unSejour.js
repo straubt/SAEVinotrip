@@ -5,6 +5,9 @@ function ajaxSuccess(){
 /* https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#envoyer_des_formulaires_et_uploader_des_fichiers */
 
 function AJAXSubmit(oFormElement){
+
+    console.log("APPELL")
+
     if (!oFormElement.action) { return; }
     var oReq = new XMLHttpRequest();
     oReq.onload = ajaxSuccess;
