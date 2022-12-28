@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sejour</title>
+    <title>Sejours</title>
     <link rel="stylesheet" href="css/styleGeneral.css">
     <link rel="stylesheet" href="css/styleLesSejours.css">
     <link rel="stylesheet" href="css/over_image.css">

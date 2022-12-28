@@ -24,11 +24,11 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class IndexController extends Controller
 {
     public function index(){ //return homepage view
-        return view("welcome", ["sejour" => Sejour::all()], ["client" => Auth::user()]);
+        return view("welcome", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get()], ["client" => Auth::user()]);
     }
 
     public function sejour(){ //return all sejours iview
-        return view("lessejours", ["sejour" => Sejour::all(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
+        return view("lessejours", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
     }
 
     public function unSejour(){ //return clicked sejour view
@@ -61,7 +61,7 @@ class IndexController extends Controller
         //     ->get();
         
         // , 'elements_etapes' => $elements_etapes   , "etapes" => $etapes
-        return view("sejour", ["id" => $id, 'avisData' => $avisData, 'avis' => $avis, "sejour" => Sejour::all(), "theme" => Theme::all()]);
+        return view("sejour", ["id" => $id, 'avisData' => $avisData, 'avis' => $avis, "sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "theme" => Theme::all()]);
 
     }
 
@@ -203,7 +203,7 @@ class IndexController extends Controller
     }
 
     public function welcomeAdmin(){// page welcome compte admin
-        return view("welcomeAdmin");
+        return view("welcomeAdmin",["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
     }
 
     public function welcomeChef(){// page welcome compte Chef
@@ -222,11 +222,41 @@ class IndexController extends Controller
         DB::insert("INSERT INTO avis(id_sejour, id_client, date_avis, note_avis, libelle_avis, texte_avis) VALUES ($idsejour, $userId, '$date_avis', $note_avis, '$libelle_avis', '$texte_avis');");
         return redirect()->to("/sejour?".$idsejour);
     }
-    // public function destination(){
-    //     return view("sejour", ["destination" => Destination::all()]);
-    // }
-   
 
+   
+    public function unSejourCommercial(){ //return clicked sejour view
+        $id = $_SERVER["QUERY_STRING"] - 1;
+        $avis = DB::table('avis')
+            ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
+            ->join('client', 'client.id_client', '=', 'avis.id_client')
+            ->where('avis.id_sejour', $id + 1)
+            ->select('nom_client', 'prenom_client', 'note_avis', 'libelle_avis', 'texte_avis', 'date_avis')
+            ->get();
+
+        $avisData = DB::table('avis')
+            ->where('avis.id_sejour', $id + 1)
+            ->select(DB::raw('ROUND(AVG(CAST(note_avis as numeric)), 2) AS "average_note"'), DB::raw('COUNT(*) AS "count_avis"'))
+            ->get();
+
+        // $etapes = DB::table('etape')
+        //     ->join('sejour', 'sejour.id_sejour', '=', 'etape.id_sejour')
+        //     ->where('etape.id_sejour', $id + 1)
+        //     ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
+        //     ->get();
+
+
+        // $elements_etapes = DB::table('contient_element_etape')
+        //     ->join('etape', 'etape.id_etape', '=', 'contient_element_etape.id_etape')
+        //     ->join('element_etape', 'element_etape.id_element_etape', '=', 'contient_element_etape.id_element_etape')
+        //     ->join('partenaire', 'partenaire.id_partenaire', '=', 'element_etape.id_partenaire')
+        //     ->where('etape.id_sejour', $id + 1)
+        //     ->select('num_jour_etape', 'nom_partenaire', 'heure_rdv', 'desc_elmt_etape')
+        //     ->get();
+        
+        // , 'elements_etapes' => $elements_etapes   , "etapes" => $etapes
+        return view("sejourCommercial", ["id" => $id, 'avisData' => $avisData, 'avis' => $avis, "sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "theme" => Theme::all()]);
+
+    }
 
 
 
