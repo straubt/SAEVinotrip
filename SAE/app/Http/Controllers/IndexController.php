@@ -33,6 +33,9 @@ class IndexController extends Controller
 
     public function unSejour(){ //return clicked sejour view
         $id = $_SERVER["QUERY_STRING"] - 1;
+
+        $id_destination = DB::table('sejour')->where('sejour.id_sejour', '=', $id)->select('id_destination')->get()[0]->id_destination;
+
         $avis = DB::table('avis')
             ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
             ->join('client', 'client.id_client', '=', 'avis.id_client')
@@ -59,8 +62,10 @@ class IndexController extends Controller
             ->where('etape.id_sejour', $id + 1)
             ->select('num_jour_etape', 'partenaire.id_partenaire', 'nom_partenaire', 'heure_rdv', 'is_restaurant', 'is_cave', 'is_hotel')
             ->get();
+
+        $sejours_same_destination = DB::table('sejour')->where('sejour.id_destination', '=', $id_destination)->select('*')->get();
         
-        return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, "sejour" => Sejour::all(), "theme" => Theme::all()]);
+        return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, 'sejours_same_destination' => $sejours_same_destination, "sejour" => Sejour::all(), "theme" => Theme::all()]);
 
     }
 

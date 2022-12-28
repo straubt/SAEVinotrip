@@ -21,6 +21,7 @@ function buildRatingDots($note){
     return $html;
 }
 
+
 $id = $_SERVER['QUERY_STRING']-1;
 $idRequest = $_SERVER['QUERY_STRING'];
 
@@ -205,6 +206,40 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                     echo("<button id=\"btnAvisHiding\" onclick=\"unHideAvis()\">Voir plus d'avis</button>");
                 ?>
             </section>
+
+            <section>
+                <h2>Les séjours en lien :</h2>
+                <div class="slider-wrapper">
+                    <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
+                    
+                    <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
+                    
+                    <ul class="slides-container" id="slides-container">
+                        <?php
+                        foreach ($sejours_same_destination as $s)
+                        {
+                            echo("<li class='slide' style=\"background-image:url('http://51.83.36.122:$PORT_SERVEUR_IMG/sejours/$s->photo_sejour')\"><a href='/sejour?$s->id_sejour'><div><h2>$s->titre_sejour</h2></div></a></li>");
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </section>
         </main>
     </body>
+    <script>
+        const slidesContainer = document.getElementById("slides-container");
+        const slide = document.querySelector(".slide");
+        const prevButton = document.getElementById("slide-arrow-prev");
+        const nextButton = document.getElementById("slide-arrow-next");
+
+        nextButton.addEventListener("click", () => {
+        const slideWidth = slide.clientWidth;
+        slidesContainer.scrollLeft += slideWidth;
+        });
+
+        prevButton.addEventListener("click", () => {
+        const slideWidth = slide.clientWidth;
+        slidesContainer.scrollLeft -= slideWidth;
+        });
+    </script>
 </html>
