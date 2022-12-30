@@ -1,6 +1,4 @@
 <?php
-use Illuminate\Support\Facades\DB;  // utile pour effectuer des requêtes SQL
-
 // returns HTML structure for a 5 dot rating system
 function buildRatingDots($note){
     if ($note < 1 || $note > 5)
@@ -22,18 +20,18 @@ function buildRatingDots($note){
 }
 
 
-$id = $_SERVER['QUERY_STRING']-1;
+$id = $_SERVER['QUERY_STRING'];
 $idRequest = $_SERVER['QUERY_STRING'];
 
 $PORT_SERVEUR_IMG = '8232';
 
-$tripTitle = $sejour[$id]['titre_sejour'];
-$tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
-$tripNbDay = $sejour[$id]['duree_sejour'];
-$tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
-$tripDescription = $sejour[$id]['description_sejour'];
-$tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejour[$id]['photo_sejour'];
-$themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
+$tripTitle = $sejour->titre_sejour;
+$tripPrice = $sejour->prix_min_individuel_sejour;
+$tripNbDay = $sejour->duree_sejour;
+$tripPrice = $sejour->prix_min_individuel_sejour;
+$tripDescription = $sejour->description_sejour;
+$tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejour->photo_sejour;
+$themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +46,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="icon" type="image/x-icon" href="images/images.jpg">
+        <script src="js/cookie.js"></script>
         <script src="js/unSejour.js"></script>
     </head>
     <body>
@@ -88,7 +87,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                     </button>
                     <form action="{{ route('cart.store') }}" method="post">
                         @csrf
-                        <input type="hidden" name="id" value="{{$idRequest}}">
+                        <input id="hidden-input-id" type="hidden" name="id" value="{{$idRequest}}">
                         <input type="hidden" name="title" value="{{$tripTitle}}">
                         <input type="hidden" name="price" value="{{$tripPrice}}">
                     <button type="submit">
@@ -223,23 +222,33 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                         ?>
                     </ul>
                 </div>
+                <script>
+                    const slidesContainer = document.getElementById("slides-container");
+                    const slide = document.querySelector(".slide");
+                    const prevButton = document.getElementById("slide-arrow-prev");
+                    const nextButton = document.getElementById("slide-arrow-next");
+
+                    nextButton.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;
+                    slidesContainer.scrollLeft += slideWidth;
+                    });
+
+                    prevButton.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;
+                    slidesContainer.scrollLeft -= slideWidth;
+                    });
+                </script>
             </section>
+
+            <section id='section-sejoursConsultes' hidden>
+                <h2>Les séjours que vous avez déjà consulté :</h2>
+                <div class="slider-wrapper">
+                    <button class="slide-arrow" id="slide-arrow-prev-sejoursConsultes">&#8249;</button>    
+                    <button class="slide-arrow" id="slide-arrow-next-sejoursConsultes">&#8250;</button>  
+                    <ul class="slides-container" id="slides-container-sejoursConsultes"></ul>
+                </div>
+            </section>
+            
         </main>
     </body>
-    <script>
-        const slidesContainer = document.getElementById("slides-container");
-        const slide = document.querySelector(".slide");
-        const prevButton = document.getElementById("slide-arrow-prev");
-        const nextButton = document.getElementById("slide-arrow-next");
-
-        nextButton.addEventListener("click", () => {
-        const slideWidth = slide.clientWidth;
-        slidesContainer.scrollLeft += slideWidth;
-        });
-
-        prevButton.addEventListener("click", () => {
-        const slideWidth = slide.clientWidth;
-        slidesContainer.scrollLeft -= slideWidth;
-        });
-    </script>
 </html>
