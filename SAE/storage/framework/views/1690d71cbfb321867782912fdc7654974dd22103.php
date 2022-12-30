@@ -104,32 +104,21 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
             </section>
 
             <section id="sejourProgramme">
-                <h2>Votre séjour en bref</h2>
+                <h2>Le programme de votre séjour</h2>
             <?php
-                // foreach($etapes as $etape)
-                // {
-                //     echo("
-                //         <h3>$etape->titre_etape</h3>
-                //         <div class=\"etape flexResponsive\">
-                //             <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
-                //             <div>
-                //                 <p class=\"justified\">$etape->description_etape</p>
-                //             </div>
-                //         </div>");
-                //         //<p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
-                //         //<p><a href=\"$etape->url_etape\">L'étape en détail</a></p>"
-                // }
-                echo("<h2>Le programme détaillé</h2>");
-                $i = 0;
-                // foreach($elements_etapes as $e)
-                // {
-                //     if ($e->num_jour_etape != $i)
-                //     {
-                //         $i = $e->num_jour_etape;
-                //         echo("<h3>Jour $i</h3>");
-                //     }
-                //     echo("<h4>$e->nom_partenaire</h4><h5>$e->heure_rdv</h5><p>$e->desc_elmt_etape</p>");
-                // }
+                foreach($etapes as $etape)
+                {
+                    echo("
+                        <h3>$etape->titre_etape</h3>
+                        <div class=\"etape flexResponsive\">
+                            <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
+                            <div>
+                                <p class=\"justified\">$etape->description_etape</p>
+                                <p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
+                                <p><a href=\"$etape->url_etape\">L'étape en détail</a></p>
+                            </div>
+                        </div>");
+                }
             ?>
             </section>
             
@@ -179,7 +168,6 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                         Nombre d'avis : <?php echo($avisData[0]->count_avis);?>
                     </div>
                 </div>
-
                 <?php
                 $i = 0;
                 $hidden = "";
