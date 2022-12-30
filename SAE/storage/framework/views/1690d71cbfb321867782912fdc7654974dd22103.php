@@ -104,7 +104,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
             </section>
 
             <section id="sejourProgramme">
-                <h2>Votre séjour en bref</h2>
+                <h2>Le Programme</h2>
             <?php
                 foreach($etapes as $etape)
                 {
@@ -126,22 +126,12 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         <div class=\"etape flexResponsive\">
                             <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
                             <div>
-                                <p class=\"justified\">$etape->description_etape</p>
+                                $desc_etape
                             </div>
                         </div>");
+                        //<p class=\"justified\">$etape->description_etape</p>
                         //<p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
                         //<p><a href=\"$etape->url_etape\">L'étape en détail</a></p>"
-                }
-                echo("<h2>Le programme détaillé</h2>");
-                $i = 0;
-                foreach($elements_etapes as $e)
-                {
-                    if ($e->num_jour_etape != $i)
-                    {
-                        $i = $e->num_jour_etape;
-                        echo("<h3>Jour $i</h3>");
-                    }
-                    echo("<h4>$e->nom_partenaire</h4><h5>$e->heure_rdv</h5><p>$e->desc_elmt_etape</p>");
                 }
             ?>
             </section>
