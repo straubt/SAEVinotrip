@@ -20,6 +20,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 Route::get('/nos-sejours', [IndexController::class, "destination"]);
 Route::get('/nos-sejours', [IndexController::class, "categorie_participant"]);
 Route::get('/nos-sejours', [IndexController::class, "sejour"]);
+// un partenaire
+Route::get('/partenaire', [IndexController::class, "partenaire"]);
 //register post get
 Route::get('/register', [IndexController::class, "register"])->name('register');
 Route::post('/register', [IndexController::class, "addClient"])->name('registerPost');
@@ -34,8 +36,8 @@ Route::post('/profile', [IndexController::class, "updateProfile"])->name('update
 //homepage
 Route::get('/', [IndexController::class, "index"]);
 //Voir un sejour
-Route::get('/sejour', [IndexController::class, 'unSejour']);
-Route::post('/sejour', [IndexController::class, 'postAvis'])->name('postAvis');
+Route::get('/sejour', [IndexController::class, 'unSejour'])->name('unSejour');
+Route::post('/postAvis', [IndexController::class, 'postAvis'])->name('postAvis');
 //Route des vins
 Route::get('/route-des-vins', [IndexController::class, 'route_des_vins']);
 //panier routes

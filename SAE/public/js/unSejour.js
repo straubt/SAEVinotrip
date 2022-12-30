@@ -5,6 +5,9 @@ function ajaxSuccess(){
 /* https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#envoyer_des_formulaires_et_uploader_des_fichiers */
 
 function AJAXSubmit(oFormElement){
+
+    console.log("APPELL")
+
     if (!oFormElement.action) { return; }
     var oReq = new XMLHttpRequest();
     oReq.onload = ajaxSuccess;
@@ -91,5 +94,35 @@ function hideAvis(){
     btnAvisHiding.style.right = "0";
 }
 
-window.onload = resize;
+function main()
+{
+    resize();
+
+    let cookie_name = 'vinotrip_visited_sejour';
+    let cookie = getCookie(cookie_name);
+
+    if (!(cookie == ''))
+        document.getElementById("section-sejoursConsultes").hidden = false;
+
+    let id = document.getElementById("hidden-input-id").value;
+
+    if (!(cookie.includes(id)))
+    {
+        if (cookie == '')
+            setCookie(cookie_name, id, 7);
+        else
+            setCookie(cookie_name, cookie + ',' + id, 7);
+    }
+
+    let cookie_array = cookie.split(',');
+    let slides_container = document.getElementById("slides-container-sejoursConsultes");
+
+    cookie_array.forEach(id => {
+        let slide = document.createElement('li');
+
+        slides_container.appendChild(slide);
+    })
+}
+
+window.onload = main;
 window.onresize = resize;

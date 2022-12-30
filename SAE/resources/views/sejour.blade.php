@@ -1,6 +1,4 @@
 <?php
-use Illuminate\Support\Facades\DB;  // utile pour effectuer des requêtes SQL
-
 // returns HTML structure for a 5 dot rating system
 function buildRatingDots($note){
     if ($note < 1 || $note > 5)
@@ -21,18 +19,19 @@ function buildRatingDots($note){
     return $html;
 }
 
-$id = $_SERVER['QUERY_STRING']-1;
+
+$id = $_SERVER['QUERY_STRING'];
 $idRequest = $_SERVER['QUERY_STRING'];
 
 $PORT_SERVEUR_IMG = '8232';
 
-$tripTitle = $sejour[$id]['titre_sejour'];
-$tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
-$tripNbDay = $sejour[$id]['duree_sejour'];
-$tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
-$tripDescription = $sejour[$id]['description_sejour'];
-$tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejour[$id]['photo_sejour'];
-$themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
+$tripTitle = $sejour->titre_sejour;
+$tripPrice = $sejour->prix_min_individuel_sejour;
+$tripNbDay = $sejour->duree_sejour;
+$tripPrice = $sejour->prix_min_individuel_sejour;
+$tripDescription = $sejour->description_sejour;
+$tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejour->photo_sejour;
+$themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +46,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="icon" type="image/x-icon" href="images/images.jpg">
+        <script src="js/cookie.js"></script>
         <script src="js/unSejour.js"></script>
     </head>
     <body>
@@ -87,7 +87,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                     </button>
                     <form action="{{ route('cart.store') }}" method="post" onsubmit="return validateDates()">
                         @csrf
-                        <input type="hidden" name="id" value="{{$idRequest}}">
+                        <input id="hidden-input-id" type="hidden" name="id" value="{{$idRequest}}">
                         <input type="hidden" name="title" value="{{$tripTitle}}">
                         <input type="hidden" name="price" value="{{$tripPrice}}">
                         <label for="startDate">Date d'arrivée :</label><br>
@@ -103,20 +103,44 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
             </section>
 
             <section id="sejourProgramme">
-                <h2>Le programme de votre séjour</h2>
+                <h2>Votre séjour en bref</h2>
             <?php
                 foreach($etapes as $etape)
                 {
+                    $desc_etape = "";
+                    foreach($elements_etapes as $e)
+                    {
+                        if ($e->num_jour_etape == $etape->num_jour_etape)
+                        {
+                            if ($e->is_restaurant)
+                                $desc_etape .= "<h4>REPAS</h4><h5>$e->heure_rdv</h5><p>Dégustez un délicieux repas cuisiné par notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
+                            else if ($e->is_cave)
+                                $desc_etape .= "<h4>CAVE/DOMAINE</h4><h5>$e->heure_rdv</h5><p>Découvrez les merveilleux vins de notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
+                            else if ($e->is_hotel)
+                                $desc_etape .= "<h4>HEBERGEMENT</h4><h5>$e->heure_rdv</h5><p>Laissez vous emporter dans les bras de Morphée chez notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
+                        }
+                    }
                     echo("
                         <h3>$etape->titre_etape</h3>
                         <div class=\"etape flexResponsive\">
                             <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
                             <div>
                                 <p class=\"justified\">$etape->description_etape</p>
-                                <p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
-                                <p><a href=\"$etape->url_etape\">L'étape en détail</a></p>
                             </div>
                         </div>");
+                        //<p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
+                        //<p><a href=\"$etape->url_etape\">L'étape en détail</a></p>"
+                }
+                echo("<h2>Le programme détaillé</h2>");
+                $i = 0;
+                foreach($elements_etapes as $e)
+                {
+                    if ($e->num_jour_etape != $i)
+                    {
+                        $i = $e->num_jour_etape;
+                        echo("<h3>Jour $i</h3>");
+                    }
+                    echo("<h4>$e->nom_partenaire</h4><h5>$e->heure_rdv</h5><p>$e->desc_elmt_etape</p>");
                 }
             ?>
             </section>
@@ -129,7 +153,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                     @guest<button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button>@endguest
                 </div>
 
-                <form id="formLeaveReview" action="sejour" method="post" hidden>
+                <form id="formLeaveReview" action="postAvis" method="post" hidden>
                     @csrf
                     <h3>Mon avis</h3>
 
@@ -176,15 +200,15 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                         $hidden = "hidden"; 
                     $i++;
                     $htmlAvis = "
-                        <div class=\"avis\" $hidden>
-                            <div class=\"avisHeader\">
-                                <div class=\"ratingContainer\">".
+                        <div class='avis' $hidden>
+                            <div class='avisHeader'>
+                                <div class='ratingContainer'>".
                                     buildRatingDots($a->note_avis)
                                 ."</div>
                                 <h3>$a->libelle_avis</h3> 
                             </div>
-                            <p class=\"avisText justified\">$a->texte_avis</p>
-                            <p class=\"avisSignature\">$a->nom_client $a->prenom_client $a->date_avis</p>
+                            <p class='avisText justified'>$a->texte_avis</p>
+                            <p class='avisSignature'>$a->nom_client $a->prenom_client $a->date_avis</p>
                         </div>
                             ";
                     echo($htmlAvis);
@@ -194,6 +218,50 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                     echo("<button id=\"btnAvisHiding\" onclick=\"unHideAvis()\">Voir plus d'avis</button>");
                 ?>
             </section>
+
+            <section>
+                <h2>Les séjours en lien :</h2>
+                <div class="slider-wrapper">
+                    <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
+                    
+                    <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
+                    
+                    <ul class="slides-container" id="slides-container">
+                        <?php
+                        foreach ($sejours_same_destination as $s)
+                        {
+                            echo("<li class='slide' style=\"background-image:url('http://51.83.36.122:$PORT_SERVEUR_IMG/sejours/$s->photo_sejour')\"><a href='/sejour?$s->id_sejour'><div><h2>$s->titre_sejour</h2></div></a></li>");
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <script>
+                    const slidesContainer = document.getElementById("slides-container");
+                    const slide = document.querySelector(".slide");
+                    const prevButton = document.getElementById("slide-arrow-prev");
+                    const nextButton = document.getElementById("slide-arrow-next");
+
+                    nextButton.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;
+                    slidesContainer.scrollLeft += slideWidth;
+                    });
+
+                    prevButton.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;
+                    slidesContainer.scrollLeft -= slideWidth;
+                    });
+                </script>
+            </section>
+
+            <section id='section-sejoursConsultes' hidden>
+                <h2>Les séjours que vous avez déjà consulté :</h2>
+                <div class="slider-wrapper">
+                    <button class="slide-arrow" id="slide-arrow-prev-sejoursConsultes">&#8249;</button>    
+                    <button class="slide-arrow" id="slide-arrow-next-sejoursConsultes">&#8250;</button>  
+                    <ul class="slides-container" id="slides-container-sejoursConsultes"></ul>
+                </div>
+            </section>
+            
         </main>
     </body>
     <script>
