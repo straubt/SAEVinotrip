@@ -1,4 +1,8 @@
 <?php
+use App\Models\Client;
+use App\Models\Commande;
+use Illuminate\Support\Facades\Auth;
+
 // returns HTML structure for a 5 dot rating system
 function buildRatingDots($note){
     if ($note < 1 || $note > 5)
@@ -25,7 +29,7 @@ $idRequest = $_SERVER['QUERY_STRING'];
 
 $PORT_SERVEUR_IMG = '8232';
 
-$tripTitle = $sejour->titre_sejour;
+    $tripTitle = $sejour->titre_sejour;
 $tripPrice = $sejour->prix_min_individuel_sejour;
 $tripNbDay = $sejour->duree_sejour;
 $tripPrice = $sejour->prix_min_individuel_sejour;
@@ -120,6 +124,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                                 $desc_etape .= "<h4>HEBERGEMENT</h4><h5>$e->heure_rdv</h5><p>Laissez vous emporter dans les bras de Morphée chez notre partenaire <a href='partenaire?id_partenaire=$e->id_partenaire'>$e->nom_partenaire</a></p>";
                         }
                     }
+
                     echo("
                         <h3>$etape->titre_etape</h3>
                         <div class=\"etape flexResponsive\">
@@ -149,7 +154,11 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
 
                 <div id="avisHeader">
                     <h2>Les avis</h2>
+                    @if(count($achat_effectue) != 0)
                     @auth<button id="openReviewForm" onclick="unhideFormLeaveReview()">Laissez le vôtre !</button>@endauth
+                    @else
+                    <p>Vous devez avoir participé à ce trip pour poster un avis !</p>
+                    @endif
                     @guest<button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button>@endguest
                 </div>
 

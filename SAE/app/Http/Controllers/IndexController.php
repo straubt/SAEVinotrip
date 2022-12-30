@@ -67,7 +67,13 @@ class IndexController extends Controller
 
         $sejours_same_destination = DB::table('sejour')->where('sejour.id_destination', '=', $id_destination)->select('*')->get();
         
-        return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, 'sejours_same_destination' => $sejours_same_destination, "sejour" => $sejour, "theme" => Theme::all()]);
+        $id_client = Auth::user()->id_client;
+        $achat_effectue = Commande::where('code_etat_commande', '=', 2)
+                            ->where('id_client', '=', $id_client)
+                            ->where('id_sejour', '=', $sejour->id_sejour)
+                            ->get();
+
+        return view("sejour", ["achat_effectue"=>$achat_effectue, "id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, 'sejours_same_destination' => $sejours_same_destination, "sejour" => $sejour, "theme" => Theme::all()]);
 
     }
 
@@ -278,22 +284,6 @@ class IndexController extends Controller
             ->select(DB::raw('ROUND(AVG(CAST(note_avis as numeric)), 2) AS "average_note"'), DB::raw('COUNT(*) AS "count_avis"'))
             ->get();
 
-        // $etapes = DB::table('etape')
-        //     ->join('sejour', 'sejour.id_sejour', '=', 'etape.id_sejour')
-        //     ->where('etape.id_sejour', $id + 1)
-        //     ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
-        //     ->get();
-
-
-        // $elements_etapes = DB::table('contient_element_etape')
-        //     ->join('etape', 'etape.id_etape', '=', 'contient_element_etape.id_etape')
-        //     ->join('element_etape', 'element_etape.id_element_etape', '=', 'contient_element_etape.id_element_etape')
-        //     ->join('partenaire', 'partenaire.id_partenaire', '=', 'element_etape.id_partenaire')
-        //     ->where('etape.id_sejour', $id + 1)
-        //     ->select('num_jour_etape', 'nom_partenaire', 'heure_rdv', 'desc_elmt_etape')
-        //     ->get();
-        
-        // , 'elements_etapes' => $elements_etapes   , "etapes" => $etapes
         return view("sejourCommercial", ["id" => $id, 'avisData' => $avisData, 'avis' => $avis, "sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "theme" => Theme::all()]);
 
     }

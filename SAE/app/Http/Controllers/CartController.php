@@ -159,7 +159,12 @@ class CartController extends Controller
             }
             $commande->save();
         }
-     }
+        $id_client = Auth::user()->id_client;
+        $commandes = Commande::where('code_etat_commande', '=', 1)
+                            ->where('id_client', '=', $id_client)
+                            ->get();
+        return view("mesCommandes", ["commande" => $commandes]);
+            }
 
     /**
      * Remove the specified resource from storage.

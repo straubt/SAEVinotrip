@@ -91,7 +91,7 @@
     </li>
     @endforeach
     @if(count($commande) == 0)
-    <p>Vous n'avez aucune commande en cours...</p>
+    <p>En attente de la confirmation par le responsable...</p>
     @endif
 </ul>
 </body>
