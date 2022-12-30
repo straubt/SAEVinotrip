@@ -5,7 +5,7 @@
 <head>
     <link rel="stylesheet" href="css/stylePay.css">
     <title>Paiement sécurisé</title>
-    <h2>Total : {{$price}} €</h2>
+    <h2>Total : {{$commande->prix_total_commande}} €</h2>
 </head>
 <body>
 @if (session('success'))
@@ -28,6 +28,7 @@
     <input type="hidden" id="date_expiration_cb" name="date_expiration_cb" value="{{ $carte->date_expiration_cb }}"><br>
     <input type="hidden" id="crypto_visuel_cb" name="crypto_visuel_cb" value="{{ $carte->crypto_visuel_cb }}"><br>
     <input type="hidden" id="nom_banque_cb" name="nom_banque_cb" value="{{ $carte->nom_banque_cb }}"><br>
+    <input type="hidden" name="id_commande" value="{{$commande->id_commande}}">
     <input type="submit" value="Payer avec cette carte">
     </form>
     <form action="{{ route('delete-card') }}" method="POST" class="credit-card-form">
@@ -61,7 +62,8 @@
         <input type="text" id="nom_banque_cb" name="nom_banque_cb" value="" required><br>
         <label for="enregistrer">Enregistrer les données de la carte de crédit ?</label><br>
         <input type="checkbox" id="enregistrer" name="enregistrer" value="1"><br><br>
-        <input type="submit" value="Payer {{$price}} €" id="payer">
+        <input type="hidden" name="id_commande" value="{{$commande->id_commande}}">
+        <input type="submit" value="Payer {{$commande->prix_total_commande}} €" id="payer">
         <label for="payer"></label>
     </form>
     </div>

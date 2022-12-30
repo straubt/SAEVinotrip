@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\Client;
+use App\Models\Commande;
 use App\Models\Cb;
 
 
@@ -83,11 +84,20 @@ class PaiementController extends Controller
          // Enregistrer les données de la carte de crédit dans la base de données
          $cb->save();
         }   
+        $id_commande = $request->input('id_commande');
+        $commande = Commande::find($id_commande);
+        $commande->code_etat_commande = 2;
+        $commande->save();
+
          return redirect('/') ->with('success',"Merci pour votre achat !");
     }
 
     public function payerAvecCarte(Request $request)
     {
+        $id_commande = $request->input('id_commande');
+        $commande = Commande::find($id_commande);
+        $commande->code_etat_commande = 2;
+        $commande->save();
         return redirect('/') ->with('success',"Merci pour votre achat ! Un code vous a été envoyé !");
     }
 

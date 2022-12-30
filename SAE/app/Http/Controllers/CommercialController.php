@@ -33,4 +33,19 @@ class CommercialController extends Controller
       // Redirection vers la page de confirmation de modification du prix
       return back()->with('success', 'Prix modifié avec succès !');
     }
+
+    public function confirmer(Request $request)
+    {
+        $id_commande = $request->input('id_commande');
+    
+        // Récupérez l'instance de la commande à mettre à jour
+        $commande = Commande::find($id_commande);
+    
+        // Modifiez le champ code_etat_commande de la commande
+        $commande->code_etat_commande = 1;
+    
+        // Enregistrez les modifications dans la base de données
+        $commande->save();
+    }
+    
 }

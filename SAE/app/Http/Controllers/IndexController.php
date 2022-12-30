@@ -13,6 +13,7 @@ use App\Models\Route_des_vins;
 use App\Models\Panier;
 use App\Models\Avis;
 use App\Models\Client;
+use App\Models\Commande;
 use App\Models\Cb;
 use App\Models\Sejour_To_Cat_Participant;
 use App\Models\Client_Possede_Adresse;
@@ -258,6 +259,29 @@ class IndexController extends Controller
 
     }
 
+    public function commandesEnAttente(){
+        return view("commandesEnAttente", ["commande" => Commande::where('code_etat_commande', '=', 0)->get()]);
+    }
+
+    public function mesCommandes(){
+        $id_client = Auth::user()->id_client;
+        $commandes = Commande::where('code_etat_commande', '=', 1)
+                            ->where('id_client', '=', $id_client)
+                            ->get();
+        return view("mesCommandes", ["commande" => $commandes]);
+    }
+    
+    public function historiqueCommandes(){
+        $id_client = Auth::user()->id_client;
+        $commandes = Commande::where('code_etat_commande', '=', 2)
+                            ->where('id_client', '=', $id_client)
+                            ->get();
+        return view("historiqueCommandes", ["commande" => $commandes]);
+    }
+
+    public function selectionDatesCadeau(){
+        return view("selectionDatesCadeau");
+    }
 
 
 

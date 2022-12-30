@@ -50,11 +50,13 @@ $PORT_SERVEUR_IMG = '8232';
     </header>
 
     <h1>Votre panier</h1>
-    <a href="/videpanier"><button class="btn1">Tout supprimer</button></a>
-    <div>
-  <h3>J'ai un code</h3>
+    <div style="float: right;">
+  <h3 >J'ai un code</h3>
   <input type="text" id="codeInput">
   <button type="button" onclick="validateCode()">Valider</button>
+  </div>
+  <div>
+  <a href="/mesCommandes" ><button type="button">Commandes en cours</button></a>
   </div>
 
     <?php if(Cart::content()->isNotEmpty()): ?>
@@ -116,10 +118,12 @@ $PORT_SERVEUR_IMG = '8232';
               <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
               <input type="hidden" name="price" value="">
               <input type="hidden" name="tabCommande" value="">
+              <input type="hidden" name="date" value="">
               <button id="submit-button">Valider mon panier</button>
             </form>
             </div>
             </div>
+            <a href="/videpanier"><button class="btn1">Tout supprimer</button></a>
 
     <?php else: ?>
     <p>Votre panier est vide.</p>
@@ -182,14 +186,15 @@ submitButton.addEventListener('click', (event) => {
     const childrenInput = document.querySelector('#children[data-item-id="' + sejour.id + '"]').value * 2;
     const nightsInput = document.querySelector('#nights[data-item-id="' + sejour.id + '"]').value;
     const sejourPrice = (sejour.price * adultsInput) + (sejour.price * childrenInput * 0.5) + (sejour.price * nightsInput);
- 
+    const date = sejour.options .dateArrive;
     // Ajout des données de quantité pour chaque séjour à la variable "tabCommande"
     tabCommande.push({
       id: sejour.model.id_sejour,
       adults: adultsInput,
       children: childrenInput,
       nights: nightsInput,
-      priceTrip: sejourPrice
+      priceTrip: sejourPrice,
+      date: date
     });
   });
     // Mise à jour de la valeur du champ de formulaire "tabCommande" avec les données de chaque séjour
@@ -207,7 +212,7 @@ submitButton.addEventListener('click', (event) => {
 
   // Vérifier si le code est correct
   if (code == '123456') {
-    alert('Code correct !');
+    window.location = '/selectionDatesCadeau';
   } else {
     alert('Code incorrect !');
   }

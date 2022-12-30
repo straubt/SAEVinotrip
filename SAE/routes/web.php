@@ -89,3 +89,15 @@ Route::get('/welcomeChef', [IndexController::class, 'welcomeChef']);
 Route::get('/sejourCommercial', [IndexController::class, 'unSejourCommercial']);
 
 Route::post('/modify-price', 'App\Http\Controllers\CommercialController@modifierPrix')->name('modify-price');
+
+Route::get('/commandesEnAttente', [IndexController::class, 'commandesEnAttente']);
+
+Route::post('/confirmer-commande', 'App\Http\Controllers\CommandeController@confirmer')->name('confirmer-commande');
+
+Route::get('/mesCommandes', [IndexController::class, 'mesCommandes']);
+
+Route::post('/valider_et_payer', 'App\Http\Controllers\CommandeController@valider_et_payer')->name('valider_et_payer');
+
+Route::get('/historiqueCommandes', [IndexController::class, 'historiqueCommandes']);
+
+Route::get('/selectionDatesCadeau', [IndexController::class, 'selectionDatesCadeau']);

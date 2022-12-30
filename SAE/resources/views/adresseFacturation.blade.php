@@ -1,7 +1,6 @@
 <?php use App\Models\Client_Possede_Adresse;
 use App\Models\Adresse;
 use Gloudemans\Shoppingcart\Facades\Cart;
-$tabCommande = json_decode($tabCommande, true);
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +28,7 @@ $tabCommande = json_decode($tabCommande, true);
 
             <label>*Numéro de téléphone :</label>
             <input type="text" name="num_tel_adresse" pattern="((?:\+\d{2}[-.\s]?(?:\(0\)|0)*?[-.\s]?|00[-.\s]?\d{2}[-.\s]?(?:\(0\)|0)*?[-.\s]?|0)\d?[-.\s]?(?:\d{2}[-.\s]?){3,4})(?:$|\D)"     required><br><br>
-            <input type="hidden" name="price" value="{{$price}}">
+            <input type="hidden" name="id_commande" value="{{$commande->id_commande}}">
 
             <input type="submit" value="Valider">
     </form>
@@ -59,7 +58,7 @@ $tabCommande = json_decode($tabCommande, true);
     <form action="{{ route('utiliser-adresse') }}" method="POST">
         @csrf
     <input type="hidden" name="id_adresse" value="{{$adresse->id_adresse}}" ><br><br>
-    <input type="hidden" name="price" value="{{$price}}">
+    <input type="hidden" name="id_commande" value="{{$commande->id_commande}}">
     <input type="submit" value="Utiliser cette adresse"></input>
     </div>
 

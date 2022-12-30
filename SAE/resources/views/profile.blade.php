@@ -56,6 +56,7 @@ use App\Models\Adresse;
             </div>
         </div>
         <a><button id="modification">Modifier informations </button></a>
+        <a href="/historiqueCommandes"><button id="historique">Historique des commandes</button></a>
     </div> 
     <?php $touteslespossessions = Client_Possede_Adresse::where('id_client', $client->id_client)->get(); ?>
     <h3>Vos adresses :</h3>

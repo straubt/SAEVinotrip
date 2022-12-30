@@ -36,6 +36,8 @@
         <p>Connecté en tant que directeur commercial</p>
 
         <div class="menu">
+            <a href="/welcomeAdmin">Séjours</a>
+            <a href="/commandesEnAttente">Commandes en attente</a>
             <a href="/logout">Deconnexion</a>
         <div>
     </header>
