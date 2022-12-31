@@ -95,15 +95,14 @@
                 refuser votre consentement en cliquant sur Tout refuser ou faire des choix précis en sélectionnant Personnaliser 
                 mes choix. Vous pouvez retirer votre consentement à tout moment sur la page https://nomDuSite.fr </p>  
             <br>
-            <p class="ention"> Fins du traitement des données : stocker et/ou accéder à des informations sur un appareil. Publicités
+            <p class="mention"> Fins du traitement des données : stocker et/ou accéder à des informations sur un appareil. Publicités
                 et contenu personnalisés, mesure de performance des publicités et du contenu, informations sur le public cible et
                 développement de produits. </p> 
             <div id="boutons"> 
                 <br>
                 <button class="buttonBandeau" id="Accept">Accepter</button>
                 <button class="buttonBandeau" id="Refus" onclick="togg()">Tout refuser</button> 
-                <button class="buttonBandeau" id="Perso" input type="button" onclick="window.location.href = '../views/personalisationcookies.html';"/> Personnaliser mes choix
-            </button> 
+                <button class="buttonBandeau" id="Perso" input type="button"> <a id="Personalisation" href="/personalisationCookies">Personnaliser mes choix</a> </button> 
             </div> 
             
         </section> 
