@@ -83,10 +83,6 @@ class IndexController extends Controller
         return view("register");
     }
 
-    public function personalisationCookies(){ //return Personalisation Cookies view
-        return view("personalisationCookies");
-    }
-
     public function addClient(Request $request){ //save a new client (on register page) NOT DONE YET
         $clients = Client::all(); // on récurpére la variables qui contient tous les clients
         $request->id_client = count($clients)+1; // on donne le dernier id + 1 de ce dernier tableau de client
