@@ -67,11 +67,17 @@ class IndexController extends Controller
 
         $sejours_same_destination = DB::table('sejour')->where('sejour.id_destination', '=', $id_destination)->select('*')->get();
         
-        $id_client = Auth::user()->id_client;
-        $achat_effectue = Commande::where('code_etat_commande', '=', 2)
+        if (Auth::check()) {
+            $id_client = Auth::user()->id_client;
+            $achat_effectue = Commande::where('code_etat_commande', '=', 2)
                             ->where('id_client', '=', $id_client)
                             ->where('id_sejour', '=', $sejour->id_sejour)
                             ->get();
+        } else {
+            $achat_effectue = null;
+        }
+
+        
 
         return view("sejour", ["achat_effectue"=>$achat_effectue, "id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, 'sejours_same_destination' => $sejours_same_destination, "sejour" => $sejour, "theme" => Theme::all()]);
 
