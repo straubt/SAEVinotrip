@@ -20,11 +20,6 @@ function create(tag, parent, text = null, classs = null, id = null) {
 let divFiltre = document.querySelector("#divFiltre");
 let buttonCompare = document.querySelector("#buttonFiltre");
 
-PORT_SERVEUR_IMG = '8232'
-sejour.forEach(unSejour => {
-  unSejour.photo_sejour = 'http://51.83.36.122:' + PORT_SERVEUR_IMG + '/sejours/' + unSejour.photo_sejour
-});
-
 if (domaine != "") {
   domaine = domaine.toUpperCase();
   participant = participant.toUpperCase();

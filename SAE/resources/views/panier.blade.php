@@ -1,8 +1,20 @@
 <?php use Gloudemans\Shoppingcart\Facades\Cart; 
+// // Mise à jour de la quantité de l'élément du panier avec la méthode update() de Cart
+// Cart::update($itemId, ['qty' => $quantity]);
+
+// // Mise à jour du prix de l'élément du panier avec la méthode setGlobalDiscount() de Cart
+// Cart::setGlobalDiscount($discount, false);
+
+// // Récupération du prix total du panier avec la méthode total() de Cart
+// $total = Cart::total();
+
+// // Envoi du prix total du panier au navigateur en utilisant une réponse JSON
+// echo json_encode(['total' => $total]);
 $PORT_SERVEUR_IMG = '8232';
+
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,6 +30,7 @@ $PORT_SERVEUR_IMG = '8232';
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <body>
+
     <header class="top-nav">
         <a href="/">Vinotrip</a>
         <input id="menu-toggle" type="checkbox" />
@@ -37,7 +50,14 @@ $PORT_SERVEUR_IMG = '8232';
     </header>
 
     <h1>Votre panier</h1>
-    <a href="/videpanier"><button class="btn1">Tout supprimer</button></a>
+    <div style="float: right;">
+  <h3 >J'ai un code</h3>
+  <input type="text" id="codeInput">
+  <button type="button" onclick="validateCode()">Valider</button>
+  </div>
+  <div>
+  <a href="/mesCommandes" ><button type="button">Commandes en cours</button></a>
+  </div>
 
     @if (Cart::content()->isNotEmpty())
   <div class="cart">
@@ -54,26 +74,27 @@ $PORT_SERVEUR_IMG = '8232';
           <div class="cart-item-details">
             <h4>{{ $item->model->titre_sejour }}</h4>
             <p>{{ $item->model->prix_min_individuel_sejour }} €</p>
-
+            <p>Du {{$item->options->dateArrive}}</p>
+            <p>au {{$item->options->dateDepart}}</p>
             <!-- Ajouter un sélecteur pour choisir le nombre de personnes -->
-            <select class="cart-item-quantity" data-price="{{ $item->model->prix_min_individuel_sejour }}">
+            <select class="cart-item-quantity" id="adults" data-item-id="{{ $item->model->id_sejour }}" data-price="{{ $item->model->prix_min_individuel_sejour }}">
               <option value="1">1 Adulte</option>
               <option value="2">2 Adultes</option>
               <option value="3">3 Adultes</option>
               <option value="4">4 Adultes</option>
             </select>
-            <select class="cart-item-quantity" data-price="{{ $item->model->prix_min_individuel_sejour }}">
+            <select class="cart-item-quantity" id="children" data-item-id="{{ $item->model->id_sejour }}" data-price="{{ $item->model->prix_min_individuel_sejour }}">
               <option value="0">0 Enfant</option>
               <option value="0.5">1 Enfant</option>
               <option value="1">2 Enfants</option>
               <option value="1.5">3 Enfants</option>
               <option value="2">4 Enfants</option>
             </select>
-            <select class="cart-item-quantity" data-price="{{ $item->model->prix_min_individuel_sejour }}">
-              <option value="0">1 nuit</option>
-              <option value="1">2 nuits</option>
-              <option value="2">3 nuits</option>
-              <option value="3">4 nuits</option>
+            <select class="cart-item-quantity" id="nights" data-item-id="{{ $item->model->id_sejour }}" data-price="{{ $item->model->prix_min_individuel_sejour }}">
+              <option value="0">0 nuit</option>
+              <option value="1">1 nuit</option>
+              <option value="2">2 nuits</option>
+              <option value="3">3 nuits</option>
             </select>
             </div>
             <p class="cart-item-remove">
@@ -83,6 +104,7 @@ $PORT_SERVEUR_IMG = '8232';
             <button type="submit">Supprimer</button>
             </form>
             </p>
+            <button onClick="window.location.href='/offrir-sejour/{{$item->model->id_sejour}}'">Offrir</button>
             </div>
             @endforeach
             </div>
@@ -90,46 +112,113 @@ $PORT_SERVEUR_IMG = '8232';
             <div class="cart-total">
             <p>Total: <span id="cart-total-price">{{ Cart::total() }}</span> €</p>
             </div>  
-
             <div class="cart-actions">
-            <a href="/adresseFacturation"><button>Valider mon panier</button></a>
+            </form>
+            <form action="{{route('update-cart')}}" method="POST">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <input type="hidden" name="price" value="">
+              <input type="hidden" name="tabCommande" value="">
+              <input type="hidden" name="date" value="">
+              <button id="submit-button">Valider mon panier</button>
             </form>
             </div>
             </div>
+            <a href="/videpanier"><button class="btn1">Tout supprimer</button></a>
+
     @else
     <p>Votre panier est vide.</p>
     @endif
+
+
     <!-- Ajouter du code JavaScript pour mettre à jour le prix total en temps réel en fonction du nombre de personnes sélectionné -->
     <script>
-    const quantitySelectors = document.querySelectorAll('.cart-item-quantity');
-    const cartTotalPriceElement = document.querySelector('#cart-total-price');
-    let totalPrice = 0;
+  // Récupération des données du panier depuis le serveur PHP
+  var lesSejours = <?php echo json_encode(Cart::content());?>;
 
-    // Fonction pour mettre à jour le prix total en fonction du nombre de personnes sélectionnées
-    function updateTotalPrice() {
-        // Réinitialiser le prix total à 0
-        totalPrice = 0;
+  // Conversion des données du panier en tableau
+  var lesSejours = Object.values(lesSejours);
 
-        // Pour chaque sélecteur, récupérer le nombre de personnes sélectionnées et le prix individuel
-        // et ajouter le prix au prix total
-        quantitySelectors.forEach(selector => {
-        const quantity = selector.value;
-        const price = selector.dataset.price;
-        totalPrice += quantity * price;
-        });
+  // Récupération des sélecteurs de quantité et de l'élément de prix total du panier
+  const quantitySelectors = document.querySelectorAll('.cart-item-quantity');
+  const cartTotalPriceElement = document.querySelector('#cart-total-price');
 
-        // Mettre à jour le prix total affiché sur la page
-        cartTotalPriceElement.innerText = totalPrice;
-    }
+  let totalPrice = 0;
 
-    // Pour chaque sélecteur, ajouter un écouteur d'événement pour détecter les changements de sélection et mettre à jour le prix total en conséquence
-    quantitySelectors.forEach(selector => {
-    selector.addEventListener('change', updateTotalPrice);
-    });
+// Fonction pour mettre à jour le prix total en fonction du nombre d'adultes, d'enfants et de nuits sélectionnés
+function updateTotalPrice() {
+  totalPrice = 0;
+  lesSejours.forEach(function(sejour) {
+    // Récupération des données de quantité pour chaque séjour
+    const adults = document.querySelector('#adults[data-item-id="' + sejour.id + '"]').value;
+    const children = document.querySelector('#children[data-item-id="' + sejour.id + '"]').value;
+    const nights = document.querySelector('#nights[data-item-id="' + sejour.id + '"]').value;
 
-    // Mettre à jour le prix total lorsque la page est chargée pour la première fois
+    // Calcul du prix total pour chaque séjour en fonction du nombre d'adultes, d'enfants et de nuits sélectionnés
+    const sejourTotalPrice = (sejour.price * adults) + (sejour.price * children * 0.5) + (sejour.price * nights);
+    // Mise à jour du prix total global
+    totalPrice += sejourTotalPrice;
+  });
+
+  // Affichage du prix total mis à jour dans l'élément de prix total du panier
+  cartTotalPriceElement.innerHTML = totalPrice;
+}
+
+// Ajout d'un évènement de changement de valeur pour chaque sélecteur de quantité
+quantitySelectors.forEach(function(selector) {
+  selector.addEventListener('change', function() {
     updateTotalPrice();
-    </script>
+  });
+});
+  const submitButton = document.querySelector('#submit-button');
+  const priceInput = document.querySelector('input[name="price"]');
+  const tabCommandeInput = document.querySelector('input[name="tabCommande"]');
+ // Définition de la variable "tabCommande" qui va contenir les données de chaque séjour
+ let tabCommande = [];
+
+// Ajout d'un évènement de clic sur le bouton de validation du panier
+submitButton.addEventListener('click', (event) => {
+  // Mise à jour de la valeur du champ de formulaire "price" avec le prix total
+  priceInput.value = totalPrice;
+  
+  // Récupération des données de quantité pour chaque séjour
+  lesSejours.forEach(function(sejour) {
+    const adultsInput = document.querySelector('#adults[data-item-id="' + sejour.id + '"]').value;
+    const childrenInput = document.querySelector('#children[data-item-id="' + sejour.id + '"]').value * 2;
+    const nightsInput = document.querySelector('#nights[data-item-id="' + sejour.id + '"]').value;
+    const sejourPrice = (sejour.price * adultsInput) + (sejour.price * childrenInput * 0.5) + (sejour.price * nightsInput);
+    const date = sejour.options .dateArrive;
+    // Ajout des données de quantité pour chaque séjour à la variable "tabCommande"
+    tabCommande.push({
+      id: sejour.model.id_sejour,
+      adults: adultsInput,
+      children: childrenInput,
+      nights: nightsInput,
+      priceTrip: sejourPrice,
+      date: date
+    });
+  });
+    // Mise à jour de la valeur du champ de formulaire "tabCommande" avec les données de chaque séjour
+    tabCommandeInput.value = JSON.stringify(tabCommande);
+    // Soumission du formulaire
+    form.submit();
+  });
+  
+  // Mettre à jour le prix total lorsque la page est chargée pour la première fois
+  updateTotalPrice();
+
+  function validateCode() {
+  // Récupérer la valeur saisie dans le champ de saisie
+  var code = document.getElementById('codeInput').value;
+
+  // Vérifier si le code est correct
+  if (code == '123456') {
+    window.location = '/selectionDatesCadeau';
+  } else {
+    alert('Code incorrect !');
+  }
+}
+
+</script>
 
     
 
@@ -138,8 +227,8 @@ $PORT_SERVEUR_IMG = '8232';
 <!-- <footer class="bot-nav">        
     <div class="lien">
         <a href="/">Page d'accueil</a>
-        <a href="/">Mentions legales</a>
-        <a href="/">Politique de Confidentialité</a>
+        <a href="/mentionsLegales">Mentions legales</a>
+        <a href="/politiqueDeConfidentialite">Politique de Confidentialité</a>
     </div>
     
     <br>

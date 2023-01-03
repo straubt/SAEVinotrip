@@ -29,28 +29,65 @@ $tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejou
   </div>
 
   <div class="form-group">
-    <label for="nb_personnes">Nombre de personnes</label>
-    <input type="number" name="nb_personnes" id="nb_personnes" min="1" value="{{ old('nb_personnes') }}" required>
-  </div>
+  <label for="nb_adultes">Nombre d'adultes</label>
+  <input type="number" name="nb_adultes" id="nb_adultes" min="1" value="{{ old('nb_adultes') }}" required>
+  <label for="nb_enfants">Nombre d'enfants</label>
+  <input type="number" name="nb_enfants" id="nb_enfants" min="0" value="{{ old('nb_enfants') }}">
+  <label for="nb_nuits">Nombre de nuits</label>
+  <input type="number" name="nb_nuits" id="nb_nuits" min="1" value="{{ old('nb_nuits') }}" required>
+</div>
 
-  <div class="form-group" id="prix">
-    <label>Prix total : {{ $sejour->prix_min_individuel_sejour * old('nb_personnes') }} €</label>
-  </div>
-
-  <button type="submit">Valider et payer</button>
+<div class="form-group" id="prix">
+  <label>Prix total : {{ ($sejour->prix_min_individuel_sejour * old('nb_adultes') + $sejour->prix_enfant * old('nb_enfants')) * old('nb_nuits')}} €</label>
+</div>
+<input type="hidden" name="price" value="">
+<input type="hidden" name="tabCommande" value="">
+<button id="submit-button">Valider et payer</button>
 </form>
 </body>
 <script>
+  var sejour = <?php echo json_encode($sejour);?>;
   const form = document.querySelector('form');
-  const nbPersonnesInput = document.querySelector('#nb_personnes');
-  const prixTotalLabel = document.querySelector('#prix');
-  const prixIndividuel = {{ $sejour->prix_min_individuel_sejour }};
+  const nbAdultesInput = document.querySelector('#nb_adultes');
+  const nbEnfantsInput = document.querySelector('#nb_enfants');
+  const nbNuitsInput = document.querySelector('#nb_nuits');
+  const prixTotalLabel = document.querySelector('#prix label');
+  const priceInput = document.querySelector('input[name="price"]');
 
-  nbPersonnesInput.addEventListener('input', () => {
-    const nbPersonnes = nbPersonnesInput.value;
-    const prixTotal = nbPersonnes * prixIndividuel;
-    prixTotalLabel.textContent = `Prix total: ${prixTotal} €`;
+  form.addEventListener('input', () => {
+    const nbAdultes = parseInt(nbAdultesInput.value);
+    const nbEnfants = parseInt(nbEnfantsInput.value);
+    const nbNuits = parseInt(nbNuitsInput.value);
+    const sejourPrix = parseInt(sejour.prix_min_individuel_sejour );
+    const prixTotal = (sejourPrix * nbAdultesInput.value + sejourPrix * nbEnfantsInput.value) * nbNuitsInput.value;
+    prixTotalLabel.innerHTML = `Prix total : ${prixTotal} €`;
+    
+  });
+  const tabCommandeInput = document.querySelector('input[name="tabCommande"]');
+  const submitButton = document.querySelector('#submit-button');
+  submitButton.addEventListener('click', (event) => {
+    const nbAdultes = parseInt(nbAdultesInput.value);
+    const nbEnfants = parseInt(nbEnfantsInput.value);
+    const nbNuits = parseInt(nbNuitsInput.value);
+    const sejourPrix = parseInt(sejour.prix_min_individuel_sejour );
+    const prixTotal = (sejourPrix * nbAdultesInput.value + sejourPrix * nbEnfantsInput.value) * nbNuitsInput.value;
+  // Définition de la variable "tabCommande" qui va contenir les données de chaque séjour
+  let tabCommande = [];
+  // Ajout des données de quantité pour chaque séjour à la variable "tabCommande"
+  tabCommande.push({
+      id: sejour.id_sejour,
+      adults: nbAdultes,
+      children: nbEnfants,
+      nights: nbNuits,
+      priceTrip: prixTotal
+    });
+    // Mise à jour de la valeur du champ de formulaire "tabCommande" avec les données de chaque séjour
+    tabCommandeInput.value = JSON.stringify(tabCommande);
+    // Soumission du formulaire
+    form.submit();
   });
 </script>
+
+</html>
 
 </html>

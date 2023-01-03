@@ -115,7 +115,7 @@ buttonModif.addEventListener('click', function(){
       let inputMDP = create("input", newMdp, null, "champsModif", "newMdp");
       inputMDP.type = "Password";
       inputMDP.name = "mdp";  
-      inputMDP.pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/"; //MAIS PUTAIN DE MERDE  
+      // inputMDP.pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/"; //MAIS PUTAIN DE MERDE  
     
 
   //création d'un nouveau boutton valider
@@ -124,6 +124,7 @@ buttonModif.addEventListener('click', function(){
   //buttonModif suppression
   buttonModif.remove();
 
+//création d'un nouveau boutton Anuler
   let buttonAnuler = create("button", form, "annuler modification", "buton", "butonAnuler");
   buttonValider.action = "profile";
   buttonModif.remove();

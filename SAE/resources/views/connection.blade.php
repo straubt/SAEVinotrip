@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connection Vinotrip</title> 
+    <title>Connection Vinotrip</title>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet"> 
     <link rel="stylesheet" href="css/styleRegister.css">
-	<link rel="stylesheet" href="css/styleGeneral.css">
-	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
 	<link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
@@ -36,9 +35,10 @@
     <!-- Body of Form starts -->
 		
   	<div class="container">
-	  <h1>Se connecter</h1>
+		<h1 class="titre">Se connecter</h1>
       <form method="post" action="{{ route("connectionPost") }}" autocomplete="on">
 	  @csrf
+
     		<!---Email ID---->
     		<div class="box">
           <label for="email" class="fl fontLabel"> Email : </label>
@@ -48,8 +48,6 @@
     			</div>
     			<div class="clr"></div>
     		</div>
-    		<!--Email ID----->
-
 
     		<!---Password------>
     		<div class="box">
@@ -60,14 +58,25 @@
     			</div>
     			<div class="clr"></div>
     		</div>
-    		<!---Password---->
+
+
+    		<!---MDP oublier---->
 			<br>
-			<p style = "color: white; font-size: 12px">Mot de passe oublié ?</p>
+			<a class="lien" href="/userAide">Mot de passe oublié ?</a>
+
     		<!---Submit Button------>
     		<div class="box" style="background: #2d3e3f">
     				<input type="Submit" name="Submit" class="submit" value="connexion">
     		</div>
-    		<!---Submit Button----->
+
+    		<!---connection admin----->
+			<!---autre connection----->
+			<div class="autreConection">
+			<a class="selected"> User </a>
+				<a class="lien" href="/connectionAdmin"> Admin </a>
+				<a class="lien" href="/connectionChef"> Chef </a>
+				<a class="lien" href="/"> Accueil </a>
+    		</div>
       </form>
 	  
 	   <?php $erreur = str_replace('email','',$errors);?> 

@@ -7,6 +7,7 @@ use App\Models\Adresse;
 use App\Models\Client_Possede_Adresse;
 use App\Models\Client;
 use App\Models\Cb;
+use App\Models\Commande;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -58,9 +59,10 @@ class AdresseController extends Controller
     // Récupérer les données de la carte de crédit en utilisant la relation de base de données entre la classe CB et la classe Client
     $cb = Cb::where('id_client', $id_client)->get();
 
-    // Renvoyer la vue paiement.blade.php en passant les données de la carte de crédit et du client en tant que variables
+    $id_commande = $request->input('id_commande');
+    $commande = Commande::find($id_commande);
 
-    return view('/paiement', ["id_adresse" => $id_adresse,"client" => $client,"cb" => $cb]);
+    return view('/paiement', ["commande"=>$commande, "id_adresse" => $id_adresse,"client" => $client,"cb" => $cb]);
     }
 }
 
@@ -78,8 +80,11 @@ public function utiliser(Request $request)
     // Récupérer les données de la carte de crédit en utilisant la relation de base de données entre la classe CB et la classe Client
     $cb = Cb::where('id_client', $id_client)->get();
 
+    $id_commande = $request->input('id_commande');
+    $commande = Commande::find($id_commande);
+
     // Renvoyer la vue paiement.blade.php en passant les données de la carte de crédit et du client en tant que variables
-    return view('/paiement', ["id_adresse" => $id_adresse,"client" => $client,"cb" => $cb]);
+    return view('/paiement', ["commande"=>$commande, "id_adresse" => $id_adresse,"client" => $client,"cb" => $cb]);
     }
 }
 

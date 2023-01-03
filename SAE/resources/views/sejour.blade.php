@@ -26,12 +26,10 @@ $idRequest = $_SERVER['QUERY_STRING'];
 
 $PORT_SERVEUR_IMG = '8232';
 
-$PORT_SERVEUR_IMG = '8232';
-
 $tripTitle = $sejour[$id]['titre_sejour'];
 $tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
 $tripNbDay = $sejour[$id]['duree_sejour'];
-$tripPrice = $sejour[$id]['prix_min_individuel_sejour']."0";
+$tripPrice = $sejour[$id]['prix_min_individuel_sejour'];
 $tripDescription = $sejour[$id]['description_sejour'];
 $tripPicture = 'http://51.83.36.122:' . $PORT_SERVEUR_IMG . '/sejours/' . $sejour[$id]['photo_sejour'];
 $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
@@ -79,7 +77,7 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                 <img src="{{$tripPicture}}" alt="photo séjour">
                 <div id="sejourHeaderText">
                     <h1>{{$tripTitle}}</h1>
-                    <p>{{$tripPrice}}€ minimum par psersonne (peut varier en fonction des options choisies)</p>
+                    <p>{{$tripPrice}}€ minimum par personne (peut varier en fonction des options choisies)</p>
                     <p>{{$tripNbDay}} jour(s) | {{$tripNbDay-1}} nuit(s)</p>
                     <p class="justified">{{$tripDescription}}</p>
                     <p>{{$themeLibelle}}</p>
@@ -87,11 +85,15 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
                         <div>Offrir</div>
                         <img src="/images/icons/offer.svg"></img>
                     </button>
-                    <form action="{{ route('cart.store') }}" method="post">
+                    <form action="{{ route('cart.store') }}" method="post" onsubmit="return validateDates()">
                         @csrf
                         <input type="hidden" name="id" value="{{$idRequest}}">
                         <input type="hidden" name="title" value="{{$tripTitle}}">
                         <input type="hidden" name="price" value="{{$tripPrice}}">
+                        <label for="startDate">Date d'arrivée :</label><br>
+                        <input type="date" id="startDate" name="startDate" required><br>
+                        <label for="endDate">Date de départ :</label><br>
+                        <input type="date" id="endDate" name="endDate" required><br>
                     <button type="submit">
                         <div>Ajouter au<br> panier</div>
                         <img src="/images/icons/shoppingCart.svg"></img>
@@ -103,30 +105,30 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
             <section id="sejourProgramme">
                 <h2>Votre séjour en bref</h2>
             <?php
-                foreach($etapes as $etape)
-                {
-                    echo("
-                        <h3>$etape->titre_etape</h3>
-                        <div class=\"etape flexResponsive\">
-                            <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
-                            <div>
-                                <p class=\"justified\">$etape->description_etape</p>
-                            </div>
-                        </div>");
-                        //<p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
-                        //<p><a href=\"$etape->url_etape\">L'étape en détail</a></p>"
-                }
+                // foreach($etapes as $etape)
+                // {
+                //     echo("
+                //         <h3>$etape->titre_etape</h3>
+                //         <div class=\"etape flexResponsive\">
+                //             <img src=\"http://51.83.36.122:$PORT_SERVEUR_IMG/etapes/$etape->photo_etape\" alt=\"photo de l'étape\">
+                //             <div>
+                //                 <p class=\"justified\">$etape->description_etape</p>
+                //             </div>
+                //         </div>");
+                //         //<p><a href=\"$etape->url_video_etape\">L'étape en vidéo</a></p>
+                //         //<p><a href=\"$etape->url_etape\">L'étape en détail</a></p>"
+                // }
                 echo("<h2>Le programme détaillé</h2>");
                 $i = 0;
-                foreach($elements_etapes as $e)
-                {
-                    if ($e->num_jour_etape != $i)
-                    {
-                        $i = $e->num_jour_etape;
-                        echo("<h3>Jour $i</h3>");
-                    }
-                    echo("<h4>$e->nom_partenaire</h4><h5>$e->heure_rdv</h5><p>$e->desc_elmt_etape</p>");
-                }
+                // foreach($elements_etapes as $e)
+                // {
+                //     if ($e->num_jour_etape != $i)
+                //     {
+                //         $i = $e->num_jour_etape;
+                //         echo("<h3>Jour $i</h3>");
+                //     }
+                //     echo("<h4>$e->nom_partenaire</h4><h5>$e->heure_rdv</h5><p>$e->desc_elmt_etape</p>");
+                // }
             ?>
             </section>
             
@@ -206,4 +208,42 @@ $themeLibelle = $theme[$sejour[$id]['id_theme']-1]['libelle_theme'];
             </section>
         </main>
     </body>
+    <script>
+function validateDates() {
+  // Récupérer les valeurs des champs de saisie de date
+  var startDate = document.getElementById('startDate').value;
+  var endDate = document.getElementById('endDate').value;
+
+  // Convertir les valeurs en objets Date
+  var startDateObject = new Date(startDate);
+  var endDateObject = new Date(endDate);
+
+  // Récupérer la date actuelle
+  var currentDate = new Date();
+
+  // Vérifier que la date de départ est supérieure à la date actuelle
+  if (startDateObject < currentDate) {
+    alert("La date de départ doit être supérieure à la date actuelle !");
+    return false;
+  }
+
+  // Vérifier que la date d'arrivée est supérieure à la date actuelle
+  if (endDateObject < currentDate) {
+    alert("La date d'arrivée doit être supérieure à la date actuelle !");
+    return false;
+  }
+
+  // Vérifier que la date de départ est inférieure à la date d'arrivée
+  if (startDateObject > endDateObject) {
+    alert("La date de départ doit être inférieure à la date d'arrivée !");
+    return false;
+  }
+
+  // Si les dates sont valides, soumettre le formulaire
+  return true;
+}
+
+
+
+    </script>
 </html>

@@ -7,6 +7,8 @@ use App\Models\Sejour;
 use Mail;
 use App\Mail\OffrirSejourMail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Client_Possede_Adresse;
 
 class OffrirSejourController extends Controller
 {
@@ -35,7 +37,10 @@ class OffrirSejourController extends Controller
       // Récupérer l'adresse e-mail du destinataire
       $destinataire = $request->input('email');
   
-      return redirect('/adresseFacturation');
+      $price = $request->price;   
+      $tabCommande = $request->tabCommande;
+      
+      return view('/adresseFacturation')->with(["tabCommande" => $tabCommande, "price" => $price,"client" => Auth::user(),"client_possede_adresse" => Client_Possede_Adresse::all()])->with(["price"=>$price]);
   }
   
   
