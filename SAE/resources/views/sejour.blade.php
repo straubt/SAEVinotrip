@@ -173,8 +173,10 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     </div>
 
                     <div>
-                        <label for="img-post-avis">Ajouter une photo (optionnel)</label>
-                        <input type="file" id="img-post-avis" name="img-post-avis" accept="image/png, image/jpeg">
+                        <label>Ajouter une photo (optionnel)</label>
+                        <input type="file" name="img_post_avis[]" accept="image/png, image/jpeg">
+                        <input type="file" name="img_post_avis[]" accept="image/png, image/jpeg">
+                        <input type="file" name="img_post_avis[]" accept="image/png, image/jpeg">
                     </div>
 
                     <div id="formLeaveReviewControlContainer">

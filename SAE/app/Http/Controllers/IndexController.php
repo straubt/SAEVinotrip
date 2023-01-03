@@ -72,6 +72,7 @@ class IndexController extends Controller
                             ->where('id_client', '=', $id_client)
                             ->where('id_sejour', '=', $sejour->id_sejour)
                             ->get();
+ 
 
         return view("sejour", ["achat_effectue"=>$achat_effectue, "id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, 'sejours_same_destination' => $sejours_same_destination, "sejour" => $sejour, "theme" => Theme::all()]);
 
