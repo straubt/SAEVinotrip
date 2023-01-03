@@ -144,10 +144,12 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
 
                 <div id="avisHeader">
                     <h2>Les avis</h2>
+                    <?php if($achat_effectue != null): ?>
                     <?php if(count($achat_effectue) != 0): ?>
                     <?php if(auth()->guard()->check()): ?><button id="openReviewForm" onclick="unhideFormLeaveReview()">Laissez le vôtre !</button><?php endif; ?>
                     <?php else: ?>
                     <br><h5 style="float: right;">Vous devez avoir participé à ce trip pour poster un avis !</h5>
+                    <?php endif; ?>
                     <?php endif; ?>
                     <?php if(auth()->guard()->guest()): ?><button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button><?php endif; ?>
                 </div>

@@ -143,10 +143,12 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
 
                 <div id="avisHeader">
                     <h2>Les avis</h2>
+                    @if($achat_effectue != null)
                     @if(count($achat_effectue) != 0)
                     @auth<button id="openReviewForm" onclick="unhideFormLeaveReview()">Laissez le vôtre !</button>@endauth
                     @else
                     <br><h5 style="float: right;">Vous devez avoir participé à ce trip pour poster un avis !</h5>
+                    @endif
                     @endif
                     @guest<button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button>@endguest
                 </div>
