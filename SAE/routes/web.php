@@ -85,3 +85,6 @@ Route::get('/userAide', [IndexController::class, 'userAide']);
 //aide connection (admin / chef et user)
 Route::get('/welcomeAdmin', [IndexController::class, 'welcomeAdmin']);
 Route::get('/welcomeChef', [IndexController::class, 'welcomeChef']);
+
+// route pour requete AJAX, retourne une ou plusieurs ligne de la table Sejour
+Route::get('/get_sejours_data', [IndexController::class, 'sejours_data']);

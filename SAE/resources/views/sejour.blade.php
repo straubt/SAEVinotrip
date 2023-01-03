@@ -160,6 +160,11 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         <textarea name="texteAvis" id="formLeaveReviewTextArea" required></textarea>
                     </div>
 
+                    <div>
+                        <label for="img-post-avis">Ajouter une photo (optionnel)</label>
+                        <input type="file" id="img-post-avis" name="img-post-avis" accept="image/png, image/jpeg">
+                    </div>
+
                     <div id="formLeaveReviewControlContainer">
                         <input type="submit" value="Envoyer !" onclick="AJAXSubmit(document.getElementById('formLeaveReview'))">;
                         <button type="button" id="closeReviewForm" onclick="hideFormLeaveReview()">Fermer</button>
@@ -247,6 +252,21 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     <button class="slide-arrow" id="slide-arrow-next-sejoursConsultes">&#8250;</button>  
                     <ul class="slides-container" id="slides-container-sejoursConsultes"></ul>
                 </div>
+                <script>
+                    const slidesContainerSejoursConsultes = document.getElementById("slides-container-sejoursConsultes");
+                    const prevButtonSejoursConsultes = document.getElementById("slide-arrow-prev-sejoursConsultes");
+                    const nextButtonSejoursConsultes = document.getElementById("slide-arrow-next-sejoursConsultes");
+
+                    nextButtonSejoursConsultes.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;   // slide declared on top of this <script>
+                    slidesContainerSejoursConsultes.scrollLeft += slideWidth;
+                    });
+
+                    prevButtonSejoursConsultes.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;
+                    slidesContainerSejoursConsultes.scrollLeft -= slideWidth;
+                    });
+                </script>
             </section>
             
         </main>

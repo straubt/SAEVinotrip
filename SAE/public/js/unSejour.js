@@ -1,5 +1,5 @@
 function ajaxSuccess(){
-    alert(this.responseText);
+    console.log('Formulaire envoyé OK');
 }
 
 /* https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest#envoyer_des_formulaires_et_uploader_des_fichiers */
@@ -115,11 +115,34 @@ function main()
     }
 
     let cookie_array = cookie.split(',');
-    let slides_container = document.getElementById("slides-container-sejoursConsultes");
+    let get_query = '/get_sejours_data?';
 
     cookie_array.forEach(id => {
-        let slide = document.createElement('li');
+        get_query += 'IDs[]=' + id + '&';
+    })
 
+    get_query = get_query.slice(0, -1);
+
+    console.log(get_query)
+
+    var oReq = new XMLHttpRequest();
+    oReq.onload = buildSejoursConsultes;
+    oReq.open("get", get_query, true);
+    oReq.send();
+}
+
+// XMLhttprequest Listener
+function buildSejoursConsultes () {
+    sejours = JSON.parse(this.responseText);
+    console.log(sejours);
+
+    let slides_container = document.getElementById("slides-container-sejoursConsultes");
+
+    sejours.forEach(s => {
+        let slide = document.createElement('li');
+        slide.classList.add("slide");
+        slide.style.backgroundImage = "url('http://51.83.36.122:8232/sejours/" + s.photo_sejour + "')";
+        slide.innerHTML += '<a href=/sejour?' + s.id_sejour + '><div><h2>' + s.titre_sejour + '</h2></div></a>';
         slides_container.appendChild(slide);
     })
 }

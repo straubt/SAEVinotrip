@@ -70,6 +70,24 @@ class IndexController extends Controller
 
     }
 
+    public function sejours_data(){ //returns data about one or more sejour
+
+        $whereQuery = '';
+        foreach($_GET['IDs'] as $id)
+        {
+            $whereQuery .= 'id_sejour = ' . $id . ' OR ';
+        }
+        // on supprime les 3 derniers caractères 'OR '
+        $whereQuery = substr($whereQuery, 0, -3);
+
+        $sejours = DB::table('sejour')
+            ->whereRaw($whereQuery)
+            ->select('id_sejour', 'titre_sejour', 'photo_sejour')
+            ->get();
+
+        return $sejours;
+    }
+
     // page partenaire avec nom, adresse, e-mail, numéro de téléphone
     public function partenaire()
     {
@@ -236,6 +254,9 @@ class IndexController extends Controller
 
     public function postAvis(){
 
+        //$ssh_connection = ssh2_connect('http://51.83.36.122');
+        //sh2_auth_password($ssh_connection, 's232', '6hMCnm');
+        
         $avis = new Avis;
         $avis->id_sejour = $_POST["idSejour"];
         $avis->id_client = Auth::id();
@@ -243,7 +264,7 @@ class IndexController extends Controller
         $avis->note_avis = $_POST["noteAvis"];
         $avis->libelle_avis = $_POST["libelleAvis"];
         $avis->texte_avis = $_POST["texteAvis"];
-        var_dump("appel");
+
         $avis->save();
         /*
         //$libelle_avis = str_replace("'", "''", $libelle_avis);
@@ -259,7 +280,7 @@ class IndexController extends Controller
 
         //DB::insert("INSERT INTO avis(id_sejour, id_client, date_avis, note_avis, libelle_avis, texte_avis) VALUES ($idsejour, $userId, '$date_avis', $note_avis, '$libelle_avis', '$texte_avis');");
         //return redirect()->to("/sejour?".$idsejour);
-        return redirect()->route('unSejour', [$_POST["idSejour"]]);
+        return redirect()->route('unSejour', [(string)intval($_POST["idSejour"]) - 1]);
     }
     // public function destination(){
     //     return view("sejour", ["destination" => Destination::all()]);
