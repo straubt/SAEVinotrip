@@ -13,6 +13,7 @@ use App\Models\Route_des_vins;
 use App\Models\Panier;
 use App\Models\Avis;
 use App\Models\Client;
+use App\Models\Commande;
 use App\Models\Cb;
 use App\Models\Sejour_To_Cat_Participant;
 use App\Models\Client_Possede_Adresse;
@@ -24,11 +25,11 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class IndexController extends Controller
 {
     public function index(){ //return homepage view
-        return view("welcome", ["sejour" => Sejour::all()], ["client" => Auth::user()]);
+        return view("welcome", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get()], ["client" => Auth::user()]);
     }
 
     public function sejour(){ //return all sejours iview
-        return view("lessejours", ["sejour" => Sejour::all(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
+        return view("lessejours", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
     }
 
     public function unSejour(){ //return clicked sejour view
@@ -66,7 +67,13 @@ class IndexController extends Controller
 
         $sejours_same_destination = DB::table('sejour')->where('sejour.id_destination', '=', $id_destination)->select('*')->get();
         
-        return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, 'sejours_same_destination' => $sejours_same_destination, "sejour" => $sejour, "theme" => Theme::all()]);
+        $id_client = Auth::user()->id_client;
+        $achat_effectue = Commande::where('code_etat_commande', '=', 2)
+                            ->where('id_client', '=', $id_client)
+                            ->where('id_sejour', '=', $sejour->id_sejour)
+                            ->get();
+
+        return view("sejour", ["achat_effectue"=>$achat_effectue, "id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, 'sejours_same_destination' => $sejours_same_destination, "sejour" => $sejour, "theme" => Theme::all()]);
 
     }
 
@@ -245,7 +252,7 @@ class IndexController extends Controller
     }
 
     public function welcomeAdmin(){// page welcome compte admin
-        return view("welcomeAdmin");
+        return view("welcomeAdmin",["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
     }
 
     public function welcomeChef(){// page welcome compte Chef
@@ -282,12 +289,49 @@ class IndexController extends Controller
         //return redirect()->to("/sejour?".$idsejour);
         return redirect()->route('unSejour', [(string)intval($_POST["idSejour"]) - 1]);
     }
-    // public function destination(){
-    //     return view("sejour", ["destination" => Destination::all()]);
-    // }
+
    
+    public function unSejourCommercial(){ //return clicked sejour view
+        $id = $_SERVER["QUERY_STRING"] - 1;
+        $avis = DB::table('avis')
+            ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
+            ->join('client', 'client.id_client', '=', 'avis.id_client')
+            ->where('avis.id_sejour', $id + 1)
+            ->select('nom_client', 'prenom_client', 'note_avis', 'libelle_avis', 'texte_avis', 'date_avis')
+            ->get();
 
+        $avisData = DB::table('avis')
+            ->where('avis.id_sejour', $id + 1)
+            ->select(DB::raw('ROUND(AVG(CAST(note_avis as numeric)), 2) AS "average_note"'), DB::raw('COUNT(*) AS "count_avis"'))
+            ->get();
 
+        return view("sejourCommercial", ["id" => $id, 'avisData' => $avisData, 'avis' => $avis, "sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "theme" => Theme::all()]);
+
+    }
+
+    public function commandesEnAttente(){
+        return view("commandesEnAttente", ["commande" => Commande::where('code_etat_commande', '=', 0)->get()]);
+    }
+
+    public function mesCommandes(){
+        $id_client = Auth::user()->id_client;
+        $commandes = Commande::where('code_etat_commande', '=', 1)
+                            ->where('id_client', '=', $id_client)
+                            ->get();
+        return view("mesCommandes", ["commande" => $commandes]);
+    }
+    
+    public function historiqueCommandes(){
+        $id_client = Auth::user()->id_client;
+        $commandes = Commande::where('code_etat_commande', '=', 2)
+                            ->where('id_client', '=', $id_client)
+                            ->get();
+        return view("historiqueCommandes", ["commande" => $commandes]);
+    }
+
+    public function selectionDatesCadeau(){
+        return view("selectionDatesCadeau");
+    }
 
 
 

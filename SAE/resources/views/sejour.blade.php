@@ -1,4 +1,8 @@
 <?php
+use App\Models\Client;
+use App\Models\Commande;
+use Illuminate\Support\Facades\Auth;
+
 // returns HTML structure for a 5 dot rating system
 function buildRatingDots($note){
     if ($note < 1 || $note > 5)
@@ -25,7 +29,7 @@ $idRequest = $_SERVER['QUERY_STRING'];
 
 $PORT_SERVEUR_IMG = '8232';
 
-$tripTitle = $sejour->titre_sejour;
+    $tripTitle = $sejour->titre_sejour;
 $tripPrice = $sejour->prix_min_individuel_sejour;
 $tripNbDay = $sejour->duree_sejour;
 $tripPrice = $sejour->prix_min_individuel_sejour;
@@ -85,11 +89,15 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         <div>Offrir</div>
                         <img src="/images/icons/offer.svg"></img>
                     </button>
-                    <form action="{{ route('cart.store') }}" method="post">
+                    <form action="{{ route('cart.store') }}" method="post" onsubmit="return validateDates()">
                         @csrf
                         <input id="hidden-input-id" type="hidden" name="id" value="{{$idRequest}}">
                         <input type="hidden" name="title" value="{{$tripTitle}}">
                         <input type="hidden" name="price" value="{{$tripPrice}}">
+                        <label for="startDate">Date d'arrivée :</label><br>
+                        <input type="date" id="startDate" name="startDate" required><br>
+                        <label for="endDate">Date de départ :</label><br>
+                        <input type="date" id="endDate" name="endDate" required><br>
                     <button type="submit">
                         <div>Ajouter au<br> panier</div>
                         <img src="/images/icons/shoppingCart.svg"></img>
@@ -135,7 +143,11 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
 
                 <div id="avisHeader">
                     <h2>Les avis</h2>
+                    @if(count($achat_effectue) != 0)
                     @auth<button id="openReviewForm" onclick="unhideFormLeaveReview()">Laissez le vôtre !</button>@endauth
+                    @else
+                    <br><h5 style="float: right;">Vous devez avoir participé à ce trip pour poster un avis !</h5>
+                    @endif
                     @guest<button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button>@endguest
                 </div>
 
@@ -182,7 +194,6 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         Nombre d'avis : <?php echo($avisData[0]->count_avis);?>
                     </div>
                 </div>
-
                 <?php
                 $i = 0;
                 $hidden = "";
@@ -271,4 +282,42 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
             
         </main>
     </body>
+    <script>
+function validateDates() {
+  // Récupérer les valeurs des champs de saisie de date
+  var startDate = document.getElementById('startDate').value;
+  var endDate = document.getElementById('endDate').value;
+
+  // Convertir les valeurs en objets Date
+  var startDateObject = new Date(startDate);
+  var endDateObject = new Date(endDate);
+
+  // Récupérer la date actuelle
+  var currentDate = new Date();
+
+  // Vérifier que la date de départ est supérieure à la date actuelle
+  if (startDateObject < currentDate) {
+    alert("La date de départ doit être supérieure à la date actuelle !");
+    return false;
+  }
+
+  // Vérifier que la date d'arrivée est supérieure à la date actuelle
+  if (endDateObject < currentDate) {
+    alert("La date d'arrivée doit être supérieure à la date actuelle !");
+    return false;
+  }
+
+  // Vérifier que la date de départ est inférieure à la date d'arrivée
+  if (startDateObject > endDateObject) {
+    alert("La date de départ doit être inférieure à la date d'arrivée !");
+    return false;
+  }
+
+  // Si les dates sont valides, soumettre le formulaire
+  return true;
+}
+
+
+
+    </script>
 </html>

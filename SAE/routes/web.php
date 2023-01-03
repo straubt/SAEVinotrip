@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\CartController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
@@ -78,6 +79,8 @@ Route::post('/modify-address', 'App\Http\Controllers\AdresseController@modifyAdd
 
 Route::post('/modifierAdresse', 'App\Http\Controllers\AdresseController@modifier')->name('modifier-adresse');
 
+Route::post('/update-cart', 'App\Http\Controllers\CartController@update')->name('update-cart');
+
 //aide connection (admin / chef et user)
 Route::get('/adminAide', [IndexController::class, 'adminAide']);
 Route::get('/userAide', [IndexController::class, 'userAide']);
@@ -88,3 +91,18 @@ Route::get('/welcomeChef', [IndexController::class, 'welcomeChef']);
 
 // route pour requete AJAX, retourne une ou plusieurs ligne de la table Sejour
 Route::get('/get_sejours_data', [IndexController::class, 'sejours_data']);
+Route::get('/sejourCommercial', [IndexController::class, 'unSejourCommercial']);
+
+Route::post('/modify-price', 'App\Http\Controllers\CommercialController@modifierPrix')->name('modify-price');
+
+Route::get('/commandesEnAttente', [IndexController::class, 'commandesEnAttente']);
+
+Route::post('/confirmer-commande', 'App\Http\Controllers\CommandeController@confirmer')->name('confirmer-commande');
+
+Route::get('/mesCommandes', [IndexController::class, 'mesCommandes']);
+
+Route::post('/valider_et_payer', 'App\Http\Controllers\CommandeController@valider_et_payer')->name('valider_et_payer');
+
+Route::get('/historiqueCommandes', [IndexController::class, 'historiqueCommandes']);
+
+Route::get('/selectionDatesCadeau', [IndexController::class, 'selectionDatesCadeau']);
