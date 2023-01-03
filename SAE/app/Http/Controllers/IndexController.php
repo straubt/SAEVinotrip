@@ -176,13 +176,7 @@ class IndexController extends Controller
         return view("profile", ["client" => Auth::user()]);
     }
 
-    public function connectionAdmin(){ // page connection pour compte admin
-        return view("connectionAdmin");
-    }
-
-    public function connectionChef(){// page connection pour compte Chef
-        return view("connectionChef");
-    }
+    
 
     public function adminAide(){// page connection pour aide admin / chef
         return view("adminAide");
@@ -199,14 +193,6 @@ class IndexController extends Controller
 
     public function adresseFacturation(){
         return view("adresseFacturation",["client" => Auth::user()],["client_possede_adresse" => Client_Possede_Adresse::all()]);
-    }
-
-    public function welcomeAdmin(){// page welcome compte admin
-        return view("welcomeAdmin");
-    }
-
-    public function welcomeChef(){// page welcome compte Chef
-        return view("welcomeChef");
     }
 
     public function postAvis(){

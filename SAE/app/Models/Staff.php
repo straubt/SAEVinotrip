@@ -21,7 +21,12 @@ class Staff extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'prenom_staff',
         'login_staff',
+        'nom_staff_staff',
+        'mdp_staff',
+        'categorie_staff',
+        'remember_token',
     ];
 
      /* The attributes that should be hidden for serialization.

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\AdminController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
@@ -55,10 +56,14 @@ Route::get('/politiqueDeConfidentialite', [IndexController::class, 'politiqueDeC
 //mentions legales
 Route::get('/mentionsLegales', [IndexController::class, 'mentionsLegales']);
 //autres connection (admin et chef)
-Route::get('/connectionAdmin', [IndexController::class, 'connectionAdmin']);
-Route::get('/connectionChef', [IndexController::class, 'connectionChef']);
-Route::post('/loginChef', [IndexController::class, "authenticateChef"])->name('connectionChefPost');
-Route::post('/loginAdmin', [IndexController::class, "authenticateAdmin"])->name('connectionAdminPost');
+Route::get('/connectionAdmin', [AdminController::class, 'connectionAdmin']);
+Route::get('/connectionChef', [AdminController::class, 'connectionChef']);
+Route::post('/loginChef', [AdminController::class, "authenticateChef"])->name('connectionChefPost');
+Route::post('/loginAdmin', [AdminController::class, "authenticateAdmin"])->name('connectionAdminPost');
+//ajout d'un administrateur
+Route::post('/addAdmin', [AdminController::class, "addAdmin"])->name('addAdmin');
+Route::post('/deleteAdmin', [AdminController::class, "deleteAdmin"])->name('deleteAdmin');
+
 
 Route::post('/offrir-sejours', 'App\Http\Controllers\OffrirSejourController@store')->name('offrir-sejour.store');
 
@@ -83,5 +88,5 @@ Route::get('/adminAide', [IndexController::class, 'adminAide']);
 Route::get('/userAide', [IndexController::class, 'userAide']);
 
 //aide connection (admin / chef et user)
-Route::get('/welcomeAdmin', [IndexController::class, 'welcomeAdmin']);
-Route::get('/welcomeChef', [IndexController::class, 'welcomeChef']);
+Route::get('/welcomeAdmin', [AdminController::class, 'welcomeAdmin']);
+Route::get('/welcomeChef', [AdminController::class, 'welcomeChef']);

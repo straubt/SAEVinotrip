@@ -32,8 +32,60 @@
         <div>
     </header>
 <body>
+    <script> 
+        var admins = <?php echo json_encode($admins);?>;
+        var catStaff = <?php echo json_encode($catStaff);?>;
+        var csrf = <?php echo json_encode(csrf_token());?>;
+    </script>
+    <p><b>page d'aceuil Chef</b></p> 
+    <p><br><b>Ajout d'un nouvel administrateur :</b></br></p>
+    <form method="post" action="{{ route("addAdmin") }}" autocomplete="on">
+	  @csrf
 
-    page d'aceuil Chef
+    		<!---NOM Admin---->
+    		<div class="box">
+          <label for="id" class="fl fontLabel"> Nom : </label>
+    			<div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+    			<div class="fr">
+    					<input type="id" required name="nom_staff" placeholder="NOM" class="textBox">
+    			</div>
+    			<div class="clr"></div>
+    		</div>
+            <!---Prenom Admin---->
+    		<div class="box">
+          <label for="id" class="fl fontLabel"> Prénom : </label>
+    			<div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+    			<div class="fr">
+    					<input type="id" required name="prenom_staff" placeholder="Prénom" class="textBox">
+    			</div>
+    			<div class="clr"></div>
+    		</div>
+            <!---Categorie Admin---->
+    		<label for="selector" id="marge">Fonction</label>
+            <select name="type_admin" id="selector">
+                <option value=2>directeur service vente</option>
+                <option value=3>membre service vente</option>
+                <option value=4>directeur service client</option>
+                <option value=5>membre service client</option>
+            </select>
+
+    		<!---Password------>
+    		<div class="box">
+          	<label for="password" class="fl fontLabel"> Mot de passe : </label>
+    			<div class="fl iconBox"><i class="fa fa-key" aria-hidden="true"></i></div>
+    			<div class="fr">
+    					<input type="Password" required name="mdp_admin" placeholder="Mot de passe" class="textBox">
+    			</div>
+    			<div class="clr"></div>
+    		</div>
+
+    		<!---Submit Button------>
+    		<div class="box" style="background: #2d3e3f">
+    				<input type="Submit" name="Submit" class="submit" value="ajouter">
+    		</div>
+      </form>
+    <p class="admins"><br><b>Administrateurs existants</b></br></p>
+
 </body>
 <footer class="bot-nav">        
     <div class="lien">
@@ -51,5 +103,5 @@
 <script src="js/jquery-3.6.1.slim.min.js"></script>
 <script src="js/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="js/caroussel.js"></script>
-
+<script src="js/welcomeChef.js"></script>
 </html>
