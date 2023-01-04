@@ -62,7 +62,7 @@ buttonModif.addEventListener('click', function(){
   let form = create("form", infos, null, "parentModif", null );
   form.method = "post";
   form.action = 'profile';
-  let input = create("input", form, null,null,null);//nessesaire pour le fonctionement du formulaire
+  let input = create("input", form, null, null,   null);//nessesaire pour le fonctionement du formulaire
   input.type = "hidden";
   input.name = "_token";
   input.value = csrf;

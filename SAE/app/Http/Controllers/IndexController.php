@@ -265,6 +265,11 @@ class IndexController extends Controller
         return redirect()->route('unSejour', [$_POST["idSejour"]]);
     }
 
+    
+
+    public function personnalisationCookie(){
+        return view('cookiePerso');
+    }
    
     public function unSejourCommercial(){ //return clicked sejour view
         $id = $_SERVER["QUERY_STRING"] - 1;

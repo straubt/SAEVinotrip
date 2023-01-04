@@ -112,3 +112,5 @@ Route::post('/valider_et_payer', 'App\Http\Controllers\CommandeController@valide
 Route::get('/historiqueCommandes', [IndexController::class, 'historiqueCommandes']);
 
 Route::get('/selectionDatesCadeau', [IndexController::class, 'selectionDatesCadeau']);
+
+Route::get('/personnalisationCookie', [IndexController::class, 'personnalisationCookie']);
