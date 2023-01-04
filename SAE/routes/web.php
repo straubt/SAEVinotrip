@@ -96,6 +96,8 @@ Route::get('/commandesEnAttente', [IndexController::class, 'commandesEnAttente']
 
 Route::post('/confirmer-commande', 'App\Http\Controllers\CommandeController@confirmer')->name('confirmer-commande');
 
+
+
 Route::get('/mesCommandes', [IndexController::class, 'mesCommandes']);
 
 Route::post('/valider_et_payer', 'App\Http\Controllers\CommandeController@valider_et_payer')->name('valider_et_payer');
