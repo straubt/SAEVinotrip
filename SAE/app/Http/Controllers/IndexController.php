@@ -224,6 +224,10 @@ class IndexController extends Controller
     // public function destination(){
     //     return view("sejour", ["destination" => Destination::all()]);
     // }
+
+    public function personnalisationCookie(){
+        return view('cookiePerso');
+    }
    
 
 

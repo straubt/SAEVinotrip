@@ -64,53 +64,9 @@
         <div id="cookie-banner-button">
             <button class="cookie-banner-button">Accepter</button>
             <button class="cookie-banner-button">Refuser</button>
-            <button id="cookie-banner-button-Edit" class="cookie-banner-button">Personaliser</button>
+            <button id="cookie-banner-button-Edit" class="cookie-banner-button" onclick="location.href = '/personnalisationCookie'">Personaliser</button>
         </div>
     </div>
-
-
-    <section class="personalisation" hidden> 
-        <table class="blueTable">
-            <thead>
-                <tr>
-                    <th id="Cookies">Cookies</th>
-                    <th id="Description">Description</th>
-                    <th id="Accepter">Accepter</th>
-                    <th id="Refuser">Refuser</th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                <tr>
-                    <td>Liste des cookies</td>
-                    <td>Description simplifier pour ceux-ci</td>
-                    <td><button class="buttonFormTA" onclick="clickFunctionTA()" >Tout Accepter</button></td>
-                    <td><button class="buttonFormTR" onclick="clickFunctionTR()">Tout refuser</button> </td>
-                    
-                </tr>
-                <tr>
-                    <td>cookies1</td>
-                    <td>Description1</td>
-                    <td><button class="Accepter" id="1" onclick="clickFunctionA(this)">Accepter</button></td>
-                    <td><button class="Refuser" id="2" onclick="clickFunctionR(this)">Refuser</button> </td>
-                </tr>                
-                <tr>
-                    <td>cookies2</td>
-                    <td>Description2</td>
-                    <td><button class="Accepter" id="3" onclick="clickFunctionA(this)">Accepter</button></td>
-                    <td><button class="Refuser" id="4" onclick="clickFunctionR(this)">Refuser</button> </td>
-                </tr>
-                <tr>
-                    <td>cookies3</td>
-                    <td>Description3</td>
-                    <td><button class="Accepter" id="5" onclick="clickFunctionA(this)">Accepter</button></td>
-                    <td><button class="Refuser" id="6" onclick="clickFunctionR(this)">Refuser</button> </td>
-                </tr>
-            </tbody>
-        </table>
-        <td><button class="buttonOkForm" id="OkForm">Valider</button> </td>
-        <!--   <td><button class="buttonCookies" id="OkForm" onclick="getCookie()">get Cookies</button> </td> -->
-    </section> 
 
 
     <div class="banner">

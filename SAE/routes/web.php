@@ -83,3 +83,5 @@ Route::get('/userAide', [IndexController::class, 'userAide']);
 //aide connection (admin / chef et user)
 Route::get('/welcomeAdmin', [IndexController::class, 'welcomeAdmin']);
 Route::get('/welcomeChef', [IndexController::class, 'welcomeChef']);
+
+Route::get('/personnalisationCookie', [IndexController::class, 'personnalisationCookie']);
