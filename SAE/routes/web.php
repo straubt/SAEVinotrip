@@ -2,11 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
-<<<<<<< HEAD
 use App\Http\Controllers\CartController;
-=======
 use App\Http\Controllers\AdminController;
->>>>>>> Titouan
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
@@ -96,9 +93,8 @@ Route::get('/adminAide', [IndexController::class, 'adminAide']);
 Route::get('/userAide', [IndexController::class, 'userAide']);
 
 //aide connection (admin / chef et user)
-<<<<<<< HEAD
 Route::get('/welcomeAdmin', [IndexController::class, 'welcomeAdmin']);
-Route::get('/welcomeChef', [IndexController::class, 'welcomeChef']);
+Route::get('/welcomeChef', [AdminController::class, 'welcomeChef']);
 Route::get('/sejourCommercial', [IndexController::class, 'unSejourCommercial']);
 
 Route::post('/modify-price', 'App\Http\Controllers\CommercialController@modifierPrix')->name('modify-price');
@@ -116,7 +112,3 @@ Route::post('/valider_et_payer', 'App\Http\Controllers\CommandeController@valide
 Route::get('/historiqueCommandes', [IndexController::class, 'historiqueCommandes']);
 
 Route::get('/selectionDatesCadeau', [IndexController::class, 'selectionDatesCadeau']);
-=======
-Route::get('/welcomeAdmin', [AdminController::class, 'welcomeAdmin']);
-Route::get('/welcomeChef', [AdminController::class, 'welcomeChef']);
->>>>>>> Titouan

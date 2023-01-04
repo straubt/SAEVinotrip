@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/styleChef.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <header class="top-nav">
@@ -37,7 +38,6 @@
         var catStaff = <?php echo json_encode($catStaff);?>;
         var csrf = <?php echo json_encode(csrf_token());?>;
     </script>
-    <p><b>page d'aceuil Chef</b></p> 
     <p><br><b>Ajout d'un nouvel administrateur :</b></br></p>
     <form method="post" action="{{ route("addAdmin") }}" autocomplete="on">
 	  @csrf

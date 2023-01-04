@@ -25,7 +25,7 @@ admins.forEach(admin => {
     input.name = "_token";
     input.value = csrf;
     //création du boutton submit
-    let buttonSuppAdmin = create("button", form, "supprimer Administrateur", null, null);
+    let buttonSuppAdmin = create("button", form, "supprimer Administrateur", null, "supprimer");
     buttonSuppAdmin.type = "submit";
     //création du hidden input
     let inputAdmin = create("input",form,null,null,null)

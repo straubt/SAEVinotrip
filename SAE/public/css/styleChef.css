@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body p {
+    margin: 0 0 1em 0;
+  }
+  
+  body b {
+    font-weight: bold;
+  }
+  
+  body .admins {
+    margin-top: 1em;
+  }
+  
+  body form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  body .box {
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  body .fl {
+    float: left;
+  }
+  
+  body .fr {
+    float: right;
+  }
+  
+  body .clr {
+    clear: both;
+  }
+  
+  body .fontLabel {
+    font-size: 0.9em;
+    color: #666;
+    margin-right: 0.5em;
+  }
+  
+  body .iconBox {
+    width: 2em;
+    text-align: center;
+  }
+  
+  body .textBox {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5em;
+    font-size: 0.9em;
+  }
+  
+  body #selector {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5em;
+    font-size: 0.9em;
+    background-color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  body #marge {
+    margin-top: 1em;
+    display: block;
+  }
+  
+  body .submit {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5em;
+    font-size: 1em;
+    color: #fff;
+    background-color: #2d3e3f;
+    cursor: pointer;
+  }
+  
+  body .submit:hover {
+    background-color: #3b4c4d;
+  }
+  

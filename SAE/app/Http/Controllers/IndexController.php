@@ -237,10 +237,6 @@ class IndexController extends Controller
         return view("welcomeAdmin",["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
     }
 
-    public function welcomeChef(){// page welcome compte Chef
-        return view("welcomeChef");
-    }
-
     public function postAvis(){
 
         $avis = new Avis;
