@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil vinotrip Main</title>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
+    <link rel="stylesheet" href="css/styleCookies.css">
     <link rel="stylesheet" href="css/styleGeneral.css">
     <link rel="stylesheet" href="css/styleWelcome.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -48,44 +49,6 @@
     <div class="owl-carousel">
     </div>
 
-
-    <div class="banner">
-        <video autoplay="" muted="" loop="">
-            <source id="vid" src=".. /video/raisins.mp4" class ="grape" type="">
-        </video>
-        <p class="descriptionSite" data-aos="fade-up"> Bienvenue dans vinotrip ! Votre site spécialisée dans l'oenotourisme. Nous vous proposons les meilleurs séjours adpatés à vos envies</p>
-
-    <div id="raisins"></div>
-
-    <script type="text/javascript">
-        let raisins = document.querySelector('#raisins');
-        let descr = document.querySelector('.descriptionSite');
-        var scale = 100;
-        let grandir =true;
-        let max =21;
-        raisins.style.backgroundSize = 20+"vh";
-        window.onwheel = function(e){
-            scale += e.deltaY;
-            if(scale>1200 && scale<13000){
-                if(max >= 400 || grandir == false){
-                    grandir =false
-                    if(max<=20)
-                        return;
-                    raisins.style.backgroundSize =  max+"vh";
-                    max -=10;}              
-                else if (grandir == true){
-                    raisins.style.backgroundSize =  max+"vh";
-                    max=max+10;}
-                } 
-            console.log(scale);
-            console.log(raisins.style.backgroundSize);
-        }
-
-        
-    </script>
-   <script>
-  AOS.init();
-</script>
     <div id="cookie-banner">
         <p class="mentionl"> Nous utilisons des cookies et d'autres technologies qui sont indispensables pour vous fournir les 
                 services et les fonctionnalités du site conformément à notre Avis sur les cookies. Si vous acceptez et cliquez sur 
@@ -148,6 +111,45 @@
         <td><button class="buttonOkForm" id="OkForm">Valider</button> </td>
         <!--   <td><button class="buttonCookies" id="OkForm" onclick="getCookie()">get Cookies</button> </td> -->
     </section> 
+
+
+    <div class="banner">
+        <video autoplay="" muted="" loop="">
+            <source id="vid" src=".. /video/raisins.mp4" class ="grape" type="">
+        </video>
+        <p class="descriptionSite" data-aos="fade-up"> Bienvenue dans vinotrip ! Votre site spécialisée dans l'oenotourisme. Nous vous proposons les meilleurs séjours adpatés à vos envies</p>
+
+    <div id="raisins"></div>
+
+    <script type="text/javascript">
+        let raisins = document.querySelector('#raisins');
+        let descr = document.querySelector('.descriptionSite');
+        var scale = 100;
+        let grandir =true;
+        let max =21;
+        raisins.style.backgroundSize = 20+"vh";
+        window.onwheel = function(e){
+            scale += e.deltaY;
+            if(scale>1200 && scale<13000){
+                if(max >= 400 || grandir == false){
+                    grandir =false
+                    if(max<=20)
+                        return;
+                    raisins.style.backgroundSize =  max+"vh";
+                    max -=10;}              
+                else if (grandir == true){
+                    raisins.style.backgroundSize =  max+"vh";
+                    max=max+10;}
+                } 
+            console.log(scale);
+            console.log(raisins.style.backgroundSize);
+        }
+
+        
+    </script>
+   <script>
+  AOS.init();
+</script>
 
 </body>
 
