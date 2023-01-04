@@ -105,7 +105,8 @@ main{
     padding: 0.5em;
     border-radius: 2em;
     margin: 5%;
-    border-color: white;
+    box-shadow: 0px 2px 5px black;
+    
 }
 
 #avisData *{
