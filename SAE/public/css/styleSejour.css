@@ -46,14 +46,25 @@ main{
 #sejourHeaderText h1{
     color: white;
     text-decoration: none;
+    padding: 2%;
+    font-size: 200%;
 }
 
 #sejourProgramme{
     margin: 1em;
+    
 }
 
-#sejourProgramme h2{
-    padding-bottom: 0.25em;
+#sejourProgramme p{
+    margin-left: 2%;
+}
+
+#sejourProgramme h4{
+    margin-left: 2%;
+}
+
+#sejourProgramme h5{
+    margin-left: 2%;
 }
 
 .etape{
@@ -92,6 +103,10 @@ main{
     background-color: #7E0000DE;
     color: white;
     padding: 0.5em;
+    border-radius: 2em;
+    margin: 5%;
+    box-shadow: 0px 2px 5px black;
+    
 }
 
 #avisData *{
@@ -140,6 +155,45 @@ main{
     float: right;
 }
 
+.slider-wrapper {
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .slides-container {
+    /*height: calc(100vh - 2rem);*/
+    height: 50vw;
+    width: 100%;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    scroll-behavior: smooth;
+  }
+  .slides-container h2 {
+    text-align: center;
+    font-size: 5vw;
+    color: white;
+    text-shadow: 0px 5px 5px #7E0000DE;
+    align-items: center;
+    justify-content: center;
+  }
+  .slides-container a {
+    text-decoration: none;
+    display: flex;
+  }
+  .slide {
+    width: 100%;
+    flex: 1 0 100% ;
+    background-repeat: no-repeat ;
+    background-position: center ;
+    background-size: cover;
+  }
+.slide div{
+    width: 100%;
+}
+
 /* RESPONSIVE DESIGN */
 
 @media (orientation: landscape)
@@ -171,4 +225,26 @@ main{
         flex: 1;
     }
 }
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  
+  input[type="date"] {
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  input[type="date"]:focus {
+    border-color: #999;
+    outline: none;
+  }
+  
+
+
 /* ---------------------------------- */

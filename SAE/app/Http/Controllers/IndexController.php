@@ -13,6 +13,7 @@ use App\Models\Route_des_vins;
 use App\Models\Panier;
 use App\Models\Avis;
 use App\Models\Client;
+use App\Models\Commande;
 use App\Models\Cb;
 use App\Models\Sejour_To_Cat_Participant;
 use App\Models\Client_Possede_Adresse;
@@ -24,15 +25,19 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class IndexController extends Controller
 {
     public function index(){ //return homepage view
-        return view("welcome", ["sejour" => Sejour::all()], ["client" => Auth::user()]);
+        return view("welcome", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get()], ["client" => Auth::user()]);
     }
 
     public function sejour(){ //return all sejours iview
-        return view("lessejours", ["sejour" => Sejour::all(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
+        return view("lessejours", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
     }
 
     public function unSejour(){ //return clicked sejour view
-        $id = $_SERVER["QUERY_STRING"] - 1;
+        $id = $_SERVER["QUERY_STRING"];
+
+        $sejour = DB::table('sejour')->where('sejour.id_sejour', '=', $id)->select('*')->get()[0];
+        $id_destination = $sejour->id_destination;
+
         $avis = DB::table('avis')
             ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
             ->join('client', 'client.id_client', '=', 'avis.id_client')
@@ -48,7 +53,7 @@ class IndexController extends Controller
         $etapes = DB::table('etape')
             ->join('sejour', 'sejour.id_sejour', '=', 'etape.id_sejour')
             ->where('etape.id_sejour', $id + 1)
-            ->select('titre_etape', 'description_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
+            ->select('titre_etape', 'photo_etape', 'url_etape', 'url_video_etape', 'num_jour_etape')
             ->get();
 
 
@@ -57,10 +62,43 @@ class IndexController extends Controller
             ->join('element_etape', 'element_etape.id_element_etape', '=', 'contient_element_etape.id_element_etape')
             ->join('partenaire', 'partenaire.id_partenaire', '=', 'element_etape.id_partenaire')
             ->where('etape.id_sejour', $id + 1)
-            ->select('num_jour_etape', 'nom_partenaire', 'heure_rdv', 'desc_elmt_etape')
+            ->select('num_jour_etape', 'partenaire.id_partenaire', 'nom_partenaire', 'heure_rdv', 'is_restaurant', 'is_cave', 'is_hotel')
             ->get();
+
+        $sejours_same_destination = DB::table('sejour')->where('sejour.id_destination', '=', $id_destination)->select('*')->get();
         
-        return view("sejour", ["id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, "sejour" => Sejour::all(), "theme" => Theme::all()]);
+        if (Auth::check()) {
+            $id_client = Auth::user()->id_client;
+            $achat_effectue = Commande::where('code_etat_commande', '=', 2)
+                            ->where('id_client', '=', $id_client)
+                            ->where('id_sejour', '=', $sejour->id_sejour)
+                            ->get();
+        } else {
+            $achat_effectue = null;
+        }
+
+        
+
+        return view("sejour", ["achat_effectue"=>$achat_effectue, "id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, 'sejours_same_destination' => $sejours_same_destination, "sejour" => $sejour, "theme" => Theme::all()]);
+
+    }
+
+    // page partenaire avec nom, adresse, e-mail, numéro de téléphone
+    public function partenaire()
+    {
+        $id_partenaire = $_GET["id_partenaire"];
+
+        $partenaire = DB::table('partenaire')
+        ->join(         'adresse',          'adresse.id_adresse',           '=',    'partenaire.id_adresse')
+        ->leftJoin(     'restaurant',       'restaurant.id_partenaire',     '=',    'partenaire.id_partenaire')
+        ->leftJoin(     'cave',             'cave.id_partenaire',           '=',    'partenaire.id_partenaire')
+        ->leftJoin(     'hotel',            'hotel.id_partenaire',          '=',    'partenaire.id_partenaire')
+        ->leftJoin(     'autre_societe',    'autre_societe.id_partenaire',  '=',    'partenaire.id_partenaire')
+        ->where(        'partenaire.id_partenaire', $id_partenaire)
+        ->select('nom_partenaire', 'mail_partenaire', 'tel_partenaire', 'num_rue_adresse', 'libelle_rue_adresse', 'code_postal_adresse', 'libelle_commune', 'nb_etoile_restaurant', 'type_cuisine', 'specialite_restaurant', 'type_degustation', 'nb_etoile_hotel', 'nb_chambre_hotel', 'type_activite', 'lieu_activite')
+        ->get()[0];
+        
+        return view("partenaire", ["partenaire" => $partenaire]);
 
     }
 
@@ -195,24 +233,83 @@ class IndexController extends Controller
         return view("adresseFacturation",["client" => Auth::user()],["client_possede_adresse" => Client_Possede_Adresse::all()]);
     }
 
-    public function postAvis(){
-        // j'ai bidouillé la table mais il faut RAJOUTER IDENTITY SUR TOUS LES ID
-        // alter table avis alter id_avis add generated always as identity;
-        $idsejour = $_POST["idSejour"];
-        $userId = Auth::id();
-        $date_avis = date("Y-m-d");
-        $note_avis = $_POST["noteAvis"];
-        $libelle_avis = $_POST["libelleAvis"];;
-        $texte_avis = $_POST["texteAvis"];
-        DB::insert("INSERT INTO avis(id_sejour, id_client, date_avis, note_avis, libelle_avis, texte_avis) VALUES ($idsejour, $userId, '$date_avis', $note_avis, '$libelle_avis', '$texte_avis');");
-        return redirect()->to("/sejour?".$idsejour);
+    public function welcomeAdmin(){// page welcome compte admin
+        return view("welcomeAdmin",["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
     }
-    // public function destination(){
-    //     return view("sejour", ["destination" => Destination::all()]);
-    // }
+
+    public function postAvis(){
+
+        $avis = new Avis;
+        $avis->id_sejour = $_POST["idSejour"];
+        $avis->id_client = Auth::id();
+        $avis->date_avis = date("Y-m-d");
+        $avis->note_avis = $_POST["noteAvis"];
+        $avis->libelle_avis = $_POST["libelleAvis"];
+        $avis->texte_avis = $_POST["texteAvis"];
+        var_dump("appel");
+        $avis->save();
+        /*
+        //$libelle_avis = str_replace("'", "''", $libelle_avis);
+        //$texte_avis = str_replace("'", "''", $texte_avis);
+        DB::table('avis')->insertGetId([
+            'id_sejour' => $idsejour,
+            'id_client' => $userId,
+            'date_avis' => "$date_avis",
+            'note_avis' => $note_avis,
+            'libelle_avis' => "$libelle_avis",
+            'texte_avis' => "$texte_avis"
+        ]);*/
+
+        //DB::insert("INSERT INTO avis(id_sejour, id_client, date_avis, note_avis, libelle_avis, texte_avis) VALUES ($idsejour, $userId, '$date_avis', $note_avis, '$libelle_avis', '$texte_avis');");
+        //return redirect()->to("/sejour?".$idsejour);
+        return redirect()->route('unSejour', [$_POST["idSejour"]]);
+    }
+
    
+    public function unSejourCommercial(){ //return clicked sejour view
+        $id = $_SERVER["QUERY_STRING"] - 1;
+        $avis = DB::table('avis')
+            ->join('sejour', 'sejour.id_sejour', '=', 'avis.id_sejour')
+            ->join('client', 'client.id_client', '=', 'avis.id_client')
+            ->where('avis.id_sejour', $id + 1)
+            ->select('nom_client', 'prenom_client', 'note_avis', 'libelle_avis', 'texte_avis', 'date_avis')
+            ->get();
 
+        $avisData = DB::table('avis')
+            ->where('avis.id_sejour', $id + 1)
+            ->select(DB::raw('ROUND(AVG(CAST(note_avis as numeric)), 2) AS "average_note"'), DB::raw('COUNT(*) AS "count_avis"'))
+            ->get();
 
+        return view("sejourCommercial", ["id" => $id, 'avisData' => $avisData, 'avis' => $avis, "sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "theme" => Theme::all()]);
+
+    }
+
+    public function commandesEnAttente(){
+        return view("commandesEnAttente", ["commande" => Commande::where('code_etat_commande', '=', 0)->get()]);
+    }
+
+    public function mesCommandes(){
+        if(!Auth::check()){
+            return redirect("/login");
+          }
+        $id_client = Auth::user()->id_client;
+        $commandes = Commande::where('code_etat_commande', '=', 1)
+                            ->where('id_client', '=', $id_client)
+                            ->get();
+        return view("mesCommandes", ["commande" => $commandes]);
+    }
+    
+    public function historiqueCommandes(){
+        $id_client = Auth::user()->id_client;
+        $commandes = Commande::where('code_etat_commande', '=', 2)
+                            ->where('id_client', '=', $id_client)
+                            ->get();
+        return view("historiqueCommandes", ["commande" => $commandes]);
+    }
+
+    public function selectionDatesCadeau(){
+        return view("selectionDatesCadeau");
+    }
 
 
 

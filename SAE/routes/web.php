@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
@@ -20,6 +21,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 Route::get('/nos-sejours', [IndexController::class, "destination"]);
 Route::get('/nos-sejours', [IndexController::class, "categorie_participant"]);
 Route::get('/nos-sejours', [IndexController::class, "sejour"]);
+// un partenaire
+Route::get('/partenaire', [IndexController::class, "partenaire"]);
 //register post get
 Route::get('/register', [IndexController::class, "register"])->name('register');
 Route::post('/register', [IndexController::class, "addClient"])->name('registerPost');
@@ -34,8 +37,8 @@ Route::post('/profile', [IndexController::class, "updateProfile"])->name('update
 //homepage
 Route::get('/', [IndexController::class, "index"]);
 //Voir un sejour
-Route::get('/sejour', [IndexController::class, 'unSejour']);
-Route::post('/sejour', [IndexController::class, 'postAvis'])->name('postAvis');
+Route::get('/sejour', [IndexController::class, 'unSejour'])->name('unSejour');
+Route::post('/postAvis', [IndexController::class, 'postAvis'])->name('postAvis');
 //Route des vins
 Route::get('/route-des-vins', [IndexController::class, 'route_des_vins']);
 //panier routes
@@ -83,10 +86,29 @@ Route::post('/modify-address', 'App\Http\Controllers\AdresseController@modifyAdd
 
 Route::post('/modifierAdresse', 'App\Http\Controllers\AdresseController@modifier')->name('modifier-adresse');
 
+Route::post('/update-cart', 'App\Http\Controllers\CartController@update')->name('update-cart');
+
 //aide connection (admin / chef et user)
 Route::get('/adminAide', [IndexController::class, 'adminAide']);
 Route::get('/userAide', [IndexController::class, 'userAide']);
 
 //aide connection (admin / chef et user)
-Route::get('/welcomeAdmin', [AdminController::class, 'welcomeAdmin']);
-Route::get('/welcomeChef', [AdminController::class, 'welcomeChef']);
+Route::get('/welcomeAdmin', [IndexController::class, 'welcomeAdmin']);
+Route::get('/welcomeChef', [IndexController::class, 'welcomeChef']);
+Route::get('/sejourCommercial', [IndexController::class, 'unSejourCommercial']);
+
+Route::post('/modify-price', 'App\Http\Controllers\CommercialController@modifierPrix')->name('modify-price');
+
+Route::get('/commandesEnAttente', [IndexController::class, 'commandesEnAttente']);
+
+Route::post('/confirmer-commande', 'App\Http\Controllers\CommandeController@confirmer')->name('confirmer-commande');
+
+
+
+Route::get('/mesCommandes', [IndexController::class, 'mesCommandes']);
+
+Route::post('/valider_et_payer', 'App\Http\Controllers\CommandeController@valider_et_payer')->name('valider_et_payer');
+
+Route::get('/historiqueCommandes', [IndexController::class, 'historiqueCommandes']);
+
+Route::get('/selectionDatesCadeau', [IndexController::class, 'selectionDatesCadeau']);

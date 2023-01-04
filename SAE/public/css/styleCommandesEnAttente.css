@@ -1,0 +1,54 @@
+.commande {
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .commande .champ {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .commande .champ .titre {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .commande .champ .valeur {
+    font-style: italic;
+    color: #666;
+  }
+  
+  /* Bouton principal */
+button {
+    /* Marge pour l'espacement */
+    margin: 10px;
+    /* Couleur de fond */
+    background-color: #00b8d4;
+    /* Couleur de police */
+    color: #fff;
+    /* Bords arrondis */
+    border-radius: 5px;
+    /* Padding pour l'espacement intérieur */
+    padding: 10px 20px;
+    /* Aucun bord */
+    border: none;
+    /* Aucune ombre */
+    box-shadow: none;
+    /* Police en gras */
+    font-weight: bold;
+    /* Taille de police */
+    font-size: 16px;
+    /* Cursor en "main" lorsqu'on passe sur le bouton */
+    cursor: pointer;
+  }
+  
+  /* Bouton secondaire */
+  button[type="submit"] {
+    /* Couleur de fond gris clair */
+    background-color: #f0f0f0;
+    /* Couleur de police noire */
+    color: #000;
+  }
+  

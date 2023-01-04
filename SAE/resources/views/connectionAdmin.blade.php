@@ -71,7 +71,7 @@
 
 			<!---connection temporaire valide---->
 			<br>
-			<a class="temp" href="/welcomeAdmin">connection temporaire</a>
+			<a class="temp" href="/welcomeAdmin">connexion temporaire</a>
 
 			<!---autre connection----->
 			<div class="autreConection">

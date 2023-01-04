@@ -56,6 +56,7 @@ use App\Models\Adresse;
             </div>
         </div>
         <a><button id="modification">Modifier informations </button></a>
+        <a href="/historiqueCommandes"><button id="historique">Historique des commandes</button></a>
     </div> 
     <?php $touteslespossessions = Client_Possede_Adresse::where('id_client', $client->id_client)->get(); ?>
     <h3>Vos adresses :</h3>
@@ -65,13 +66,13 @@ use App\Models\Adresse;
         <h3>Numéro de rue :</h3>
         <p>{{$adresse->num_rue_adresse}}</p>
 
-        <h3>Libellé de la rue :</h3>
+        <h3>Nom de la rue :</h3>
         <p>{{$adresse->libelle_rue_adresse}}</p>
 
         <h3>Code postal :</h3>
         <p>{{$adresse->code_postal_adresse}}</p>
 
-        <h3>Libellé de la commune :</h3>
+        <h3>Libellé de la ville :</h3>
         <p>{{$adresse->libelle_commune}}</p>
 
         <h3>Numéro de téléphone :</h3>
