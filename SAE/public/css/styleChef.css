@@ -99,7 +99,7 @@ body {
     background-color: #3b4c4d;
   }
   
-  #suppr{
+  #supprimer{
     width: 100%;
     box-sizing: border-box;
     border: none;
@@ -111,6 +111,6 @@ body {
     cursor: pointer;
   }
 
-  #suppr{
+  #supprimer:hover{
     background-color: #3b4c4d;
   }
