@@ -153,7 +153,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     @guest<button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button>@endguest
                 </div>
 
-                <form id="formLeaveReview" action="postAvis" method="post" hidden>
+                <form id="formLeaveReview" action="postAvis" enctype="multipart/form-data" method="post" hidden>
                     @csrf
                     <h3>Mon avis</h3>
 
@@ -172,13 +172,6 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     <div>
                         <label for="texteAvis">Commentaire :</label><br>
                         <textarea name="texteAvis" id="formLeaveReviewTextArea" required></textarea>
-                    </div>
-
-                    <div>
-                        <label>Ajouter une photo (optionnel)</label>
-                        <input type="file" name="img_post_avis[]" accept="image/png, image/jpeg">
-                        <input type="file" name="img_post_avis[]" accept="image/png, image/jpeg">
-                        <input type="file" name="img_post_avis[]" accept="image/png, image/jpeg">
                     </div>
 
                     <div id="formLeaveReviewControlContainer">

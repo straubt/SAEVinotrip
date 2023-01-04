@@ -266,9 +266,6 @@ class IndexController extends Controller
     }
 
     public function postAvis(){
-
-        //$ssh_connection = ssh2_connect('http://51.83.36.122');
-        //sh2_auth_password($ssh_connection, 's232', '6hMCnm');
         
         $avis = new Avis;
         $avis->id_sejour = $_POST["idSejour"];
@@ -279,6 +276,7 @@ class IndexController extends Controller
         $avis->texte_avis = $_POST["texteAvis"];
 
         $avis->save();
+        
         /*
         //$libelle_avis = str_replace("'", "''", $libelle_avis);
         //$texte_avis = str_replace("'", "''", $texte_avis);
