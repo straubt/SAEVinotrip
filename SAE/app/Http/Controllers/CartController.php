@@ -91,6 +91,9 @@ class CartController extends Controller
      // Fonction pour mettre à jour l'élément du panier
      public function update(Request $request)
      {
+        if(!Auth::check()){
+            return redirect("/login");
+        }
         $price = $request->price;   
         $tabCommande = $request->tabCommande;
         $tabCommande = json_decode($tabCommande, true);

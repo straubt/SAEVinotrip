@@ -299,6 +299,9 @@ class IndexController extends Controller
     }
 
     public function mesCommandes(){
+        if(!Auth::check()){
+            return redirect("/login");
+          }
         $id_client = Auth::user()->id_client;
         $commandes = Commande::where('code_etat_commande', '=', 1)
                             ->where('id_client', '=', $id_client)
