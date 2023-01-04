@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/styleWelcome.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styleCookies.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -85,30 +86,68 @@
    <script>
   AOS.init();
 </script>
-        <section class="bandeau"> 
-            <br>
-            <p class="mentionl"> Nous utilisons des cookies et d'autres technologies qui sont indispensables pour vous fournir les 
+    <div id="cookie-banner">
+        <p class="mentionl"> Nous utilisons des cookies et d'autres technologies qui sont indispensables pour vous fournir les 
                 services et les fonctionnalités du site conformément à notre Avis sur les cookies. Si vous acceptez et cliquez sur 
                 Tout accepter, nous autoriserons également des sociétés tierces partenaires à stocker des cookies sur votre appareil 
                 et à utiliser des technologies similaires pour collecter et utiliser vos données personnelles (par exemple, l'adresse
-                IP) à des fins de personnalisation des publicités, de mesure et d'analyse sur nos sites et en dehors. Vous pouvez 
-                refuser votre consentement en cliquant sur Tout refuser ou faire des choix précis en sélectionnant Personnaliser 
-                mes choix. Vous pouvez retirer votre consentement à tout moment sur la page https://nomDuSite.fr </p>  
-            <br>
-            <p class="mention"> Fins du traitement des données : stocker et/ou accéder à des informations sur un appareil. Publicités
-                et contenu personnalisés, mesure de performance des publicités et du contenu, informations sur le public cible et
-                développement de produits. </p> 
-            <div id="boutons"> 
-                <br>
-                <button class="buttonBandeau" id="Accept">Accepter</button>
-                <button class="buttonBandeau" id="Refus" onclick="togg()">Tout refuser</button> 
-                <button class="buttonBandeau" id="Perso" input type="button"> <a id="Personalisation" href="/personalisationCookies">Personnaliser mes choix</a> </button> 
-            </div> 
-            
-        </section> 
-        <?php
-    ?>
+                 IP) à des fins de personnalisation des publicités, de mesure et d'analyse sur nos sites et en dehors. Vous pouvez 
+                 refuser votre consentement en cliquant sur Tout refuser ou faire des choix précis en sélectionnant Personnaliser 
+                 mes choix. Vous pouvez retirer votre consentement à tout moment sur la page https://nomDuSite.fr </p>  
+        <p class="ention"> Fins du traitement des données : stocker et/ou accéder à des informations sur un appareil. Publicités
+                 et contenu personnalisés, mesure de performance des publicités et du contenu, informations sur le public cible et
+                  développement de produits. </p> 
+        <a href="/politiqueDeConfidentialite">En savoir plus</a></p>
+        <div id="cookie-banner-button">
+            <button class="cookie-banner-button">Accepter</button>
+            <button class="cookie-banner-button">Refuser</button>
+            <button id="cookie-banner-button-Edit" class="cookie-banner-button">Personaliser</button>
+        </div>
+    </div>
 
+
+    <section class="personalisation" hidden> 
+        <table class="blueTable">
+            <thead>
+                <tr>
+                    <th id="Cookies">Cookies</th>
+                    <th id="Description">Description</th>
+                    <th id="Accepter">Accepter</th>
+                    <th id="Refuser">Refuser</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr>
+                    <td>Liste des cookies</td>
+                    <td>Description simplifier pour ceux-ci</td>
+                    <td><button class="buttonFormTA" onclick="clickFunctionTA()" >Tout Accepter</button></td>
+                    <td><button class="buttonFormTR" onclick="clickFunctionTR()">Tout refuser</button> </td>
+                    
+                </tr>
+                <tr>
+                    <td>cookies1</td>
+                    <td>Description1</td>
+                    <td><button class="Accepter" id="1" onclick="clickFunctionA(this)">Accepter</button></td>
+                    <td><button class="Refuser" id="2" onclick="clickFunctionR(this)">Refuser</button> </td>
+                </tr>                
+                <tr>
+                    <td>cookies2</td>
+                    <td>Description2</td>
+                    <td><button class="Accepter" id="3" onclick="clickFunctionA(this)">Accepter</button></td>
+                    <td><button class="Refuser" id="4" onclick="clickFunctionR(this)">Refuser</button> </td>
+                </tr>
+                <tr>
+                    <td>cookies3</td>
+                    <td>Description3</td>
+                    <td><button class="Accepter" id="5" onclick="clickFunctionA(this)">Accepter</button></td>
+                    <td><button class="Refuser" id="6" onclick="clickFunctionR(this)">Refuser</button> </td>
+                </tr>
+            </tbody>
+        </table>
+        <td><button class="buttonOkForm" id="OkForm">Valider</button> </td>
+        <!--   <td><button class="buttonCookies" id="OkForm" onclick="getCookie()">get Cookies</button> </td> -->
+    </section> 
 
 </body>
 
@@ -124,6 +163,7 @@
     </div>
     <br>
 </footer>
+<script src="js/mainPagePersonalisation.js"></script>
 <script src="../js/mainPageAcceuil.js"></script>
 <script src="js/jquery-3.6.1.slim.min.js"></script>
 <script src="js/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
