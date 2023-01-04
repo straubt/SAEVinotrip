@@ -89,6 +89,10 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         <div>Offrir</div>
                         <img src="/images/icons/offer.svg"></img>
                     </button>
+                    <button type="submit">
+                        <div>Ajouter au panier</div>
+                        <img src="/images/icons/shoppingCart.svg"></img>
+                    </button>
                     <form action="{{ route('cart.store') }}" method="post" onsubmit="return validateDates()">
                         @csrf
                         <input id="hidden-input-id" type="hidden" name="id" value="{{$idRequest}}">
@@ -98,10 +102,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         <input type="date" id="startDate" name="startDate" required><br>
                         <label for="endDate">Date de départ :</label><br>
                         <input type="date" id="endDate" name="endDate" required><br>
-                    <button type="submit">
-                        <div>Ajouter au<br> panier</div>
-                        <img src="/images/icons/shoppingCart.svg"></img>
-                    </button>
+                    
                     </form>
                 </div>
             </section>
