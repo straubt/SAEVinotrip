@@ -159,7 +159,7 @@ class IndexController extends Controller
             'mdp_client' => ['required'],
         ]);
 
-        unset($credentials["mdp_client"]); //transfor mdp_client into password for auth laravel
+        unset($credentials["mdp_client"]); //transform mdp_client into password for auth laravel
         $credentials["password"] = $request->mdp_client;
 
 
@@ -214,13 +214,7 @@ class IndexController extends Controller
         return view("profile", ["client" => Auth::user()]);
     }
 
-    public function connectionAdmin(){ // page connection pour compte admin
-        return view("connectionAdmin");
-    }
-
-    public function connectionChef(){// page connection pour compte Chef
-        return view("connectionChef");
-    }
+    
 
     public function adminAide(){// page connection pour aide admin / chef
         return view("adminAide");

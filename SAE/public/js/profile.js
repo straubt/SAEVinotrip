@@ -1,14 +1,14 @@
-function create(tag, parent, text=null, classs=null, id=null) {
-    let element = document.createElement(tag)
-    if (text)
-      element.appendChild(document.createTextNode(text))
-    parent.appendChild(element)
-    if (classs)
-      element.classList.add(classs)
-    if (id)
-      element.id = id
-    return element
-  }
+function create(tag, parent, text = null, classs = null, id = null) {
+  let element = document.createElement(tag)
+  if (text)
+    element.appendChild(document.createTextNode(text))
+  parent.appendChild(element)
+  if (classs)
+    element.classList.add(classs)
+  if (id)
+    element.id = id
+  return element
+}
 
 
 
@@ -21,10 +21,10 @@ img.id="image"
 let sex = create("p", divImage, null, null, "sexe");
 
 // --------- initialisation image par apport au sexe
-if (client.titre_client == "M"){
+if (client.titre_client == "M") {
   img.src = "https://cdn-icons-png.flaticon.com/512/27/27045.png";
 }
-else if (client.titre_client == "Mme" || client.titre_client == "Mlle"){
+else if (client.titre_client == "Mme" || client.titre_client == "Mlle") {
   img.src = "https://cdn-icons-png.flaticon.com/512/126/126379.png";
 }
 else {
@@ -84,13 +84,15 @@ buttonModif.addEventListener('click', function(){
     let labelPrenom = create("label", newPrenom, "nouveau Prenom : ", "champsModif", "txtPrenom");
       let inputPrenom = create("input", newPrenom, null, "champsModif", "newPrenom");
       inputPrenom.placeholder = client.prenom_client;
+      inputPrenom.value = client.prenom_client;
       inputPrenom.name = "prenom";
 
     //nom
   let newNom = create("div", form, null, "champsModif", null);
     let labelNom = create("label", newNom, "nouveau Nom : ", "champsModif", "txtNom");
       let inputNom = create("input", newNom, null, "champsModif", "newNom");
-      inputNom.placeholder = client.nom_client
+      inputNom.placeholder = client.nom_client;
+      inputNom.value = client.nom_client;
       inputNom.name = "nom";
 
    //mail
@@ -99,6 +101,7 @@ buttonModif.addEventListener('click', function(){
     let inputMail = create("input", newMail, null, "champsModif", "newMail");
     inputMail.type = "email";
     inputMail.placeholder = client.mail_client;
+    inputMail.value = client.mail_client;
     inputMail.name = "mail_client";
 
     //naissance
@@ -107,6 +110,7 @@ buttonModif.addEventListener('click', function(){
       let inputDateNaiss = create("input", newDate, null, "champsModif", "newDate");
       inputDateNaiss.type = 'text';
       inputDateNaiss.placeholder = client.date_naiss_client;
+      inputDateNaiss.value = client.date_naiss_client;
       inputDateNaiss.name = "date_naissance";
 
     //MDP
@@ -130,3 +134,8 @@ buttonModif.addEventListener('click', function(){
   buttonModif.remove();
 
 })
+
+
+if (client.idavis == avis.idavis){
+  
+}
