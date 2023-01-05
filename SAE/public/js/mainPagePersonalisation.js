@@ -1,63 +1,70 @@
 
-//button res
-function resClickFunction() {
-    let Buttons = document.querySelectorAll("button");
-    for (let button of Buttons){
-        button.style.backgroundColor ="white";
-        document.getElementsByTagName("BUTTON")[0].style.backgroundColor = "#1C6EA4";
-        document.getElementsByTagName("BUTTON")[9].style.backgroundColor = "green"; 
-    }    
+//recuperer le tag de l'element cliqué et si le texte de celuici est accepter changer pour blanc le tag+1
+//accepter bouttons par bouttons
+function clickFunctionA(button) {
+    if(button.style.backgroundColor === "red") {
+        button.style.backgroundColor = "white";
+    }
+    else {
+        button.style.backgroundColor = "red";
+        var idCurent = button.getAttribute('id');
+        var idRefus = parseInt(idCurent, 10) +1;
+        var refus = document.getElementById(idRefus)
+        refus.style.backgroundColor = "white"
+    }
+}
+
+function clickFunctionR(button) {
+    if(button.style.backgroundColor === "red") {
+        button.style.backgroundColor = "white";
+    }
+    else {
+        button.style.backgroundColor = "red";
+        var idCurent = button.getAttribute('id');
+        var idRefus = parseInt(idCurent, 10) -1;
+        var refus = document.getElementById(idRefus)
+        refus.style.backgroundColor = "white"
+    }
 }
 
 //tout les bouttons accepter
-function clickFunctionA() {
-    document.getElementsByTagName("BUTTON")[1].style.backgroundColor = "yellow"; 
-    document.getElementsByTagName("BUTTON")[3].style.backgroundColor = "yellow"; 
-    document.getElementsByTagName("BUTTON")[5].style.backgroundColor = "yellow"; 
-    document.getElementsByTagName("BUTTON")[7].style.backgroundColor = "yellow"; 
+function clickFunctionTA() {
+    const Accepter = document.getElementsByClassName('Accepter');
+    const buttonTout = document.getElementsByClassName('buttonFormTA');
+    for (let i = 0; i < Accepter.length; i++) {
+        clickFunctionA(Accepter[i])
+    }
 }
+
 
 //tout les bouttons refuser
-function clickFunctionR() {
-    document.getElementsByTagName("BUTTON")[2].style.backgroundColor = "pink"; 
-    document.getElementsByTagName("BUTTON")[4].style.backgroundColor = "pink"; 
-    document.getElementsByTagName("BUTTON")[6].style.backgroundColor = "pink"; 
-    document.getElementsByTagName("BUTTON")[8].style.backgroundColor = "pink"; 
+function clickFunctionTR() {
+    const Accepter = document.getElementsByClassName('Refuser');
+    for (let i = 0; i < Accepter.length; i++) {
+        clickFunctionR(Accepter[i])
+    }
 }
 
-// IL FAUDRA LES MEMES COULEURS POUR LES BOUTTONS (LES COULEURS ACTUELLES SONT POUR LES TESTS)
+//bandeau cookies
+const cookieBanner = document.getElementById('cookie-banner');
+//tableau config cookies
+const edit = document.getElementsByClassName('personalisation');
 
-//pour 1 boutton
+const okEdit = document.getElementById('OkForm');
+const cookieBannerAccept = document.getElementById('cookie-banner-button');
+const cookieBannerEdit = document.getElementById('cookie-banner-button-Edit');
 
-buttonActuels = document.querySelectorAll(".buttonForm")
-buttonActuels.forEach(buton => {
-    if (buton.backgroundColor == "magenta") {
-        buton.addEventListener("click", function(){
-        buton.style.backgroundColor = "white"; 
-    })
-    } else {
-        buton.addEventListener("click", function(){
-            buton.style.backgroundColor = "magenta"; 
-        }) 
-    }
+cookieBannerAccept.addEventListener('click', function() {
+  cookieBanner.style.display = 'none';
+  // set a cookie to remember that the user has accepted the banner
 });
 
-
-/*
-
-//pour tout les accept
-buttonATotal = document.querySelectorAll(".buttonFormTA")
-buttonATotal.forEach(buton2 => {
-    buton.addEventListener("click", function(){
-        buton.style.backgroundColor = "yellow"; 
-    })
-});
-//pour tout les refus
-buttonRTotal = document.querySelectorAll(".buttonFormTR")
-buttonRTotal.forEach(buton => {
-    buton.addEventListener("click", function(){
-        buton.style.backgroundColor = "blue"; 
-    })
+cookieBannerEdit.addEventListener('click', function() {
+  edit[0].hidden = false;
+  // set a cookie to remember that the user has accepted the banner
 });
 
-*/
+okEdit.addEventListener('click', function() {
+  edit[0].hidden = true;
+  // set a cookie to remember that the user has accepted the banner
+});

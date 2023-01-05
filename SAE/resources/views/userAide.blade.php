@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connection Vinotrip</title> 
+    <title>Mot de passe oublié</title> 
     <link rel="stylesheet" href="css/styleRegister.css">
 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
 	<link rel="stylesheet" href="css/header.css">
@@ -39,16 +39,6 @@
       <form method="post" action="{{ route("connectionPost") }}" autocomplete="on">
 	  @csrf
 
-    		<!---ID User---->
-    		<div class="box">
-          		<label for="id" class="fl fontLabel"> ID utilisateur : </label>
-				<div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-					<div class="fr">
-						<input type="id" required name="id_user" placeholder="Id" class="textBox">
-					</div>
-				<div class="clr"></div>
-			</div>
-
 			<!---Mail User---->
     		<div class="box">
           		<label for="mail" class="fl fontLabel"> Mail utilisateur : </label>
@@ -71,8 +61,7 @@
     		</div>
       </form>
 	  
-	   <?php $erreur = str_replace('email','',$errors);?> 
-	   <p style="color: red; font-size: 12px">{{preg_replace('/[^A-Za-z0-9\-]/', ' ', $erreur)}}</p>
+
   </div>
   </body>
   

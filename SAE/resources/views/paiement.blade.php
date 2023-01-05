@@ -49,17 +49,17 @@
     <form action="/cb/store" method="POST" >
         @csrf
         <label for="numero_carte_cb">Numéro de la carte de crédit :</label><br>
-        <input type="text" id="numero_carte_cb" name="numero_carte_cb" value="" required><br>
+        <input type="tel" inputmode="numeric" id="numero_carte_cb" name="numero_carte_cb" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" autocomplete ="cc-number" pattern="[0-9\s]{13,19}" required><br>
         <!-- Récupérer la valeur de id_cb depuis les données d'authentification et d'autorisation -->
         <input type="hidden" id="id_cb" name="id_cb" value="{{ auth()->user()->id_cb }}" required><br>
         <!-- Récupérer la valeur de id_client depuis les données d'authentification et d'autorisation -->
         <input type="hidden" id="id_client" name="id_client" value="{{ auth()->user()->id_client }}" required><br>
         <label for="date_expiration_cb">Date d'expiration de la carte de crédit :</label><br>
-        <input type="text" id="date_expiration_cb" name="date_expiration_cb" value="" required><br>
+        <input type="month" id="date_expiration_cb" name="date_expiration_cb" required><br><br><br>
         <label for="crypto_visuel_cb">Cryptogramme visuel de la carte de crédit :</label><br>
-        <input type="text" id="crypto_visuel_cb" name="crypto_visuel_cb" value="" required><br>
+        <input type="number" id="crypto_visuel_cb" name="crypto_visuel_cb" pattern="/^\d{3}$/" required><br><br><br><br>
         <label for="nom_banque_cb">Nom de la banque :</label><br>
-        <input type="text" id="nom_banque_cb" name="nom_banque_cb" value="" required><br>
+        <input type="text" id="nom_banque_cb" name="nom_banque_cb" required><br><br><br>
         <label for="enregistrer">Enregistrer les données de la carte de crédit ?</label><br>
         <input type="checkbox" id="enregistrer" name="enregistrer" value="1"><br><br>
         <input type="hidden" name="id_commande" value="{{$commande->id_commande}}">

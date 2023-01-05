@@ -25,8 +25,12 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class IndexController extends Controller
 {
     public function index(){ //return homepage view
-        return view("welcome", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get()], ["client" => Auth::user()]);
-    }
+        return view("welcome", [
+            "sejour" => Sejour::orderBy('id_sejour', 'asc')->get(),
+            "sejourTri" => Sejour::orderBy('id_sejour', 'asc')->take(6)->get(),
+            "client" => Auth::user(),
+            "route_des_vins_Tri" => Route_des_vins::take(6)->get()
+        ]);    }
 
     public function sejour(){ //return all sejours iview
         return view("lessejours", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
@@ -265,6 +269,11 @@ class IndexController extends Controller
         return redirect()->route('unSejour', [$_POST["idSejour"]]);
     }
 
+    
+
+    public function personnalisationCookie(){
+        return view('cookiePerso');
+    }
    
     public function unSejourCommercial(){ //return clicked sejour view
         $id = $_SERVER["QUERY_STRING"] - 1;
