@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AdminController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
@@ -112,3 +112,5 @@ Route::post('/valider_et_payer', 'App\Http\Controllers\CommandeController@valide
 Route::get('/historiqueCommandes', [IndexController::class, 'historiqueCommandes']);
 
 Route::get('/selectionDatesCadeau', [IndexController::class, 'selectionDatesCadeau']);
+
+Route::get('/personnalisationCookie', [IndexController::class, 'personnalisationCookie']);
