@@ -46,6 +46,18 @@
 
     <div class="owl-carousel">
     </div>
+    <script>
+        var sejour = <?php echo json_encode($sejourTri);?>;
+        var destination = <?php echo json_encode($destination);?>;
+        var categorie_participant = <?php echo json_encode($categorie_participant);?>;
+        var lesThemes = <?php echo json_encode($theme);?>;
+        var sejour_to_cat_participant = <?php echo json_encode($sejour_to_cat_participant);?>;
+        var domaine = "";
+        var participant = "";
+        var theme = "";
+        <?php  ?>
+    </script>
+
 
 
     <div class="banner">

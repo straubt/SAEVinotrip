@@ -33,7 +33,7 @@
     </header>
 <body>
 
-    page d'aceuil Chef
+    a
 </body>
 <footer class="bot-nav">        
     <div class="lien">
