@@ -85,12 +85,18 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     <p>{{$tripNbDay}} jour(s) | {{$tripNbDay-1}} nuit(s)</p>
                     <p class="justified">{{$tripDescription}}</p>
                     <p>{{$themeLibelle}}</p>
-                    <button onClick="window.location.href='/offrir-sejour/{{$idRequest}}'">
-                        <div>Offrir</div>
-                        <img src="/images/icons/offer.svg"></img>
-                    </button>
+                    
+                    
                     <form action="{{ route('cart.store') }}" method="post" onsubmit="return validateDates()">
                         @csrf
+                        <button onClick="window.location.href='/offrir-sejour/{{$idRequest}}'">
+                        <div>Offrir</div>
+                        <img src="/images/icons/offer.svg"></img>
+                        </button>
+                        <button type="submit">
+                        <div>Ajouter au panier</div>
+                        <img src="/images/icons/panier.png"></img>
+                        </button>
                         <input id="hidden-input-id" type="hidden" name="id" value="{{$idRequest}}">
                         <input type="hidden" name="title" value="{{$tripTitle}}">
                         <input type="hidden" name="price" value="{{$tripPrice}}">
@@ -98,10 +104,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         <input type="date" id="startDate" name="startDate" required><br>
                         <label for="endDate">Date de départ :</label><br>
                         <input type="date" id="endDate" name="endDate" required><br>
-                    <button type="submit">
-                        <div>Ajouter au<br> panier</div>
-                        <img src="/images/icons/shoppingCart.svg"></img>
-                    </button>
+                        
                     </form>
                 </div>
             </section>
