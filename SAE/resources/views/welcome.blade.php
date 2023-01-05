@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="styleCookies.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/styleWelcome.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
@@ -57,7 +58,6 @@
         var domaine = "";
         var participant = "";
         var theme = "";
-        <?php  ?>
     </script>
 
 
@@ -133,6 +133,7 @@
     </div>
     <br>
 </footer>
+<script src="js/afficheSejoursAccueil.js"></script>
 <script src="js/mainPagePersonalisation.js"></script>
 <script src="../js/mainPageAcceuil.js"></script>
 <script src="js/jquery-3.6.1.slim.min.js"></script>

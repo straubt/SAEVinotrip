@@ -29,7 +29,10 @@ class IndexController extends Controller
             "sejour" => Sejour::orderBy('id_sejour', 'asc')->get(),
             "sejourTri" => Sejour::orderBy('id_sejour', 'asc')->take(6)->get(),
             "client" => Auth::user(),
-            "route_des_vins_Tri" => Route_des_vins::take(6)->get()
+            "route_des_vins_Tri" => Route_des_vins::take(6)->get(),
+            "destination" => Destination::all(),
+            "categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(),
+            "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()
         ]);    }
 
     public function sejour(){ //return all sejours iview
