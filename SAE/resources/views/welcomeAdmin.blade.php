@@ -13,20 +13,6 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
-<header class="top-nav">
-    <a href="/">Vinotrip</a>
-    <input id="menu-toggle" type="checkbox" />
-    <label class='menu-button-container' for="menu-toggle">
-        <div class='menu-button'></div>
-    </label>
-    <div class="menu">
-        <a href="/">Accueil</a>
-        <a href="/nos-sejours">Nos séjours</a>
-        <a href="/route-des-vins">Routes des vins</a>
-        <a href="/profile">Mon profil</a>
-        <a href="/logout">Deconnexion</a>
-    <div>
-</header>
 
 <body>
 <script>

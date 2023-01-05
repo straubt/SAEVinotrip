@@ -32,6 +32,7 @@
     <script> 
         var admins = <?php echo json_encode($admins);?>;
         var catStaff = <?php echo json_encode($catStaff);?>;
+        var commandes = <?php echo json_encode($commandes);?>;
         var csrf = <?php echo json_encode(csrf_token());?>;
     </script>
     <p><b>page d'aceuil Chef</b></p> 
@@ -82,6 +83,7 @@
     		</div>
       </form>
     <p class="admins"><br><b>Administrateurs existants</b></br></p>
+    <p class="commandes"><br><b>Statistiques</b></br></p>
 
 </body>
 <footer class="bot-nav">        

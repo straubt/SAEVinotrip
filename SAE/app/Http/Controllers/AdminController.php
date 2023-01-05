@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie_Staff;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,7 @@ class AdminController extends Controller
     }
 
     public function welcomeChef(){// page welcome compte Chef
-        return view("welcomeChef",["admins" => Staff::all()], ["catStaff" => Categorie_Staff::all()]);
+        return view("welcomeChef", ["admins" => Staff::all(), "catStaff" => Categorie_Staff::all(), "commandes" => Commande::all()]);
     }
 
 

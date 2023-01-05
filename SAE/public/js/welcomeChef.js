@@ -10,7 +10,6 @@ function create(tag, parent, text = null, classs = null, id = null) {
     return element
   }
 
-console.log(catStaff);
 var adminP = document.querySelector(".admins");
 var ul = create("ul", adminP, null, null, null);
 admins.forEach(admin => {
@@ -35,3 +34,12 @@ admins.forEach(admin => {
     //espacement
     create("br", ul, null, null, null);
 });
+
+var nbCommandes;
+console.log(commandes);
+commandes.forEach(commande => {
+  
+});
+let statistiques = document.querySelector(".commandes");
+let divNB = create("div", statistiques, "nombre de commandes payées", null, null);
+// let pNB = create("p", divNB, commandes.)
