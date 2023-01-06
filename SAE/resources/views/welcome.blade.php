@@ -127,4 +127,8 @@
 <script src="js/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="js/caroussel.js"></script>
 
+<script>
+    document.querySelector('#cookie-banner').hidden = false;
+</script>
+
 </html>

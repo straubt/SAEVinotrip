@@ -54,6 +54,7 @@
         </table>
         <td><button class="buttonOkForm" id="OkForm">Valider</button> </td>
         <!--   <td><button class="buttonCookies" id="OkForm" onclick="getCookie()">get Cookies</button> </td> -->
+        <script src='js/mainPagePersonalisation.js'></script>
     </section> 
 
 </html>

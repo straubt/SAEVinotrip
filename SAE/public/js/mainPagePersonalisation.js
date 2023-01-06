@@ -61,6 +61,7 @@ cookieBannerAccept.addEventListener('click', function() {
 
 cookieBannerEdit.addEventListener('click', function() {
   edit[0].hidden = false;
+  setCookie('cookie_configured', 'true', 7);
   // set a cookie to remember that the user has accepted the banner
 });
 
