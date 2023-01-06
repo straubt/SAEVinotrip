@@ -53,6 +53,7 @@ const edit = document.getElementsByClassName('personalisation');
 const okEdit = document.getElementById('OkForm');
 const cookieBannerAccept = document.getElementById('cookie-banner-button');
 const cookieBannerEdit = document.getElementById('cookie-banner-button-Edit');
+const okForm = document.getElementById('OkForm');
 
 cookieBannerAccept.addEventListener('click', function() {
   cookieBanner.style.display = 'none';
