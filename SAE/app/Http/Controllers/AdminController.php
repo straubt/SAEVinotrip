@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie_Staff;
+use App\Models\Commande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,56 +26,77 @@ class AdminController extends Controller
     }
 
     public function welcomeChef(){// page welcome compte Chef
-        return view("welcomeChef",["admins" => Staff::all()], ["catStaff" => Categorie_Staff::all()]);
+        return view("welcomeChef", ["admins" => Staff::all(), "catStaff" => Categorie_Staff::all(), "commandes" => Commande::all()]);
     }
 
 
     public function authenticateChef(Request $request){// fonction de connection chef
 
-        $credentials = $request->validate([ //fields verification on formular view
-            'id_admin' => ['required'],
-            'mdp_admin' => ['required'],
-        ]);
+        if (Staff::where('login_staff', $request->id_admin)->first()->categorie_staff == 1){ //if is chef
+            $credentials = $request->validate([ //fields verification on formular view
+                'id_admin' => ['required'],
+                'mdp_admin' => ['required'],
+            ]);
+    
+            unset($credentials["mdp_admin"]); //transform mdp_client into password for auth laravel
+            $credentials["password"] = $request->mdp_admin;
+    
+            unset($credentials["id_admin"]); //transform mdp_client into password for auth laravel
+            $credentials["login_staff"] = $request->id_admin;
 
-        unset($credentials["mdp_admin"]); //transform mdp_client into password for auth laravel
-        $credentials["password"] = $request->mdp_admin;
-
-        unset($credentials["id_admin"]); //transform mdp_client into password for auth laravel
-        $credentials["login_staff"] = $request->id_admin;
-
-        if (Auth::guard('admin')->attempt($credentials)) { //server verification identity
-            $request->session()->regenerate();
-            return redirect()->intended('/welcomeChef');
+            if (Auth::guard('admin')->attempt($credentials)) { //server verification identity
+                $request->session()->regenerate();
+                return redirect()->intended('/welcomeChef');
+            }
+    
+            return back()->withErrors([ //sending errors (bad email or password)
+                'email' => 'Mauvais identifiant ou mot de passe.',
+            ]);
         }
 
-        return back()->withErrors([ //sending errors (bad email or password)
-            'email' => 'Mauvais identifiant ou mot de passe.',
-        ]);
+        else{ //if is not chef
+            return back()->withErrors([ //sending errors (bad email or password)
+                'email' => 'vous n\'avez pas la permission d\'acceder a cette page.'
+            ]);
+        }
 
     }
 
     public function authenticateAdmin(Request $request){// fonction de connection admin
 
-        $credentials = $request->validate([ //fields verification on formular view
-            'id_admin' => ['required'],
-            'mdp_admin' => ['required'],
-        ]);
+        if (Staff::where('login_staff', $request->id_admin)->first()->categorie_staff != 1) { //if is chef
 
-        unset($credentials["mdp_admin"]); //transform mdp_client into password for auth laravel
-        $credentials["password"] = $request->mdp_admin;
+            $credentials = $request->validate([
+                //fields verification on formular view
+                'id_admin' => ['required'],
+                'mdp_admin' => ['required'],
+            ]);
 
-        unset($credentials["id_admin"]); //transform mdp_client into password for auth laravel
-        $credentials["login_staff"] = $request->id_admin;
+            unset($credentials["mdp_admin"]); //transform mdp_client into password for auth laravel
+            $credentials["password"] = $request->mdp_admin;
+
+            unset($credentials["id_admin"]); //transform mdp_client into password for auth laravel
+            $credentials["login_staff"] = $request->id_admin;
 
 
-        if (Auth::guard('admin')->attempt($credentials)) { //server verification identity
-            $request->session()->regenerate();
-            return redirect()->intended('/welcomeAdmin');
+            if (Auth::guard('admin')->attempt($credentials)) { //server verification identity
+                $request->session()->regenerate();
+                return redirect()->intended('/welcomeAdmin');
+            }
+
+            return back()->withErrors([
+                //sending errors (bad email or password)
+                'email' => 'Mauvais identifiant ou mot de passe.',
+            ]);
         }
 
-        return back()->withErrors([ //sending errors (bad email or password)
-            'email' => 'Mauvais identifiant ou mot de passe.',
-        ]);
+        else{
+
+            return back()->withErrors([
+                //sending errors (bad email or password)
+                'email' => 'Veuillez utiliser la page de connection correspondante a votre fonction.',
+            ]);
+        }
 
     }
 
@@ -104,6 +126,10 @@ class AdminController extends Controller
         $admin = Staff::find($request->id_staff);
         $admin->delete();
         return redirect()->intended('/welcomeChef');
+    }
+
+    public function detail(){
+        return view("detail", ["admins" => Staff::all(), "catStaff" => Categorie_Staff::all(), "commandes" => Commande::all()]);
     }
     
 } 

@@ -22,20 +22,16 @@
             <div class='menu-button'></div>
         </label>
         <div class="menu">
-            <a href="/">Accueil</a>
-            <a href="/nos-sejours">Nos séjours</a>
-            <a href="/route-des-vins">Routes des vins</a>
-            @guest<a href="/register">S'inscrire</a>
-            <a href="/login">Se connecter</a>@endguest
-            @auth<a href="/profile">Mon profil</a>
-            <a href="/logout">Deconnexion</a>@endauth
-            <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img></a>
+            <a href="#">Accueil</a>
+            <a href="#">Mon profil</a>
+            <a href="/logout">Deconnexion</a>
         <div>
     </header>
 <body>
     <script> 
         var admins = <?php echo json_encode($admins);?>;
         var catStaff = <?php echo json_encode($catStaff);?>;
+        var commandes = <?php echo json_encode($commandes);?>;
         var csrf = <?php echo json_encode(csrf_token());?>;
     </script>
     <p><br><b>Ajout d'un nouvel administrateur :</b></br></p>
@@ -85,6 +81,7 @@
     		</div>
       </form>
     <p class="admins"><br><b>Administrateurs existants</b></br></p>
+    <div class="commandes"><br><b>Statistiques</b></br></div>
 
 </body>
 <footer class="bot-nav">        
