@@ -127,5 +127,9 @@ class AdminController extends Controller
         $admin->delete();
         return redirect()->intended('/welcomeChef');
     }
+
+    public function detail(){
+        return view("detail", ["admins" => Staff::all(), "catStaff" => Categorie_Staff::all(), "commandes" => Commande::all()]);
+    }
     
 } 

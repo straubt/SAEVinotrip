@@ -22,10 +22,8 @@
             <div class='menu-button'></div>
         </label>
         <div class="menu">
-            <a href="/">Accueil</a>
-            <a href="/nos-sejours">Nos séjours</a>
-            <a href="/route-des-vins">Routes des vins</a>
-            <a href="/profile">Mon profil</a>
+            <a href="#">Accueil</a>
+            <a href="#">Mon profil</a>
             <a href="/logout">Deconnexion</a>
         <div>
     </header>
@@ -83,7 +81,7 @@
     		</div>
       </form>
     <p class="admins"><br><b>Administrateurs existants</b></br></p>
-    <p class="commandes"><br><b>Statistiques</b></br></p>
+    <div class="commandes"><br><b>Statistiques</b></br></div>
 
 </body>
 <footer class="bot-nav">        

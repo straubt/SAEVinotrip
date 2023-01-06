@@ -114,3 +114,5 @@ Route::get('/historiqueCommandes', [IndexController::class, 'historiqueCommandes
 Route::get('/selectionDatesCadeau', [IndexController::class, 'selectionDatesCadeau']);
 
 Route::get('/personnalisationCookie', [IndexController::class, 'personnalisationCookie']);
+
+Route::get('/detail', [AdminController::class, 'detail'])->name('detail');
