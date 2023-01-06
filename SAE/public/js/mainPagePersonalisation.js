@@ -53,20 +53,22 @@ const edit = document.getElementsByClassName('personalisation');
 const okEdit = document.getElementById('OkForm');
 const cookieBannerAccept = document.getElementById('cookie-banner-button');
 const cookieBannerEdit = document.getElementById('cookie-banner-button-Edit');
-const okForm = document.getElementById('OkForm');
 
 cookieBannerAccept.addEventListener('click', function() {
   cookieBanner.style.display = 'none';
   // set a cookie to remember that the user has accepted the banner
+  setCookie('cookie_configured', 'true', 7);
 });
 
 cookieBannerEdit.addEventListener('click', function() {
   edit[0].hidden = false;
-  setCookie('cookie_configured', 'true', 7);
   // set a cookie to remember that the user has accepted the banner
 });
 
 okEdit.addEventListener('click', function() {
   edit[0].hidden = true;
   // set a cookie to remember that the user has accepted the banner
+  console.log('ok')
+  setCookie('cookie_configured', 'true', 7);
+  window.location.href = "/";
 });

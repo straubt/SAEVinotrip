@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="styleCookies.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/styleWelcome.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
@@ -48,6 +49,17 @@
 
     <div class="owl-carousel">
     </div>
+    <script>
+        var sejour = <?php echo json_encode($sejourTri);?>;
+        var destination = <?php echo json_encode($destination);?>;
+        var categorie_participant = <?php echo json_encode($categorie_participant);?>;
+        var lesThemes = <?php echo json_encode($theme);?>;
+        var sejour_to_cat_participant = <?php echo json_encode($sejour_to_cat_participant);?>;
+        var domaine = "";
+        var participant = "";
+        var theme = "";
+    </script>
+
 
     <div id="cookie-banner">
         <p class="mentionl"> Nous utilisons des cookies et d'autres technologies qui sont indispensables pour vous fournir les 
@@ -121,6 +133,7 @@
     </div>
     <br>
 </footer>
+<script src="js/afficheSejoursAccueil.js"></script>
 <script src="js/mainPagePersonalisation.js"></script>
 <script src="../js/mainPageAcceuil.js"></script>
 <script src="js/jquery-3.6.1.slim.min.js"></script>
