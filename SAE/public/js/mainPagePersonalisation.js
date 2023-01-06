@@ -57,6 +57,7 @@ const cookieBannerEdit = document.getElementById('cookie-banner-button-Edit');
 cookieBannerAccept.addEventListener('click', function() {
   cookieBanner.style.display = 'none';
   // set a cookie to remember that the user has accepted the banner
+  setCookie('cookie_configured', 'true', 7);
 });
 
 cookieBannerEdit.addEventListener('click', function() {
@@ -67,4 +68,7 @@ cookieBannerEdit.addEventListener('click', function() {
 okEdit.addEventListener('click', function() {
   edit[0].hidden = true;
   // set a cookie to remember that the user has accepted the banner
+  console.log('ok')
+  setCookie('cookie_configured', 'true', 7);
+  window.location.href = "/";
 });

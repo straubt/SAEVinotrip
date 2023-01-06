@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
@@ -114,5 +114,5 @@ Route::get('/historiqueCommandes', [IndexController::class, 'historiqueCommandes
 Route::get('/selectionDatesCadeau', [IndexController::class, 'selectionDatesCadeau']);
 
 Route::get('/personnalisationCookie', [IndexController::class, 'personnalisationCookie']);
-
 Route::get('/detail', [AdminController::class, 'detail'])->name('detail');
+
