@@ -25,8 +25,15 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class IndexController extends Controller
 {
     public function index(){ //return homepage view
-        return view("welcome", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get()], ["client" => Auth::user()]);
-    }
+        return view("welcome", [
+            "sejour" => Sejour::orderBy('id_sejour', 'asc')->get(),
+            "sejourTri" => Sejour::orderBy('id_sejour', 'asc')->take(6)->get(),
+            "client" => Auth::user(),
+            "route_des_vins_Tri" => Route_des_vins::take(6)->get(),
+            "destination" => Destination::all(),
+            "categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(),
+            "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()
+        ]);    }
 
     public function sejour(){ //return all sejours iview
         return view("lessejours", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
@@ -177,7 +184,7 @@ class IndexController extends Controller
             'mdp_client' => ['required'],
         ]);
 
-        unset($credentials["mdp_client"]); //transfor mdp_client into password for auth laravel
+        unset($credentials["mdp_client"]); //transform mdp_client into password for auth laravel
         $credentials["password"] = $request->mdp_client;
 
 
@@ -232,13 +239,7 @@ class IndexController extends Controller
         return view("profile", ["client" => Auth::user()]);
     }
 
-    public function connectionAdmin(){ // page connection pour compte admin
-        return view("connectionAdmin");
-    }
-
-    public function connectionChef(){// page connection pour compte Chef
-        return view("connectionChef");
-    }
+    
 
     public function adminAide(){// page connection pour aide admin / chef
         return view("adminAide");
@@ -259,10 +260,6 @@ class IndexController extends Controller
 
     public function welcomeAdmin(){// page welcome compte admin
         return view("welcomeAdmin",["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
-    }
-
-    public function welcomeChef(){// page welcome compte Chef
-        return view("welcomeChef");
     }
 
     public function postAvis(){
@@ -294,6 +291,11 @@ class IndexController extends Controller
         return redirect()->route('unSejour', [(string)intval($_POST["idSejour"]) - 1]);
     }
 
+    
+
+    public function personnalisationCookie(){
+        return view('cookiePerso');
+    }
    
     public function unSejourCommercial(){ //return clicked sejour view
         $id = $_SERVER["QUERY_STRING"] - 1;
@@ -318,6 +320,9 @@ class IndexController extends Controller
     }
 
     public function mesCommandes(){
+        if(!Auth::check()){
+            return redirect("/login");
+          }
         $id_client = Auth::user()->id_client;
         $commandes = Commande::where('code_etat_commande', '=', 1)
                             ->where('id_client', '=', $id_client)

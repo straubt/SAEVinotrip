@@ -114,7 +114,7 @@ $PORT_SERVEUR_IMG = '8232';
             </div>  
             <div class="cart-actions">
             </form>
-            <form action="<?php echo e(route('update-cart')); ?>" method="POST">
+            <form action="<?php echo e(route('update-cart')); ?>" id="form-panier" method="POST">
               <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
               <input type="hidden" name="price" value="">
               <input type="hidden" name="tabCommande" value="">
@@ -131,7 +131,7 @@ $PORT_SERVEUR_IMG = '8232';
 
 
     <!-- Ajouter du code JavaScript pour mettre à jour le prix total en temps réel en fonction du nombre de personnes sélectionné -->
-    <script>
+    <script> 
   // Récupération des données du panier depuis le serveur PHP
   var lesSejours = <?php echo json_encode(Cart::content());?>;
 
@@ -175,6 +175,9 @@ quantitySelectors.forEach(function(selector) {
  // Définition de la variable "tabCommande" qui va contenir les données de chaque séjour
  let tabCommande = [];
 
+ const form = document.querySelector('#form-panier');
+
+
 // Ajout d'un évènement de clic sur le bouton de validation du panier
 submitButton.addEventListener('click', (event) => {
   // Mise à jour de la valeur du champ de formulaire "price" avec le prix total
@@ -197,11 +200,14 @@ submitButton.addEventListener('click', (event) => {
       date: date
     });
   });
-    // Mise à jour de la valeur du champ de formulaire "tabCommande" avec les données de chaque séjour
-    tabCommandeInput.value = JSON.stringify(tabCommande);
-    // Soumission du formulaire
-    form.submit();
-  });
+  // Mise à jour de la valeur du champ de formulaire "tabCommande" avec les données de chaque séjour
+  tabCommandeInput.value = JSON.stringify(tabCommande);
+  // Vérification de l'identification de l'utilisateur
+  // Soumission du formulaire
+  form.submit();
+
+});
+
   
   // Mettre à jour le prix total lorsque la page est chargée pour la première fois
   updateTotalPrice();

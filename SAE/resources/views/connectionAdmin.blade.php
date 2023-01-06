@@ -36,7 +36,7 @@
 		
   	<div class="container">
 		<h1 class="titre">Se connecter en Admin</h1>
-      <form method="post" action="{{ route("connectionPost") }}" autocomplete="on">
+      <form method="post" action="{{ route("connectionAdminPost") }}" autocomplete="on">
 	  @csrf
 
     		<!---ID Admin---->

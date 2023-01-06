@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -58,8 +59,14 @@ Route::get('/politiqueDeConfidentialite', [IndexController::class, 'politiqueDeC
 //mentions legales
 Route::get('/mentionsLegales', [IndexController::class, 'mentionsLegales']);
 //autres connection (admin et chef)
-Route::get('/connectionAdmin', [IndexController::class, 'connectionAdmin']);
-Route::get('/connectionChef', [IndexController::class, 'connectionChef']);
+Route::get('/connectionAdmin', [AdminController::class, 'connectionAdmin']);
+Route::get('/connectionChef', [AdminController::class, 'connectionChef']);
+Route::post('/loginChef', [AdminController::class, "authenticateChef"])->name('connectionChefPost');
+Route::post('/loginAdmin', [AdminController::class, "authenticateAdmin"])->name('connectionAdminPost');
+//ajout d'un administrateur
+Route::post('/addAdmin', [AdminController::class, "addAdmin"])->name('addAdmin');
+Route::post('/deleteAdmin', [AdminController::class, "deleteAdmin"])->name('deleteAdmin');
+
 
 Route::post('/offrir-sejours', 'App\Http\Controllers\OffrirSejourController@store')->name('offrir-sejour.store');
 
@@ -99,6 +106,8 @@ Route::get('/commandesEnAttente', [IndexController::class, 'commandesEnAttente']
 
 Route::post('/confirmer-commande', 'App\Http\Controllers\CommandeController@confirmer')->name('confirmer-commande');
 
+
+
 Route::get('/mesCommandes', [IndexController::class, 'mesCommandes']);
 
 Route::post('/valider_et_payer', 'App\Http\Controllers\CommandeController@valider_et_payer')->name('valider_et_payer');
@@ -106,3 +115,7 @@ Route::post('/valider_et_payer', 'App\Http\Controllers\CommandeController@valide
 Route::get('/historiqueCommandes', [IndexController::class, 'historiqueCommandes']);
 
 Route::get('/selectionDatesCadeau', [IndexController::class, 'selectionDatesCadeau']);
+
+Route::get('/personnalisationCookie', [IndexController::class, 'personnalisationCookie']);
+Route::get('/detail', [AdminController::class, 'detail'])->name('detail');
+
