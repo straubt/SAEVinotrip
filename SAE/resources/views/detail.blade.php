@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/styleChef.css">
+    <link rel="stylesheet" href="css/styleDetail.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 <header class="top-nav">
@@ -22,20 +23,20 @@
             <div class='menu-button'></div>
         </label>
         <div class="menu">
-            <a href="/">Accueil</a>
+            <a href="/welcomeChef">Accueil</a>
             <a href="/nos-sejours">Nos séjours</a>
             <a href="/route-des-vins">Routes des vins</a>
             <a href="/profile">Mon profil</a>
             <a href="/logout">Deconnexion</a>
         <div>
-    </header>
+</header>
 <body>
     <script> 
         var admins = <?php echo json_encode($admins);?>;
         var catStaff = <?php echo json_encode($catStaff);?>;
         var commandes = <?php echo json_encode($commandes);?>;
     </script>
-    
+    <script src="js/detail.js"></script>
 </body>
 <footer class="bot-nav">        
     <div class="lien">
@@ -53,5 +54,4 @@
 <script src="js/jquery-3.6.1.slim.min.js"></script>
 <script src="js/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="js/caroussel.js"></script>
-<script src="js/welcomeChef.js"></script>
 </html>

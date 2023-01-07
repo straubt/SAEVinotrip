@@ -14,6 +14,7 @@ var adminP = document.querySelector(".admins");
 var ul = create("ul", adminP, null, null, null);
 admins.forEach(admin => {
     //création du li
+    if (admin.categorie_staff != 1){
     let li = create("li", ul, admin.prenom_staff + " " + catStaff[admin.categorie_staff - 1].libelle_categorie, null, null);
     //création du formulaire
     let form = create("form", li, null, null, null);
@@ -33,6 +34,7 @@ admins.forEach(admin => {
     inputAdmin.name="id_staff";
     //espacement
     create("br", ul, null, null, null);
+    }
 });
 
 var nbCommandesAtt = [];
