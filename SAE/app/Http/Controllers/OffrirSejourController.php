@@ -14,8 +14,10 @@ class OffrirSejourController extends Controller
 {
   public function create($id)
   {
+    if(!Auth::check()){
+      return redirect("/login");
+    }
     $sejour = Sejour::findOrFail($id);
-
     return view('/offrir', [
         'sejour' => $sejour
       ]);
