@@ -49,11 +49,17 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
         <link rel="stylesheet" href="css/styleSejour.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/style_popup.css">
         <link rel="icon" type="image/x-icon" href="images/images.jpg">
         <script src="js/cookie.js"></script>
         <script src="js/unSejour.js"></script>
     </head>
     <body>
+    <script src="js/script_popup.js"></script>
+    <div id="popup-msg">
+        <p class="popup-p" data-help-id="0" hidden>Vous achetez le séjour pour une connaissance qui recevra un e-mail contenant un code avec lequel elle pourra acheter ce séjour</p>
+        <p class="popup-p" data-help-id="1" hidden>Vous ajoutez ce séjour dans votre panier à partir duquel vous pourrez modifier le nombre d'adultes, d'enfants, de chambres ainsi que la date de départ</p>
+    </div>
     <header class="top-nav">
         <a href="/">Vinotrip</a>
         <input id="menu-toggle" type="checkbox" />
@@ -89,13 +95,13 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     
                     <form action="{{ route('cart.store') }}" method="post" onsubmit="return validateDates()">
                         @csrf
-                        <button onClick="window.location.href='/offrir-sejour/{{$idRequest}}'">
-                        <div>Offrir</div>
-                        <img src="/images/icons/offer.svg"></img>
+                        <button class="popup-trigger" data-help-id="0" onClick="window.location.href='/offrir-sejour/{{$idRequest}}'">
+                            <div>Offrir</div>
+                            <img src="/images/icons/offer.svg"></img>
                         </button>
-                        <button type="submit">
-                        <div>Ajouter au panier</div>
-                        <img src="/images/icons/panier.png"></img>
+                        <button type="submit" class="popup-trigger" data-help-id="1">
+                            <div>Ajouter au panier</div>
+                            <img src="/images/icons/panier.png"></img>
                         </button>
                         <input id="hidden-input-id" type="hidden" name="id" value="{{$idRequest}}">
                         <input type="hidden" name="title" value="{{$tripTitle}}">
