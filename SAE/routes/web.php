@@ -94,14 +94,11 @@ Route::get('/userAide', [IndexController::class, 'userAide']);
 
 //aide connection (admin / chef et user)
 Route::get('/welcomeAdmin', [IndexController::class, 'welcomeAdmin']);
-<<<<<<< HEAD
 Route::get('/welcomeChef', [IndexController::class, 'welcomeChef']);
 
 // route pour requete AJAX, retourne une ou plusieurs ligne de la table Sejour
 Route::get('/get_sejours_data', [IndexController::class, 'sejours_data']);
-=======
 Route::get('/welcomeChef', [AdminController::class, 'welcomeChef']);
->>>>>>> 3ba586690f5aef6b0bed9cc2fd014bb096a6905d
 Route::get('/sejourCommercial', [IndexController::class, 'unSejourCommercial']);
 
 Route::post('/modify-price', 'App\Http\Controllers\CommercialController@modifierPrix')->name('modify-price');
