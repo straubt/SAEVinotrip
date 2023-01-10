@@ -1,14 +1,16 @@
 function show_popup_msg(e)
 {
     help_id = e.target.getAttribute('data-help-id');
-    document.querySelector(".popup-p p[data-help-id='" + help_id + "']").hidden = false;
+    document.getElementsByClassName("popup-p")[help_id].hidden = false;
     document.querySelector('#popup-msg').style.opacity = '1';
 }
 
 function hide_popup_msg(e)
 {
     help_id = e.target.getAttribute('data-help-id');
-    document.querySelector(".popup-p p[data-help-id='" + help_id + "']").hidden = true;
+    console.log("p[data-help-id='" + help_id + "']")
+    console.log(document.getElementsByClassName("popup-p")[help_id])
+    document.getElementsByClassName("popup-p")[help_id].hidden = true;
     document.querySelector('#popup-msg').style.opacity = '0';
 }
 
