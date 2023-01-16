@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
-
+<form action="{{ route("home") }}">
+    @srcf
 <section class="personalisation"> 
         <table class="blueTable">
             <thead>
@@ -52,9 +53,10 @@
                 </tr>
             </tbody>
         </table>
-        <td><button class="buttonOkForm" id="OkForm">Valider</button> </td>
+        <td><button type="Submit" class="buttonOkForm" id="OkForm">Valider</button> </td>
         <!--   <td><button class="buttonCookies" id="OkForm" onclick="getCookie()">get Cookies</button> </td> -->
         <script src='js/mainPagePersonalisation.js'></script>
-    </section> 
+    </section>
+</form>
 
 </html>
