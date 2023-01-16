@@ -21,6 +21,42 @@ body{
   }
 }
 
+@keyframes blurIn {
+  0% {
+    filter: blur(0px);
+  }
+  100%{
+    filter: blur(4px);
+  }
+}
+
+@keyframes blurOut {
+  0% {
+    filter: blur(4px);
+  }
+  100%{
+    filter: blur(0px);
+  }
+}
+
+@keyframes backBlurIn {
+  0% {
+    backdrop-filter: blur(0px);
+  }
+  100%{
+    backdrop-filter: blur(4px);
+  }
+}
+
+@keyframes backBlurOut {
+  0% {
+    backdrop-filter: blur(4px);
+  }
+  100%{
+    backdrop-filter: blur(0px);
+  }
+}
+
 #carte{
   width: 30%;
   height: 60%;
@@ -147,4 +183,30 @@ body{
 #localisation_14{
   margin-top: 10%;
   left: 20%;
+}
+
+.helpIn{
+  animation: 2s ease blurIn;
+  animation-fill-mode: forwards;
+}
+
+.helpOut{
+  animation: 2s ease blurOut;
+  animation-fill-mode: forwards;
+}
+
+.backHelpIn{
+  animation: 2s ease backBlurIn;
+  animation-fill-mode: forwards;
+}
+
+.backHelpOut{
+  animation: 2s ease backBlurOut;
+  animation-fill-mode: forwards;
+}
+
+.help{
+  position: absolute;
+  font-size: 20px;
+  text-decoration: solid;
 }
