@@ -59,6 +59,8 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
     <div id="popup-msg">
         <p class="popup-p" data-help-id="0" hidden>Vous achetez le séjour pour une connaissance qui recevra un e-mail contenant un code avec lequel elle pourra acheter ce séjour</p>
         <p class="popup-p" data-help-id="1" hidden>Vous ajoutez ce séjour dans votre panier à partir duquel vous pourrez modifier le nombre d'adultes, d'enfants, de chambres ainsi que la date de départ</p>
+        <p class="popup-p" data-help-id="2" hidden>La date à laquelle vous souhaitez arriver sur les lieux, la nuit d'hôtel est comprise dans le prix</p>
+        <p class="popup-p" data-help-id="3" hidden>La date à laquelle vous souhaitez quitter les lieux</p>
     </div>
     <header class="top-nav">
         <a href="/">Vinotrip</a>
@@ -99,18 +101,22 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                             <div>Offrir</div>
                             <img src="/images/icons/offer.svg"></img>
                         </button>
-                        <button type="submit" class="popup-trigger" data-help-id="1">
-                            <div>Ajouter au panier</div>
-                            <img src="/images/icons/panier.png"></img>
-                        </button>
-                        <input id="hidden-input-id" type="hidden" name="id" value="{{$idRequest}}">
-                        <input type="hidden" name="title" value="{{$tripTitle}}">
-                        <input type="hidden" name="price" value="{{$tripPrice}}">
-                        <label for="startDate">Date d'arrivée :</label><br>
-                        <input type="date" id="startDate" name="startDate" required><br>
-                        <label for="endDate">Date de départ :</label><br>
-                        <input type="date" id="endDate" name="endDate" required><br>
-                        
+
+                        <div style="display:flex">
+                            <div>
+                                <input id="hidden-input-id" type="hidden" name="id" value="{{$idRequest}}">
+                                <input type="hidden" name="title" value="{{$tripTitle}}">
+                                <input type="hidden" name="price" value="{{$tripPrice}}">
+                                <label class="popup-trigger" data-help-id="2" for="startDate">Date d'arrivée :</label><br>
+                                <input type="date" id="startDate" name="startDate" required><br>
+                                <label class="popup-trigger" data-help-id="3" for="endDate">Date de départ :</label><br>
+                                <input type="date" id="endDate" name="endDate" required><br>
+                            </div>
+                            <button type="submit" class="popup-trigger" data-help-id="1">
+                                <div>Ajouter au panier</div>
+                                <img src="/images/icons/panier.png"></img>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </section>
