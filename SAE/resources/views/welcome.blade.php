@@ -18,7 +18,8 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
-<body>
+<body>    
+
     <script>
         var data = <?php echo json_encode($sejour);?>;
         var client = <?php echo json_encode($client);?>;
@@ -55,6 +56,7 @@
     </script>
 
     </div>
+
     <script>
         var sejour = <?php echo json_encode($sejourTri);?>;
         var destination = <?php echo json_encode($destination);?>;
@@ -65,7 +67,7 @@
         var participant = "";
         var theme = "";
     </script>
-
+   
 
     <div id="cookie-banner">
         <p class="mentionl"> Nous utilisons des cookies et d'autres technologies qui sont indispensables pour vous fournir les 
@@ -88,15 +90,13 @@
 
 
 
-    </script>
-   <script>
+    
+    <div class="sejoursActus"></div>
 
-
-<div class="sejoursActus"></div>
 <button id="sejoursButton">OUI</button>
+</body>
 
 <script src="js/afficheSejoursAccueil.js"></script>
-</body>
 
 
 <footer class="bot-nav">        
