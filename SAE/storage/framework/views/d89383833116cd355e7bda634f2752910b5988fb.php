@@ -7,7 +7,6 @@
     <title>Accueil vinotrip Main</title>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
     <link rel="stylesheet" href="css/styleCookies.css">
-    <link rel="stylesheet" href="css/styleGeneral.css">
     <link rel="stylesheet" href="css/styleWelcome.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -40,6 +39,10 @@
             <a href="/logout">Deconnexion</a><?php endif; ?>
             <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img><?php echo e(count(Cart::content())); ?></a>
         <div>
+        <div class="vinotrip-container">
+            <h1 class="vinotrip-title">Créateur de séjours œnotouristiques</h1>
+            <p class="vinotrip-description">Spécialiste de l’œnotourisme, VINOTRIP vous emmène à la découverte des régions viticoles françaises. Nous créons pour vous des séjours personnalisables en fonction de vos envies.</p>
+        </div>
     </header>
     <?php if(session('success')): ?>
         <div class="alert alert-success">
@@ -49,6 +52,9 @@
         <?php endif; ?>
 
     <div class="owl-carousel">
+        
+    </script>
+
     </div>
     <script>
         var sejour = <?php echo json_encode($sejourTri);?>;
@@ -82,45 +88,17 @@
     </div>
 
 
-    <div class="banner">
-        <video autoplay="" muted="" loop="">
-            <source id="vid" src="../video/raisins.mp4" class ="grape" type="">
-        </video>
-        <p class="descriptionSite" data-aos="fade-up"> Bienvenue dans vinotrip ! Votre site spécialisée dans l'oenotourisme. Nous vous proposons les meilleurs séjours adpatés à vos envies</p>
 
-    <div id="raisins"></div>
-
-    <script type="text/javascript">
-        let raisins = document.querySelector('#raisins');
-        let descr = document.querySelector('.descriptionSite');
-        var scale = 100;
-        let grandir =true;
-        let max =21;
-        raisins.style.backgroundSize = 20+"vh";
-        window.onwheel = function(e){
-            scale += e.deltaY;
-            if(scale>1200 && scale<13000){
-                if(max >= 400 || grandir == false){
-                    grandir =false
-                    if(max<=20)
-                        return;
-                    raisins.style.backgroundSize =  max+"vh";
-                    max -=10;}              
-                else if (grandir == true){
-                    raisins.style.backgroundSize =  max+"vh";
-                    max=max+10;}
-                } 
-            console.log(scale);
-            console.log(raisins.style.backgroundSize);
-        }
-
-        
     </script>
    <script>
-  AOS.init();
-</script>
 
+
+<div class="sejoursActus"></div>
+<button id="sejoursButton">OUI</button>
+
+<script src="js/afficheSejoursAccueil.js"></script>
 </body>
+
 
 <footer class="bot-nav">        
     <div class="lien">
@@ -134,11 +112,14 @@
     </div>
     <br>
 </footer>
-<script src="js/afficheSejoursAccueil.js"></script>
 <script src="js/mainPagePersonalisation.js"></script>
 <script src="../js/mainPageAcceuil.js"></script>
 <script src="js/jquery-3.6.1.slim.min.js"></script>
 <script src="js/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="js/caroussel.js"></script>
+
+<script>
+    document.querySelector('#cookie-banner').hidden = false;
+</script>
 
 </html><?php /**PATH /home/poulje/SAEVinotrip/SAE/resources/views/welcome.blade.php ENDPATH**/ ?>

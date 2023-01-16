@@ -32,7 +32,7 @@ body{
    
    select:hover {
      background-color: transparent;
-     color: white;
+     color: #ff0000de;
      padding: 15px 5px 15px 25px;
    }
    
