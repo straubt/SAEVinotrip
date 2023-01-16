@@ -208,5 +208,6 @@ body{
 .help{
   position: absolute;
   font-size: 20px;
+  color: white;
   text-decoration: solid;
 }
