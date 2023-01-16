@@ -34,3 +34,25 @@ function create(tag, parent, text=null, classs=null, id=null) {
 function spawnRoute(){
   console.log(routes[0].id_route_des_vins);
 };
+let body = document.querySelector("body");
+let topNav = document.querySelector(".top-nav");
+let titrePage = document.querySelector("#titrePage");
+
+body.classList.add("backHelpIn");
+topNav.classList.add("helpIn");
+titrePage.classList.add("helpIn");
+map.classList.add("helpIn");
+
+let aide = create("div", body, "Voici les routes des vins ! Veuillez selectionner une région en cliquant sur la carte !", "help", null);
+aide.classList.add("help");
+let buttonAide = create("button", aide, "Compris !", "buttonHelp", null);
+buttonAide.onclick = function(){aideOk()};
+
+function aideOk(){
+  aide.remove();
+  body.classList.add("backHelpOut");
+  topNav.classList.add("helpOut");
+  titrePage.classList.add("helpOut");
+  map.classList.add("helpOut");
+}
+
