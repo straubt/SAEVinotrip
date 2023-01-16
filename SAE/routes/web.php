@@ -35,7 +35,7 @@ Route::get('/logout', [IndexController::class, "logout"])->name('logout');
 Route::get('/profile', [IndexController::class, "profile"])->name('profile');
 Route::post('/profile', [IndexController::class, "updateProfile"])->name('updateProfile');
 //homepage
-Route::get('/', [IndexController::class, "index"]);
+Route::get('/', [IndexController::class, "index"])->name('home');
 //Voir un sejour
 Route::get('/sejour', [IndexController::class, 'unSejour'])->name('unSejour');
 Route::post('/postAvis', [IndexController::class, 'postAvis'])->name('postAvis');
