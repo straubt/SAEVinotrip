@@ -39,12 +39,12 @@
             <?php if(auth()->guard()->check()): ?><a href="/profile">Mon profil</a>
             <a href="/logout">Deconnexion</a><?php endif; ?>
             <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img><?php echo e(count(Cart::content())); ?></a>
-        <div>
-        <div class="vinotrip-container">
-            <h1 class="vinotrip-title">Créateur de séjours œnotouristiques</h1>
-            <p class="vinotrip-description">Spécialiste de l’œnotourisme, VINOTRIP vous emmène à la découverte des régions viticoles françaises. Nous créons pour vous des séjours personnalisables en fonction de vos envies.</p>
+            
         </div>
-    </header>
+     
+    </header>   <div class="vinotrip-container">
+            <h1 class="vinotrip-title">Créateur de séjours œnotouristiques</h1>
+            </div>
     <?php if(session('success')): ?>
         <div class="alert alert-success">
             <?php echo e(session('success')); ?>
@@ -53,10 +53,11 @@
         <?php endif; ?>
 
     <div class="owl-carousel">
-        
-    </script>
+
 
     </div>
+    <div class="decouvrirDiv"><a href="/nos-sejours"><button id="sejoursButton">Découvrir tous nos séjours</button></a>
+</div>
 
     <script>
         var sejour = <?php echo json_encode($sejourTri);?>;
@@ -94,7 +95,6 @@
     
     <div class="sejoursActus"></div>
 
-<button id="sejoursButton">OUI</button>
 </body>
 
 <script src="js/afficheSejoursAccueil.js"></script>
