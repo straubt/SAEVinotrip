@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/styleGeneral.css">
 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet">
 	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/style_popup.css">
     <link rel="stylesheet" href="css/footer.css">
 	<link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
@@ -29,7 +30,12 @@
             <a href="/logout">Deconnexion</a>@endauth
             <a href="/panier" ><img id="panier" src="https://cdn.discordapp.com/attachments/1043098033778348072/1048247684949082143/panierBlanc.png"></img>{{count(Cart::content())}}</a>
         <div>
-    </header>
+</header>
+<script src="js/script_popup.js"></script>
+    <div id="popup-msg">
+        <p class="popup-p" data-help-id="0" hidden>L'email doit contenir le symbole "@" et doit être valide</p>
+        <p class="popup-p" data-help-id="1" hidden>Les services proposés par Vinotrip sont destinés à un public majeur. En créant un compte, vous certifiez que vous avez plus de 18 ans.</p>
+    </div>
 
     <!-- Body of Form starts -->
 		<div class="container">
@@ -80,7 +86,7 @@
 						</i>
 					</div>
 					<div class="fr">
-						<input type="email" required name="mail_client" placeholder="Email" class="textBox">
+						<input type="email" required name="mail_client" placeholder="Email" class="textBox popup-trigger" data-help-id="0">
 					</div>
 					<div class="clr">
 					</div>
@@ -93,7 +99,7 @@
 						</i>
 					</div>
 					<div class="fr">
-						<input type="date" required name="date_naissance" placeholder="Date de naissance" class="textBox">
+						<input type="date" required name="date_naissance" placeholder="Date de naissance" class="textBox popup-trigger" data-help-id="1">
 					</div>
 					<div class="clr">
 					</div>
@@ -129,7 +135,7 @@
 
 					<!--Terms and Conditions------>
 				<div class="box terms">
-					<input type="checkbox" name="Terms" required> &nbsp; J'accepte les termes et les conditions
+					<input type="checkbox" name="Terms" required> &nbsp; J'accepte les <a id="lien" href="/mentionsLegales">termes</a> et les <a id="lien" href="politiqueDeConfidentialite">conditions</a>
 				</div>
 					<!--Terms and Conditions------>
 
