@@ -91,7 +91,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         @csrf
                         <button onClick="window.location.href='/offrir-sejour/{{$idRequest}}'">
                         <div>Offrir</div>
-                        <img src="/images/icons/offer.svg"></img>
+                        <img src="/images/icons/cadeau.png"></img>
                         </button>
                         <button type="submit">
                         <div>Ajouter au panier</div>
@@ -225,9 +225,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
             <section>
                 <h2>Les séjours en lien :</h2>
                 <div class="slider-wrapper">
-                    <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
-                    
-                    <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
+                <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
                     
                     <ul class="slides-container" id="slides-container">
                         <?php
@@ -237,6 +235,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         }
                         ?>
                     </ul>
+                <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
                 </div>
                 <script>
                     const slidesContainer = document.getElementById("slides-container");
@@ -259,9 +258,9 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
             <section id='section-sejoursConsultes' hidden>
                 <h2>Les séjours que vous avez déjà consulté :</h2>
                 <div class="slider-wrapper">
-                    <button class="slide-arrow" id="slide-arrow-prev-sejoursConsultes">&#8249;</button>    
+                    <button class="slide-arrow" id="slide-arrow-prev-sejoursConsultes">&#8249;</button> 
+                    <ul class="slides-container" id="slides-container-sejoursConsultes"></ul>   
                     <button class="slide-arrow" id="slide-arrow-next-sejoursConsultes">&#8250;</button>  
-                    <ul class="slides-container" id="slides-container-sejoursConsultes"></ul>
                 </div>
             </section>
             

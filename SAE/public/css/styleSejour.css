@@ -52,7 +52,11 @@ main{
 
 #sejourProgramme{
     margin: 1em;
-    
+    margin-top: 3%;
+    margin-left: 2vw;
+}
+#sejourProgramme img {
+    padding-bottom: 2vh;
 }
 
 #sejourProgramme p{
@@ -69,6 +73,7 @@ main{
 
 .etape{
     padding: 0.5em 0 0.5em 0;
+    padding-bottom: 4vh;
 }
 
 #sejourAvis{
@@ -81,6 +86,7 @@ main{
 
 #avisHeader button{
     float: right;
+    margin: 0;
 }
 
 #formLeaveReview{
@@ -100,13 +106,18 @@ main{
 }
 
 #formLeaveReviewControlContainer input, button{
-    background-color: #7E0000DE;
+    background-color: #900000;
     color: white;
-    padding: 0.5em;
-    border-radius: 2em;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+    padding-left: 6%;
+    padding-right: 6%;
+    border-radius: 13px;
     margin: 5%;
+    border-color: #900000;
+    font-weight: 600;
+    border-style: none;
     box-shadow: 0px 2px 5px black;
-    
 }
 
 #avisData *{
@@ -156,9 +167,34 @@ main{
 }
 
 .slider-wrapper {
+    margin: 1rem;/*
+    position: relative;
+    overflow: hidden;*/
+    display: flex;
+    align-items: center;
+  }
+
+  .slider-wrapper ul {
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px black;
+  }
+
+.slide-arrow{
     margin: 1rem;
     position: relative;
     overflow: hidden;
+    background-color: #900000;
+    color: white;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-radius: 13px;
+    margin: 5%;
+    border-color: #900000;
+    font-weight: 600;
+    border-style: none;
+    box-shadow: 0px 2px 5px black;
   }
   .slides-container {
     /*height: calc(100vh - 2rem);*/
@@ -230,12 +266,14 @@ label {
     margin-bottom: 0.5em;
     font-size: 1em;
     font-weight: bold;
+    margin-left: 2vw;
   }
   
   input[type="date"] {
     display: block;
-    width: 100%;
+    width: 30%;
     padding: 0.5em;
+    margin-left: 2vw;
     border: 1px solid #ccc;
     border-radius: 5px;
   }

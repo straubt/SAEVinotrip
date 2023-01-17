@@ -49,36 +49,56 @@
 
 
     <div class="banner">
-        <video autoplay="" muted="" loop="">
-            <source id="vid" src="../video/raisins.mp4" class ="grape" type="">
-        </video>
         <p class="descriptionSite" data-aos="fade-up"> Bienvenue dans vinotrip ! Votre site spécialisée dans l'oenotourisme. Nous vous proposons les meilleurs séjours adpatés à vos envies</p>
 
     <div id="raisins"></div>
 
     <script type="text/javascript">
-        let raisins = document.querySelector('#raisins');
-        let descr = document.querySelector('.descriptionSite');
-        var scale = 100;
-        let grandir =true;
-        let max =21;
-        raisins.style.backgroundSize = 20+"vh";
-        window.onwheel = function(e){
-            scale += e.deltaY;
-            if(scale>1200 && scale<13000){
-                if(max >= 400 || grandir == false){
-                    grandir =false
-                    if(max<=20)
-                        return;
-                    raisins.style.backgroundSize =  max+"vh";
-                    max -=10;}              
-                else if (grandir == true){
-                    raisins.style.backgroundSize =  max+"vh";
-                    max=max+10;}
-                } 
-            console.log(scale);
-            console.log(raisins.style.backgroundSize);
-        }
+function animateElementOnScroll(element, backgroundImageUrl) {
+  // Déclarez une variable pour stocker la valeur de l'échelle
+  let scale = 100;
+
+  // Déclarez une variable pour stocker la taille maximale de l'élément
+  let maxElementSize = 200;
+
+  window.addEventListener("wheel", function(event) {
+    // Incrémenter ou décrémenter l'échelle en fonction de la valeur de deltaY
+    scale += event.deltaY;
+
+    // Si l'échelle est comprise entre 1200 et 13000, ajuster la taille de l'élément
+    if (scale > 1200 && scale < 13000) {
+      // Si deltaY est positif, augmenter la taille de l'élément
+      if (event.deltaY > 0) {
+        maxElementSize += 3;
+      } 
+      // Sinon, si deltaY est négatif, diminuer la taille de l'élément
+      else if (event.deltaY < 0) {
+        maxElementSize -= 5;
+      }
+
+      // Limiter la taille de l'élément à un maximum de 400
+      if (maxElementSize > 400) {
+        maxElementSize = 400;
+      }
+      // Limiter la taille de l'élément à un minimum de 20
+      else if (maxElementSize < 20) {
+        maxElementSize = 20;
+      }
+
+      // Appliquer la nouvelle taille de l'élément à l'élément
+      element.style.width = maxElementSize + "vw";
+      element.style.height = maxElementSize + "vh";
+
+      // Appliquer l'image de fond souhaitée à l'élément
+      element.style.backgroundImage = "url('" + backgroundImageUrl + "')";
+    }
+  });
+}
+
+// Exemple d'utilisation de la fonction
+let raisins = document.querySelector("#raisins");
+let backgroundImageUrl = "../video/raisins.mp4";
+animateElementOnScroll(raisins, backgroundImageUrl);
 
         
     </script>
