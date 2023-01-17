@@ -14,7 +14,6 @@
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 
-
 <body>
 <script>
         var sejour = <?php echo json_encode($sejour);?>;
@@ -31,7 +30,7 @@
             participant = "";
             theme = "";
         <?php } ?>
-    </script>
+</script>
     <header class="top-nav">
         <p>Connecté en tant que directeur commercial</p>
 

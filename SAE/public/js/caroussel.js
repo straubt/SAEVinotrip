@@ -34,8 +34,15 @@ function create(tag, parent, text=null, classs=null, id=null) {
 
 let carousel = document.querySelector(".owl-carousel");
 console.log(data[0]);
+var clas
 data.forEach(unSejour => {
-  let div = create("div", carousel, null, null, null);
+  if (unSejour.id_sejour = 2){
+    clas = "centreText";
+  }
+  else{
+    clas = null;
+  }
+  let div = create("div", carousel, null, clas, null);
   let image = create("img", div, null, null, null);
   $PORT_SERVEUR_IMG = '8232'
   image.src = 'http://51.83.36.122:' + $PORT_SERVEUR_IMG + '/sejours/' + unSejour.photo_sejour;

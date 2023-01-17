@@ -1,0 +1,9 @@
+.attente, .nonPaye, .paye, .remplace{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.sejour{
+    margin: 20px;
+    background-color: grey;
+}

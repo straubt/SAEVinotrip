@@ -1,0 +1,12 @@
+#popup-msg{
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    position: absolute;
+    max-width: 20vw;
+    background-color: rgba(126, 0, 0, 1);
+    color: white;
+    padding: 10px;
+    z-index: 100;
+    text-align: justify;
+}

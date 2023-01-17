@@ -126,10 +126,15 @@ p{
 	color: white;
 }
 .selected{
-	color: #c00505;
+	color: #c00505;	
 }
 .temp{
 	position: absolute;
 	color: white;
+}
+
+#lien{
+	color: #e60a0a;
+	text-decoration: none; 
 }
 

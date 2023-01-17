@@ -7,13 +7,17 @@
     <title>Connection Vinotrip</title>
 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel="stylesheet"> 
     <link rel="stylesheet" href="css/styleRegister.css">
+	<link rel="stylesheet" href="css/style_popup.css">
 	<link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
 
 <body>
-
+<script src="js/script_popup.js"></script>
+    <div id="popup-msg">
+        <p class="popup-p" data-help-id="0" hidden>Email utilisé lors de votre inscription</p>
+    </div>
 
 <header class="top-nav">
         <a href="/">Vinotrip</a>
@@ -44,7 +48,7 @@
           <label for="email" class="fl fontLabel"> Email : </label>
     			<div class="fl iconBox"><i class="fa fa-envelope" aria-hidden="true"></i></div>
     			<div class="fr">
-    					<input type="email" required name="mail_client" placeholder="Email" class="textBox">
+    					<input type="email" required name="mail_client" placeholder="Email" class="textBox popup-trigger" data-help-id="0">
     			</div>
     			<div class="clr"></div>
     		</div>

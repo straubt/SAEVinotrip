@@ -49,11 +49,19 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
         <link rel="stylesheet" href="css/styleSejour.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/style_popup.css">
         <link rel="icon" type="image/x-icon" href="images/images.jpg">
         <script src="js/cookie.js"></script>
         <script src="js/unSejour.js"></script>
     </head>
     <body>
+    <script src="js/script_popup.js"></script>
+    <div id="popup-msg">
+        <p class="popup-p" data-help-id="0" hidden>Vous achetez le séjour pour une connaissance qui recevra un e-mail contenant un code avec lequel elle pourra acheter ce séjour</p>
+        <p class="popup-p" data-help-id="1" hidden>Vous ajoutez ce séjour dans votre panier à partir duquel vous pourrez modifier le nombre d'adultes, d'enfants, de chambres ainsi que la date de départ</p>
+        <p class="popup-p" data-help-id="2" hidden>La date à laquelle vous souhaitez arriver sur les lieux, la nuit d'hôtel est comprise dans le prix</p>
+        <p class="popup-p" data-help-id="3" hidden>La date à laquelle vous souhaitez quitter les lieux</p>
+    </div>
     <header class="top-nav">
         <a href="/">Vinotrip</a>
         <input id="menu-toggle" type="checkbox" />
@@ -89,22 +97,26 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     
                     <form action="{{ route('cart.store') }}" method="post" onsubmit="return validateDates()">
                         @csrf
-                        <button onClick="window.location.href='/offrir-sejour/{{$idRequest}}'">
-                        <div>Offrir</div>
-                        <img src="/images/icons/cadeau.png"></img>
+                        <button class="popup-trigger" data-help-id="0" onClick="window.location.href='/offrir-sejour/{{$idRequest}}'">
+                            <div>Offrir</div>
+                            <img src="/images/icons/offer.svg"></img>
                         </button>
-                        <button type="submit">
-                        <div>Ajouter au panier</div>
-                        <img src="/images/icons/panier.png"></img>
-                        </button>
-                        <input id="hidden-input-id" type="hidden" name="id" value="{{$idRequest}}">
-                        <input type="hidden" name="title" value="{{$tripTitle}}">
-                        <input type="hidden" name="price" value="{{$tripPrice}}">
-                        <label for="startDate">Date d'arrivée :</label><br>
-                        <input type="date" id="startDate" name="startDate" required><br>
-                        <label for="endDate">Date de départ :</label><br>
-                        <input type="date" id="endDate" name="endDate" required><br>
-                        
+
+                        <div style="display:flex">
+                            <div>
+                                <input id="hidden-input-id" type="hidden" name="id" value="{{$idRequest}}">
+                                <input type="hidden" name="title" value="{{$tripTitle}}">
+                                <input type="hidden" name="price" value="{{$tripPrice}}">
+                                <label class="popup-trigger" data-help-id="2" for="startDate">Date d'arrivée :</label><br>
+                                <input type="date" id="startDate" name="startDate" required><br>
+                                <label class="popup-trigger" data-help-id="3" for="endDate">Date de départ :</label><br>
+                                <input type="date" id="endDate" name="endDate" required><br>
+                            </div>
+                            <button type="submit" class="popup-trigger" data-help-id="1">
+                                <div>Ajouter au panier</div>
+                                <img src="/images/icons/panier.png"></img>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </section>
@@ -156,7 +168,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     @guest<button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button>@endguest
                 </div>
 
-                <form id="formLeaveReview" action="postAvis" method="post" hidden>
+                <form id="formLeaveReview" action="postAvis" enctype="multipart/form-data" method="post" hidden>
                     @csrf
                     <h3>Mon avis</h3>
 
@@ -262,6 +274,21 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     <ul class="slides-container" id="slides-container-sejoursConsultes"></ul>   
                     <button class="slide-arrow" id="slide-arrow-next-sejoursConsultes">&#8250;</button>  
                 </div>
+                <script>
+                    const slidesContainerSejoursConsultes = document.getElementById("slides-container-sejoursConsultes");
+                    const prevButtonSejoursConsultes = document.getElementById("slide-arrow-prev-sejoursConsultes");
+                    const nextButtonSejoursConsultes = document.getElementById("slide-arrow-next-sejoursConsultes");
+
+                    nextButtonSejoursConsultes.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;   // slide declared on top of this <script>
+                    slidesContainerSejoursConsultes.scrollLeft += slideWidth;
+                    });
+
+                    prevButtonSejoursConsultes.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;
+                    slidesContainerSejoursConsultes.scrollLeft -= slideWidth;
+                    });
+                </script>
             </section>
             
         </main>

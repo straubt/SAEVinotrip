@@ -49,11 +49,17 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
         <link rel="stylesheet" href="css/styleSejour.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/style_popup.css">
         <link rel="icon" type="image/x-icon" href="images/images.jpg">
         <script src="js/cookie.js"></script>
         <script src="js/unSejour.js"></script>
     </head>
     <body>
+    <script src="js/script_popup.js"></script>
+    <div id="popup-msg">
+        <p class="popup-p" data-help-id="0" hidden>Vous achetez le séjour pour une connaissance qui recevra un e-mail contenant un code avec lequel elle pourra acheter ce séjour</p>
+        <p class="popup-p" data-help-id="1" hidden>Vous ajoutez ce séjour dans votre panier à partir duquel vous pourrez modifier le nombre d'adultes, d'enfants, de chambres ainsi que la date de départ</p>
+    </div>
     <header class="top-nav">
         <a href="/">Vinotrip</a>
         <input id="menu-toggle" type="checkbox" />
@@ -86,12 +92,18 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     <p><?php echo e($tripNbDay); ?> jour(s) | <?php echo e($tripNbDay-1); ?> nuit(s)</p>
                     <p class="justified"><?php echo e($tripDescription); ?></p>
                     <p><?php echo e($themeLibelle); ?></p>
-                    <button onClick="window.location.href='/offrir-sejour/<?php echo e($idRequest); ?>'">
-                        <div>Offrir</div>
-                        <img src="/images/icons/offer.svg"></img>
-                    </button>
+                    
+                    
                     <form action="<?php echo e(route('cart.store')); ?>" method="post" onsubmit="return validateDates()">
                         <?php echo csrf_field(); ?>
+                        <button class="popup-trigger" data-help-id="0" onClick="window.location.href='/offrir-sejour/<?php echo e($idRequest); ?>'">
+                            <div>Offrir</div>
+                            <img src="/images/icons/offer.svg"></img>
+                        </button>
+                        <button type="submit" class="popup-trigger" data-help-id="1">
+                            <div>Ajouter au panier</div>
+                            <img src="/images/icons/panier.png"></img>
+                        </button>
                         <input id="hidden-input-id" type="hidden" name="id" value="<?php echo e($idRequest); ?>">
                         <input type="hidden" name="title" value="<?php echo e($tripTitle); ?>">
                         <input type="hidden" name="price" value="<?php echo e($tripPrice); ?>">
@@ -99,10 +111,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         <input type="date" id="startDate" name="startDate" required><br>
                         <label for="endDate">Date de départ :</label><br>
                         <input type="date" id="endDate" name="endDate" required><br>
-                    <button type="submit">
-                        <div>Ajouter au<br> panier</div>
-                        <img src="/images/icons/shoppingCart.svg"></img>
-                    </button>
+                        
                     </form>
                 </div>
             </section>
@@ -154,7 +163,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     <?php if(auth()->guard()->guest()): ?><button id="openReviewForm" onclick="alert('Vous devez être authentifié pour laisser un avis')">Laissez le vôtre !</button><?php endif; ?>
                 </div>
 
-                <form id="formLeaveReview" action="postAvis" method="post" hidden>
+                <form id="formLeaveReview" action="postAvis" enctype="multipart/form-data" method="post" hidden>
                     <?php echo csrf_field(); ?>
                     <h3>Mon avis</h3>
 
@@ -261,6 +270,21 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                     <button class="slide-arrow" id="slide-arrow-next-sejoursConsultes">&#8250;</button>  
                     <ul class="slides-container" id="slides-container-sejoursConsultes"></ul>
                 </div>
+                <script>
+                    const slidesContainerSejoursConsultes = document.getElementById("slides-container-sejoursConsultes");
+                    const prevButtonSejoursConsultes = document.getElementById("slide-arrow-prev-sejoursConsultes");
+                    const nextButtonSejoursConsultes = document.getElementById("slide-arrow-next-sejoursConsultes");
+
+                    nextButtonSejoursConsultes.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;   // slide declared on top of this <script>
+                    slidesContainerSejoursConsultes.scrollLeft += slideWidth;
+                    });
+
+                    prevButtonSejoursConsultes.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;
+                    slidesContainerSejoursConsultes.scrollLeft -= slideWidth;
+                    });
+                </script>
             </section>
             
         </main>

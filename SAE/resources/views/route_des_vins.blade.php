@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/over_image.css">
     <link rel="stylesheet" href="css/carteVin.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/style_popup.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="images/images.jpg">
 </head>
@@ -34,7 +35,10 @@
 <h1 id="titrePage">ROUTE DES VINS</h1>
 
 <body> 
-
+<script src="js/script_popup.js"></script>
+    <div id="popup-msg">
+        <p class="popup-p" data-help-id="0" hidden>Cliquez pour voir les séjours en rapport avec cette route des vins !</p>
+    </div>
     <div class="map">
         <img id="carte" src="images/carte.png">   
         <div id="laRoute">

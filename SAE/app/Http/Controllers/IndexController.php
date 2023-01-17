@@ -25,8 +25,15 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class IndexController extends Controller
 {
     public function index(){ //return homepage view
-        return view("welcome", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get()], ["client" => Auth::user()]);
-    }
+        return view("welcome", [
+            "sejour" => Sejour::orderBy('id_sejour', 'asc')->get(),
+            "sejourTri" => Sejour::orderBy('id_sejour', 'asc')->take(8)->get(),
+            "client" => Auth::user(),
+            "route_des_vins_Tri" => Route_des_vins::take(8 )->get(),
+            "destination" => Destination::all(),
+            "categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(),
+            "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()
+        ]);    }
 
     public function sejour(){ //return all sejours iview
         return view("lessejours", ["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
@@ -81,6 +88,24 @@ class IndexController extends Controller
 
         return view("sejour", ["achat_effectue"=>$achat_effectue, "id" => $id, "etapes" => $etapes, 'avisData' => $avisData, 'avis' => $avis, 'elements_etapes' => $elements_etapes, 'sejours_same_destination' => $sejours_same_destination, "sejour" => $sejour, "theme" => Theme::all()]);
 
+    }
+
+    public function sejours_data(){ //returns data about one or more sejour
+
+        $whereQuery = '';
+        foreach($_GET['IDs'] as $id)
+        {
+            $whereQuery .= 'id_sejour = ' . $id . ' OR ';
+        }
+        // on supprime les 3 derniers caractères 'OR '
+        $whereQuery = substr($whereQuery, 0, -3);
+
+        $sejours = DB::table('sejour')
+            ->whereRaw($whereQuery)
+            ->select('id_sejour', 'titre_sejour', 'photo_sejour')
+            ->get();
+
+        return $sejours;
     }
 
     // page partenaire avec nom, adresse, e-mail, numéro de téléphone
@@ -159,7 +184,7 @@ class IndexController extends Controller
             'mdp_client' => ['required'],
         ]);
 
-        unset($credentials["mdp_client"]); //transfor mdp_client into password for auth laravel
+        unset($credentials["mdp_client"]); //transform mdp_client into password for auth laravel
         $credentials["password"] = $request->mdp_client;
 
 
@@ -214,13 +239,7 @@ class IndexController extends Controller
         return view("profile", ["client" => Auth::user()]);
     }
 
-    public function connectionAdmin(){ // page connection pour compte admin
-        return view("connectionAdmin");
-    }
-
-    public function connectionChef(){// page connection pour compte Chef
-        return view("connectionChef");
-    }
+    
 
     public function adminAide(){// page connection pour aide admin / chef
         return view("adminAide");
@@ -243,12 +262,8 @@ class IndexController extends Controller
         return view("welcomeAdmin",["sejour" => Sejour::orderBy('id_sejour', 'asc')->get(), "destination" => Destination::all(),"categorie_participant" => Categorie_Participant::all(),"theme" => Theme::all(), "sejour_to_cat_participant" => Sejour_To_Cat_Participant::all()]);
     }
 
-    public function welcomeChef(){// page welcome compte Chef
-        return view("welcomeChef");
-    }
-
     public function postAvis(){
-
+        
         $avis = new Avis;
         $avis->id_sejour = $_POST["idSejour"];
         $avis->id_client = Auth::id();
@@ -256,8 +271,9 @@ class IndexController extends Controller
         $avis->note_avis = $_POST["noteAvis"];
         $avis->libelle_avis = $_POST["libelleAvis"];
         $avis->texte_avis = $_POST["texteAvis"];
-        var_dump("appel");
+
         $avis->save();
+        
         /*
         //$libelle_avis = str_replace("'", "''", $libelle_avis);
         //$texte_avis = str_replace("'", "''", $texte_avis);
@@ -272,9 +288,14 @@ class IndexController extends Controller
 
         //DB::insert("INSERT INTO avis(id_sejour, id_client, date_avis, note_avis, libelle_avis, texte_avis) VALUES ($idsejour, $userId, '$date_avis', $note_avis, '$libelle_avis', '$texte_avis');");
         //return redirect()->to("/sejour?".$idsejour);
-        return redirect()->route('unSejour', [$_POST["idSejour"]]);
+        return redirect()->route('unSejour', [(string)intval($_POST["idSejour"]) - 1]);
     }
 
+    
+
+    public function personnalisationCookie(){
+        return view('cookiePerso');
+    }
    
     public function unSejourCommercial(){ //return clicked sejour view
         $id = $_SERVER["QUERY_STRING"] - 1;
