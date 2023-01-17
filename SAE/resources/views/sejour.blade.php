@@ -99,7 +99,7 @@ $themeLibelle = $theme[$sejour->id_theme]['libelle_theme'];
                         @csrf
                         <button class="popup-trigger" data-help-id="0" onClick="window.location.href='/offrir-sejour/{{$idRequest}}'">
                             <div>Offrir</div>
-                            <img src="/images/icons/offer.svg"></img>
+                            <img src="/images/icons/cadeau.png"></img>
                         </button>
 
                         <div style="display:flex">
