@@ -16,6 +16,9 @@ routes.forEach(route => {
 
     a.href =  "/nos-sejours?Domaine="+txt[route.id_route_des_vins - 1]+"&Participant=none&Theme=none";
   };
+  a.classList.add("popup-trigger");
+  a.setAttribute("data-help-id", "0");
+  console.log(a);
 
 });
 
@@ -43,7 +46,7 @@ topNav.classList.add("helpIn");
 titrePage.classList.add("helpIn");
 map.classList.add("helpIn");
 
-let aide = create("div", body, "Voici les routes des vins ! Veuillez selectionner une région en cliquant sur la carte !", "help", null);
+let aide = create("div", body, "Voici les routes des vins ! Veuillez selectionner une région en cliquant sur la carte !  ", "help", null);
 aide.classList.add("help");
 let buttonAide = create("button", aide, "Compris !", "buttonHelp", null);
 buttonAide.onclick = function(){aideOk()};
